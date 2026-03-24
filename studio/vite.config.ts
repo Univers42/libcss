@@ -9,6 +9,9 @@ export default defineConfig({
       '@libcss/studio': resolve(__dirname, '../src/studio'),
       '@libcss/components': resolve(__dirname, '../src/components'),
       '@libcss/common': resolve(__dirname, '../src/common'),
+      '@libcss/core': resolve(__dirname, '../src/core'),
+      '@libcss/hooks': resolve(__dirname, '../src/hooks'),
+      '@libcss/parser': resolve(__dirname, '../src/parser'),
       '@libcss/layout': resolve(__dirname, '../src/components/layout'),
     },
     // Ensure d3 sub-modules referenced from ../src/ resolve to studio's node_modules

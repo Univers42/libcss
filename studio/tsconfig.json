@@ -19,6 +19,12 @@
       "@libcss/components/*": ["../src/components/*"],
       "@libcss/common": ["../src/common"],
       "@libcss/common/*": ["../src/common/*"],
+      "@libcss/core": ["../src/core"],
+      "@libcss/core/*": ["../src/core/*"],
+      "@libcss/hooks": ["../src/hooks"],
+      "@libcss/hooks/*": ["../src/hooks/*"],
+      "@libcss/parser": ["../src/parser"],
+      "@libcss/parser/*": ["../src/parser/*"],
       "@libcss/layout": ["../src/components/layout"],
       "@libcss/layout/*": ["../src/components/layout/*"],
       "d3-*": ["./node_modules/@types/d3-*", "./node_modules/d3-*"]

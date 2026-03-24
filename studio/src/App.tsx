@@ -1,11 +1,16 @@
-import { useState, useCallback, useEffect } from 'react';
-import { StudioLayout } from '@libcss/studio';
+import React, { useState, useCallback, useEffect } from 'react';
+import {
+  StudioLayout,
+  OverviewView,
+  CategoryView,
+  VariantGalleryView,
+  PlaygroundView,
+  ChartGalleryView,
+} from '@libcss/studio';
 import type { ComponentCategory } from '@libcss/studio';
-import { OverviewView } from './views/CatalogView';
-import { CategoryView } from './views/CategoryView';
-import { VariantGalleryView } from './views/VariantGalleryView';
-import { PlaygroundView } from './views/PlaygroundView';
-import { ChartGalleryView } from './views/ChartGalleryView';
+import { Chart } from '@libcss/layout';
+import type { ChartConfig } from '@libcss/layout';
+import { GALLERY_ITEMS } from './entries/chart-gallery-data';
 
 type ViewMode = 'overview' | 'category' | 'variants' | 'component' | 'gallery';
 
@@ -156,7 +161,13 @@ export default function App() {
         );
 
       case 'gallery':
-        return <ChartGalleryView onBack={goToOverview} />;
+        return (
+          <ChartGalleryView
+            items={GALLERY_ITEMS as unknown as import('@libcss/studio').ChartGalleryItem[]}
+            renderChart={(config) => React.createElement(Chart, { config: config as ChartConfig })}
+            onBack={goToOverview}
+          />
+        );
 
       default:
         return (

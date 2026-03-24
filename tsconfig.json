@@ -23,6 +23,12 @@
     "src/components/**/*.ts",
     "src/components/**/*.tsx",
     "src/common/**/*.ts",
+    "src/core/**/*.ts",
+    "src/core/**/*.tsx",
+    "src/hooks/**/*.ts",
+    "src/hooks/**/*.tsx",
+    "src/parser/**/*.ts",
+    "src/parser/**/*.tsx",
     "src/studio/**/*.ts",
     "src/studio/**/*.tsx"
   ],
