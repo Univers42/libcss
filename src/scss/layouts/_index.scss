@@ -1,0 +1,10 @@
+// ──────────────────────────────────────────────────────
+// Layouts — Chart styles
+// ──────────────────────────────────────────────────────
+// BEM block: .prisma-chart
+// All chart visual styles, animations, and palette
+// custom properties live here.
+// ──────────────────────────────────────────────────────
+
+@forward 'chart';
+@forward 'palettes';

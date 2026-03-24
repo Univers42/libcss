@@ -1,0 +1,67 @@
+// ============================================
+// PRISMATICA — Video Media Block
+// ============================================
+// .prisma-video  responsive video embed
+// ============================================
+
+@use '../../abstracts' as *;
+
+.prisma-video {
+  // ── Configurator ──
+  --prisma-video-ratio: 16 / 9;
+  --prisma-video-radius: #{$radius-lg};
+  --prisma-video-border-color: var(--prisma-border-default);
+  --prisma-video-bg: var(--prisma-bg-tertiary);
+  --prisma-video-caption-color: var(--prisma-text-tertiary);
+
+  // ── Base ──
+  display: block;
+  margin-bottom: $spacing-4;
+  overflow: hidden;
+  border-radius: var(--prisma-video-radius);
+  border: $border-width-thin solid var(--prisma-video-border-color);
+  background: var(--prisma-video-bg);
+  transition: border-color $duration-base $ease-default;
+
+  // ── Player wrapper ──
+  &__player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: var(--prisma-video-ratio);
+    background: #000;
+
+    video,
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+    }
+  }
+
+  // ── Caption ──
+  &__caption {
+    padding: $spacing-2 $spacing-3;
+    font-family: $font-family-sans;
+    font-size: $font-size-sm;
+    color: var(--prisma-video-caption-color);
+    font-style: italic;
+  }
+
+  // ── Square ratio ──
+  &--square {
+    --prisma-video-ratio: 1;
+  }
+
+  // ── Wide ratio ──
+  &--wide {
+    --prisma-video-ratio: 21 / 9;
+  }
+
+  // ── Borderless ──
+  &--borderless {
+    --prisma-video-border-color: transparent;
+  }
+}
