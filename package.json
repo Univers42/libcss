@@ -1,0 +1,54 @@
+{
+  "name": "libcss",
+  "version": "1.0.0",
+  "description": "Prismatica Design System — Atomic SCSS/CSS + React component library",
+  "author": "Univers42",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Univers42/libcss.git"
+  },
+  "main": "dist/css/libcss.css",
+  "style": "dist/css/libcss.css",
+  "sass": "src/scss/libcss.scss",
+  "types": "dist/components/index.d.ts",
+  "files": [
+    "dist/",
+    "src/scss/"
+  ],
+  "scripts": {
+    "build": "sass src/scss/libcss.scss dist/css/libcss.css --load-path=src/scss --style=expanded --source-map",
+    "build:min": "sass src/scss/libcss.scss dist/css/libcss.min.css --load-path=src/scss --style=compressed --no-source-map && postcss dist/css/libcss.min.css --use autoprefixer -o dist/css/libcss.min.css --no-map",
+    "build:all": "npm run build && npm run build:min",
+    "watch": "sass --watch src/scss/libcss.scss:dist/css/libcss.css --load-path=src/scss --style=expanded --source-map",
+    "lint": "stylelint 'src/scss/**/*.scss'",
+    "lint:fix": "stylelint 'src/scss/**/*.scss' --fix",
+    "docs": "sassdoc src/scss --dest docs/generated",
+    "clean": "rm -rf dist/css/*.css dist/css/*.map",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "sass": "^1.80.0",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "sassdoc": "^2.7.4",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "autoprefixer": "^10.4.20",
+    "typescript": "^5.6.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-router-dom": "^6.26.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
