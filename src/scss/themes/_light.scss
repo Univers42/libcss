@@ -1,0 +1,13 @@
+// ============================================
+// PRISMATICA — Light Theme
+// ============================================
+
+@use '../abstracts' as *;
+
+:root {
+  @include theme-variables('light');
+
+  // Slider dots (component-specific)
+  --prisma-slider-dot-bg: rgb(255 255 255 / 45%);
+  --prisma-slider-dot-active-bg: #fff;
+}

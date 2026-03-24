@@ -1,0 +1,22 @@
+// ============================================
+// PRISMATICA — Dark Theme
+// ============================================
+
+@use '../abstracts' as *;
+
+[data-theme='dark'] {
+  @include theme-variables('dark');
+
+  --prisma-slider-dot-bg: rgb(255 255 255 / 35%);
+  --prisma-slider-dot-active-bg: #fff;
+}
+
+// Auto-detect dark mode when no data-theme attribute is set
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include theme-variables('dark');
+
+    --prisma-slider-dot-bg: rgb(255 255 255 / 35%);
+    --prisma-slider-dot-active-bg: #fff;
+  }
+}
