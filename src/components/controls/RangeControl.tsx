@@ -9,14 +9,14 @@ interface RangeControlProps {
 export function RangeControl({ control, value, onChange }: RangeControlProps) {
   const num = Number(value ?? control.defaultValue ?? 0);
   return (
-    <div className="studio-control">
-      <label className="studio-control__label">
+    <div className="shell-control">
+      <label className="shell-control__label">
         {control.label}
-        <span className="studio-control__value">{num}</span>
+        <span className="shell-control__value">{num}</span>
       </label>
       <input
         type="range"
-        className="studio-control__range"
+        className="shell-control__range"
         value={num}
         min={control.min ?? 0}
         max={control.max ?? 100}

@@ -41,7 +41,7 @@ export function CategoryView({
   }, [category, searchQuery]);
 
   return (
-    <section className="studio-category">
+    <section className="shell-catalog">
       <ExplorerBreadcrumb
         segments={[
           { label: 'Catalog', onClick: onBack },
@@ -49,23 +49,23 @@ export function CategoryView({
         ]}
       />
 
-      <div className="studio-category__header">
-        <div className="studio-category__info">
-          <h2 className="studio-category__title">
-            <span className="studio-category__icon">{meta.icon}</span>
+      <div className="shell-catalog__header">
+        <div className="shell-catalog__info">
+          <h2 className="shell-catalog__title">
+            <span className="shell-catalog__icon">{meta.icon}</span>
             {meta.label}
           </h2>
-          <p className="studio-category__description">{meta.description}</p>
+          <p className="shell-catalog__description">{meta.description}</p>
         </div>
         <SearchBar value={searchQuery} onChange={onSearch} placeholder="Filter components…" />
       </div>
 
       {entries.length === 0 ? (
-        <div className="studio-category__empty">
+        <div className="shell-catalog__empty">
           <p>No components match "{searchQuery}"</p>
         </div>
       ) : (
-        <div className="studio-category__grid">
+        <div className="shell-catalog__grid">
           {entries.map((entry: ComponentEntry) => (
             <ComponentCard
               key={entry.id}

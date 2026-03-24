@@ -12,13 +12,13 @@ export function CategoryCard({ category, onClick }: CategoryCardProps) {
   const count = registry.getByCategory(category).length;
 
   return (
-    <button type="button" className="studio-category-card" onClick={onClick}>
-      <span className="studio-category-card__icon">{meta.icon}</span>
-      <div className="studio-category-card__body">
-        <h3 className="studio-category-card__title">{meta.label}</h3>
-        <p className="studio-category-card__desc">{meta.description}</p>
+    <button type="button" className="shell-list-item" onClick={onClick}>
+      <span className="shell-list-item__icon">{meta.icon}</span>
+      <div className="shell-list-item__body">
+        <h3 className="shell-list-item__title">{meta.label}</h3>
+        <p className="shell-list-item__desc">{meta.description}</p>
       </div>
-      <span className="studio-category-card__count">{count}</span>
+      <span className="shell-list-item__count">{count}</span>
     </button>
   );
 }

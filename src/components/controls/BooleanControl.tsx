@@ -9,17 +9,17 @@ interface BooleanControlProps {
 export function BooleanControl({ control, value, onChange }: BooleanControlProps) {
   const checked = Boolean(value ?? control.defaultValue);
   return (
-    <div className="studio-control studio-control--boolean">
-      <label className="studio-control__label">{control.label}</label>
-      <div className="studio-control__toggle-track">
+    <div className="shell-control shell-control--boolean">
+      <label className="shell-control__label">{control.label}</label>
+      <div className="shell-control__toggle-track">
         <input
           type="checkbox"
-          className="studio-control__checkbox"
+          className="shell-control__checkbox"
           checked={checked}
           onChange={(e) => onChange(control.key, e.target.checked)}
         />
         <div
-          className={`studio-control__toggle ${checked ? 'studio-control__toggle--on' : ''}`}
+          className={`shell-control__toggle ${checked ? 'shell-control__toggle--on' : ''}`}
           aria-hidden="true"
         />
       </div>

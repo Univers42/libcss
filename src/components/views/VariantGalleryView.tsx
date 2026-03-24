@@ -103,7 +103,7 @@ export function VariantGalleryView({
 
   if (!entry) {
     return (
-      <section className="variant-gallery">
+      <section className="shell-variants">
         <p>Component not found.</p>
         <button type="button" onClick={onBack}>
           ← Back
@@ -115,7 +115,7 @@ export function VariantGalleryView({
   const totalPresets = allPresets.length;
 
   return (
-    <section className="variant-gallery">
+    <section className="shell-variants">
       <ExplorerBreadcrumb
         segments={[
           { label: 'Catalog', onClick: onBack },
@@ -125,25 +125,25 @@ export function VariantGalleryView({
       />
 
       {/* Header */}
-      <div className="variant-gallery__header">
-        <div className="variant-gallery__info">
-          <h1 className="variant-gallery__title">{entry.name}</h1>
-          <p className="variant-gallery__desc">{entry.description}</p>
-          <div className="variant-gallery__meta">
-            <span className="variant-gallery__badge">{meta.label}</span>
-            <span className="variant-gallery__count">
+      <div className="shell-variants__header">
+        <div className="shell-variants__info">
+          <h1 className="shell-variants__title">{entry.name}</h1>
+          <p className="shell-variants__desc">{entry.description}</p>
+          <div className="shell-variants__meta">
+            <span className="shell-variants__badge">{meta.label}</span>
+            <span className="shell-variants__count">
               {totalPresets} variant{totalPresets !== 1 ? 's' : ''}
             </span>
           </div>
         </div>
 
-        <div className="variant-gallery__controls">
-          <div className="variant-gallery__bg-toggle">
+        <div className="shell-variants__controls">
+          <div className="shell-variants__bg-toggle">
             {(['dark', 'light', 'checker'] as const).map((mode) => (
               <button
                 key={mode}
                 type="button"
-                className={`variant-gallery__bg-btn${canvasBg === mode ? ' variant-gallery__bg-btn--active' : ''}`}
+                className={`shell-variants__bg-btn${canvasBg === mode ? ' shell-variants__bg-btn--active' : ''}`}
                 onClick={() => setCanvasBg(mode)}
               >
                 {mode === 'dark' ? '🌙' : mode === 'light' ? '☀' : '▦'}
@@ -153,7 +153,7 @@ export function VariantGalleryView({
 
           <button
             type="button"
-            className="variant-gallery__playground-btn"
+            className="shell-variants__playground-btn"
             onClick={() => onOpenPlayground()}
           >
             ⚡ Playground
@@ -163,36 +163,36 @@ export function VariantGalleryView({
 
       {/* Preset Groups */}
       {[...grouped.entries()].map(([groupName, presets]) => (
-        <div key={groupName} className="variant-gallery__group">
-          <h2 className="variant-gallery__group-title">
+        <div key={groupName} className="shell-variants__group">
+          <h2 className="shell-variants__group-title">
             {groupName}
-            <span className="variant-gallery__group-count">{presets.length}</span>
+            <span className="shell-variants__group-count">{presets.length}</span>
           </h2>
 
-          <div className="variant-gallery__grid">
+          <div className="shell-variants__grid">
             {presets.map((preset) => {
               const mergedProps = { ...entry.defaultProps, ...preset.props };
               return (
                 <button
                   key={preset.id}
                   type="button"
-                  className="variant-gallery__card"
+                  className="shell-variants__card"
                   onClick={() => onOpenPlayground(preset.props)}
                   title={`Open ${preset.label} in playground`}
                 >
                   <div
-                    className={`variant-gallery__card-canvas variant-gallery__card-canvas--${canvasBg}`}
+                    className={`shell-variants__card-canvas shell-variants__card-canvas--${canvasBg}`}
                   >
-                    <div className="variant-gallery__card-render">
+                    <div className="shell-variants__card-render">
                       {entry.render(mergedProps)}
                     </div>
                   </div>
-                  <div className="variant-gallery__card-label">
-                    <span className="variant-gallery__card-name">
+                  <div className="shell-variants__card-label">
+                    <span className="shell-variants__card-name">
                       {preset.label}
                     </span>
                     {preset.description && (
-                      <span className="variant-gallery__card-desc">
+                      <span className="shell-variants__card-desc">
                         {preset.description}
                       </span>
                     )}
@@ -205,11 +205,11 @@ export function VariantGalleryView({
       ))}
 
       {totalPresets === 0 && (
-        <div className="variant-gallery__empty">
+        <div className="shell-variants__empty">
           <p>No variant presets defined for this component.</p>
           <button
             type="button"
-            className="variant-gallery__playground-btn"
+            className="shell-variants__playground-btn"
             onClick={() => onOpenPlayground()}
           >
             Open in Playground →

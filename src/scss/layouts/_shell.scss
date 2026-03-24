@@ -11,8 +11,23 @@
   --shell-border:      rgba(148, 163, 184, 0.12);
   --shell-text:        #e2e8f0;
   --shell-text-muted:  #94a3b8;
-  --shell-accent:      #6366f1;
-  --shell-accent-glow: rgba(99, 102, 241, 0.25);
+
+  /* HSL-decomposed accent — override h/s/l to re-theme everything */
+  --shell-accent-h:    239;
+  --shell-accent-s:    84%;
+  --shell-accent-l:    67%;
+  --shell-accent:      hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l));
+  --shell-accent-soft: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l) / 0.15);
+  --shell-accent-glow: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l) / 0.25);
+  --shell-accent-text: hsl(var(--shell-accent-h) 70% 78%);
+  --shell-accent-2:    #06b6d4;
+  --shell-accent-3:    hsl(330 81% 60%);
+  --shell-gradient:    linear-gradient(135deg, var(--shell-accent), var(--shell-accent-2));
+
+  /* Typography */
+  --shell-font:        system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --shell-mono:        ui-monospace, 'Cascadia Code', monospace;
+
   --shell-radius:      12px;
   --shell-radius-sm:   8px;
   --shell-transition:  0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -29,6 +44,7 @@
   --shell-border:      rgba(15, 23, 42, 0.08);
   --shell-text:        #0f172a;
   --shell-text-muted:  #64748b;
+  --shell-accent-text: hsl(var(--shell-accent-h) 60% 40%);
   --shell-shadow:      0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
   --shell-shadow-lg:   0 10px 25px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.06);
 }

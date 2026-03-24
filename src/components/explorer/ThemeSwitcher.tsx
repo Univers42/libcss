@@ -31,13 +31,13 @@ interface ThemeSwitcherProps {
 
 export function ThemeSwitcher({ active, onChange }: ThemeSwitcherProps) {
   return (
-    <div className="theme-switcher" role="radiogroup" aria-label="Color theme">
-      <span className="theme-switcher__label">Theme</span>
+    <div className="shell-picker" role="radiogroup" aria-label="Color theme">
+      <span className="shell-picker__label">Theme</span>
       {THEMES.map((t) => (
         <button
           key={t.id}
           type="button"
-          className={`theme-switcher__dot${active === t.id ? ' theme-switcher__dot--active' : ''}`}
+          className={`shell-picker__dot${active === t.id ? ' shell-picker__dot--active' : ''}`}
           onClick={() => onChange(t.id)}
           title={t.label}
           role="radio"

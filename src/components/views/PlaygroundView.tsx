@@ -35,7 +35,7 @@ export function PlaygroundView({
 
   if (!entry) {
     return (
-      <section className="playground">
+      <section className="shell-playground">
         <p>Component not found.</p>
         <button type="button" onClick={onBack}>
           Back to overview
@@ -45,24 +45,24 @@ export function PlaygroundView({
   }
 
   return (
-    <section className="playground">
-      <div className="playground__header">
+    <section className="shell-playground">
+      <div className="shell-playground__header">
         <button
           type="button"
-          className="playground__back"
+          className="shell-playground__back"
           onClick={onBack}
           aria-label="Back to overview"
         >
           ←
         </button>
-        <h1 className="playground__title">{entry.name}</h1>
-        <span className="playground__badge">{meta.label}</span>
+        <h1 className="shell-playground__title">{entry.name}</h1>
+        <span className="shell-playground__badge">{meta.label}</span>
       </div>
 
-      <p className="playground__desc">{entry.description}</p>
+      <p className="shell-playground__desc">{entry.description}</p>
 
-      <div className="playground__body">
-        <div className="playground__stage-col">
+      <div className="shell-playground__body">
+        <div className="shell-playground__stage-col">
           <ComponentStage bgMode={bgMode} onBgModeChange={setBgMode}>
             {entry.render(props)}
           </ComponentStage>

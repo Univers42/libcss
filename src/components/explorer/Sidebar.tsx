@@ -25,14 +25,14 @@ export function Sidebar({
   const grouped = useMemo(() => registry.getGroupedByCategory(), []);
 
   return (
-    <nav className="sidebar" aria-label="Component navigation">
+    <nav className="shell-nav" aria-label="Component navigation">
       {/* Overview link */}
       <button
         type="button"
-        className={`sidebar__overview${isOverview ? ' sidebar__overview--active' : ''}`}
+        className={`shell-nav__overview${isOverview ? ' shell-nav__overview--active' : ''}`}
         onClick={onOverviewClick}
       >
-        <span className="sidebar__overview-icon">◉</span>
+        <span className="shell-nav__overview-icon">◉</span>
         Overview
       </button>
 
@@ -44,28 +44,28 @@ export function Sidebar({
         const isCategoryActive = activeCategory === cat && !activeComponentId;
 
         return (
-          <div key={cat} className="sidebar__section">
+          <div key={cat} className="shell-nav__section">
             <button
               type="button"
-              className={`sidebar__section-title${isCategoryActive ? ' sidebar__section-title--active' : ''}`}
+              className={`shell-nav__section-title${isCategoryActive ? ' shell-nav__section-title--active' : ''}`}
               onClick={() => onSelectCategory(cat)}
             >
-              <span className="sidebar__section-icon">{meta.icon}</span>
+              <span className="shell-nav__section-icon">{meta.icon}</span>
               {meta.label}
-              <span className="sidebar__section-count">{entries.length}</span>
+              <span className="shell-nav__section-count">{entries.length}</span>
             </button>
 
             {entries.map((entry: ComponentEntry) => (
               <button
                 key={entry.id}
                 type="button"
-                className={`sidebar__item${
-                  activeComponentId === entry.id ? ' sidebar__item--active' : ''
+                className={`shell-nav__item${
+                  activeComponentId === entry.id ? ' shell-nav__item--active' : ''
                 }`}
                 onClick={() => onSelectComponent(entry.id, cat)}
               >
-                <span className="sidebar__item-dot" />
-                <span className="sidebar__item-label">{entry.name}</span>
+                <span className="shell-nav__item-dot" />
+                <span className="shell-nav__item-label">{entry.name}</span>
               </button>
             ))}
           </div>

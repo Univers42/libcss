@@ -10,11 +10,11 @@ export function SearchBar({
   placeholder = 'Search components...',
 }: SearchBarProps) {
   return (
-    <div className="studio-search">
-      <span className="studio-search__icon">🔍</span>
+    <div className="shell-search">
+      <span className="shell-search__icon">🔍</span>
       <input
         type="text"
-        className="studio-search__input"
+        className="shell-search__input"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
@@ -22,7 +22,7 @@ export function SearchBar({
       {value && (
         <button
           type="button"
-          className="studio-search__clear"
+          className="shell-search__clear"
           onClick={() => onChange('')}
         >
           ✕

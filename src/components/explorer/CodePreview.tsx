@@ -53,18 +53,18 @@ export function CodePreview({ entry, props }: CodePreviewProps) {
   }, [code]);
 
   return (
-    <div className="studio-code-preview">
-      <div className="studio-code-preview__header">
-        <span className="studio-code-preview__title">JSX</span>
+    <div className="shell-code">
+      <div className="shell-code__header">
+        <span className="shell-code__title">JSX</span>
         <button
           type="button"
-          className="studio-code-preview__copy"
+          className="shell-code__copy"
           onClick={handleCopy}
         >
           {copied ? '✓ Copied' : 'Copy'}
         </button>
       </div>
-      <pre className="studio-code-preview__code">
+      <pre className="shell-code__code">
         <code>{code}</code>
       </pre>
     </div>

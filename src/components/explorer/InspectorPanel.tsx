@@ -22,26 +22,26 @@ export function InspectorPanel({ entry, props, onChange, onReset }: InspectorPan
   }, [entry.controls]);
 
   return (
-    <aside className="studio-inspector">
-      <div className="studio-inspector__header">
-        <div className="studio-inspector__title-row">
-          <h3 className="studio-inspector__title">{entry.name}</h3>
-          <span className="studio-inspector__badge">{entry.category}</span>
+    <aside className="shell-inspector">
+      <div className="shell-inspector__header">
+        <div className="shell-inspector__title-row">
+          <h3 className="shell-inspector__title">{entry.name}</h3>
+          <span className="shell-inspector__badge">{entry.category}</span>
         </div>
-        <p className="studio-inspector__desc">{entry.description}</p>
+        <p className="shell-inspector__desc">{entry.description}</p>
         <button
           type="button"
-          className="studio-inspector__reset"
+          className="shell-inspector__reset"
           onClick={onReset}
         >
           Reset to defaults
         </button>
       </div>
 
-      <div className="studio-inspector__controls">
+      <div className="shell-inspector__controls">
         {[...groups.entries()].map(([groupName, controls]) => (
-          <div key={groupName} className="studio-inspector__group">
-            <h4 className="studio-inspector__group-title">{groupName}</h4>
+          <div key={groupName} className="shell-inspector__group">
+            <h4 className="shell-inspector__group-title">{groupName}</h4>
             {controls.map((control) => (
               <ControlFactory
                 key={control.key}
@@ -54,9 +54,9 @@ export function InspectorPanel({ entry, props, onChange, onReset }: InspectorPan
         ))}
       </div>
 
-      <div className="studio-inspector__tags">
+      <div className="shell-inspector__tags">
         {entry.tags.map((tag) => (
-          <span key={tag} className="studio-inspector__tag">
+          <span key={tag} className="shell-inspector__tag">
             {tag}
           </span>
         ))}

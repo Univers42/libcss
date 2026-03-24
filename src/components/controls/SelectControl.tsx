@@ -8,10 +8,10 @@ interface SelectControlProps {
 
 export function SelectControl({ control, value, onChange }: SelectControlProps) {
   return (
-    <div className="studio-control">
-      <label className="studio-control__label">{control.label}</label>
+    <div className="shell-control">
+      <label className="shell-control__label">{control.label}</label>
       <select
-        className="studio-control__select"
+        className="shell-control__select"
         value={String(value ?? control.defaultValue)}
         onChange={(e) => onChange(control.key, e.target.value)}
       >

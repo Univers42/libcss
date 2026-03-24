@@ -13,12 +13,12 @@ export function NumberControl({ control, value, onChange }: NumberControlProps) 
   const max = control.max ?? 100;
 
   return (
-    <div className="studio-control">
-      <label className="studio-control__label">{control.label}</label>
-      <div className="studio-control__number-row">
+    <div className="shell-control">
+      <label className="shell-control__label">{control.label}</label>
+      <div className="shell-control__number-row">
         <button
           type="button"
-          className="studio-control__stepper"
+          className="shell-control__stepper"
           onClick={() => onChange(control.key, Math.max(min, num - step))}
           disabled={num <= min}
         >
@@ -26,7 +26,7 @@ export function NumberControl({ control, value, onChange }: NumberControlProps) 
         </button>
         <input
           type="number"
-          className="studio-control__input studio-control__input--number"
+          className="shell-control__input shell-control__input--number"
           value={num}
           min={min}
           max={max}
@@ -35,7 +35,7 @@ export function NumberControl({ control, value, onChange }: NumberControlProps) 
         />
         <button
           type="button"
-          className="studio-control__stepper"
+          className="shell-control__stepper"
           onClick={() => onChange(control.key, Math.min(max, num + step))}
           disabled={num >= max}
         >

@@ -8,11 +8,11 @@ interface TextControlProps {
 
 export function TextControl({ control, value, onChange }: TextControlProps) {
   return (
-    <div className="studio-control">
-      <label className="studio-control__label">{control.label}</label>
+    <div className="shell-control">
+      <label className="shell-control__label">{control.label}</label>
       <input
         type="text"
-        className="studio-control__input"
+        className="shell-control__input"
         value={String(value ?? '')}
         placeholder={String(control.defaultValue ?? '')}
         onChange={(e) => onChange(control.key, e.target.value)}

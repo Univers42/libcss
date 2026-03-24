@@ -12,14 +12,14 @@ const BG_OPTIONS: { value: ComponentStageProps['bgMode']; label: string }[] = [
 
 export function ComponentStage({ children, bgMode, onBgModeChange }: ComponentStageProps) {
   return (
-    <div className="studio-stage">
-      <div className="studio-stage__toolbar">
+    <div className="shell-stage">
+      <div className="shell-stage__toolbar">
         {BG_OPTIONS.map((opt) => (
           <button
             key={opt.value}
             type="button"
-            className={`studio-stage__bg-btn ${
-              bgMode === opt.value ? 'studio-stage__bg-btn--active' : ''
+            className={`shell-stage__bg-btn ${
+              bgMode === opt.value ? 'shell-stage__bg-btn--active' : ''
             }`}
             onClick={() => onBgModeChange(opt.value)}
             title={`${opt.value} background`}
@@ -28,9 +28,9 @@ export function ComponentStage({ children, bgMode, onBgModeChange }: ComponentSt
           </button>
         ))}
       </div>
-      <div className={`studio-stage__canvas studio-stage__canvas--${bgMode}`}>
-        <div className="studio-stage__spotlight" />
-        <div className="studio-stage__content">{children}</div>
+      <div className={`shell-stage__canvas shell-stage__canvas--${bgMode}`}>
+        <div className="shell-stage__spotlight" />
+        <div className="shell-stage__content">{children}</div>
       </div>
     </div>
   );
