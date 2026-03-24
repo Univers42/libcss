@@ -1,0 +1,140 @@
+// ============================================
+// PRISMATICA — Code Block Atom
+// ============================================
+// .prisma-code  block/inline code, mermaid
+// ============================================
+
+@use '../../abstracts' as *;
+
+.prisma-code {
+  // ── Configurator ──
+  --prisma-code-bg: var(--prisma-bg-tertiary);
+  --prisma-code-border-color: var(--prisma-border-default);
+  --prisma-code-text-color: var(--prisma-text-primary);
+  --prisma-code-header-bg: var(--prisma-bg-secondary);
+  --prisma-code-line-number-color: var(--prisma-text-tertiary);
+  --prisma-code-font: #{$font-family-data};
+  --prisma-code-font-size: #{$font-size-sm};
+  --prisma-code-line-height: #{$leading-relaxed};
+  --prisma-code-padding: #{$spacing-4};
+  --prisma-code-radius: #{$radius-md};
+
+  // ── Base (block) ──
+  display: block;
+  margin-bottom: $spacing-4;
+  border: $border-width-thin solid var(--prisma-code-border-color);
+  border-radius: var(--prisma-code-radius);
+  overflow: hidden;
+  background: var(--prisma-code-bg);
+  transition: background $duration-base $ease-default,
+              border-color $duration-base $ease-default;
+
+  // ── Header (language badge + copy) ──
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-2 var(--prisma-code-padding);
+    background: var(--prisma-code-header-bg);
+    border-bottom: $border-width-thin solid var(--prisma-code-border-color);
+  }
+
+  &__language {
+    font-family: $font-family-sans;
+    font-size: $font-size-xs;
+    font-weight: $weight-medium;
+    color: var(--prisma-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: $tracking-wider;
+  }
+
+  &__copy {
+    @include button-reset;
+    font-family: $font-family-sans;
+    font-size: $font-size-xs;
+    color: var(--prisma-text-tertiary);
+    cursor: pointer;
+    padding: $spacing-1 $spacing-2;
+    border-radius: $radius-sm;
+    transition: color $duration-fast $ease-default,
+                background $duration-fast $ease-default;
+
+    &:hover {
+      color: var(--prisma-text-primary);
+      background: var(--prisma-bg-hover);
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  // ── Body ──
+  &__body {
+    padding: var(--prisma-code-padding);
+    overflow-x: auto;
+    counter-reset: prisma-code-line;
+  }
+
+  // ── Line ──
+  &__line {
+    display: flex;
+    font-family: var(--prisma-code-font);
+    font-size: var(--prisma-code-font-size);
+    line-height: var(--prisma-code-line-height);
+    color: var(--prisma-code-text-color);
+    counter-increment: prisma-code-line;
+
+    &::before {
+      content: counter(prisma-code-line);
+      display: inline-block;
+      min-width: $spacing-8;
+      padding-right: $spacing-3;
+      text-align: right;
+      color: var(--prisma-code-line-number-color);
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    // ── Highlighted line ──
+    &--highlight {
+      background: var(--prisma-bg-accent-subtle);
+      margin: 0 (-$spacing-4);
+      padding: 0 $spacing-4;
+    }
+  }
+
+  // ── No line numbers ──
+  &--no-lines {
+    .prisma-code__line::before {
+      display: none;
+    }
+  }
+
+  // ── Inline variant ──
+  &--inline {
+    display: inline;
+    margin-bottom: 0;
+    padding: $spacing-px $spacing-2;
+    border-radius: $radius-sm;
+    font-family: var(--prisma-code-font);
+    font-size: 0.9em;
+    line-height: inherit;
+    overflow: visible;
+  }
+
+  // ── Mermaid diagram container ──
+  &--mermaid {
+    .prisma-code__body {
+      display: flex;
+      justify-content: center;
+      padding: $spacing-6;
+    }
+  }
+
+  // ── Compact ──
+  &--compact {
+    --prisma-code-padding: #{$spacing-3};
+    --prisma-code-font-size: #{$font-size-xs};
+  }
+}

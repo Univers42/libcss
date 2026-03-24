@@ -1,0 +1,68 @@
+// ============================================
+// PRISMATICA — Separator Atom
+// ============================================
+// .prisma-separator  horizontal divider
+// ============================================
+
+@use '../../abstracts' as *;
+
+.prisma-separator {
+  // ── Configurator ──
+  --prisma-separator-color: var(--prisma-border-divider);
+  --prisma-separator-style: solid;
+  --prisma-separator-width: #{$border-width-thin};
+  --prisma-separator-spacing: #{$spacing-6};
+
+  // ── Base ──
+  display: block;
+  width: 100%;
+  height: 0;
+  margin: var(--prisma-separator-spacing) 0;
+  border: none;
+  border-top: var(--prisma-separator-width) var(--prisma-separator-style) var(--prisma-separator-color);
+  transition: border-color $duration-base $ease-default;
+
+  // ── Dashed ──
+  &--dashed {
+    --prisma-separator-style: dashed;
+  }
+
+  // ── Dotted ──
+  &--dotted {
+    --prisma-separator-style: dotted;
+  }
+
+  // ── Thick ──
+  &--thick {
+    --prisma-separator-width: #{$border-width-medium};
+  }
+
+  // ── Gradient ──
+  &--gradient {
+    border-top: none;
+    height: var(--prisma-separator-width);
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--prisma-separator-color) 20%,
+      var(--prisma-separator-color) 80%,
+      transparent
+    );
+  }
+
+  // ── Accent ──
+  &--accent {
+    --prisma-separator-color: var(--prisma-accent);
+    --prisma-separator-width: #{$border-width-medium};
+  }
+
+  // ── Compact spacing ──
+  &--compact {
+    --prisma-separator-spacing: #{$spacing-3};
+  }
+
+  // ── Wide spacing ──
+  &--wide {
+    --prisma-separator-spacing: #{$spacing-10};
+  }
+}

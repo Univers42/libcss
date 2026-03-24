@@ -1,0 +1,99 @@
+// ============================================
+// PRISMATICA — Heading Atom
+// ============================================
+// .prisma-heading  h1–h5, toggle headings
+// ============================================
+
+@use '../../abstracts' as *;
+
+.prisma-heading {
+  // ── Configurator ──
+  --prisma-heading-color: var(--prisma-text-primary);
+  --prisma-heading-weight: #{$weight-bold};
+  --prisma-heading-tracking: #{$tracking-tight};
+  --prisma-heading-line-height: #{$leading-tight};
+  --prisma-heading-margin-top: #{$spacing-6};
+  --prisma-heading-margin-bottom: #{$spacing-3};
+  --prisma-heading-font-size: #{$font-size-2xl};
+
+  // ── Base ──
+  display: block;
+  margin-top: var(--prisma-heading-margin-top);
+  margin-bottom: var(--prisma-heading-margin-bottom);
+  color: var(--prisma-heading-color);
+  font-family: $font-family-sans;
+  font-size: var(--prisma-heading-font-size);
+  font-weight: var(--prisma-heading-weight);
+  letter-spacing: var(--prisma-heading-tracking);
+  line-height: var(--prisma-heading-line-height);
+  transition: color $duration-base $ease-default;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  // ── Levels ──
+  &--1 {
+    --prisma-heading-font-size: #{$font-size-4xl};
+    --prisma-heading-weight: #{$weight-bold};
+    --prisma-heading-margin-top: #{$spacing-8};
+    --prisma-heading-margin-bottom: #{$spacing-4};
+  }
+
+  &--2 {
+    --prisma-heading-font-size: #{$font-size-3xl};
+    --prisma-heading-weight: #{$weight-bold};
+    --prisma-heading-margin-top: #{$spacing-7};
+    --prisma-heading-margin-bottom: #{$spacing-3};
+  }
+
+  &--3 {
+    --prisma-heading-font-size: #{$font-size-2xl};
+    --prisma-heading-weight: #{$weight-semibold};
+  }
+
+  &--4 {
+    --prisma-heading-font-size: #{$font-size-xl};
+    --prisma-heading-weight: #{$weight-semibold};
+    --prisma-heading-margin-top: #{$spacing-5};
+  }
+
+  &--5 {
+    --prisma-heading-font-size: #{$font-size-lg};
+    --prisma-heading-weight: #{$weight-medium};
+    --prisma-heading-color: var(--prisma-text-secondary);
+    --prisma-heading-margin-top: #{$spacing-4};
+    --prisma-heading-margin-bottom: #{$spacing-2};
+  }
+
+  // ── Toggle heading (collapsible) ──
+  &--toggle {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    user-select: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  &__toggle-icon {
+    width: $spacing-5;
+    height: $spacing-5;
+    flex-shrink: 0;
+    transition: transform $duration-fast $ease-default;
+    color: var(--prisma-text-tertiary);
+
+    details[open] > .prisma-heading & {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__toggle-content {
+    padding-top: $spacing-2;
+    padding-left: $spacing-7;
+  }
+}

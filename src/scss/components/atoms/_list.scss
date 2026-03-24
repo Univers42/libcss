@@ -1,0 +1,138 @@
+// ============================================
+// PRISMATICA — List Atom
+// ============================================
+// .prisma-list  ordered, unordered, to-do
+// ============================================
+
+@use '../../abstracts' as *;
+
+.prisma-list {
+  // ── Configurator ──
+  --prisma-list-color: var(--prisma-text-primary);
+  --prisma-list-marker-color: var(--prisma-text-tertiary);
+  --prisma-list-indent: #{$spacing-6};
+  --prisma-list-gap: #{$spacing-2};
+  --prisma-list-font-size: #{$font-size-base};
+  --prisma-list-line-height: #{$leading-relaxed};
+
+  // ── Base ──
+  display: flex;
+  flex-direction: column;
+  gap: var(--prisma-list-gap);
+  margin-bottom: $spacing-4;
+  padding-left: var(--prisma-list-indent);
+  color: var(--prisma-list-color);
+  font-family: $font-family-sans;
+  font-size: var(--prisma-list-font-size);
+  line-height: var(--prisma-list-line-height);
+  list-style: none;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // ── Item ──
+  &__item {
+    position: relative;
+    padding-left: $spacing-2;
+  }
+
+  // ── Ordered ──
+  &--ordered {
+    counter-reset: prisma-list-counter;
+
+    .prisma-list__item {
+      counter-increment: prisma-list-counter;
+
+      &::before {
+        content: counter(prisma-list-counter) '.';
+        position: absolute;
+        left: -$spacing-5;
+        color: var(--prisma-list-marker-color);
+        font-weight: $weight-medium;
+        font-variant-numeric: tabular-nums;
+        min-width: $spacing-4;
+        text-align: right;
+      }
+    }
+  }
+
+  // ── Unordered ──
+  &--unordered {
+    .prisma-list__item::before {
+      content: '';
+      position: absolute;
+      left: -$spacing-4;
+      top: 0.65em;
+      width: 6px;
+      height: 6px;
+      border-radius: $radius-full;
+      background: var(--prisma-list-marker-color);
+    }
+  }
+
+  // ── To-do ──
+  &--todo {
+    padding-left: 0;
+
+    .prisma-list__item {
+      display: flex;
+      align-items: flex-start;
+      gap: $spacing-3;
+      padding-left: 0;
+    }
+  }
+
+  &__checkbox {
+    flex-shrink: 0;
+    width: $spacing-5;
+    height: $spacing-5;
+    margin-top: 2px;
+    border: $border-width-medium solid var(--prisma-border-strong);
+    border-radius: $radius-sm;
+    background: transparent;
+    cursor: pointer;
+    transition: all $duration-fast $ease-default;
+    appearance: none;
+    display: grid;
+    place-content: center;
+
+    &:checked {
+      background: var(--prisma-accent);
+      border-color: var(--prisma-accent);
+
+      &::after {
+        content: '✓';
+        font-size: $font-size-xs;
+        color: var(--prisma-bg-primary);
+        font-weight: $weight-bold;
+      }
+
+      & + .prisma-list__item-text {
+        text-decoration: line-through;
+        opacity: 0.55;
+      }
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__item-text {
+    flex: 1;
+    transition: opacity $duration-fast $ease-default;
+  }
+
+  // ── Nested ──
+  & & {
+    margin-top: var(--prisma-list-gap);
+    margin-bottom: 0;
+  }
+
+  // ── Compact ──
+  &--compact {
+    --prisma-list-gap: #{$spacing-1};
+    --prisma-list-font-size: #{$font-size-sm};
+  }
+}

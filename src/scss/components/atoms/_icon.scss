@@ -1,0 +1,44 @@
+// ============================================
+// PRISMATICA — Icon Atom
+// ============================================
+// .prisma-icon with size modifiers
+// ============================================
+
+@use '../../abstracts' as *;
+
+.prisma-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  line-height: 1;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &--xs {
+    width: $spacing-3;
+    height: $spacing-3;
+  }
+
+  &--sm {
+    width: $spacing-4;
+    height: $spacing-4;
+  }
+
+  &--md {
+    width: $spacing-6;
+    height: $spacing-6;
+  }
+
+  &--lg {
+    width: $spacing-8;
+    height: $spacing-8;
+  }
+
+  &--xl {
+    width: $spacing-12;
+    height: $spacing-12;
+  }
+}

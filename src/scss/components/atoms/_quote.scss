@@ -1,0 +1,68 @@
+// ============================================
+// PRISMATICA — Quote Atom
+// ============================================
+// .prisma-quote  blockquote with accent bar
+// ============================================
+
+@use '../../abstracts' as *;
+
+.prisma-quote {
+  // ── Configurator ──
+  --prisma-quote-bg: var(--prisma-bg-secondary);
+  --prisma-quote-border-color: var(--prisma-accent);
+  --prisma-quote-text-color: var(--prisma-text-primary);
+  --prisma-quote-author-color: var(--prisma-text-tertiary);
+  --prisma-quote-border-width: #{$border-width-thick};
+  --prisma-quote-padding: #{$spacing-4};
+  --prisma-quote-radius: #{$radius-md};
+
+  // ── Base ──
+  display: block;
+  padding: var(--prisma-quote-padding);
+  padding-left: calc(var(--prisma-quote-padding) + #{$spacing-1});
+  margin-bottom: $spacing-4;
+  background: var(--prisma-quote-bg);
+  border-left: var(--prisma-quote-border-width) solid var(--prisma-quote-border-color);
+  border-radius: var(--prisma-quote-radius);
+  transition: background $duration-base $ease-default,
+              border-color $duration-base $ease-default;
+
+  // ── Text ──
+  &__text {
+    color: var(--prisma-quote-text-color);
+    font-family: $font-family-sans;
+    font-size: $font-size-base;
+    line-height: $leading-relaxed;
+    font-style: italic;
+  }
+
+  // ── Author ──
+  &__author {
+    display: block;
+    margin-top: $spacing-3;
+    color: var(--prisma-quote-author-color);
+    font-family: $font-family-sans;
+    font-size: $font-size-sm;
+    font-style: normal;
+    font-weight: $weight-medium;
+
+    &::before {
+      content: '— ';
+    }
+  }
+
+  // ── Large ──
+  &--lg {
+    --prisma-quote-padding: #{$spacing-6};
+
+    .prisma-quote__text {
+      font-size: $font-size-lg;
+    }
+  }
+
+  // ── Accent variant (no background) ──
+  &--accent {
+    --prisma-quote-bg: transparent;
+    --prisma-quote-border-width: 4px;
+  }
+}
