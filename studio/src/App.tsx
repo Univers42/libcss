@@ -1,15 +1,17 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { DashboardShell, Chart } from '@libcss/layout';
+import type { ChartConfig } from '@libcss/layout';
 import {
-  StudioLayout,
   OverviewView,
   CategoryView,
   VariantGalleryView,
   PlaygroundView,
   ChartGalleryView,
+  Sidebar,
+  SearchBar,
+  ThemeSwitcher,
 } from '@libcss/studio';
-import type { ComponentCategory } from '@libcss/studio';
-import { Chart } from '@libcss/layout';
-import type { ChartConfig } from '@libcss/layout';
+import type { ComponentCategory, ChartGalleryItem } from '@libcss/studio';
 import { GALLERY_ITEMS } from './entries/chart-gallery-data';
 
 type ViewMode = 'overview' | 'category' | 'variants' | 'component' | 'gallery';
@@ -19,7 +21,6 @@ interface NavState {
   componentId: string | null;
   category: ComponentCategory | null;
   searchQuery: string;
-  /** Props to pre-load when opening playground from a variant card. */
   presetProps: Record<string, unknown> | null;
 }
 
@@ -45,37 +46,15 @@ export default function App() {
   }, []);
 
   const goToCategory = useCallback((category: ComponentCategory) => {
-    setNav((prev) => ({
-      ...prev,
-      view: 'category',
-      category,
-      componentId: null,
-      searchQuery: '',
-      presetProps: null,
-    }));
+    setNav((prev) => ({ ...prev, view: 'category', category, componentId: null, searchQuery: '', presetProps: null }));
   }, []);
 
-  /**
-   * When a component is selected, open the variant gallery (if it has presets/dimensions).
-   * The variant gallery is the new "detail view" for a component.
-   */
   const goToComponent = useCallback((id: string, category: ComponentCategory) => {
-    setNav((prev) => ({
-      ...prev,
-      view: 'variants',
-      componentId: id,
-      category,
-      presetProps: null,
-    }));
+    setNav((prev) => ({ ...prev, view: 'variants', componentId: id, category, presetProps: null }));
   }, []);
 
-  /** Open the single-component playground, optionally with preset props. */
   const goToPlayground = useCallback((presetProps?: Record<string, unknown>) => {
-    setNav((prev) => ({
-      ...prev,
-      view: 'component',
-      presetProps: presetProps ?? null,
-    }));
+    setNav((prev) => ({ ...prev, view: 'component', presetProps: presetProps ?? null }));
   }, []);
 
   const goToGallery = useCallback(() => {
@@ -84,19 +63,12 @@ export default function App() {
 
   const goBack = useCallback(() => {
     setNav((prev) => {
-      // playground → variant gallery
-      if (prev.view === 'component' && prev.componentId && prev.category) {
+      if (prev.view === 'component' && prev.componentId && prev.category)
         return { ...prev, view: 'variants', presetProps: null };
-      }
-      // variant gallery → category
-      if (prev.view === 'variants' && prev.category) {
+      if (prev.view === 'variants' && prev.category)
         return { ...prev, view: 'category', componentId: null, presetProps: null };
-      }
-      // category → overview
-      if (prev.view === 'category') {
+      if (prev.view === 'category')
         return { view: 'overview', componentId: null, category: null, searchQuery: '', presetProps: null };
-      }
-      // gallery → overview
       return { view: 'overview', componentId: null, category: null, searchQuery: '', presetProps: null };
     });
   }, []);
@@ -119,11 +91,7 @@ export default function App() {
             onBack={goToOverview}
           />
         ) : (
-          <OverviewView
-            onSelectCategory={goToCategory}
-            onSelectComponent={goToComponent}
-            onOpenGallery={goToGallery}
-          />
+          <OverviewView onSelectCategory={goToCategory} onSelectComponent={goToComponent} onOpenGallery={goToGallery} />
         );
 
       case 'variants':
@@ -136,11 +104,7 @@ export default function App() {
             onOpenPlayground={goToPlayground}
           />
         ) : (
-          <OverviewView
-            onSelectCategory={goToCategory}
-            onSelectComponent={goToComponent}
-            onOpenGallery={goToGallery}
-          />
+          <OverviewView onSelectCategory={goToCategory} onSelectComponent={goToComponent} onOpenGallery={goToGallery} />
         );
 
       case 'component':
@@ -153,17 +117,13 @@ export default function App() {
             onBack={goBack}
           />
         ) : (
-          <OverviewView
-            onSelectCategory={goToCategory}
-            onSelectComponent={goToComponent}
-            onOpenGallery={goToGallery}
-          />
+          <OverviewView onSelectCategory={goToCategory} onSelectComponent={goToComponent} onOpenGallery={goToGallery} />
         );
 
       case 'gallery':
         return (
           <ChartGalleryView
-            items={GALLERY_ITEMS as unknown as import('@libcss/studio').ChartGalleryItem[]}
+            items={GALLERY_ITEMS as unknown as ChartGalleryItem[]}
             renderChart={(config) => React.createElement(Chart, { config: config as ChartConfig })}
             onBack={goToOverview}
           />
@@ -171,28 +131,44 @@ export default function App() {
 
       default:
         return (
-          <OverviewView
-            onSelectCategory={goToCategory}
-            onSelectComponent={goToComponent}
-            onOpenGallery={goToGallery}
-          />
+          <OverviewView onSelectCategory={goToCategory} onSelectComponent={goToComponent} onOpenGallery={goToGallery} />
         );
     }
   };
 
+  // ── Shell composition ────────────────────────
+
   return (
-    <StudioLayout
-      searchQuery={nav.searchQuery}
-      onSearch={setSearch}
-      onLogoClick={goToOverview}
-      activeCategory={nav.category}
-      activeComponentId={nav.componentId}
-      onSelectCategory={goToCategory}
-      onSelectComponent={goToComponent}
-      palette={palette}
-      onPaletteChange={setPalette}
+    <DashboardShell
+      colorScheme="dark"
+      sidebarWidth="272px"
+      brand={
+        <button type="button" className="app-brand" onClick={goToOverview}>
+          <span className="app-brand__icon">◎</span>
+          libcss
+          <span className="app-brand__badge">studio</span>
+        </button>
+      }
+      nav={
+        <Sidebar
+          activeCategory={nav.category}
+          activeComponentId={nav.componentId}
+          onSelectCategory={goToCategory}
+          onSelectComponent={goToComponent}
+          onOverviewClick={goToOverview}
+          isOverview={nav.componentId === null && nav.category === null}
+        />
+      }
+      header={
+        <>
+          <div className="app-search">
+            <SearchBar value={nav.searchQuery} onChange={setSearch} />
+          </div>
+          <ThemeSwitcher active={palette} onChange={setPalette} />
+        </>
+      }
     >
       {renderView()}
-    </StudioLayout>
+    </DashboardShell>
   );
 }
