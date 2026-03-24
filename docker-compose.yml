@@ -1,0 +1,38 @@
+services:
+  # ── Build production CSS ──────────────────────────────
+  build:
+    build:
+      context: .
+      target: builder
+    volumes:
+      - ./dist:/libcss/dist
+    profiles: ["build"]
+
+  # ── Watch mode (dev) ──────────────────────────────────
+  dev:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - ./src:/libcss/src:ro
+      - ./dist:/libcss/dist
+    profiles: ["dev"]
+
+  # ── Lint SCSS ─────────────────────────────────────────
+  lint:
+    build:
+      context: .
+      target: lint
+    volumes:
+      - ./src:/libcss/src:ro
+    profiles: ["lint"]
+
+  # ── Generate docs ─────────────────────────────────────
+  docs:
+    build:
+      context: .
+      target: docs
+    volumes:
+      - ./src:/libcss/src:ro
+      - ./docs:/libcss/docs
+    profiles: ["docs"]

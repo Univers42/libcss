@@ -1,0 +1,11 @@
+.git/
+tmp/
+node_modules/
+dist/
+docs/generated/
+.sass-cache/
+studio/
+*.md
+.gitignore
+.vscode/
+.idea/
