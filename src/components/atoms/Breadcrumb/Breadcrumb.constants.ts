@@ -1,0 +1,1 @@
+export const DEFAULT_BREADCRUMB_SEPARATOR = '/';
