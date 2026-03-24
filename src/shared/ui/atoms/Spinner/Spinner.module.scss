@@ -1,0 +1,53 @@
+@use '@/app/styles/abstracts' as *;
+
+.spinner {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  animation: rotate 0.8s linear infinite;
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  // Tamaños
+  &--xs { width: 0.75rem; height: 0.75rem; border-width: 1.5px; }
+  &--sm { width: 1rem; height: 1rem; border-width: 2px; }
+  &--md { width: 1.5rem; height: 1.5rem; border-width: 2.5px; }
+  &--lg { width: 2.5rem; height: 2.5rem; border-width: 3px; }
+  &--xl { width: 3.5rem; height: 3.5rem; border-width: 4px; }
+
+  // Variantes
+  &--primary {
+    border-color: rgba(var(--prisma-primary-rgb, 59, 130, 246), 0.2);
+    border-top-color: var(--prisma-primary, #3b82f6);
+  }
+
+  &--secondary {
+    border-color: rgba(var(--prisma-secondary-rgb, 100, 116, 139), 0.2);
+    border-top-color: var(--prisma-secondary, #64748b);
+  }
+
+  &--white {
+    border-color: rgba(255, 255, 255, 0.2);
+    border-top-color: #ffffff;
+  }
+
+  &--current {
+    border-color: rgba(currentColor, 0.2);
+    border-top-color: currentColor;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

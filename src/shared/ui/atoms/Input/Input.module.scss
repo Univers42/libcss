@@ -1,0 +1,66 @@
+@use '@/app/styles/abstracts' as *;
+
+.input {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  width: auto;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--prisma-text-primary);
+  background-color: transparent;
+  border: 1px solid var(--prisma-border-color, #e2e8f0);
+  border-radius: 0.375rem;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  padding: 0.5rem 0.75rem;
+
+  &::placeholder {
+    color: var(--prisma-text-muted, #94a3b8);
+  }
+
+  &:focus {
+    border-color: var(--prisma-primary, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+
+  &--fullWidth {
+    width: 100%;
+    display: flex;
+  }
+
+  &--error {
+    border-color: var(--prisma-danger, #ef4444);
+    &:focus {
+      border-color: var(--prisma-danger, #ef4444);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+    }
+  }
+
+  // Tamaños
+  &--sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  &--lg {
+    padding: 0.75rem 1rem;
+    font-size: 1.125rem;
+  }
+
+  // Variantes
+  &--filled {
+    background-color: var(--prisma-bg-secondary, #f1f5f9);
+    border-color: transparent;
+    &:focus {
+      background-color: transparent;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: var(--prisma-bg-disabled, #f8fafc);
+  }
+}
