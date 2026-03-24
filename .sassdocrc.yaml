@@ -1,0 +1,21 @@
+dest: docs/generated
+package: ./package.json
+theme: default
+autofill:
+  - access
+  - author
+display:
+  access:
+    - public
+    - private
+groups:
+  tokens:
+    - Design Tokens
+  mixins:
+    - Mixins & Patterns
+  functions:
+    - Helper Functions
+  components:
+    - Components
+  utilities:
+    - Utilities
