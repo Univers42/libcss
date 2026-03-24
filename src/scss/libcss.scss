@@ -1,0 +1,25 @@
+// ======================================================
+// 🎨 LIBCSS — Prismatica Design System
+// ======================================================
+// Main entry point. Import this file to get the full
+// library: tokens, base styles, themes, components,
+// and utilities.
+// Consumers can also @use individual layers:
+//   @use 'libcss/abstracts' as *;  (tokens + mixins only)
+//   @use 'libcss/components';      (component styles only)
+// ======================================================
+
+// 1. Base: reset, typography, animations
+@use 'base';
+
+// 2. Themes: CSS custom properties for light/dark
+@use 'themes';
+
+// 3. Components: atoms, molecules, organisms
+@use 'components';
+
+// 4. Layouts: chart, board, timeline, etc.
+@use 'layouts';
+
+// 5. Utilities: layout, spacing, visibility helpers
+@use 'utilities';
