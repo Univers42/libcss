@@ -1,0 +1,65 @@
+// ============================================
+// PRISMATICA — Typography Base
+// ============================================
+// Global typographic styles using design tokens.
+// ============================================
+
+@use '../abstracts' as *;
+
+body {
+  font-family: $font-family-ui;
+  font-size: $text-base;
+  font-weight: $weight-normal;
+  color: var(--prisma-text-primary);
+  background-color: var(--prisma-bg-primary);
+}
+
+h1 {
+  font-size: $text-3xl;
+  line-height: $leading-tight;
+  letter-spacing: $tracking-tight;
+}
+
+h2 {
+  font-size: $text-2xl;
+  line-height: $leading-tight;
+  letter-spacing: $tracking-tight;
+}
+
+h3 {
+  font-size: $text-xl;
+  line-height: $leading-snug;
+}
+
+h4 {
+  font-size: $text-lg;
+  line-height: $leading-snug;
+}
+
+h5 {
+  font-size: $text-md;
+  line-height: $leading-normal;
+}
+
+h6 {
+  font-size: $text-base;
+  line-height: $leading-normal;
+  font-weight: $weight-semibold;
+}
+
+small {
+  font-size: $text-xs;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: $font-family-data;
+  font-size: $text-sm;
+}
+
+::selection {
+  background-color: var(--prisma-accent);
+  color: var(--prisma-text-inverse);
+}
