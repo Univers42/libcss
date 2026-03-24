@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Generated docs
+docs/generated/
+
+# Sass cache
+.sass-cache/
+
+# Source maps
+*.css.map
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+.docker/
+
+# Env
+.env
+.env.local
+setup-history.sh
