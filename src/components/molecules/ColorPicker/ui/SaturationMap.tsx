@@ -7,7 +7,7 @@
  * a solid hue background — no canvas needed.
  */
 
-import { useRef, useCallback } from 'react';
+import { memo, useRef, useCallback } from 'react';
 import type { HSVA, ColorState } from '../model/color-engine';
 
 interface SaturationMapProps {
@@ -15,7 +15,7 @@ interface SaturationMapProps {
   onChange: (hsv: HSVA) => void;
 }
 
-export function SaturationMap({ color, onChange }: SaturationMapProps) {
+export const SaturationMap = memo(function SaturationMap({ color, onChange }: SaturationMapProps) {
   const areaRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const rafId = useRef(0);
@@ -85,4 +85,4 @@ export function SaturationMap({ color, onChange }: SaturationMapProps) {
       />
     </div>
   );
-}
+});

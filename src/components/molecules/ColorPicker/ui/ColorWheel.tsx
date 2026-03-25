@@ -6,7 +6,7 @@
  * Value is kept constant (from current colour state).
  */
 
-import { useRef, useCallback, useMemo } from 'react';
+import { memo, useRef, useCallback, useMemo } from 'react';
 import type { HSVA, ColorState } from '../model/color-engine';
 
 interface ColorWheelProps {
@@ -16,7 +16,7 @@ interface ColorWheelProps {
   size?: number;
 }
 
-export function ColorWheel({ color, onChange, size = 220 }: ColorWheelProps) {
+export const ColorWheel = memo(function ColorWheel({ color, onChange, size = 220 }: ColorWheelProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const rafId = useRef(0);
@@ -87,4 +87,4 @@ export function ColorWheel({ color, onChange, size = 220 }: ColorWheelProps) {
       </div>
     </div>
   );
-}
+});

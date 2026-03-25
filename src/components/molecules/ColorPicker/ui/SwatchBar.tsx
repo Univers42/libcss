@@ -3,13 +3,15 @@
  * @description Grid of preset colour swatches for quick selection.
  */
 
+import { memo } from 'react';
+
 interface SwatchBarProps {
   swatches: readonly string[];
   currentHex: string;
   onSelect: (hex: string) => void;
 }
 
-export function SwatchBar({ swatches, currentHex, onSelect }: SwatchBarProps) {
+export const SwatchBar = memo(function SwatchBar({ swatches, currentHex, onSelect }: SwatchBarProps) {
   return (
     <div className="cpk-swatches">
       {swatches.map((hex) => (
@@ -25,4 +27,4 @@ export function SwatchBar({ swatches, currentHex, onSelect }: SwatchBarProps) {
       ))}
     </div>
   );
-}
+});

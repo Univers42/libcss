@@ -4,7 +4,7 @@
  * Rendered as a CSS linear gradient — no canvas.
  */
 
-import { useRef, useCallback } from 'react';
+import { memo, useRef, useCallback } from 'react';
 
 interface HueStripProps {
   hue: number;
@@ -13,7 +13,7 @@ interface HueStripProps {
   direction?: 'horizontal' | 'vertical';
 }
 
-export function HueStrip({ hue, onChange, direction = 'horizontal' }: HueStripProps) {
+export const HueStrip = memo(function HueStrip({ hue, onChange, direction = 'horizontal' }: HueStripProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const rafId = useRef(0);
@@ -72,4 +72,4 @@ export function HueStrip({ hue, onChange, direction = 'horizontal' }: HueStripPr
       />
     </div>
   );
-}
+});

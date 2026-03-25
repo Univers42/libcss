@@ -3,7 +3,7 @@
  * @description Horizontal alpha slider with checkerboard + colour gradient.
  */
 
-import { useRef, useCallback } from 'react';
+import { memo, useRef, useCallback } from 'react';
 
 interface AlphaStripProps {
   alpha: number;
@@ -11,7 +11,7 @@ interface AlphaStripProps {
   onChange: (a: number) => void;
 }
 
-export function AlphaStrip({ alpha, color, onChange }: AlphaStripProps) {
+export const AlphaStrip = memo(function AlphaStrip({ alpha, color, onChange }: AlphaStripProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const rafId = useRef(0);
@@ -55,4 +55,4 @@ export function AlphaStrip({ alpha, color, onChange }: AlphaStripProps) {
       />
     </div>
   );
-}
+});

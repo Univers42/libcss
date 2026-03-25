@@ -5,7 +5,7 @@
  * and allows keyboard-editing the hex value.
  */
 
-import { useState, useCallback, useEffect } from 'react';
+import { memo, useState, useCallback, useEffect } from 'react';
 import type { ColorState } from '../model/color-engine';
 import { formatRgb, formatHsl, formatCmyk } from '../model/color-engine';
 
@@ -26,7 +26,7 @@ function displayValue(color: ColorState, fmt: Format): string {
   }
 }
 
-export function ColorInput({ color, onHexChange }: ColorInputProps) {
+export const ColorInput = memo(function ColorInput({ color, onHexChange }: ColorInputProps) {
   const [format, setFormat] = useState<Format>('hex');
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState('');
@@ -82,4 +82,4 @@ export function ColorInput({ color, onHexChange }: ColorInputProps) {
       </button>
     </div>
   );
-}
+});

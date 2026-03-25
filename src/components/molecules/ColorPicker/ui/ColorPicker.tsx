@@ -5,14 +5,14 @@
  * Modes: Map, Wheel, RGB, HSL, CMYK, Gradient.
  */
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { ReactNode } from 'react';
 import type { WindowTab } from '../../WindowPanel/model/WindowPanel.types';
 import { WindowPanel } from '../../WindowPanel/ui/WindowPanel';
 import type { ColorPickerProps, ColorPickerMode } from '../model/ColorPicker.types';
 import { ALL_MODES, MODE_LABELS, DEFAULT_SWATCHES } from '../model/ColorPicker.types';
 import type { GradientStop } from '../model/color-engine';
-import { colorFromRgba, rgbaToHex, cmykToRgba, colorFromHsva } from '../model/color-engine';
+import { rgbaToHex, cmykToRgba, colorFromHsva } from '../model/color-engine';
 import { useColorState } from '../model/useColorState';
 
 import { SaturationMap } from './SaturationMap';
@@ -49,6 +49,9 @@ export function ColorPicker({
   // Sync external controlled value
   useEffect(() => { if (value !== color.hex) setHex(value); }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  /* ── Active mode ── */
+  const [activeMode, setActiveMode] = useState<ColorPickerMode>(defaultMode ?? modes[0] ?? 'map');
+
   /* ── Gradient state ── */
   const [internalStops, setInternalStops] = useState<GradientStop[]>([
     { color: '#000000', position: 0 },
@@ -74,108 +77,85 @@ export function ColorPicker({
     [stops, gradientSelectedIdx, dispatchStops],
   );
 
-  /* ── Build view content per mode ── */
-  const buildMapView = useMemo(
-    (): ReactNode => (
-      <div className="cpk-view cpk-view--map">
-        <SaturationMap color={color} onChange={setHsva} />
-        <HueStrip hue={color.hsv.h} onChange={setHue} />
-        {showAlpha && (
-          <AlphaStrip
-            alpha={color.hsv.a}
-            color={rgbaToHex({ ...color.rgb, a: 1 })}
-            onChange={setAlpha}
-          />
-        )}
-      </div>
-    ),
-    [color, setHsva, setHue, setAlpha, showAlpha],
-  );
-
-  const buildWheelView = useMemo(
-    (): ReactNode => (
-      <div className="cpk-view cpk-view--wheel">
-        <ColorWheel color={color} onChange={setHsva} />
-        {showAlpha && (
-          <AlphaStrip
-            alpha={color.hsv.a}
-            color={rgbaToHex({ ...color.rgb, a: 1 })}
-            onChange={setAlpha}
-          />
-        )}
-      </div>
-    ),
-    [color, setHsva, setAlpha, showAlpha],
-  );
-
-  const buildRgbView = useMemo(
-    (): ReactNode => (
-      <div className="cpk-view cpk-view--rgb">
-        <RGBSliders color={color} onChange={setRgba} showAlpha={showAlpha} />
-      </div>
-    ),
-    [color, setRgba, showAlpha],
-  );
-
-  const buildHslView = useMemo(
-    (): ReactNode => (
-      <div className="cpk-view cpk-view--hsl">
-        <HSLSliders color={color} onChange={setHsla} showAlpha={showAlpha} />
-      </div>
-    ),
-    [color, setHsla, showAlpha],
-  );
-
-  const buildCmykView = useMemo(
-    (): ReactNode => {
-      const handleCmyk = (cmyk: typeof color.cmyk) => {
-        const rgba = cmykToRgba(cmyk, color.rgb.a);
-        setRgba(rgba);
-      };
-      return (
-        <div className="cpk-view cpk-view--cmyk">
-          <CMYKSliders color={color} onChange={handleCmyk} />
-        </div>
-      );
-    },
-    [color, setRgba],
-  );
-
-  const buildGradientView = useMemo(
-    (): ReactNode => (
-      <div className="cpk-view cpk-view--gradient">
-        <GradientPicker
-          stops={stops}
-          onChange={dispatchStops}
-          selectedIndex={gradientSelectedIdx}
-          onSelect={(idx) => {
-            setGradientSelectedIdx(idx);
-            const stop = stops[idx];
-            if (stop) setHex(stop.color);
-          }}
-          currentHex={color.hex}
-        />
-        <SaturationMap color={color} onChange={(hsv) => {
-          setHsva(hsv);
-          handleGradientColorFromPicker(rgbaToHex({ ...colorFromHsva(hsv).rgb, a: 1 }));
-        }} />
-        <HueStrip hue={color.hsv.h} onChange={(h) => {
-          setHue(h);
-          const next = colorFromHsva({ ...color.hsv, h });
-          handleGradientColorFromPicker(rgbaToHex({ ...next.rgb, a: 1 }));
-        }} />
-      </div>
-    ),
-    [color, stops, gradientSelectedIdx, setHex, setHsva, setHue, dispatchStops, handleGradientColorFromPicker],
-  );
-
-  const viewMap: Record<ColorPickerMode, ReactNode> = {
-    map: buildMapView,
-    wheel: buildWheelView,
-    rgb: buildRgbView,
-    hsl: buildHslView,
-    cmyk: buildCmykView,
-    gradient: buildGradientView,
+  /* ── Render only the active view (avoids rebuilding all 6 every frame) ── */
+  const renderActiveView = (): ReactNode => {
+    switch (activeMode) {
+      case 'map':
+        return (
+          <div className="cpk-view cpk-view--map">
+            <SaturationMap color={color} onChange={setHsva} />
+            <HueStrip hue={color.hsv.h} onChange={setHue} />
+            {showAlpha && (
+              <AlphaStrip
+                alpha={color.hsv.a}
+                color={rgbaToHex({ ...color.rgb, a: 1 })}
+                onChange={setAlpha}
+              />
+            )}
+          </div>
+        );
+      case 'wheel':
+        return (
+          <div className="cpk-view cpk-view--wheel">
+            <ColorWheel color={color} onChange={setHsva} />
+            {showAlpha && (
+              <AlphaStrip
+                alpha={color.hsv.a}
+                color={rgbaToHex({ ...color.rgb, a: 1 })}
+                onChange={setAlpha}
+              />
+            )}
+          </div>
+        );
+      case 'rgb':
+        return (
+          <div className="cpk-view cpk-view--rgb">
+            <RGBSliders color={color} onChange={setRgba} showAlpha={showAlpha} />
+          </div>
+        );
+      case 'hsl':
+        return (
+          <div className="cpk-view cpk-view--hsl">
+            <HSLSliders color={color} onChange={setHsla} showAlpha={showAlpha} />
+          </div>
+        );
+      case 'cmyk': {
+        const handleCmyk = (cmyk: typeof color.cmyk) => {
+          const rgba = cmykToRgba(cmyk, color.rgb.a);
+          setRgba(rgba);
+        };
+        return (
+          <div className="cpk-view cpk-view--cmyk">
+            <CMYKSliders color={color} onChange={handleCmyk} />
+          </div>
+        );
+      }
+      case 'gradient':
+        return (
+          <div className="cpk-view cpk-view--gradient">
+            <GradientPicker
+              stops={stops}
+              onChange={dispatchStops}
+              selectedIndex={gradientSelectedIdx}
+              onSelect={(idx) => {
+                setGradientSelectedIdx(idx);
+                const stop = stops[idx];
+                if (stop) setHex(stop.color);
+              }}
+              currentHex={color.hex}
+            />
+            <SaturationMap color={color} onChange={(hsv) => {
+              setHsva(hsv);
+              handleGradientColorFromPicker(rgbaToHex({ ...colorFromHsva(hsv).rgb, a: 1 }));
+            }} />
+            <HueStrip hue={color.hsv.h} onChange={(h) => {
+              setHue(h);
+              const next = colorFromHsva({ ...color.hsv, h });
+              handleGradientColorFromPicker(rgbaToHex({ ...next.rgb, a: 1 }));
+            }} />
+          </div>
+        );
+    }
   };
 
   /* ── Footer ── */
@@ -196,20 +176,19 @@ export function ColorPicker({
   );
 
   /* ── Tabs ── */
+  const activeView = renderActiveView();
   const tabs: WindowTab[] = (modes as ColorPickerMode[]).map((mode) => ({
     id: mode,
     label: MODE_LABELS[mode].label,
     icon: MODE_LABELS[mode].icon,
-    content: viewMap[mode],
+    content: mode === activeMode ? activeView : null,
   }));
 
   /* ── Render ── */
   if (!windowed) {
-    // Headless mode — just render current mode view + footer
-    const initial = defaultMode ?? modes[0] ?? 'map';
     return (
       <div className={`cpk${className ? ` ${className}` : ''}`} style={{ width }}>
-        {viewMap[initial]}
+        {activeView}
         {footer}
       </div>
     );
@@ -220,7 +199,8 @@ export function ColorPicker({
       title={title}
       icon="🎨"
       tabs={tabs}
-      activeTab={defaultMode}
+      activeTab={activeMode}
+      onTabChange={(id) => setActiveMode(id as ColorPickerMode)}
       width={width}
       className={`cpk${className ? ` ${className}` : ''}`}
       compact

@@ -5,3 +5,6 @@ export { useMediaQuery } from './useMediaQuery';
 export { useBreakpoint } from './useBreakpoint';
 export type { Breakpoint } from './useBreakpoint';
 export { useLocalStorage } from './useLocalStorage';
+export { useStudioNavigation } from './useStudioNavigation';
+export { useComponentState } from './useComponentState';
+export { useSearch } from './useSearch';
