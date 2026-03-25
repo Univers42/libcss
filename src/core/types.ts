@@ -6,6 +6,7 @@
  */
 
 import type { ReactNode } from 'react';
+import type { ParameterSchema } from '../components/controls/types';
 
 // ─── Categories ────────────────────────────────────────
 export type ComponentCategory = 'atoms' | 'molecules' | 'organisms' | 'layouts' | 'media';
@@ -111,8 +112,13 @@ export interface ComponentEntry {
   readonly tags: readonly string[];
   /** Default props to render the component. */
   readonly defaultProps: Record<string, unknown>;
-  /** Inspector controls for each editable prop. */
+  /** Inspector controls for each editable prop (legacy — still supported). */
   readonly controls: readonly PropControl[];
+  /**
+   * New polymorphic parameter schema.  When provided, the inspector uses this
+   * instead of `controls`.  Build with `defineParameters()` from controls/schema.
+   */
+  readonly parameters?: ParameterSchema;
   /**
    * Render function: receives current props, returns the component.
    * This is the heart of the playground — a pure mapping from

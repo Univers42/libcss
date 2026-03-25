@@ -1,27 +1,30 @@
-import type { PropControl } from '../../core/types';
+import type { RangeParameter } from './types';
 
 interface RangeControlProps {
-  control: PropControl;
+  param: RangeParameter;
   value: unknown;
   onChange: (key: string, value: unknown) => void;
 }
 
-export function RangeControl({ control, value, onChange }: RangeControlProps) {
-  const num = Number(value ?? control.defaultValue ?? 0);
+export function RangeControl({ param, value, onChange }: RangeControlProps) {
+  const num = Number(value ?? param.defaultValue ?? 0);
   return (
     <div className="shell-control">
       <label className="shell-control__label">
-        {control.label}
-        <span className="shell-control__value">{num}</span>
+        {param.label}
+        <span className="shell-control__value">
+          {num}{param.unit ? ` ${param.unit}` : ''}
+        </span>
       </label>
       <input
         type="range"
         className="shell-control__range"
         value={num}
-        min={control.min ?? 0}
-        max={control.max ?? 100}
-        step={control.step ?? 1}
-        onChange={(e) => onChange(control.key, Number(e.target.value))}
+        min={param.min}
+        max={param.max}
+        step={param.step ?? 1}
+        disabled={param.disabled}
+        onChange={(e) => onChange(param.key, Number(e.target.value))}
       />
     </div>
   );

@@ -1,26 +1,29 @@
-import type { PropControl } from '../../core/types';
+import type { NumberParameter } from './types';
 
 interface NumberControlProps {
-  control: PropControl;
+  param: NumberParameter;
   value: unknown;
   onChange: (key: string, value: unknown) => void;
 }
 
-export function NumberControl({ control, value, onChange }: NumberControlProps) {
-  const num = Number(value ?? control.defaultValue ?? 0);
-  const step = control.step ?? 1;
-  const min = control.min ?? 0;
-  const max = control.max ?? 100;
+export function NumberControl({ param, value, onChange }: NumberControlProps) {
+  const num = Number(value ?? param.defaultValue ?? 0);
+  const step = param.step ?? 1;
+  const min = param.min ?? 0;
+  const max = param.max ?? 100;
 
   return (
     <div className="shell-control">
-      <label className="shell-control__label">{control.label}</label>
+      <label className="shell-control__label">
+        {param.label}
+        {param.unit && <span className="shell-control__unit">{param.unit}</span>}
+      </label>
       <div className="shell-control__number-row">
         <button
           type="button"
           className="shell-control__stepper"
-          onClick={() => onChange(control.key, Math.max(min, num - step))}
-          disabled={num <= min}
+          onClick={() => onChange(param.key, Math.max(min, num - step))}
+          disabled={param.disabled || num <= min}
         >
           −
         </button>
@@ -31,13 +34,14 @@ export function NumberControl({ control, value, onChange }: NumberControlProps) 
           min={min}
           max={max}
           step={step}
-          onChange={(e) => onChange(control.key, Number(e.target.value))}
+          disabled={param.disabled}
+          onChange={(e) => onChange(param.key, Number(e.target.value))}
         />
         <button
           type="button"
           className="shell-control__stepper"
-          onClick={() => onChange(control.key, Math.min(max, num + step))}
-          disabled={num >= max}
+          onClick={() => onChange(param.key, Math.min(max, num + step))}
+          disabled={param.disabled || num >= max}
         >
           +
         </button>

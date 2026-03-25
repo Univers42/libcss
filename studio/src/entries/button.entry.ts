@@ -3,6 +3,7 @@ import { registry } from '@libcss/studio';
 import type { ComponentEntry, VariantPreset } from '@libcss/studio';
 import { Button } from '../../../src/components';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from '../../../src/components/atoms/Button/Button.constants';
+import { defineParameters } from '../../../src/components/controls/schema';
 
 /* ---------- Presets: Variant × Size (auto from constants) ---------- */
 const variantSizePresets: VariantPreset[] = BUTTON_VARIANTS.flatMap((v) =>
@@ -51,59 +52,27 @@ const entry: ComponentEntry = {
     { prop: 'size', label: 'Size', values: [...BUTTON_SIZES] },
   ],
   presets: [...variantSizePresets, ...statePresets, ...polymorphicPresets],
-  controls: [
-    {
-      key: 'variant',
-      label: 'Variant',
-      type: 'select',
-      group: 'Appearance',
-      defaultValue: 'primary',
-      options: BUTTON_VARIANTS.map((v) => ({ label: v[0]!.toUpperCase() + v.slice(1), value: v })),
-    },
-    {
-      key: 'size',
-      label: 'Size',
-      type: 'select',
-      group: 'Appearance',
-      defaultValue: 'md',
-      options: BUTTON_SIZES.map((s) => ({ label: s.toUpperCase(), value: s })),
-    },
-    {
-      key: 'children',
-      label: 'Label',
-      type: 'text',
-      group: 'Content',
-      defaultValue: 'Click me',
-    },
-    {
-      key: 'fullWidth',
-      label: 'Full Width',
-      type: 'boolean',
-      group: 'Layout',
-      defaultValue: false,
-    },
-    {
-      key: 'isBlock',
-      label: 'Block',
-      type: 'boolean',
-      group: 'Layout',
-      defaultValue: false,
-    },
-    {
-      key: 'isLoading',
-      label: 'Loading',
-      type: 'boolean',
-      group: 'State',
-      defaultValue: false,
-    },
-    {
-      key: 'disabled',
-      label: 'Disabled',
-      type: 'boolean',
-      group: 'State',
-      defaultValue: false,
-    },
-  ],
+  /* Legacy controls kept for backward compat — new schema takes priority */
+  controls: [],
+  parameters: defineParameters()
+    .group('appearance', 'Appearance', { icon: '🎨' })
+      .select('variant', 'Variant', {
+        defaultValue: 'primary',
+        options: BUTTON_VARIANTS.map((v) => ({ label: v[0]!.toUpperCase() + v.slice(1), value: v })),
+      })
+      .select('size', 'Size', {
+        defaultValue: 'md',
+        options: BUTTON_SIZES.map((s) => ({ label: s.toUpperCase(), value: s })),
+      })
+    .group('content', 'Content', { icon: '📝' })
+      .text('children', 'Label', { defaultValue: 'Click me', placeholder: 'Button text…' })
+    .group('layout', 'Layout', { icon: '📐', style: 'compact' })
+      .toggle('fullWidth', 'Full Width', { defaultValue: false, onLabel: 'On', offLabel: 'Off' })
+      .toggle('isBlock', 'Block', { defaultValue: false, onLabel: 'On', offLabel: 'Off' })
+    .group('state', 'State', { icon: '⚡' })
+      .boolean('isLoading', 'Loading', { defaultValue: false })
+      .boolean('disabled', 'Disabled', { defaultValue: false })
+    .build(),
   render: (props) => React.createElement(Button, props as any),
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { registry } from '@libcss/studio';
 import type { ComponentEntry, VariantPreset } from '@libcss/studio';
 import { Image } from '../../../src/components';
+import { defineParameters } from '../../../src/components/controls/schema';
 
 const IMAGE_SIZES = ['sm', 'md', 'full'] as const;
 
@@ -36,62 +37,26 @@ const entry: ComponentEntry = {
     { prop: 'size', label: 'Size', values: [...IMAGE_SIZES] },
   ],
   presets,
-  controls: [
-    {
-      key: 'src',
-      label: 'Source URL',
-      type: 'text',
-      group: 'Content',
-      defaultValue: 'https://picsum.photos/800/400',
-    },
-    {
-      key: 'alt',
-      label: 'Alt Text',
-      type: 'text',
-      group: 'Content',
-      defaultValue: 'Sample image',
-    },
-    {
-      key: 'caption',
-      label: 'Caption',
-      type: 'text',
-      group: 'Content',
-      defaultValue: 'A sample image with caption',
-    },
-    {
-      key: 'size',
-      label: 'Size',
-      type: 'select',
-      group: 'Appearance',
-      defaultValue: 'full',
-      options: [
-        { label: 'Small', value: 'sm' },
-        { label: 'Medium', value: 'md' },
-        { label: 'Full', value: 'full' },
-      ],
-    },
-    {
-      key: 'rounded',
-      label: 'Rounded',
-      type: 'boolean',
-      group: 'Appearance',
-      defaultValue: false,
-    },
-    {
-      key: 'borderless',
-      label: 'Borderless',
-      type: 'boolean',
-      group: 'Appearance',
-      defaultValue: false,
-    },
-    {
-      key: 'centered',
-      label: 'Centered',
-      type: 'boolean',
-      group: 'Layout',
-      defaultValue: false,
-    },
-  ],
+  controls: [],
+  parameters: defineParameters()
+    .group('content', 'Content', { icon: '📝' })
+      .text('src', 'Source URL', { defaultValue: 'https://picsum.photos/800/400', placeholder: 'https://…' })
+      .text('alt', 'Alt Text', { defaultValue: 'Sample image' })
+      .text('caption', 'Caption', { defaultValue: 'A sample image with caption', multiline: true })
+    .group('appearance', 'Appearance', { icon: '🎨' })
+      .select('size', 'Size', {
+        defaultValue: 'full',
+        options: [
+          { label: 'Small', value: 'sm' },
+          { label: 'Medium', value: 'md' },
+          { label: 'Full', value: 'full' },
+        ],
+      })
+      .boolean('rounded', 'Rounded', { defaultValue: false })
+      .boolean('borderless', 'Borderless', { defaultValue: false })
+    .group('layout', 'Layout', { icon: '📐' })
+      .boolean('centered', 'Centered', { defaultValue: false })
+    .build(),
   render: (props) => React.createElement(Image, props as any),
 };
 

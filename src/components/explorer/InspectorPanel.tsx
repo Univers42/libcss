@@ -1,28 +1,84 @@
-import { useMemo } from 'react';
+/**
+ * @file InspectorPanel
+ * @description Polymorphic property inspector that dynamically builds itself
+ * from a ParameterSchema.  Supports both the new schema system and legacy
+ * PropControl[] arrays (auto-converted via adapter).
+ *
+ * Architecture
+ * ────────────
+ * ComponentEntry
+ *   ├─ .parameters  (new ParameterSchema — preferred)
+ *   └─ .controls    (legacy PropControl[] — auto-adapted)
+ *          ↓
+ *   legacyControlsToSchema()
+ *          ↓
+ *   ParameterSchema { groups[] }
+ *          ↓
+ *   <ParameterGroup>   ←  collapsible, styled per category
+ *     └─ <ControlFactory>  ←  resolves the polymorphic control widget
+ *          ↓
+ *   onChange(key, value)  →  ParameterChangeEvent  →  onParameterChange()
+ */
+
+import { useMemo, useCallback, useRef } from 'react';
 import type { ComponentEntry } from '../../core/types';
-import { ControlFactory } from '../controls/ControlFactory';
+import type { ParameterSchema, ParameterChangeEvent, ParameterChangeHandler } from '../controls/types';
+import { legacyControlsToSchema } from '../controls/schema';
+import { ParameterGroup } from '../controls/ParameterGroup';
 
 interface InspectorPanelProps {
   entry: ComponentEntry;
   props: Record<string, unknown>;
   onChange: (key: string, value: unknown) => void;
   onReset: () => void;
+  /** Rich event callback — receives full context about the change. */
+  onParameterChange?: ParameterChangeHandler;
 }
 
-export function InspectorPanel({ entry, props, onChange, onReset }: InspectorPanelProps) {
-  const groups = useMemo(() => {
-    const map = new Map<string, typeof entry.controls extends readonly (infer T)[] ? T[] : never>();
-    for (const ctrl of entry.controls) {
-      const group = ctrl.group ?? 'General';
-      const list = map.get(group) ?? [];
-      list.push(ctrl);
-      map.set(group, list);
-    }
-    return map;
-  }, [entry.controls]);
+export function InspectorPanel({
+  entry,
+  props,
+  onChange,
+  onReset,
+  onParameterChange,
+}: InspectorPanelProps) {
+  const prevProps = useRef(props);
+
+  // Resolve the schema: prefer new `parameters` field, fallback to legacy adapter
+  const schema: ParameterSchema = useMemo(() => {
+    if ((entry as any).parameters) return (entry as any).parameters;
+    return legacyControlsToSchema(entry.controls);
+  }, [entry]);
+
+  // Wrap onChange to also fire rich event
+  const handleChange = useCallback(
+    (key: string, value: unknown) => {
+      const previousValue = prevProps.current[key];
+      onChange(key, value);
+
+      if (onParameterChange) {
+        // Find which group this key belongs to
+        let groupId = 'unknown';
+        let controlType: ParameterChangeEvent['controlType'] = 'text';
+        for (const g of schema.groups) {
+          const param = g.parameters.find((p) => p.key === key);
+          if (param) {
+            groupId = g.id;
+            controlType = param.type;
+            break;
+          }
+        }
+        onParameterChange({ key, value, previousValue, groupId, controlType });
+      }
+
+      prevProps.current = { ...prevProps.current, [key]: value };
+    },
+    [onChange, onParameterChange, schema],
+  );
 
   return (
     <aside className="shell-inspector">
+      {/* ── Header ── */}
       <div className="shell-inspector__header">
         <div className="shell-inspector__title-row">
           <h3 className="shell-inspector__title">{entry.name}</h3>
@@ -38,29 +94,28 @@ export function InspectorPanel({ entry, props, onChange, onReset }: InspectorPan
         </button>
       </div>
 
+      {/* ── Dynamic parameter groups ── */}
       <div className="shell-inspector__controls">
-        {[...groups.entries()].map(([groupName, controls]) => (
-          <div key={groupName} className="shell-inspector__group">
-            <h4 className="shell-inspector__group-title">{groupName}</h4>
-            {controls.map((control) => (
-              <ControlFactory
-                key={control.key}
-                control={control}
-                value={props[control.key]}
-                onChange={onChange}
-              />
-            ))}
-          </div>
+        {schema.groups.map((group) => (
+          <ParameterGroup
+            key={group.id}
+            group={group}
+            values={props}
+            onChange={handleChange}
+          />
         ))}
       </div>
 
-      <div className="shell-inspector__tags">
-        {entry.tags.map((tag) => (
-          <span key={tag} className="shell-inspector__tag">
-            {tag}
-          </span>
-        ))}
-      </div>
+      {/* ── Tags footer ── */}
+      {entry.tags.length > 0 && (
+        <div className="shell-inspector__tags">
+          {entry.tags.map((tag) => (
+            <span key={tag} className="shell-inspector__tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
     </aside>
   );
 }
