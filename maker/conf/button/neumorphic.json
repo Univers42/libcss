@@ -1,0 +1,92 @@
+{
+  "name": "Neumorphic",
+  "props": {
+    "label": "Neumorphic",
+    "icon": "",
+    "iconPosition": "right"
+  },
+  "style": {
+    "base": {
+      "backgroundColor": "#c01c28",
+      "color": "#241f31",
+      "fontSize": 22,
+      "fontWeight": 800,
+      "textTransform": "uppercase",
+      "letterSpacing": 3.5,
+      "padding": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "minWidth": 325,
+      "border": {
+        "radius": 12,
+        "width": 0,
+        "color": "transparent",
+        "style": "solid"
+      },
+      "opacity": 1,
+      "cursor": "pointer",
+      "transition": {
+        "property": "all",
+        "duration": 0.2,
+        "timing": "ease",
+        "delay": 0
+      },
+      "shadow": {
+        "x": 6,
+        "y": 6,
+        "blur": 12,
+        "spread": 0,
+        "color": "#b8bec7"
+      },
+      "transform": {
+        "scale": 1,
+        "rotate": 0,
+        "skewX": 0,
+        "skewY": 0,
+        "translateX": 0,
+        "translateY": 0
+      },
+      "lineHeight": 1.2,
+      "gap": 8,
+      "overflow": "hidden"
+    },
+    "hover": {
+      "backgroundColor": "#e0e5ec",
+      "color": "#3b82f6",
+      "borderColor": "transparent",
+      "transform": {
+        "scale": 1,
+        "rotate": 0,
+        "skewX": 0,
+        "skewY": 0,
+        "translateX": 0,
+        "translateY": 0
+      },
+      "shadow": {
+        "x": 3,
+        "y": 3,
+        "blur": 6,
+        "spread": 0,
+        "color": "#b8bec7"
+      }
+    },
+    "active": {
+      "transform": {
+        "scale": 0.97,
+        "translateY": 1
+      },
+      "shadow": {
+        "blur": 4,
+        "color": "rgba(0,0,0,0.15)"
+      }
+    },
+    "disabled": {
+      "opacity": 0.5,
+      "cursor": "not-allowed",
+      "grayscale": false
+    }
+  }
+}
