@@ -1,0 +1,367 @@
+// ─────────────────────────────────────────────
+// Color Picker — Professional multi-mode picker
+// ─────────────────────────────────────────────
+
+// ── Generic view wrapper ──
+.cpk-view {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// ── Saturation Map ──
+.cpk-satmap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.4;
+  border-radius: 6px;
+  cursor: crosshair;
+  overflow: hidden;
+  touch-action: none;
+
+  &__white,
+  &__black {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  &__white {
+    background: linear-gradient(90deg, #fff, transparent);
+  }
+
+  &__black {
+    background: linear-gradient(0deg, #000, transparent);
+  }
+
+  &__cursor {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+// ── Hue Strip ──
+.cpk-hue {
+  position: relative;
+  height: 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  touch-action: none;
+  background: linear-gradient(
+    90deg,
+    hsl(0, 100%, 50%),
+    hsl(60, 100%, 50%),
+    hsl(120, 100%, 50%),
+    hsl(180, 100%, 50%),
+    hsl(240, 100%, 50%),
+    hsl(300, 100%, 50%),
+    hsl(360, 100%, 50%)
+  );
+
+  &--vertical {
+    width: 14px;
+    height: 100%;
+    border-radius: 7px;
+    background: linear-gradient(
+      180deg,
+      hsl(0, 100%, 50%),
+      hsl(60, 100%, 50%),
+      hsl(120, 100%, 50%),
+      hsl(180, 100%, 50%),
+      hsl(240, 100%, 50%),
+      hsl(300, 100%, 50%),
+      hsl(360, 100%, 50%)
+    );
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+}
+
+// ── Alpha Strip ──
+.cpk-alpha {
+  position: relative;
+  height: 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  touch-action: none;
+  // Checkerboard background
+  background-image:
+    linear-gradient(45deg, #ccc 25%, transparent 25%),
+    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc 75%),
+    linear-gradient(-45deg, transparent 75%, #ccc 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+
+  &__gradient {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+}
+
+// ── Color Wheel ──
+.cpk-wheel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  &__ring {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(
+      hsl(0, 100%, 50%),
+      hsl(60, 100%, 50%),
+      hsl(120, 100%, 50%),
+      hsl(180, 100%, 50%),
+      hsl(240, 100%, 50%),
+      hsl(300, 100%, 50%),
+      hsl(360, 100%, 50%)
+    );
+    cursor: crosshair;
+    touch-action: none;
+  }
+
+  &__white {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, transparent 70%);
+  }
+
+  &__cursor {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+// ── Channel Slider ──
+.cpk-channel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__label {
+    width: 18px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary, #666);
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  &__track {
+    position: relative;
+    flex: 1;
+    height: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    touch-action: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 16px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  &__value {
+    width: 38px;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary, #333);
+    text-align: right;
+    flex-shrink: 0;
+  }
+}
+
+.cpk-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+// ── Gradient Picker ──
+.cpk-gradient {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__preview {
+    height: 36px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+
+  &__bar {
+    position: relative;
+    height: 16px;
+    border-radius: 8px;
+    cursor: crosshair;
+    touch-action: none;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+
+  &__stop {
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &--selected {
+      box-shadow: 0 0 0 2px var(--accent-color, #3b82f6), 0 0 0 1px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__hint {
+    font-size: 10px;
+    color: var(--text-tertiary, #999);
+    text-align: center;
+  }
+}
+
+// ── Swatch Bar ──
+.cpk-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px 0;
+
+  &__swatch {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s, box-shadow 0.15s;
+
+    &:hover {
+      transform: scale(1.2);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    &--active {
+      border-color: var(--accent-color, #3b82f6);
+      box-shadow: 0 0 0 2px var(--accent-color, #3b82f6);
+    }
+  }
+}
+
+// ── Color Input ──
+.cpk-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &__preview {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+
+  &__field {
+    flex: 1;
+    min-width: 0;
+    padding: 4px 8px;
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.12));
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--text-primary, #333);
+    background: var(--input-bg, rgba(0, 0, 0, 0.03));
+    outline: none;
+    transition: border-color 0.15s;
+
+    &:focus {
+      border-color: var(--accent-color, #3b82f6);
+    }
+  }
+
+  &__toggle {
+    padding: 3px 6px;
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.12));
+    border-radius: 4px;
+    background: var(--surface-muted, rgba(0, 0, 0, 0.04));
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-secondary, #666);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+
+    &:hover {
+      background: var(--hover-color, rgba(0, 0, 0, 0.08));
+    }
+  }
+}
+
+// ── Footer container ──
+.cpk-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+// ── Status bar ──
+.cpk-status {
+  font-variant-numeric: tabular-nums;
+}

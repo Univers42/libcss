@@ -41,3 +41,6 @@ import './video.entry';
 import './audio.entry';
 import './file-attachment.entry';
 import './image.entry';
+
+// Molecules
+import './color-picker.entry';

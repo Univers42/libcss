@@ -15,3 +15,10 @@ export { SOCIAL_PROVIDERS, DEFAULT_SOCIAL_LABELS, SOCIAL_BRAND_COLORS } from './
 export { LanguageSelector, LanguageOption, useLanguageSelector } from './LanguageSelector';
 export type { LanguageSelectorProps, Language } from './LanguageSelector';
 export { KEYS, DEFAULT_DROPDOWN_ID_PREFIX } from './LanguageSelector';
+
+export { WindowPanel } from './WindowPanel';
+export type { WindowPanelProps, WindowTab } from './WindowPanel';
+
+export { ColorPicker } from './ColorPicker';
+export type { ColorPickerProps, ColorPickerMode, ColorState, RGBA, HSVA, HSLA, CMYK, GradientStop } from './ColorPicker';
+export { ALL_MODES, MODE_LABELS, DEFAULT_SWATCHES, colorFromHex, colorFromHsva, colorFromRgba, colorFromHsla, formatRgb, formatHsl, formatCmyk, buildGradientCSS, luminance, contrastRatio } from './ColorPicker';
