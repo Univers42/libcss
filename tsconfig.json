@@ -7,7 +7,7 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": "libcss",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -16,21 +16,21 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@libcss/*": ["src/*"]
+      "@libcss/*": ["libcss/*"]
     }
   },
   "include": [
-    "src/components/**/*.ts",
-    "src/components/**/*.tsx",
-    "src/common/**/*.ts",
-    "src/core/**/*.ts",
-    "src/core/**/*.tsx",
-    "src/hooks/**/*.ts",
-    "src/hooks/**/*.tsx",
-    "src/parser/**/*.ts",
-    "src/parser/**/*.tsx",
-    "src/studio/**/*.ts",
-    "src/studio/**/*.tsx"
+    "libcss/components/**/*.ts",
+    "libcss/components/**/*.tsx",
+    "libcss/common/**/*.ts",
+    "libcss/core/**/*.ts",
+    "libcss/core/**/*.tsx",
+    "libcss/hooks/**/*.ts",
+    "libcss/hooks/**/*.tsx",
+    "libcss/parser/**/*.ts",
+    "libcss/parser/**/*.tsx",
+    "libcss/studio/**/*.ts",
+    "libcss/studio/**/*.tsx"
   ],
   "exclude": ["node_modules", "dist", "tmp", "studio", "**/*.spec.tsx", "**/*.spec.ts"]
 }
