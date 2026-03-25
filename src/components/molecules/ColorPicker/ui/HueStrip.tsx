@@ -16,24 +16,32 @@ interface HueStripProps {
 export function HueStrip({ hue, onChange, direction = 'horizontal' }: HueStripProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
+  const rafId = useRef(0);
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
+  const dirRef = useRef(direction);
+  dirRef.current = direction;
 
   const update = useCallback(
     (clientX: number, clientY: number) => {
-      const el = ref.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const pct = direction === 'horizontal'
-        ? (clientX - rect.left) / rect.width
-        : (clientY - rect.top) / rect.height;
-      onChange(Math.max(0, Math.min(360, pct * 360)));
+      cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(() => {
+        const el = ref.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const pct = dirRef.current === 'horizontal'
+          ? (clientX - rect.left) / rect.width
+          : (clientY - rect.top) / rect.height;
+        onChangeRef.current(Math.max(0, Math.min(360, pct * 360)));
+      });
     },
-    [onChange, direction],
+    [], // stable
   );
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent) => {
       dragging.current = true;
-      (e.target as HTMLElement).setPointerCapture(e.pointerId);
+      e.currentTarget.setPointerCapture(e.pointerId);
       update(e.clientX, e.clientY);
     },
     [update],

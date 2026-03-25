@@ -42,7 +42,7 @@ export function GradientPicker({
       e.stopPropagation();
       dragging.current = idx;
       onSelect(idx);
-      (e.target as HTMLElement).setPointerCapture(e.pointerId);
+      e.currentTarget.setPointerCapture(e.pointerId);
     },
     [onSelect],
   );

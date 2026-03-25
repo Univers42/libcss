@@ -19,30 +19,39 @@ interface ColorWheelProps {
 export function ColorWheel({ color, onChange, size = 220 }: ColorWheelProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
+  const rafId = useRef(0);
   const radius = size / 2;
+  const colorRef = useRef(color);
+  colorRef.current = color;
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
 
   const update = useCallback(
     (clientX: number, clientY: number) => {
-      const el = ref.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = clientX - cx;
-      const dy = clientY - cy;
+      cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(() => {
+        const el = ref.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = clientX - cx;
+        const dy = clientY - cy;
 
-      // Angle → hue (0 at top, clockwise)
-      let angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-      if (angle < 0) angle += 360;
-      const h = angle % 360;
+        // Angle → hue (0 at top, clockwise)
+        let angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+        if (angle < 0) angle += 360;
+        const h = angle % 360;
 
-      // Distance → saturation (centre = 0, edge = 1)
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      const s = Math.min(1, dist / radius);
-
-      onChange({ h, s, v: color.hsv.v, a: color.hsv.a });
+        // Distance → saturation (centre = 0, edge = 1)
+        const r = size / 2;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const s = Math.min(1, dist / r);
+        const c = colorRef.current;
+        onChangeRef.current({ h, s, v: c.hsv.v, a: c.hsv.a });
+      });
     },
-    [radius, color.hsv.v, color.hsv.a, onChange],
+    [size], // only depends on size
   );
 
   /* ── Cursor position (polar → cartesian) ── */
@@ -65,7 +74,7 @@ export function ColorWheel({ color, onChange, size = 220 }: ColorWheelProps) {
         className="cpk-wheel__ring"
         onPointerDown={(e) => {
           dragging.current = true;
-          (e.target as HTMLElement).setPointerCapture(e.pointerId);
+          e.currentTarget.setPointerCapture(e.pointerId);
           update(e.clientX, e.clientY);
         }}
         onPointerMove={(e) => { if (dragging.current) update(e.clientX, e.clientY); }}

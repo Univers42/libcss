@@ -18,23 +18,32 @@ interface SaturationMapProps {
 export function SaturationMap({ color, onChange }: SaturationMapProps) {
   const areaRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
+  const rafId = useRef(0);
+  const colorRef = useRef(color);
+  colorRef.current = color;
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
 
   const updateFromMouse = useCallback(
     (clientX: number, clientY: number) => {
-      const el = areaRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const s = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      const v = Math.max(0, Math.min(1, 1 - (clientY - rect.top) / rect.height));
-      onChange({ h: color.hsv.h, s, v, a: color.hsv.a });
+      cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(() => {
+        const el = areaRef.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const s = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+        const v = Math.max(0, Math.min(1, 1 - (clientY - rect.top) / rect.height));
+        const c = colorRef.current;
+        onChangeRef.current({ h: c.hsv.h, s, v, a: c.hsv.a });
+      });
     },
-    [color.hsv.h, color.hsv.a, onChange],
+    [], // fully stable — reads from refs
   );
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent) => {
       dragging.current = true;
-      (e.target as HTMLElement).setPointerCapture(e.pointerId);
+      e.currentTarget.setPointerCapture(e.pointerId);
       updateFromMouse(e.clientX, e.clientY);
     },
     [updateFromMouse],

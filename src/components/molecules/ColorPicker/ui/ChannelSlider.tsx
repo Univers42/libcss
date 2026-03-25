@@ -34,16 +34,26 @@ export function ChannelSlider({
 }: ChannelSliderProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
+  const rafId = useRef(0);
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
+  const minRef = useRef(min);
+  minRef.current = min;
+  const maxRef = useRef(max);
+  maxRef.current = max;
 
   const update = useCallback(
     (clientX: number) => {
-      const el = ref.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      onChange(min + pct * (max - min));
+      cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(() => {
+        const el = ref.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+        onChangeRef.current(minRef.current + pct * (maxRef.current - minRef.current));
+      });
     },
-    [min, max, onChange],
+    [], // stable
   );
 
   const pct = ((value - min) / (max - min)) * 100;
@@ -58,7 +68,7 @@ export function ChannelSlider({
         style={{ background: gradient }}
         onPointerDown={(e) => {
           dragging.current = true;
-          (e.target as HTMLElement).setPointerCapture(e.pointerId);
+          e.currentTarget.setPointerCapture(e.pointerId);
           update(e.clientX);
         }}
         onPointerMove={(e) => { if (dragging.current) update(e.clientX); }}

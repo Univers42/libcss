@@ -14,15 +14,21 @@ interface AlphaStripProps {
 export function AlphaStrip({ alpha, color, onChange }: AlphaStripProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
+  const rafId = useRef(0);
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
 
   const update = useCallback(
     (clientX: number) => {
-      const el = ref.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      onChange(Math.max(0, Math.min(1, (clientX - rect.left) / rect.width)));
+      cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(() => {
+        const el = ref.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        onChangeRef.current(Math.max(0, Math.min(1, (clientX - rect.left) / rect.width)));
+      });
     },
-    [onChange],
+    [], // stable
   );
 
   return (
@@ -31,7 +37,7 @@ export function AlphaStrip({ alpha, color, onChange }: AlphaStripProps) {
       className="cpk-alpha"
       onPointerDown={(e) => {
         dragging.current = true;
-        (e.target as HTMLElement).setPointerCapture(e.pointerId);
+        e.currentTarget.setPointerCapture(e.pointerId);
         update(e.clientX);
       }}
       onPointerMove={(e) => { if (dragging.current) update(e.clientX); }}

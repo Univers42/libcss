@@ -13,6 +13,10 @@ export function useColorState(initialHex = '#3b82f6') {
   const [color, setColor] = useState<ColorState>(() => colorFromHex(initialHex));
   const onChangeRef = useRef<((hex: string, state: ColorState) => void) | undefined>();
 
+  // Keep a ref to the latest colour so derived setters stay stable.
+  const colorRef = useRef(color);
+  colorRef.current = color;
+
   const emit = useCallback((next: ColorState) => {
     setColor(next);
     onChangeRef.current?.(next.hex, next);
@@ -23,14 +27,15 @@ export function useColorState(initialHex = '#3b82f6') {
   const setRgba = useCallback((rgba: RGBA) => emit(colorFromRgba(rgba)), [emit]);
   const setHsla = useCallback((hsl: HSLA) => emit(colorFromHsla(hsl)), [emit]);
 
+  // Stable — read current hsv from ref, no state in deps.
   const setHue = useCallback(
-    (h: number) => emit(colorFromHsva({ ...color.hsv, h })),
-    [emit, color.hsv],
+    (h: number) => emit(colorFromHsva({ ...colorRef.current.hsv, h })),
+    [emit],
   );
 
   const setAlpha = useCallback(
-    (a: number) => emit(colorFromHsva({ ...color.hsv, a })),
-    [emit, color.hsv],
+    (a: number) => emit(colorFromHsva({ ...colorRef.current.hsv, a })),
+    [emit],
   );
 
   return {
