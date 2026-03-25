@@ -1,0 +1,45 @@
+// ─────────────────────────────────────────────────
+// CSS Custom Properties Reference
+// ─────────────────────────────────────────────────
+// These are the design tokens exposed as CSS custom properties.
+// Components reference them so theming is automatic.
+//
+// Surfaces:
+//   --surface-color       Main background
+//   --surface-muted       Muted/secondary surface
+//   --hover-color         Hover state background
+//
+// Text:
+//   --text-primary        Primary text
+//   --text-secondary      Secondary text
+//   --text-tertiary       Placeholder / hint text
+//
+// Borders:
+//   --border-color        Default border
+//
+// Accent:
+//   --accent-color        Brand / focus colour
+//   --danger-color        Error / destructive
+//
+// Component-specific:
+//   --badge-*-bg/fg       Badge backgrounds & foregrounds
+//   --chip-*-bg/fg        Chip backgrounds & foregrounds
+//   --input-filled-bg     Filled input background
+//   --switch-bg           Switch track background
+//   --tooltip-bg/fg       Tooltip background & text
+//   --skeleton-bg         Skeleton placeholder
+//   --progress-track-bg   Progress track background
+//   --spinner-track       Spinner track colour
+//   --kbd-bg              Keyboard key background
+
+:root {
+  --surface-color: #ffffff;
+  --surface-muted: #f8fafc;
+  --hover-color: rgba(0, 0, 0, 0.04);
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --border-color: #e2e8f0;
+  --accent-color: #3b82f6;
+  --danger-color: #ef4444;
+}
