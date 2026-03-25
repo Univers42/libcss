@@ -1,0 +1,92 @@
+{
+  "name": "Primary",
+  "props": {
+    "label": "Click me",
+    "icon": "",
+    "iconPosition": "left"
+  },
+  "style": {
+    "base": {
+      "backgroundColor": "#3b82f6",
+      "color": "#ffffff",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "textTransform": "none",
+      "letterSpacing": 0,
+      "padding": {
+        "top": 10,
+        "right": 24,
+        "bottom": 10,
+        "left": 24
+      },
+      "minWidth": 0,
+      "border": {
+        "radius": 8,
+        "width": 0,
+        "color": "#3b82f6",
+        "style": "solid"
+      },
+      "opacity": 1,
+      "cursor": "pointer",
+      "transition": {
+        "property": "all",
+        "duration": 0.2,
+        "timing": "ease",
+        "delay": 0
+      },
+      "shadow": {
+        "x": 0,
+        "y": 1,
+        "blur": 3,
+        "spread": 0,
+        "color": "rgba(0,0,0,0.1)"
+      },
+      "transform": {
+        "scale": 1,
+        "rotate": 0,
+        "skewX": 0,
+        "skewY": 0,
+        "translateX": 0,
+        "translateY": 0
+      },
+      "lineHeight": 1.2,
+      "gap": 8,
+      "overflow": "hidden"
+    },
+    "hover": {
+      "backgroundColor": "#2563eb",
+      "color": "#ffffff",
+      "borderColor": "#2563eb",
+      "transform": {
+        "scale": 1,
+        "rotate": 0,
+        "skewX": 0,
+        "skewY": 0,
+        "translateX": 0,
+        "translateY": -1
+      },
+      "shadow": {
+        "x": 0,
+        "y": 4,
+        "blur": 12,
+        "spread": 0,
+        "color": "rgba(59,130,246,0.4)"
+      }
+    },
+    "active": {
+      "transform": {
+        "scale": 0.97,
+        "translateY": 1
+      },
+      "shadow": {
+        "blur": 4,
+        "color": "rgba(0,0,0,0.15)"
+      }
+    },
+    "disabled": {
+      "opacity": 0.5,
+      "cursor": "not-allowed",
+      "grayscale": false
+    }
+  }
+}
