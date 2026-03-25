@@ -1,0 +1,66 @@
+// ============================================
+// PRISMATICA — Visibility Utilities
+// ============================================
+// Accessibility and display utilities.
+// ============================================
+
+@use "../abstracts" as *;
+
+.prisma-sr-only {
+  @include sr-only;
+}
+
+.prisma-visually-hidden {
+  @include visually-hidden;
+}
+
+.prisma-hidden {
+  display: none !important; // stylelint-disable-line declaration-no-important
+}
+
+.prisma-visible {
+  visibility: visible;
+}
+
+.prisma-invisible {
+  visibility: hidden;
+}
+
+// Responsive show/hide
+.prisma-hide-mobile {
+  @include md-only {
+    display: none !important; // stylelint-disable-line declaration-no-important
+  }
+}
+
+.prisma-show-mobile {
+  display: none !important; // stylelint-disable-line declaration-no-important
+
+  @include md-only {
+    display: block !important; // stylelint-disable-line declaration-no-important
+  }
+}
+
+// Text utilities
+.prisma-truncate {
+  @include truncate;
+}
+
+.prisma-text-center {
+  text-align: center;
+}
+
+.prisma-text-left {
+  text-align: left;
+}
+
+.prisma-text-right {
+  text-align: right;
+}
+
+// Focus
+.prisma-focus-ring {
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
