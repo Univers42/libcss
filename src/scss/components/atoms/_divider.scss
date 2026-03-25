@@ -1,0 +1,23 @@
+.divider {
+  border: none;
+  margin: 0;
+
+  &--horizontal { width: 100%; border-top: 1px solid var(--border-color, #e2e8f0); }
+  &--vertical   { height: 100%; border-left: 1px solid var(--border-color, #e2e8f0); align-self: stretch; }
+  &--dashed { border-style: dashed; }
+  &--dotted { border-style: dotted; }
+
+  &--sm { &.divider--horizontal { margin: 4px 0; } &.divider--vertical { margin: 0 4px; } }
+  &--md { &.divider--horizontal { margin: 12px 0; } &.divider--vertical { margin: 0 12px; } }
+  &--lg { &.divider--horizontal { margin: 24px 0; } &.divider--vertical { margin: 0 24px; } }
+
+  &--labelled {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: none;
+  }
+
+  &__line { flex: 1; height: 1px; background: var(--border-color, #e2e8f0); }
+  &__label { font-size: 12px; color: var(--text-tertiary, #94a3b8); white-space: nowrap; }
+}
