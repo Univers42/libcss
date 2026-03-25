@@ -1,0 +1,47 @@
+// ============================================
+// PRISMATICA — BrandLogo Atom
+// ============================================
+// .prisma-brand-logo with icon + title
+// ============================================
+
+@use "../../abstracts" as *;
+
+.prisma-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity $duration-fast $ease-default;
+
+  &:hover {
+    opacity: $opacity-hover;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: $radius-md;
+  }
+
+  &__icon {
+    @include flex-center;
+    width: $spacing-8;
+    height: $spacing-8;
+    border-radius: $radius-md;
+    flex-shrink: 0;
+    background: var(--prisma-accent);
+    color: #fff;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__title {
+    font-family: $font-family-sans;
+    font-size: $font-size-lg;
+    font-weight: $weight-semibold;
+    color: var(--prisma-text-primary);
+    letter-spacing: $tracking-tight;
+  }
+}

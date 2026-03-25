@@ -1,0 +1,105 @@
+// ============================================
+// PRISMATICA — File Attachment Block
+// ============================================
+// .prisma-file  downloadable file row/card
+// ============================================
+
+@use "../../abstracts" as *;
+
+.prisma-file {
+  // ── Configurator ──
+  --prisma-file-bg: var(--prisma-bg-secondary);
+  --prisma-file-bg-hover: var(--prisma-bg-hover);
+  --prisma-file-border-color: var(--prisma-border-default);
+  --prisma-file-icon-color: var(--prisma-text-tertiary);
+  --prisma-file-text-color: var(--prisma-text-primary);
+  --prisma-file-padding: #{$spacing-3};
+  --prisma-file-radius: #{$radius-md};
+
+  // ── Base ──
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  padding: var(--prisma-file-padding);
+  background: var(--prisma-file-bg);
+  border: $border-width-thin solid var(--prisma-file-border-color);
+  border-radius: var(--prisma-file-radius);
+  margin-bottom: $spacing-2;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    background $duration-fast $ease-default,
+    border-color $duration-fast $ease-default;
+
+  &:hover {
+    background: var(--prisma-file-bg-hover);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // ── Icon ──
+  &__icon {
+    flex-shrink: 0;
+    width: $spacing-8;
+    height: $spacing-8;
+    display: grid;
+    place-content: center;
+    color: var(--prisma-file-icon-color);
+    background: var(--prisma-bg-tertiary);
+    border-radius: $radius-sm;
+  }
+
+  &__icon-svg {
+    width: $spacing-5;
+    height: $spacing-5;
+  }
+
+  // ── Info ──
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    font-family: $font-family-sans;
+    font-size: $font-size-sm;
+    font-weight: $weight-medium;
+    color: var(--prisma-file-text-color);
+
+    @include truncate;
+  }
+
+  &__meta {
+    font-family: $font-family-sans;
+    font-size: $font-size-xs;
+    color: var(--prisma-text-tertiary);
+    margin-top: $spacing-px;
+  }
+
+  // ── Download action ──
+  &__download {
+    flex-shrink: 0;
+    width: $spacing-5;
+    height: $spacing-5;
+    color: var(--prisma-text-tertiary);
+    transition: color $duration-fast $ease-default;
+
+    .prisma-file:hover & {
+      color: var(--prisma-accent);
+    }
+  }
+
+  // ── Compact ──
+  &--compact {
+    --prisma-file-padding: #{$spacing-2};
+    gap: $spacing-2;
+
+    .prisma-file__icon {
+      width: $spacing-6;
+      height: $spacing-6;
+    }
+  }
+}

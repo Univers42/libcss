@@ -1,0 +1,101 @@
+// ============================================
+// PRISMATICA — Citation Atom
+// ============================================
+// .prisma-citation  footnote markers & references
+// ============================================
+
+@use "../../abstracts" as *;
+
+.prisma-citation {
+  // ── Configurator ──
+  --prisma-citation-color: var(--prisma-accent);
+  --prisma-citation-bg: var(--prisma-bg-secondary);
+  --prisma-citation-border-color: var(--prisma-border-default);
+  --prisma-citation-font-size: #{$font-size-xs};
+  --prisma-citation-marker-size: #{$font-size-xs};
+
+  // ── Inline marker (superscript) ──
+  &__marker {
+    display: inline;
+    font-size: var(--prisma-citation-marker-size);
+    font-weight: $weight-semibold;
+    color: var(--prisma-citation-color);
+    vertical-align: super;
+    line-height: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity $duration-fast $ease-default;
+
+    &::before {
+      content: "[";
+    }
+
+    &::after {
+      content: "]";
+    }
+
+    &:hover {
+      opacity: $opacity-hover;
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+      border-radius: $radius-sm;
+    }
+  }
+
+  // ── Reference block (footnote section) ──
+  &__references {
+    padding-top: $spacing-4;
+    margin-top: $spacing-6;
+    border-top: $border-width-thin solid var(--prisma-citation-border-color);
+  }
+
+  &__references-title {
+    font-family: $font-family-sans;
+    font-size: $font-size-sm;
+    font-weight: $weight-semibold;
+    color: var(--prisma-text-primary);
+    margin-bottom: $spacing-3;
+  }
+
+  // ── Individual reference ──
+  &__ref {
+    display: flex;
+    gap: $spacing-2;
+    padding: $spacing-2;
+    margin-bottom: $spacing-1;
+    border-radius: $radius-sm;
+    font-family: $font-family-sans;
+    font-size: var(--prisma-citation-font-size);
+    line-height: $leading-relaxed;
+    color: var(--prisma-text-secondary);
+    transition: background $duration-fast $ease-default;
+
+    &:target {
+      background: var(--prisma-citation-bg);
+    }
+  }
+
+  &__ref-number {
+    flex-shrink: 0;
+    font-weight: $weight-semibold;
+    color: var(--prisma-citation-color);
+    min-width: $spacing-5;
+  }
+
+  &__ref-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__ref-link {
+    color: var(--prisma-citation-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

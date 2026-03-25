@@ -1,0 +1,51 @@
+.accordion {
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__item {
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+    }
+  }
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: var(--surface-color, #fff);
+    color: var(--text-primary, #1e293b);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.12s;
+
+    &:hover {
+      background: var(--hover-color, #f8fafc);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+
+  &__title {
+    flex: 1;
+  }
+
+  &__chevron {
+    color: var(--text-tertiary, #94a3b8);
+    transition: transform 0.2s;
+  }
+
+  &__panel {
+    padding: 0 16px 12px;
+    font-size: 14px;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+  }
+}
