@@ -21,6 +21,7 @@
 // Skip link
 .skip-link {
   @extend .sr-only;
+
   &:focus {
     @extend .not-sr-only;
     position: fixed;

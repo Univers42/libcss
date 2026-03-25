@@ -67,6 +67,7 @@
     font-size: $font-size-sm;
     font-weight: $weight-medium;
     color: var(--prisma-file-text-color);
+
     @include truncate;
   }
 

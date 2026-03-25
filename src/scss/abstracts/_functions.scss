@@ -81,6 +81,7 @@
 @function fluid-clamp($min, $max, $min-vw: 320px, $max-vw: 1440px) {
   $factor: math.div(1, ($max-vw - $min-vw)) * ($max - $min);
   $calc-value: unquote("#{$min} + #{strip-unit($factor)} * (100vw - #{$min-vw})");
+
   @return clamp(#{$min}, #{$calc-value}, #{$max});
 }
 

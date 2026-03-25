@@ -175,7 +175,7 @@
   pointer-events: none;
   background: var(--prisma-surface, #fff);
   color: var(--prisma-text, #333);
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
   border: 1px solid var(--prisma-border, #e5e5e5);
 }
 
@@ -216,6 +216,7 @@
     // Keyframed by inline style: y = innerHeight, height = 0
     // final-y and final-height are set via data attributes
   }
+
   to {
     // JS sets final position via data-final-y / data-final-height
     // We rely on CSS `animate` property with the element's inline y/height.
@@ -229,6 +230,7 @@
     transform: scaleY(0);
     transform-origin: bottom;
   }
+
   100% {
     transform: scaleY(1);
     transform-origin: bottom;
@@ -241,6 +243,7 @@
     transform: scaleX(0);
     transform-origin: left;
   }
+
   100% {
     transform: scaleX(1);
     transform-origin: left;
@@ -252,6 +255,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -270,10 +274,12 @@
     opacity: 0;
     transform: scale(0);
   }
+
   70% {
     opacity: 1;
     transform: scale(1.15);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);

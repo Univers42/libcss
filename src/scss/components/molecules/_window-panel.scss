@@ -5,10 +5,10 @@
 .window-panel {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.12));
+  border: 1px solid var(--border-color, rgb(0 0 0 / 12%));
   border-radius: 10px;
   background: var(--surface-color, #fff);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 12%), 0 1px 4px rgb(0 0 0 / 8%);
   overflow: hidden;
   font-family: inherit;
 
@@ -18,7 +18,7 @@
     align-items: center;
     gap: 6px;
     padding: 8px 12px;
-    border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+    border-bottom: 1px solid var(--border-color, rgb(0 0 0 / 8%));
     user-select: none;
   }
 
@@ -52,7 +52,7 @@
     transition: background 0.15s;
 
     &:hover {
-      background: var(--hover-color, rgba(0, 0, 0, 0.06));
+      background: var(--hover-color, rgb(0 0 0 / 6%));
     }
   }
 
@@ -61,7 +61,7 @@
     display: flex;
     gap: 2px;
     padding: 4px 8px 0;
-    border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+    border-bottom: 1px solid var(--border-color, rgb(0 0 0 / 8%));
     overflow-x: auto;
   }
 
@@ -105,16 +105,16 @@
   // ── Footer ──
   &__footer {
     padding: 6px 8px;
-    border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+    border-top: 1px solid var(--border-color, rgb(0 0 0 / 8%));
   }
 
   // ── Status bar ──
   &__status {
     padding: 4px 12px;
-    border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.06));
+    border-top: 1px solid var(--border-color, rgb(0 0 0 / 6%));
     font-size: 10px;
     color: var(--text-tertiary, #999);
-    background: var(--surface-muted, rgba(0, 0, 0, 0.02));
+    background: var(--surface-muted, rgb(0 0 0 / 2%));
   }
 
   // ── Compact variant ──
@@ -122,10 +122,12 @@
     .window-panel__header {
       padding: 5px 10px;
     }
+
     .window-panel__tab {
       padding: 4px 8px;
       font-size: 11px;
     }
+
     .window-panel__body {
       padding: 6px;
     }

@@ -36,8 +36,11 @@
   }
 
   &__input:focus-visible + .radio__circle {
-    box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 30%);
   }
 
-  &__label { font-size: 14px; color: var(--text-primary, #1e293b); }
+  &__label {
+    font-size: 14px;
+    color: var(--text-primary, #1e293b);
+  }
 }

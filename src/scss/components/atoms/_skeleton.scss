@@ -1,7 +1,10 @@
 .skeleton {
   background: var(--skeleton-bg, #e2e8f0);
 
-  &--text { height: 1em; border-radius: 4px; }
+  &--text {
+    height: 1em;
+    border-radius: 4px;
+  }
   &--circular { border-radius: 50%; }
   &--rectangular { border-radius: 0; }
   &--rounded { border-radius: 8px; }
@@ -13,11 +16,12 @@
   &--wave {
     position: relative;
     overflow: hidden;
+
     &::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgb(255 255 255 / 40%), transparent);
       animation: skeleton-wave 1.5s ease-in-out infinite;
     }
   }

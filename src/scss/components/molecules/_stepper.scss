@@ -12,7 +12,10 @@
     position: relative;
   }
 
-  &--vertical .stepper__step { flex-direction: row; padding-bottom: 24px; }
+  &--vertical .stepper__step {
+    flex-direction: row;
+    padding-bottom: 24px;
+  }
 
   &__indicator {
     width: 32px; height: 32px;
@@ -32,7 +35,7 @@
   .stepper__step--active > .stepper__indicator {
     border-color: var(--accent-color, #3b82f6);
     color: var(--accent-color, #3b82f6);
-    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 15%);
   }
 
   .stepper__step--completed > .stepper__indicator {
@@ -41,9 +44,22 @@
     color: #fff;
   }
 
-  &__content { display: flex; flex-direction: column; gap: 2px; }
-  &__label { font-size: 13px; font-weight: 500; color: var(--text-primary, #1e293b); }
-  &__desc { font-size: 11px; color: var(--text-tertiary, #94a3b8); }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary, #1e293b);
+  }
+
+  &__desc {
+    font-size: 11px;
+    color: var(--text-tertiary, #94a3b8);
+  }
 
   &__connector {
     flex: 1;

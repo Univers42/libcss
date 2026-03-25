@@ -1,8 +1,23 @@
 // Flex direction
-.flex-row     { display: flex; flex-direction: row; }
-.flex-col     { display: flex; flex-direction: column; }
-.flex-row-rev { display: flex; flex-direction: row-reverse; }
-.flex-col-rev { display: flex; flex-direction: column-reverse; }
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row-rev {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.flex-col-rev {
+  display: flex;
+  flex-direction: column-reverse;
+}
 
 // Flex wrap
 .flex-wrap   { flex-wrap: wrap; }

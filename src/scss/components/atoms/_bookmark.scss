@@ -52,6 +52,7 @@
     font-size: $font-size-sm;
     font-weight: $weight-semibold;
     color: var(--prisma-bookmark-title-color);
+
     @include truncate;
   }
 
@@ -60,6 +61,7 @@
     font-size: $font-size-xs;
     color: var(--prisma-bookmark-desc-color);
     line-height: $leading-normal;
+
     @include line-clamp(2);
   }
 
@@ -71,6 +73,7 @@
     font-family: $font-family-sans;
     font-size: $font-size-xs;
     color: var(--prisma-bookmark-url-color);
+
     @include truncate;
   }
 

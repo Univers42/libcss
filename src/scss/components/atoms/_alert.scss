@@ -7,14 +7,42 @@
   font-size: 14px;
   line-height: 1.5;
 
-  &--info    { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
-  &--success { background: #f0fdf4; border-color: #bbf7d0; color: #166534; }
-  &--warning { background: #fffbeb; border-color: #fde68a; color: #92400e; }
-  &--danger  { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+  &--info {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1e40af;
+  }
 
-  &__icon { flex-shrink: 0; font-size: 18px; line-height: 1.5; }
+  &--success {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #166534;
+  }
+
+  &--warning {
+    background: #fffbeb;
+    border-color: #fde68a;
+    color: #92400e;
+  }
+
+  &--danger {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    font-size: 18px;
+    line-height: 1.5;
+  }
   &__content { flex: 1; }
-  &__title { display: block; font-weight: 600; margin-bottom: 2px; }
+
+  &__title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
 
   &__dismiss {
     flex-shrink: 0;

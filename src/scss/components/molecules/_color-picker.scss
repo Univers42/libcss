@@ -42,7 +42,7 @@
     height: 14px;
     border: 2px solid #fff;
     border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 25%), inset 0 0 0 1px rgb(0 0 0 / 15%);
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 2;
@@ -60,13 +60,13 @@
   contain: layout style paint;
   background: linear-gradient(
     90deg,
-    hsl(0, 100%, 50%),
-    hsl(60, 100%, 50%),
-    hsl(120, 100%, 50%),
-    hsl(180, 100%, 50%),
-    hsl(240, 100%, 50%),
-    hsl(300, 100%, 50%),
-    hsl(360, 100%, 50%)
+    hsl(0deg 100% 50%),
+    hsl(60deg 100% 50%),
+    hsl(120deg 100% 50%),
+    hsl(180deg 100% 50%),
+    hsl(240deg 100% 50%),
+    hsl(300deg 100% 50%),
+    hsl(360deg 100% 50%)
   );
 
   &--vertical {
@@ -75,13 +75,13 @@
     border-radius: 7px;
     background: linear-gradient(
       180deg,
-      hsl(0, 100%, 50%),
-      hsl(60, 100%, 50%),
-      hsl(120, 100%, 50%),
-      hsl(180, 100%, 50%),
-      hsl(240, 100%, 50%),
-      hsl(300, 100%, 50%),
-      hsl(360, 100%, 50%)
+      hsl(0deg 100% 50%),
+      hsl(60deg 100% 50%),
+      hsl(120deg 100% 50%),
+      hsl(180deg 100% 50%),
+      hsl(240deg 100% 50%),
+      hsl(300deg 100% 50%),
+      hsl(360deg 100% 50%)
     );
   }
 
@@ -92,7 +92,7 @@
     height: 18px;
     border: 2px solid #fff;
     border-radius: 3px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 2px rgb(0 0 0 / 40%);
     transform: translate(-50%, -50%);
     pointer-events: none;
     will-change: left, top;
@@ -107,6 +107,7 @@
   cursor: pointer;
   touch-action: none;
   contain: layout style paint;
+
   // Checkerboard background
   background-image:
     linear-gradient(45deg, #ccc 25%, transparent 25%),
@@ -129,7 +130,7 @@
     height: 18px;
     border: 2px solid #fff;
     border-radius: 3px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 2px rgb(0 0 0 / 40%);
     transform: translate(-50%, -50%);
     pointer-events: none;
     will-change: left;
@@ -149,13 +150,13 @@
     height: 100%;
     border-radius: 50%;
     background: conic-gradient(
-      hsl(0, 100%, 50%),
-      hsl(60, 100%, 50%),
-      hsl(120, 100%, 50%),
-      hsl(180, 100%, 50%),
-      hsl(240, 100%, 50%),
-      hsl(300, 100%, 50%),
-      hsl(360, 100%, 50%)
+      hsl(0deg 100% 50%),
+      hsl(60deg 100% 50%),
+      hsl(120deg 100% 50%),
+      hsl(180deg 100% 50%),
+      hsl(240deg 100% 50%),
+      hsl(300deg 100% 50%),
+      hsl(360deg 100% 50%)
     );
     cursor: crosshair;
     touch-action: none;
@@ -175,7 +176,7 @@
     height: 14px;
     border: 2px solid #fff;
     border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 25%), inset 0 0 0 1px rgb(0 0 0 / 15%);
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 2;
@@ -205,7 +206,7 @@
     border-radius: 6px;
     cursor: pointer;
     touch-action: none;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
   }
 
   &__thumb {
@@ -215,7 +216,7 @@
     height: 16px;
     border: 2px solid #fff;
     border-radius: 3px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 2px rgb(0 0 0 / 40%);
     transform: translate(-50%, -50%);
     pointer-events: none;
   }
@@ -246,7 +247,7 @@
   &__preview {
     height: 36px;
     border-radius: 6px;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 8%);
   }
 
   &__bar {
@@ -255,7 +256,7 @@
     border-radius: 8px;
     cursor: crosshair;
     touch-action: none;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 8%);
   }
 
   &__stop {
@@ -265,7 +266,7 @@
     height: 14px;
     border: 2px solid #fff;
     border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 20%);
     transform: translate(-50%, -50%);
     cursor: grab;
 
@@ -274,7 +275,7 @@
     }
 
     &--selected {
-      box-shadow: 0 0 0 2px var(--accent-color, #3b82f6), 0 0 0 1px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 0 2px var(--accent-color, #3b82f6), 0 0 0 1px rgb(0 0 0 / 20%);
     }
   }
 
@@ -295,7 +296,7 @@
   &__swatch {
     width: 18px;
     height: 18px;
-    border: 1.5px solid rgba(0, 0, 0, 0.1);
+    border: 1.5px solid rgb(0 0 0 / 10%);
     border-radius: 4px;
     cursor: pointer;
     padding: 0;
@@ -303,7 +304,7 @@
 
     &:hover {
       transform: scale(1.2);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
     }
 
     &--active {
@@ -323,7 +324,7 @@
     width: 24px;
     height: 24px;
     border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(0 0 0 / 10%);
     flex-shrink: 0;
   }
 
@@ -331,12 +332,12 @@
     flex: 1;
     min-width: 0;
     padding: 4px 8px;
-    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.12));
+    border: 1px solid var(--border-color, rgb(0 0 0 / 12%));
     border-radius: 4px;
     font-size: 11px;
     font-family: monospace;
     color: var(--text-primary, #333);
-    background: var(--input-bg, rgba(0, 0, 0, 0.03));
+    background: var(--input-bg, rgb(0 0 0 / 3%));
     outline: none;
     transition: border-color 0.15s;
 
@@ -347,9 +348,9 @@
 
   &__toggle {
     padding: 3px 6px;
-    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.12));
+    border: 1px solid var(--border-color, rgb(0 0 0 / 12%));
     border-radius: 4px;
-    background: var(--surface-muted, rgba(0, 0, 0, 0.04));
+    background: var(--surface-muted, rgb(0 0 0 / 4%));
     font-size: 10px;
     font-weight: 600;
     color: var(--text-secondary, #666);
@@ -358,7 +359,7 @@
     transition: background 0.15s;
 
     &:hover {
-      background: var(--hover-color, rgba(0, 0, 0, 0.08));
+      background: var(--hover-color, rgb(0 0 0 / 8%));
     }
   }
 }

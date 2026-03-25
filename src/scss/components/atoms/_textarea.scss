@@ -24,9 +24,10 @@
     transition: border-color 0.15s, box-shadow 0.15s;
 
     &::placeholder { color: var(--text-tertiary, #94a3b8); }
+
     &:focus {
       border-color: var(--accent-color, #3b82f6);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+      box-shadow: 0 0 0 3px rgb(59 130 246 / 15%);
     }
   }
 

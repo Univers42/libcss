@@ -69,6 +69,7 @@
     font-size: $font-size-sm;
     font-weight: $weight-medium;
     color: var(--prisma-audio-text-color);
+
     @include truncate;
   }
 

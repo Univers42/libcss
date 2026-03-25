@@ -4,9 +4,17 @@
   gap: 4px;
 
   &--full { width: 100%; }
-  &--disabled { opacity: 0.5; pointer-events: none; }
 
-  &__label { font-size: 13px; font-weight: 500; color: var(--text-secondary, #475569); }
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary, #475569);
+  }
 
   &__wrapper {
     position: relative;
@@ -30,7 +38,7 @@
 
     &:focus {
       border-color: var(--accent-color, #3b82f6);
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+      box-shadow: 0 0 0 3px rgb(59 130 246 / 15%);
     }
   }
 
@@ -42,5 +50,9 @@
   }
 
   &--error .select-field__select { border-color: var(--danger-color, #ef4444); }
-  &__error { font-size: 12px; color: var(--danger-color, #ef4444); }
+
+  &__error {
+    font-size: 12px;
+    color: var(--danger-color, #ef4444);
+  }
 }

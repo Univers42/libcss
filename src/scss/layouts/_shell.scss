@@ -8,7 +8,7 @@
   --shell-bg:          #0f172a;
   --shell-surface:     #1e293b;
   --shell-surface-2:   #334155;
-  --shell-border:      rgba(148, 163, 184, 0.12);
+  --shell-border:      rgb(148 163 184 / 12%);
   --shell-text:        #e2e8f0;
   --shell-text-muted:  #94a3b8;
 
@@ -17,36 +17,35 @@
   --shell-accent-s:    84%;
   --shell-accent-l:    67%;
   --shell-accent:      hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l));
-  --shell-accent-soft: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l) / 0.15);
-  --shell-accent-glow: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l) / 0.25);
+  --shell-accent-soft: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l) / 15%);
+  --shell-accent-glow: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l) / 25%);
   --shell-accent-text: hsl(var(--shell-accent-h) 70% 78%);
   --shell-accent-2:    #06b6d4;
-  --shell-accent-3:    hsl(330 81% 60%);
+  --shell-accent-3:    hsl(330deg 81% 60%);
   --shell-gradient:    linear-gradient(135deg, var(--shell-accent), var(--shell-accent-2));
 
   /* Typography */
-  --shell-font:        system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --shell-font:        system-ui, -apple-system, blinkmacsystemfont, sans-serif;
   --shell-mono:        ui-monospace, 'Cascadia Code', monospace;
-
   --shell-radius:      12px;
   --shell-radius-sm:   8px;
   --shell-transition:  0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --shell-header-h:    56px;
-  --shell-shadow:      0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.24);
-  --shell-shadow-lg:   0 10px 25px rgba(0, 0, 0, 0.4), 0 6px 10px rgba(0, 0, 0, 0.3);
+  --shell-shadow:      0 1px 3px rgb(0 0 0 / 30%), 0 1px 2px rgb(0 0 0 / 24%);
+  --shell-shadow-lg:   0 10px 25px rgb(0 0 0 / 40%), 0 6px 10px rgb(0 0 0 / 30%);
 }
 
 /* Light scheme overrides */
 [class*="shell-"][class*="--light"] {
   --shell-bg:          #f8fafc;
-  --shell-surface:     #ffffff;
+  --shell-surface:     #fff;
   --shell-surface-2:   #f1f5f9;
-  --shell-border:      rgba(15, 23, 42, 0.08);
+  --shell-border:      rgb(15 23 42 / 8%);
   --shell-text:        #0f172a;
   --shell-text-muted:  #64748b;
   --shell-accent-text: hsl(var(--shell-accent-h) 60% 40%);
-  --shell-shadow:      0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shell-shadow-lg:   0 10px 25px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.06);
+  --shell-shadow:      0 1px 3px rgb(0 0 0 / 8%), 0 1px 2px rgb(0 0 0 / 4%);
+  --shell-shadow-lg:   0 10px 25px rgb(0 0 0 / 10%), 0 6px 10px rgb(0 0 0 / 6%);
 }
 
 
@@ -56,11 +55,7 @@
 
 .shell-dashboard {
   display: grid;
-  grid-template-columns: var(--shell-sidebar-w, 260px) 1fr;
-  grid-template-rows: var(--shell-header-h) 1fr;
-  grid-template-areas:
-    "sidebar header"
-    "sidebar main";
+  grid-template: "sidebar header" var(--shell-header-h) "sidebar main" 1fr / var(--shell-sidebar-w, 260px) 1fr;
   height: 100vh;
   background: var(--shell-bg);
   color: var(--shell-text);
@@ -138,17 +133,18 @@
   display: block;
   width: 20px;
   height: 2px;
-  background: currentColor;
+  background: currentcolor;
   border-radius: 1px;
   position: relative;
 }
+
 .shell-dashboard__toggle-icon::before,
 .shell-dashboard__toggle-icon::after {
   content: '';
   display: block;
   width: 20px;
   height: 2px;
-  background: currentColor;
+  background: currentcolor;
   border-radius: 1px;
   position: absolute;
   left: 0;
@@ -182,17 +178,18 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(0 0 0 / 50%);
   backdrop-filter: blur(4px);
   z-index: 19;
 }
 
 /* Mobile */
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .shell-dashboard {
     grid-template-columns: 1fr;
     grid-template-areas: "header" "main";
   }
+
   .shell-dashboard__sidebar {
     position: fixed;
     top: 0; bottom: 0; left: 0;
@@ -200,9 +197,11 @@
     transform: translateX(-100%);
     box-shadow: var(--shell-shadow-lg);
   }
+
   .shell-dashboard--sidebar-open .shell-dashboard__sidebar {
     transform: translateX(0);
   }
+
   .shell-dashboard--sidebar-open .shell-dashboard__overlay {
     display: block;
   }
@@ -265,8 +264,11 @@
   font-size: 0.85rem;
 }
 
-@media (max-width: 600px) {
-  .shell-stacked__container { padding-left: 16px; padding-right: 16px; }
+@media (width <= 600px) {
+  .shell-stacked__container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   .shell-stacked__nav { gap: 12px; }
 }
 
@@ -294,7 +296,7 @@
   background: linear-gradient(135deg,
     var(--shell-accent) 0%,
     transparent 50%,
-    rgba(99, 102, 241, 0.1) 100%
+    rgb(99 102 241 / 10%) 100%
   );
   opacity: 0.15;
 }
@@ -307,11 +309,13 @@
   filter: blur(80px);
   opacity: 0.3;
 }
+
 .shell-centered--bg-mesh::before {
   width: 500px; height: 500px;
   top: -20%; left: -10%;
   background: var(--shell-accent);
 }
+
 .shell-centered--bg-mesh::after {
   width: 400px; height: 400px;
   bottom: -15%; right: -5%;
@@ -362,8 +366,11 @@
   color: var(--shell-text-muted);
 }
 
-@media (max-width: 560px) {
-  .shell-centered__card { padding: 24px 20px; border-radius: var(--shell-radius-sm); }
+@media (width <= 560px) {
+  .shell-centered__card {
+    padding: 24px 20px;
+    border-radius: var(--shell-radius-sm);
+  }
   .shell-centered__wrapper { padding: 16px; }
 }
 
@@ -427,6 +434,7 @@
   cursor: pointer;
   transition: all var(--shell-transition);
 }
+
 .shell-panel__toggle:hover {
   background: var(--shell-surface-2);
   color: var(--shell-text);
@@ -463,6 +471,7 @@
   overflow: hidden;
   border: none;
 }
+
 .shell-panel:not(.shell-panel--right-open) .shell-panel__right {
   width: 0;
   opacity: 0;
@@ -492,6 +501,7 @@
   padding: 12px;
   transition: height var(--shell-transition);
 }
+
 .shell-panel:not(.shell-panel--bottom-open) .shell-panel__bottom {
   height: 0;
   padding: 0;
@@ -500,7 +510,7 @@
 }
 
 /* Mobile: collapse all panels */
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .shell-panel__left,
   .shell-panel__right {
     position: fixed;
