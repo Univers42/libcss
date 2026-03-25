@@ -4,7 +4,7 @@
 // Reusable patterns built on top of design tokens.
 // ============================================
 
-@use 'tokens' as *;
+@use "tokens" as *;
 
 // ════════════════════════════════════════════
 // 📱 RESPONSIVE BREAKPOINTS
@@ -14,31 +14,77 @@
 /// @group mixins
 /// @param {Number} $bp - Breakpoint value
 @mixin breakpoint-up($bp) {
-  @media (min-width: $bp) { @content; }
+  @media (min-width: $bp) {
+    @content;
+  }
 }
 
-@mixin xs-up  { @media (min-width: $breakpoint-xs)  { @content; } }
+@mixin xs-up {
+  @media (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
 
-@mixin sm-up  { @media (min-width: $breakpoint-sm)  { @content; } }
+@mixin sm-up {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
 
-@mixin md-up  { @media (min-width: $breakpoint-md)  { @content; } }
+@mixin md-up {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
 
-@mixin md     { @media (min-width: $breakpoint-md)  { @content; } }
+@mixin md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
 
-@mixin lg-up  { @media (min-width: $breakpoint-lg)  { @content; } }
+@mixin lg-up {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
 
-@mixin lg     { @media (min-width: $breakpoint-lg)  { @content; } }
+@mixin lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
 
-@mixin xl-up  { @media (min-width: $breakpoint-xl)  { @content; } }
+@mixin xl-up {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
 
-@mixin xxl-up { @media (min-width: $breakpoint-2xl) { @content; } }
+@mixin xxl-up {
+  @media (min-width: $breakpoint-2xl) {
+    @content;
+  }
+}
 
 // Max-width (exceptions)
-@mixin xs-only { @media (max-width: #{$breakpoint-xs - 1px}) { @content; } }
+@mixin xs-only {
+  @media (max-width: #{$breakpoint-xs - 1px}) {
+    @content;
+  }
+}
 
-@mixin sm-only { @media (max-width: #{$breakpoint-sm - 1px}) { @content; } }
+@mixin sm-only {
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
 
-@mixin md-only { @media (max-width: #{$breakpoint-md - 1px}) { @content; } }
+@mixin md-only {
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
 
 // ════════════════════════════════════════════
 // 🃏 CARD PATTERNS
@@ -216,28 +262,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@mixin data-text($size: 'md') {
+@mixin data-text($size: "md") {
   font-family: $font-family-data;
   font-variant-numeric: tabular-nums;
   letter-spacing: $tracking-normal;
 
-  @if $size == 'xl' {
+  @if $size == "xl" {
     font-size: $data-xl;
     font-weight: $weight-semibold;
     line-height: $leading-tight;
-  } @else if $size == 'lg' {
+  } @else if $size == "lg" {
     font-size: $data-lg;
     font-weight: $weight-medium;
     line-height: $leading-snug;
-  } @else if $size == 'md' {
+  } @else if $size == "md" {
     font-size: $data-md;
     font-weight: $weight-normal;
     line-height: $leading-snug;
-  } @else if $size == 'sm' {
+  } @else if $size == "sm" {
     font-size: $data-sm;
     font-weight: $weight-normal;
     line-height: $leading-snug;
-  } @else if $size == 'xs' {
+  } @else if $size == "xs" {
     font-size: $data-xs;
     font-weight: $weight-normal;
     line-height: $leading-snug;
@@ -289,11 +335,15 @@
 }
 
 @mixin reduced-motion {
-  @media (prefers-reduced-motion: reduce) { @content; }
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
 }
 
 @mixin high-contrast {
-  @media (prefers-contrast: high) { @content; }
+  @media (prefers-contrast: high) {
+    @content;
+  }
 }
 
 // ════════════════════════════════════════════
@@ -302,15 +352,21 @@
 
 /// @group mixins
 @mixin light-theme {
-  @media (prefers-color-scheme: light) { @content; }
+  @media (prefers-color-scheme: light) {
+    @content;
+  }
 }
 
 @mixin dark-theme {
-  @media (prefers-color-scheme: dark) { @content; }
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
 }
 
 @mixin theme($mode) {
-  [data-theme='#{$mode}'] & { @content; }
+  [data-theme="#{$mode}"] & {
+    @content;
+  }
 }
 
 // ════════════════════════════════════════════
@@ -320,8 +376,8 @@
 /// Generates --prisma-* CSS custom properties for the given theme
 /// @group mixins
 /// @param {String} $theme ['light'] - Theme mode: 'light' or 'dark'
-@mixin theme-variables($theme: 'light') {
-  @if $theme == 'light' {
+@mixin theme-variables($theme: "light") {
+  @if $theme == "light" {
     // Backgrounds
     --prisma-bg-primary: #{$bg-primary};
     --prisma-bg-secondary: #{$bg-secondary};
@@ -418,5 +474,25 @@
 
 // ── Elevation / shadow system ──────────────────────────
 @mixin elevation($level: 1) {
-  @if $level == 0 { box-shadow: none; } @else if $level == 1 { box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 1px 2px rgb(0 0 0 / 6%); } @else if $level == 2 { box-shadow: 0 4px 6px rgb(0 0 0 / 7%), 0 2px 4px rgb(0 0 0 / 6%); } @else if $level == 3 { box-shadow: 0 10px 15px rgb(0 0 0 / 10%), 0 4px 6px rgb(0 0 0 / 5%); } @else if $level == 4 { box-shadow: 0 20px 25px rgb(0 0 0 / 10%), 0 10px 10px rgb(0 0 0 / 4%); } @else if $level == 5 { box-shadow: 0 25px 50px rgb(0 0 0 / 25%); }
+  @if $level == 0 {
+    box-shadow: none;
+  } @else if $level == 1 {
+    box-shadow:
+      0 1px 3px rgb(0 0 0 / 10%),
+      0 1px 2px rgb(0 0 0 / 6%);
+  } @else if $level == 2 {
+    box-shadow:
+      0 4px 6px rgb(0 0 0 / 7%),
+      0 2px 4px rgb(0 0 0 / 6%);
+  } @else if $level == 3 {
+    box-shadow:
+      0 10px 15px rgb(0 0 0 / 10%),
+      0 4px 6px rgb(0 0 0 / 5%);
+  } @else if $level == 4 {
+    box-shadow:
+      0 20px 25px rgb(0 0 0 / 10%),
+      0 10px 10px rgb(0 0 0 / 4%);
+  } @else if $level == 5 {
+    box-shadow: 0 25px 50px rgb(0 0 0 / 25%);
+  }
 }

@@ -14,7 +14,9 @@ interface BarChartProps {
   xScale: ScaleBand<string>;
   yScale: ScaleLinear<number, number>;
   palette: ChartPalette;
-  style: Required<Pick<ChartStyle, 'animate' | 'animationDuration' | 'dataLabels' | 'barRadius' | 'barGap'>>;
+  style: Required<
+    Pick<ChartStyle, 'animate' | 'animationDuration' | 'dataLabels' | 'barRadius' | 'barGap'>
+  >;
   colorScale: (key: string) => string;
   onBarHover?: (point: ProcessedDataPoint, x: number, y: number) => void;
   onBarLeave?: () => void;
@@ -54,9 +56,7 @@ export function BarChart({
             rx={barRadius}
             ry={barRadius}
             fill={colorScale(d.label)}
-            onMouseEnter={(e) =>
-              onBarHover?.(d, e.clientX, e.clientY)
-            }
+            onMouseEnter={(e) => onBarHover?.(d, e.clientX, e.clientY)}
             onMouseLeave={onBarLeave}
             onClick={() => onBarClick?.(d)}
             style={

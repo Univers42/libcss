@@ -6,7 +6,7 @@
  * parent colour picker's current colour.
  */
 
-import { useState, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import type { GradientStop } from '../model/color-engine';
 import { buildGradientCSS } from '../model/color-engine';
 
@@ -103,7 +103,10 @@ export function GradientPicker({
             className={`cpk-gradient__stop${i === selectedIndex ? ' cpk-gradient__stop--selected' : ''}`}
             style={{ left: `${stop.position}%`, background: stop.color }}
             onPointerDown={(e) => handlePointerDown(i, e)}
-            onDoubleClick={(e) => { e.stopPropagation(); handleDelete(i); }}
+            onDoubleClick={(e) => {
+              e.stopPropagation();
+              handleDelete(i);
+            }}
             title={`${stop.color} @ ${Math.round(stop.position)}% — double-click to remove`}
           />
         ))}

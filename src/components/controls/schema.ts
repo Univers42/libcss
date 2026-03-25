@@ -19,8 +19,6 @@ import type {
   ParameterGroupDef,
   ParameterDef,
   GroupStyle,
-  SelectOption,
-  SliderMark,
   TextParameter,
   NumberParameter,
   BooleanParameter,
@@ -37,16 +35,16 @@ import type {
 
 type Omitted = 'type' | 'key' | 'label';
 
-type TextOpts     = Omit<TextParameter, Omitted>;
-type NumberOpts   = Omit<NumberParameter, Omitted>;
-type BooleanOpts  = Omit<BooleanParameter, Omitted>;
-type ToggleOpts   = Omit<ToggleParameter, Omitted>;
-type SelectOpts   = Omit<SelectParameter, Omitted>;
-type MultiOpts    = Omit<MultiSelectParameter, Omitted>;
-type TagsOpts     = Omit<TagsParameter, Omitted>;
-type ColorOpts    = Omit<ColorParameter, Omitted>;
-type RangeOpts    = Omit<RangeParameter, Omitted>;
-type SliderOpts   = Omit<SliderParameter, Omitted>;
+type TextOpts = Omit<TextParameter, Omitted>;
+type NumberOpts = Omit<NumberParameter, Omitted>;
+type BooleanOpts = Omit<BooleanParameter, Omitted>;
+type ToggleOpts = Omit<ToggleParameter, Omitted>;
+type SelectOpts = Omit<SelectParameter, Omitted>;
+type MultiOpts = Omit<MultiSelectParameter, Omitted>;
+type TagsOpts = Omit<TagsParameter, Omitted>;
+type ColorOpts = Omit<ColorParameter, Omitted>;
+type RangeOpts = Omit<RangeParameter, Omitted>;
+type SliderOpts = Omit<SliderParameter, Omitted>;
 
 interface GroupOpts {
   description?: string;
@@ -181,7 +179,10 @@ export function legacyControlsToSchema(controls: readonly PropControl[]): Parame
 }
 
 function slugify(s: string): string {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 }
 
 function legacyToParam(ctrl: PropControl): ParameterDef {
@@ -196,15 +197,19 @@ function legacyToParam(ctrl: PropControl): ParameterDef {
       return { type: 'text', ...base, defaultValue: String(base.defaultValue ?? '') };
     case 'number':
       return {
-        type: 'number', ...base,
+        type: 'number',
+        ...base,
         defaultValue: Number(base.defaultValue ?? 0),
-        min: ctrl.min, max: ctrl.max, step: ctrl.step,
+        min: ctrl.min,
+        max: ctrl.max,
+        step: ctrl.step,
       };
     case 'boolean':
       return { type: 'boolean', ...base, defaultValue: Boolean(base.defaultValue) };
     case 'select':
       return {
-        type: 'select', ...base,
+        type: 'select',
+        ...base,
         defaultValue: String(base.defaultValue ?? ''),
         options: (ctrl.options ?? []) as { label: string; value: string }[],
       };
@@ -212,9 +217,12 @@ function legacyToParam(ctrl: PropControl): ParameterDef {
       return { type: 'color', ...base, defaultValue: String(base.defaultValue ?? '#000000') };
     case 'range':
       return {
-        type: 'range', ...base,
+        type: 'range',
+        ...base,
         defaultValue: Number(base.defaultValue ?? 0),
-        min: ctrl.min ?? 0, max: ctrl.max ?? 100, step: ctrl.step,
+        min: ctrl.min ?? 0,
+        max: ctrl.max ?? 100,
+        step: ctrl.step,
       };
     default:
       return { type: 'text', ...base, defaultValue: String(base.defaultValue ?? '') };

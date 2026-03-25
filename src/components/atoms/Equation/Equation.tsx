@@ -23,9 +23,7 @@ export function Equation({
   return (
     <div className={classes}>
       <span className="prisma-equation__content">{expression}</span>
-      {number != null && (
-        <span className="prisma-equation__number">({number})</span>
-      )}
+      {number != null && <span className="prisma-equation__number">({number})</span>}
       {label && <span className="prisma-equation__label">{label}</span>}
     </div>
   );

@@ -47,16 +47,16 @@ export function XAxis({ scale, height, label, showLabel = true, color, innerWidt
         }
       });
 
-    g.selectAll('.tick line').attr('stroke', color ?? 'currentColor').attr('opacity', 0.3);
-    g.select('.domain').attr('stroke', color ?? 'currentColor').attr('opacity', 0.3);
+    g.selectAll('.tick line')
+      .attr('stroke', color ?? 'currentColor')
+      .attr('opacity', 0.3);
+    g.select('.domain')
+      .attr('stroke', color ?? 'currentColor')
+      .attr('opacity', 0.3);
   }, [scale, color, innerWidth]);
 
   return (
-    <g
-      ref={ref}
-      className={`${CLS}__x-axis`}
-      transform={`translate(0,${height})`}
-    >
+    <g ref={ref} className={`${CLS}__x-axis`} transform={`translate(0,${height})`}>
       {showLabel && label && (
         <text
           x={(innerWidth ?? 300) / 2}
@@ -95,9 +95,15 @@ export function YAxis({ scale, label, showLabel = true, color, innerHeight }: YA
 
     g.call(axis);
 
-    g.selectAll('.tick text').attr('fill', color ?? 'currentColor').attr('font-size', '11px');
-    g.selectAll('.tick line').attr('stroke', color ?? 'currentColor').attr('opacity', 0.3);
-    g.select('.domain').attr('stroke', color ?? 'currentColor').attr('opacity', 0.3);
+    g.selectAll('.tick text')
+      .attr('fill', color ?? 'currentColor')
+      .attr('font-size', '11px');
+    g.selectAll('.tick line')
+      .attr('stroke', color ?? 'currentColor')
+      .attr('opacity', 0.3);
+    g.select('.domain')
+      .attr('stroke', color ?? 'currentColor')
+      .attr('opacity', 0.3);
   }, [scale, color, innerHeight]);
 
   return (

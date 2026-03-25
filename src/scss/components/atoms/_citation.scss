@@ -4,7 +4,7 @@
 // .prisma-citation  footnote markers & references
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-citation {
   // ── Configurator ──
@@ -27,11 +27,11 @@
     transition: opacity $duration-fast $ease-default;
 
     &::before {
-      content: '[';
+      content: "[";
     }
 
     &::after {
-      content: ']';
+      content: "]";
     }
 
     &:hover {

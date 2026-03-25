@@ -4,7 +4,7 @@
 // .prisma-callout  info, warning, error, success
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-callout {
   // ── Configurator ──
@@ -24,8 +24,9 @@
   border-left: var(--prisma-callout-border-width) solid var(--prisma-callout-border-color);
   border-radius: var(--prisma-callout-radius);
   margin-bottom: $spacing-4;
-  transition: background $duration-base $ease-default,
-              border-color $duration-base $ease-default;
+  transition:
+    background $duration-base $ease-default,
+    border-color $duration-base $ease-default;
 
   // ── Icon ──
   &__icon {

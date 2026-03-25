@@ -26,12 +26,7 @@ export function Video({
   return (
     <figure className={classes}>
       <div className="prisma-video__player">
-        <video
-          className="prisma-video__element"
-          src={src}
-          poster={poster}
-          controls
-        />
+        <video className="prisma-video__element" src={src} poster={poster} controls />
       </div>
       {caption && <figcaption className="prisma-video__caption">{caption}</figcaption>}
     </figure>

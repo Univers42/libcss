@@ -43,13 +43,7 @@ export interface ChartPalette {
 }
 
 // ─── Aggregation ───────────────────────────────────────
-export type AggregateFunction =
-  | 'sum'
-  | 'count'
-  | 'average'
-  | 'min'
-  | 'max'
-  | 'median';
+export type AggregateFunction = 'sum' | 'count' | 'average' | 'min' | 'max' | 'median';
 
 export type SortDirection = 'ascending' | 'descending' | 'none';
 
@@ -229,9 +223,13 @@ export interface ChartProps {
   /** Explicit height override (overrides style.height). */
   readonly height?: number;
   /** Called when a data element is clicked. */
-  readonly onDataClick?: (point: ProcessedDataPoint | ProcessedPieSlice | ProcessedScatterPoint) => void;
+  readonly onDataClick?: (
+    point: ProcessedDataPoint | ProcessedPieSlice | ProcessedScatterPoint,
+  ) => void;
   /** Render prop for custom tooltip content. */
-  readonly renderTooltip?: (point: ProcessedDataPoint | ProcessedPieSlice | ProcessedScatterPoint) => ReactNode;
+  readonly renderTooltip?: (
+    point: ProcessedDataPoint | ProcessedPieSlice | ProcessedScatterPoint,
+  ) => ReactNode;
 }
 
 /** Props passed internally to each chart variant renderer. */
@@ -242,7 +240,20 @@ export interface ChartVariantProps {
   readonly scatterData?: readonly ProcessedScatterPoint[];
   readonly dimensions: ChartDimensions;
   readonly palette: ChartPalette;
-  readonly style: Required<Pick<ChartStyle, 'animate' | 'animationDuration' | 'dataLabels' | 'curveType' | 'donutRatio' | 'barRadius' | 'barGap' | 'pointRadius' | 'showLegend'>>;
+  readonly style: Required<
+    Pick<
+      ChartStyle,
+      | 'animate'
+      | 'animationDuration'
+      | 'dataLabels'
+      | 'curveType'
+      | 'donutRatio'
+      | 'barRadius'
+      | 'barGap'
+      | 'pointRadius'
+      | 'showLegend'
+    >
+  >;
   readonly xScale: any;
   readonly yScale: any;
   readonly colorScale: (key: string) => string;

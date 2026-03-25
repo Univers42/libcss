@@ -34,10 +34,7 @@ export function createColorScale(
 }
 
 /** Compute a nice domain [min, max] from numeric data. */
-export function computeDomain(
-  values: number[],
-  padRatio = 0.05,
-): [number, number] {
+export function computeDomain(values: number[], padRatio = 0.05): [number, number] {
   if (values.length === 0) return [0, 1];
   const min = Math.min(...values);
   const max = Math.max(...values);

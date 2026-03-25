@@ -4,7 +4,7 @@
 // .prisma-quote  blockquote with accent bar
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-quote {
   // ── Configurator ──
@@ -24,8 +24,9 @@
   background: var(--prisma-quote-bg);
   border-left: var(--prisma-quote-border-width) solid var(--prisma-quote-border-color);
   border-radius: var(--prisma-quote-radius);
-  transition: background $duration-base $ease-default,
-              border-color $duration-base $ease-default;
+  transition:
+    background $duration-base $ease-default,
+    border-color $duration-base $ease-default;
 
   // ── Text ──
   &__text {
@@ -47,7 +48,7 @@
     font-weight: $weight-medium;
 
     &::before {
-      content: '— ';
+      content: "— ";
     }
   }
 

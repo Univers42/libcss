@@ -40,9 +40,7 @@ export function DonutChart({
     .value((d: ProcessedPieSlice) => d.value)
     .sort(null);
 
-  const arcGen = arc<PieArcDatum<ProcessedPieSlice>>()
-    .innerRadius(inner)
-    .outerRadius(radius);
+  const arcGen = arc<PieArcDatum<ProcessedPieSlice>>().innerRadius(inner).outerRadius(radius);
 
   const labelArc = arc<PieArcDatum<ProcessedPieSlice>>()
     .innerRadius((radius + inner) / 2)
@@ -68,7 +66,10 @@ export function DonutChart({
               onMouseLeave={onSliceLeave}
               style={
                 animate
-                  ? { opacity: 0, animation: `prisma-chart-fade-in ${animationDuration}ms ease-out ${i * ENTER_DELAY_PER_ITEM * 2}ms forwards` }
+                  ? {
+                      opacity: 0,
+                      animation: `prisma-chart-fade-in ${animationDuration}ms ease-out ${i * ENTER_DELAY_PER_ITEM * 2}ms forwards`,
+                    }
                   : undefined
               }
             />

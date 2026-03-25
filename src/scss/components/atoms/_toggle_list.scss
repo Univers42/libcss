@@ -4,7 +4,7 @@
 // .prisma-toggle-list  collapsible details/summary
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-toggle-list {
   // ── Configurator ──
@@ -20,8 +20,9 @@
   border-radius: var(--prisma-toggle-radius);
   margin-bottom: $spacing-2;
   background: var(--prisma-toggle-bg);
-  transition: background $duration-fast $ease-default,
-              border-color $duration-fast $ease-default;
+  transition:
+    background $duration-fast $ease-default,
+    border-color $duration-fast $ease-default;
 
   &[open] > .prisma-toggle-list__summary {
     border-bottom: $border-width-thin solid var(--prisma-toggle-border-color);

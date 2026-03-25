@@ -24,23 +24,36 @@ export function HSLSliders({ color, onChange, showAlpha = true }: HSLSlidersProp
   return (
     <div className="cpk-sliders">
       <ChannelSlider
-        label="H" value={h} min={0} max={360}
+        label="H"
+        value={h}
+        min={0}
+        max={360}
         gradient={hueGrad}
         onChange={(v) => onChange({ h: v, s, l, a })}
       />
       <ChannelSlider
-        label="S" value={s * 100} min={0} max={100}
+        label="S"
+        value={s * 100}
+        min={0}
+        max={100}
         gradient={satGrad}
         onChange={(v) => onChange({ h, s: v / 100, l, a })}
       />
       <ChannelSlider
-        label="L" value={l * 100} min={0} max={100}
+        label="L"
+        value={l * 100}
+        min={0}
+        max={100}
         gradient={litGrad}
         onChange={(v) => onChange({ h, s, l: v / 100, a })}
       />
       {showAlpha && (
         <ChannelSlider
-          label="A" value={a} min={0} max={1} decimals={2}
+          label="A"
+          value={a}
+          min={0}
+          max={1}
+          decimals={2}
           gradient={`linear-gradient(90deg, hsla(${h},${s * 100}%,${l * 100}%,0), hsl(${h},${s * 100}%,${l * 100}%))`}
           onChange={(v) => onChange({ h, s, l, a: v })}
         />

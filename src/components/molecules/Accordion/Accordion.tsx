@@ -14,21 +14,29 @@ export interface AccordionProps {
   className?: string;
 }
 
-export function Accordion({ items, multiple = false, defaultOpen = [], className }: AccordionProps) {
+export function Accordion({
+  items,
+  multiple = false,
+  defaultOpen = [],
+  className,
+}: AccordionProps) {
   const [openIds, setOpenIds] = useState<Set<string>>(new Set(defaultOpen));
 
-  const toggle = useCallback((id: string) => {
-    setOpenIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        if (!multiple) next.clear();
-        next.add(id);
-      }
-      return next;
-    });
-  }, [multiple]);
+  const toggle = useCallback(
+    (id: string) => {
+      setOpenIds((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          next.delete(id);
+        } else {
+          if (!multiple) next.clear();
+          next.add(id);
+        }
+        return next;
+      });
+    },
+    [multiple],
+  );
 
   return (
     <div className={`accordion${className ? ` ${className}` : ''}`}>

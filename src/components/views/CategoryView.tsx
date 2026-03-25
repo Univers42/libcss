@@ -43,10 +43,7 @@ export function CategoryView({
   return (
     <section className="shell-catalog">
       <ExplorerBreadcrumb
-        segments={[
-          { label: 'Catalog', onClick: onBack },
-          { label: meta.label },
-        ]}
+        segments={[{ label: 'Catalog', onClick: onBack }, { label: meta.label }]}
       />
 
       <div className="shell-catalog__header">

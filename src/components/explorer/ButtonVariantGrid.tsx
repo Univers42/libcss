@@ -11,14 +11,8 @@
 
 import React from 'react';
 import { Button } from '../atoms/Button';
-import {
-  BUTTON_VARIANTS,
-  BUTTON_SIZES,
-} from '../atoms/Button/Button.constants';
-import type {
-  ButtonVariant,
-  ButtonSize,
-} from '../atoms/Button/Button.types';
+import { BUTTON_VARIANTS, BUTTON_SIZES } from '../atoms/Button/Button.constants';
+import type { ButtonVariant, ButtonSize } from '../atoms/Button/Button.types';
 
 // ─── State Presets ─────────────────────────────────────
 
@@ -75,7 +69,10 @@ export function ButtonVariantGrid({
         <div className="button-variant-grid__table" role="table">
           {/* Header row */}
           <div className="button-variant-grid__row button-variant-grid__row--header" role="row">
-            <div className="button-variant-grid__cell button-variant-grid__cell--label" role="columnheader" />
+            <div
+              className="button-variant-grid__cell button-variant-grid__cell--label"
+              role="columnheader"
+            />
             {BUTTON_SIZES.map((size) => (
               <div
                 key={size}
@@ -89,7 +86,10 @@ export function ButtonVariantGrid({
           {/* Variant rows */}
           {BUTTON_VARIANTS.map((variant) => (
             <div key={variant} className="button-variant-grid__row" role="row">
-              <div className="button-variant-grid__cell button-variant-grid__cell--label" role="rowheader">
+              <div
+                className="button-variant-grid__cell button-variant-grid__cell--label"
+                role="rowheader"
+              >
                 {variant}
               </div>
               {BUTTON_SIZES.map((size) => (
@@ -110,7 +110,10 @@ export function ButtonVariantGrid({
           <h3 className="button-variant-grid__title">State Variations</h3>
           <div className="button-variant-grid__table" role="table">
             <div className="button-variant-grid__row button-variant-grid__row--header" role="row">
-              <div className="button-variant-grid__cell button-variant-grid__cell--label" role="columnheader" />
+              <div
+                className="button-variant-grid__cell button-variant-grid__cell--label"
+                role="columnheader"
+              />
               {STATE_PRESETS.map((preset) => (
                 <div
                   key={preset.label}
@@ -123,7 +126,10 @@ export function ButtonVariantGrid({
             </div>
             {BUTTON_VARIANTS.map((variant) => (
               <div key={variant} className="button-variant-grid__row" role="row">
-                <div className="button-variant-grid__cell button-variant-grid__cell--label" role="rowheader">
+                <div
+                  className="button-variant-grid__cell button-variant-grid__cell--label"
+                  role="rowheader"
+                >
                   {variant}
                 </div>
                 {STATE_PRESETS.map((preset) => (
@@ -132,10 +138,7 @@ export function ButtonVariantGrid({
                     className="button-variant-grid__cell"
                     role="cell"
                   >
-                    <Button
-                      variant={variant as ButtonVariant}
-                      {...preset.props}
-                    >
+                    <Button variant={variant as ButtonVariant} {...preset.props}>
                       {label}
                     </Button>
                   </div>
@@ -155,13 +158,8 @@ export function ButtonVariantGrid({
           </p>
           <div className="button-variant-grid__row button-variant-grid__row--poly">
             {POLYMORPHIC_PRESETS.map((preset) => (
-              <div
-                key={preset.element}
-                className="button-variant-grid__poly-item"
-              >
-                <span className="button-variant-grid__poly-label">
-                  {preset.label}
-                </span>
+              <div key={preset.element} className="button-variant-grid__poly-item">
+                <span className="button-variant-grid__poly-label">{preset.label}</span>
                 <Button variant="primary" {...preset.props}>
                   {label}
                 </Button>

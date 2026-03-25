@@ -6,7 +6,6 @@
    overview, catalog, playground, variants, gallery.
    ═══════════════════════════════════════════════════════ */
 
-
 /* ═══════════════════════════════════════════════════════
    SHELL-NAV — Sidebar tree navigation
    ═══════════════════════════════════════════════════════ */
@@ -39,9 +38,14 @@
   border-color: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l) / 30%);
   color: var(--shell-accent-text);
 }
-.shell-nav__overview-icon { font-size: 15px; }
 
-.shell-nav__section { padding: 12px 8px 4px; }
+.shell-nav__overview-icon {
+  font-size: 15px;
+}
+
+.shell-nav__section {
+  padding: 12px 8px 4px;
+}
 
 button.shell-nav__section-title,
 .shell-nav__section-title {
@@ -77,7 +81,9 @@ button.shell-nav__section-title--active {
   border-radius: var(--shell-radius-sm);
 }
 
-.shell-nav__section-icon { font-size: 13px; }
+.shell-nav__section-icon {
+  font-size: 13px;
+}
 
 .shell-nav__section-count {
   margin-left: auto;
@@ -137,7 +143,6 @@ button.shell-nav__section-title--active {
   white-space: nowrap;
 }
 
-
 /* ═══════════════════════════════════════════════════════
    SHELL-SEARCH — Search input
    ═══════════════════════════════════════════════════════ */
@@ -167,9 +172,14 @@ button.shell-nav__section-title--active {
   font-size: 13px;
   font-family: var(--shell-font);
   outline: none;
-  transition: border-color var(--shell-transition), box-shadow var(--shell-transition);
+  transition:
+    border-color var(--shell-transition),
+    box-shadow var(--shell-transition);
 }
-.shell-search__input::placeholder { color: var(--shell-text-muted); }
+
+.shell-search__input::placeholder {
+  color: var(--shell-text-muted);
+}
 
 .shell-search__input:focus {
   border-color: var(--shell-accent);
@@ -189,8 +199,10 @@ button.shell-nav__section-title--active {
   padding: 2px 4px;
   border-radius: 4px;
 }
-.shell-search__clear:hover { color: var(--shell-text); }
 
+.shell-search__clear:hover {
+  color: var(--shell-text);
+}
 
 /* ═══════════════════════════════════════════════════════
    SHELL-PICKER — Dot-based theme / palette picker
@@ -239,7 +251,6 @@ button.shell-nav__section-title--active {
   box-shadow: 0 0 10px var(--shell-accent-glow);
 }
 
-
 /* ═══════════════════════════════════════════════════════
    SHELL-BREADCRUMB — Navigation breadcrumb
    ═══════════════════════════════════════════════════════ */
@@ -269,14 +280,19 @@ button.shell-nav__section-title--active {
   font-family: var(--shell-font);
   transition: background var(--shell-transition);
 }
-.shell-breadcrumb__link:hover { background: var(--shell-accent-soft); }
-.shell-breadcrumb__current { color: var(--shell-text-muted); }
+
+.shell-breadcrumb__link:hover {
+  background: var(--shell-accent-soft);
+}
+
+.shell-breadcrumb__current {
+  color: var(--shell-text-muted);
+}
 
 .shell-breadcrumb__sep {
   color: var(--shell-text-muted);
   margin: 0 2px;
 }
-
 
 /* ═══════════════════════════════════════════════════════
    SHELL-CARD — Preview card (component + chart)
@@ -318,7 +334,9 @@ button.shell-nav__section-title--active {
   overflow: hidden;
 }
 
-.shell-card__info { padding: 14px 16px; }
+.shell-card__info {
+  padding: 14px 16px;
+}
 
 .shell-card__name {
   font-size: 14px;
@@ -336,7 +354,6 @@ button.shell-nav__section-title--active {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 
 /* ═══════════════════════════════════════════════════════
    SHELL-LIST-ITEM — Horizontal category / list card
@@ -368,7 +385,10 @@ button.shell-nav__section-title--active {
   font-size: 24px;
   flex-shrink: 0;
 }
-.shell-list-item__body { flex: 1; }
+
+.shell-list-item__body {
+  flex: 1;
+}
 
 .shell-list-item__title {
   font-size: 15px;
@@ -388,7 +408,6 @@ button.shell-nav__section-title--active {
   color: var(--shell-accent);
   flex-shrink: 0;
 }
-
 
 /* ═══════════════════════════════════════════════════════
    SHELL-STAGE — Component preview stage with toolbar
@@ -441,8 +460,14 @@ button.shell-nav__section-title--active {
   padding: 48px;
   transition: background var(--shell-transition);
 }
-.shell-stage__canvas--light { background: #f8fafc; }
-.shell-stage__canvas--dark  { background: #0f172a; }
+
+.shell-stage__canvas--light {
+  background: #f8fafc;
+}
+
+.shell-stage__canvas--dark {
+  background: #0f172a;
+}
 
 .shell-stage__canvas--checker {
   background-color: #f8fafc;
@@ -452,7 +477,11 @@ button.shell-nav__section-title--active {
     linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
     linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
   background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  background-position:
+    0 0,
+    0 10px,
+    10px -10px,
+    -10px 0;
 }
 
 .shell-stage__spotlight {
@@ -470,7 +499,6 @@ button.shell-nav__section-title--active {
   position: relative;
   z-index: 1;
 }
-
 
 /* ═══════════════════════════════════════════════════════
    SHELL-CODE — Code preview block
@@ -525,7 +553,6 @@ button.shell-nav__section-title--active {
   color: var(--shell-accent-text);
   overflow-x: auto;
 }
-
 
 /* ═══════════════════════════════════════════════════════
    SHELL-INSPECTOR — Property inspector panel
@@ -592,7 +619,10 @@ button.shell-nav__section-title--active {
 .shell-inspector__group {
   border-bottom: 1px solid var(--shell-border);
 }
-.shell-inspector__group:last-child { border-bottom: none; }
+
+.shell-inspector__group:last-child {
+  border-bottom: none;
+}
 
 /* Group style variants */
 .shell-inspector__group--card {
@@ -601,7 +631,10 @@ button.shell-nav__section-title--active {
   border: 1px solid var(--shell-border);
   border-radius: var(--shell-radius-sm);
 }
-.shell-inspector__group--compact .shell-inspector__group-body { gap: 6px; }
+
+.shell-inspector__group--compact .shell-inspector__group-body {
+  gap: 6px;
+}
 
 .shell-inspector__group--inline .shell-inspector__group-body {
   display: flex;
@@ -627,9 +660,14 @@ button.shell-nav__section-title--active {
   font-family: var(--shell-font);
   transition: background var(--shell-transition);
 }
-.shell-inspector__group-header:hover { background: var(--shell-surface); }
 
-.shell-inspector__group-icon { font-size: 12px; }
+.shell-inspector__group-header:hover {
+  background: var(--shell-surface);
+}
+
+.shell-inspector__group-icon {
+  font-size: 12px;
+}
 
 .shell-inspector__group-title {
   font-size: 10px;
@@ -655,7 +693,10 @@ button.shell-nav__section-title--active {
   color: var(--shell-text-muted);
   transition: transform var(--shell-transition);
 }
-.shell-inspector__group-chevron--collapsed { transform: rotate(-90deg); }
+
+.shell-inspector__group-chevron--collapsed {
+  transform: rotate(-90deg);
+}
 
 .shell-inspector__group-desc {
   font-size: 11px;
@@ -686,7 +727,6 @@ button.shell-nav__section-title--active {
   border-radius: 4px;
 }
 
-
 /* ═══════════════════════════════════════════════════════
    SHELL-CONTROL — Form controls (select, text, boolean,
    number, color, range)
@@ -697,7 +737,10 @@ button.shell-nav__section-title--active {
   flex-direction: column;
   gap: 5px;
 }
-.shell-control + .shell-control { margin-top: 12px; }
+
+.shell-control + .shell-control {
+  margin-top: 12px;
+}
 
 .shell-control__label {
   font-size: 12px;
@@ -725,7 +768,9 @@ button.shell-nav__section-title--active {
   font-size: 13px;
   font-family: var(--shell-font);
   outline: none;
-  transition: border-color var(--shell-transition), box-shadow var(--shell-transition);
+  transition:
+    border-color var(--shell-transition),
+    box-shadow var(--shell-transition);
 }
 
 .shell-control__select:focus,
@@ -748,7 +793,10 @@ button.shell-nav__section-title--active {
   align-items: center;
   justify-content: space-between;
 }
-.shell-control__toggle-track { position: relative; }
+
+.shell-control__toggle-track {
+  position: relative;
+}
 
 .shell-control__checkbox {
   position: absolute;
@@ -768,7 +816,7 @@ button.shell-nav__section-title--active {
 }
 
 .shell-control__toggle::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 2px;
   left: 2px;
@@ -779,8 +827,14 @@ button.shell-nav__section-title--active {
   transition: transform var(--shell-transition);
   pointer-events: none;
 }
-.shell-control__toggle--on { background: var(--shell-accent); }
-.shell-control__toggle--on::after { transform: translateX(16px); }
+
+.shell-control__toggle--on {
+  background: var(--shell-accent);
+}
+
+.shell-control__toggle--on::after {
+  transform: translateX(16px);
+}
 
 /* Number */
 .shell-control__number-row {
@@ -840,7 +894,10 @@ button.shell-nav__section-title--active {
   cursor: pointer;
   background: none;
 }
-.shell-control__color::-webkit-color-swatch-wrapper { padding: 0; }
+
+.shell-control__color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
 
 .shell-control__color::-webkit-color-swatch {
   border: none;
@@ -950,7 +1007,10 @@ button.shell-nav__section-title--active {
   cursor: pointer;
   transition: border-color var(--shell-transition);
 }
-.shell-control__multiselect-trigger:hover { border-color: var(--shell-accent-soft); }
+
+.shell-control__multiselect-trigger:hover {
+  border-color: var(--shell-accent-soft);
+}
 
 .shell-control__chevron {
   font-size: 10px;
@@ -983,8 +1043,14 @@ button.shell-nav__section-title--active {
   text-align: left;
   transition: background var(--shell-transition);
 }
-.shell-control__multiselect-option:hover { background: var(--shell-surface); }
-.shell-control__multiselect-option--selected { color: var(--shell-accent-text); }
+
+.shell-control__multiselect-option:hover {
+  background: var(--shell-surface);
+}
+
+.shell-control__multiselect-option--selected {
+  color: var(--shell-accent-text);
+}
 
 .shell-control__multiselect-check {
   width: 14px;
@@ -1025,7 +1091,10 @@ button.shell-nav__section-title--active {
   opacity: 0.6;
   transition: opacity var(--shell-transition);
 }
-.shell-control__pill-remove:hover { opacity: 1; }
+
+.shell-control__pill-remove:hover {
+  opacity: 1;
+}
 
 /* ── Tags ── */
 .shell-control__tags-box {
@@ -1070,7 +1139,10 @@ button.shell-nav__section-title--active {
   cursor: pointer;
   opacity: 0.6;
 }
-.shell-control__tag-remove:hover { opacity: 1; }
+
+.shell-control__tag-remove:hover {
+  opacity: 1;
+}
 
 .shell-control__tags-input {
   flex: 1;
@@ -1107,7 +1179,10 @@ button.shell-nav__section-title--active {
   text-align: left;
   transition: background var(--shell-transition);
 }
-.shell-control__tags-suggestion:hover { background: var(--shell-surface); }
+
+.shell-control__tags-suggestion:hover {
+  background: var(--shell-surface);
+}
 
 /* ── Color swatches ── */
 .shell-control__swatches {
@@ -1124,9 +1199,14 @@ button.shell-nav__section-title--active {
   border-radius: 4px;
   cursor: pointer;
   padding: 0;
-  transition: border-color var(--shell-transition), transform var(--shell-transition);
+  transition:
+    border-color var(--shell-transition),
+    transform var(--shell-transition);
 }
-.shell-control__swatch:hover { transform: scale(1.15); }
+
+.shell-control__swatch:hover {
+  transform: scale(1.15);
+}
 
 .shell-control__swatch--active {
   border-color: var(--shell-accent);
@@ -1134,7 +1214,9 @@ button.shell-nav__section-title--active {
 }
 
 /* ── Slider (enhanced range with marks + visual track) ── */
-.shell-control--slider { gap: 6px; }
+.shell-control--slider {
+  gap: 6px;
+}
 
 .shell-control__slider-track-container {
   position: relative;
@@ -1200,13 +1282,15 @@ button.shell-nav__section-title--active {
   white-space: nowrap;
   transition: color var(--shell-transition);
 }
-.shell-control__slider-mark:hover { color: var(--shell-text); }
+
+.shell-control__slider-mark:hover {
+  color: var(--shell-text);
+}
 
 .shell-control__slider-mark--active {
   color: var(--shell-accent-text);
   font-weight: 600;
 }
-
 
 /* ═══════════════════════════════════════════════════════
    SHELL-OVERVIEW — Landing / catalog overview page
@@ -1227,7 +1311,12 @@ button.shell-nav__section-title--active {
   font-size: 40px;
   font-weight: 700;
   letter-spacing: -0.04em;
-  background: linear-gradient(135deg, var(--shell-accent), var(--shell-accent-3), var(--shell-accent-2));
+  background: linear-gradient(
+    135deg,
+    var(--shell-accent),
+    var(--shell-accent-3),
+    var(--shell-accent-2)
+  );
   background-size: 200% 200%;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1272,7 +1361,9 @@ button.shell-nav__section-title--active {
   color: var(--shell-text-muted);
 }
 
-.shell-overview__category { margin-bottom: 40px; }
+.shell-overview__category {
+  margin-bottom: 40px;
+}
 
 .shell-overview__category-header {
   display: flex;
@@ -1282,7 +1373,10 @@ button.shell-nav__section-title--active {
   padding-bottom: 10px;
   border-bottom: 1px solid var(--shell-border);
 }
-.shell-overview__category-icon { font-size: 20px; }
+
+.shell-overview__category-icon {
+  font-size: 20px;
+}
 
 .shell-overview__category-title {
   font-size: 18px;
@@ -1387,7 +1481,6 @@ button.shell-overview__category-header .shell-overview__category-count {
   transform: translateX(4px);
 }
 
-
 /* ═══════════════════════════════════════════════════════
    SHELL-CATALOG — Category detail view
    ═══════════════════════════════════════════════════════ */
@@ -1420,7 +1513,10 @@ button.shell-overview__category-header .shell-overview__category-count {
   letter-spacing: -0.02em;
   margin-bottom: 6px;
 }
-.shell-catalog__icon { font-size: 28px; }
+
+.shell-catalog__icon {
+  font-size: 28px;
+}
 
 .shell-catalog__description {
   font-size: 14px;
@@ -1439,7 +1535,6 @@ button.shell-overview__category-header .shell-overview__category-count {
   padding: 60px 20px;
   color: var(--shell-text-muted);
 }
-
 
 /* ═══════════════════════════════════════════════════════
    SHELL-PLAYGROUND — Interactive component playground
@@ -1513,7 +1608,6 @@ button.shell-overview__category-header .shell-overview__category-count {
   flex-direction: column;
   gap: 16px;
 }
-
 
 /* ═══════════════════════════════════════════════════════
    SHELL-VARIANTS — Variant gallery view
@@ -1640,7 +1734,9 @@ button.shell-overview__category-header .shell-overview__category-count {
   transform: translateY(-1px);
 }
 
-.shell-variants__group { margin-bottom: 36px; }
+.shell-variants__group {
+  margin-bottom: 36px;
+}
 
 .shell-variants__group-title {
   display: flex;
@@ -1697,8 +1793,14 @@ button.shell-overview__category-header .shell-overview__category-count {
   border-bottom: 1px solid var(--shell-border);
   transition: background var(--shell-transition);
 }
-.shell-variants__card-canvas--light { background: #f8fafc; }
-.shell-variants__card-canvas--dark { background: #0f172a; }
+
+.shell-variants__card-canvas--light {
+  background: #f8fafc;
+}
+
+.shell-variants__card-canvas--dark {
+  background: #0f172a;
+}
 
 .shell-variants__card-canvas--checker {
   background-color: #f8fafc;
@@ -1708,7 +1810,11 @@ button.shell-overview__category-header .shell-overview__category-count {
     linear-gradient(45deg, transparent 75%, #e8e8e8 75%),
     linear-gradient(-45deg, transparent 75%, #e8e8e8 75%);
   background-size: 16px 16px;
-  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0;
 }
 
 .shell-variants__card-render {
@@ -1745,8 +1851,10 @@ button.shell-overview__category-header .shell-overview__category-count {
   padding: 60px 20px;
   color: var(--shell-text-muted);
 }
-.shell-variants__empty p { margin-bottom: 20px; }
 
+.shell-variants__empty p {
+  margin-bottom: 20px;
+}
 
 /* ═══════════════════════════════════════════════════════
    SHELL-GALLERY — Chart / media gallery view
@@ -1787,7 +1895,12 @@ button.shell-overview__category-header .shell-overview__category-count {
   font-size: 40px;
   font-weight: 700;
   letter-spacing: -0.04em;
-  background: linear-gradient(135deg, var(--shell-accent), var(--shell-accent-3), var(--shell-accent-2));
+  background: linear-gradient(
+    135deg,
+    var(--shell-accent),
+    var(--shell-accent-3),
+    var(--shell-accent-2)
+  );
   background-size: 200% 200%;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1816,7 +1929,10 @@ button.shell-overview__category-header .shell-overview__category-count {
   color: var(--shell-text);
   font-weight: 600;
 }
-.shell-gallery__stat-sep { color: var(--shell-border); }
+
+.shell-gallery__stat-sep {
+  color: var(--shell-border);
+}
 
 .shell-gallery__grid {
   display: grid;
@@ -1849,7 +1965,10 @@ button.shell-overview__category-header .shell-overview__category-count {
   align-items: center;
   justify-content: center;
 }
-.shell-gallery__card-info { padding: 14px 18px 16px; }
+
+.shell-gallery__card-info {
+  padding: 14px 18px 16px;
+}
 
 .shell-gallery__card-title {
   font-size: 15px;
@@ -1863,7 +1982,6 @@ button.shell-overview__category-header .shell-overview__category-count {
   margin: 0;
   line-height: 1.5;
 }
-
 
 /* ═══════════════════════════════════════════════════════
    CANVAS SCOPING — Scope theme vars for live previews
@@ -1903,19 +2021,28 @@ button.shell-overview__category-header .shell-overview__category-count {
   background: #0f172a;
 }
 
-
 /* ═══════════════════════════════════════════════════════
    RESPONSIVE — Shell explorer breakpoints
    ═══════════════════════════════════════════════════════ */
 
 @media (width <= 1024px) {
-  .shell-playground__body { grid-template-columns: 1fr; }
+  .shell-playground__body {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (width <= 768px) {
-  .shell-overview__grid { grid-template-columns: 1fr 1fr; }
-  .shell-gallery__grid { grid-template-columns: 1fr; }
-  .shell-overview__stats { gap: 20px; }
+  .shell-overview__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .shell-gallery__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shell-overview__stats {
+    gap: 20px;
+  }
 
   .shell-stage__canvas {
     min-height: 200px;
@@ -1924,7 +2051,9 @@ button.shell-overview__category-header .shell-overview__category-count {
 }
 
 @media (width <= 600px) {
-  .shell-overview__grid { grid-template-columns: 1fr; }
+  .shell-overview__grid {
+    grid-template-columns: 1fr;
+  }
 
   .shell-variants__grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1937,21 +2066,29 @@ button.shell-overview__category-header .shell-overview__category-count {
   }
 }
 
-
 /* ─── Scrollbar ─────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 
 ::-webkit-scrollbar-thumb {
   background: var(--shell-surface-2);
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--shell-text-muted); }
 
+::-webkit-scrollbar-thumb:hover {
+  background: var(--shell-text-muted);
+}
 
 /* ─── Reduced Motion ────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }

@@ -3,16 +3,9 @@ import { cn } from '../../lib/cn';
 import { DEFAULT_CITATION_TITLE } from './Citation.constants';
 import type { CitationMarkerProps, CitationReferencesProps } from './Citation.types';
 
-export function CitationMarker({
-  number,
-  href,
-  className = '',
-}: CitationMarkerProps): JSX.Element {
+export function CitationMarker({ number, href, className = '' }: CitationMarkerProps): JSX.Element {
   return (
-    <a
-      className={cn('prisma-citation__marker', className)}
-      href={href ?? `#ref-${number}`}
-    >
+    <a className={cn('prisma-citation__marker', className)} href={href ?? `#ref-${number}`}>
       {number}
     </a>
   );
@@ -35,7 +28,12 @@ export function CitationReferences({
               {ref.url && (
                 <>
                   {' '}
-                  <a className="prisma-citation__ref-link" href={ref.url} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className="prisma-citation__ref-link"
+                    href={ref.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     ↗
                   </a>
                 </>

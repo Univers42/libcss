@@ -79,10 +79,7 @@ export const SaturationMap = memo(function SaturationMap({ color, onChange }: Sa
       {/* Transparent → black (value) */}
       <div className="cpk-satmap__black" />
       {/* Cursor */}
-      <div
-        className="cpk-satmap__cursor"
-        style={{ left: `${cursorX}%`, top: `${cursorY}%` }}
-      />
+      <div className="cpk-satmap__cursor" style={{ left: `${cursorX}%`, top: `${cursorY}%` }} />
     </div>
   );
 });

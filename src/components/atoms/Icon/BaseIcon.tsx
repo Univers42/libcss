@@ -14,11 +14,7 @@ export function BaseIcon({
   children,
   viewBox = '0 0 24 24',
 }: IconWrapperProps): JSX.Element {
-  const combinedClasses = cn(
-    'prisma-icon',
-    `prisma-icon--${size}`,
-    className,
-  );
+  const combinedClasses = cn('prisma-icon', `prisma-icon--${size}`, className);
 
   return (
     <div className={combinedClasses}>

@@ -10,11 +10,7 @@ export function TableOfContents({
   variant = 'default',
   className = '',
 }: TableOfContentsProps): JSX.Element {
-  const classes = cn(
-    'prisma-toc',
-    variant !== 'default' && `prisma-toc--${variant}`,
-    className,
-  );
+  const classes = cn('prisma-toc', variant !== 'default' && `prisma-toc--${variant}`, className);
 
   return (
     <nav className={classes} aria-label="Table of contents">
@@ -23,10 +19,7 @@ export function TableOfContents({
         {items.map((item) => (
           <li key={item.id} className="prisma-toc__item" data-depth={item.depth}>
             <a
-              className={cn(
-                'prisma-toc__link',
-                activeId === item.id && 'prisma-toc__link--active',
-              )}
+              className={cn('prisma-toc__link', activeId === item.id && 'prisma-toc__link--active')}
               href={item.href ?? `#${item.id}`}
             >
               {item.label}

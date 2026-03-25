@@ -10,16 +10,16 @@
 // ======================================================
 
 // 1. Base: reset, typography, animations
-@use 'base';
+@use "base";
 
 // 2. Themes: CSS custom properties for light/dark
-@use 'themes';
+@use "themes";
 
 // 3. Components: atoms, molecules, organisms
-@use 'components';
+@use "components";
 
 // 4. Layouts: chart, board, timeline, etc.
-@use 'layouts';
+@use "layouts";
 
 // 5. Utilities: layout, spacing, visibility helpers
-@use 'utilities';
+@use "utilities";

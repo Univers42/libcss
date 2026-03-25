@@ -11,11 +11,7 @@ export function FileAttachment({
   compact = false,
   className = '',
 }: FileAttachmentProps): JSX.Element {
-  const classes = cn(
-    'prisma-file',
-    compact && 'prisma-file--compact',
-    className,
-  );
+  const classes = cn('prisma-file', compact && 'prisma-file--compact', className);
 
   return (
     <a className={classes} href={href} download>

@@ -31,10 +31,7 @@ export function Tabs({
             key={tab.id}
             type="button"
             role="tab"
-            className={cn(
-              'prisma-tabs__tab',
-              activeTab === tab.id && 'prisma-tabs__tab--active',
-            )}
+            className={cn('prisma-tabs__tab', activeTab === tab.id && 'prisma-tabs__tab--active')}
             aria-selected={activeTab === tab.id}
             onClick={() => handleTabClick(tab.id)}
           >

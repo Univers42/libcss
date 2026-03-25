@@ -9,11 +9,7 @@ export function Audio({
   compact = false,
   className = '',
 }: AudioProps): JSX.Element {
-  const classes = cn(
-    'prisma-audio',
-    compact && 'prisma-audio--compact',
-    className,
-  );
+  const classes = cn('prisma-audio', compact && 'prisma-audio--compact', className);
 
   return (
     <div className={classes}>

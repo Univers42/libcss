@@ -40,8 +40,12 @@ export const AlphaStrip = memo(function AlphaStrip({ alpha, color, onChange }: A
         e.currentTarget.setPointerCapture(e.pointerId);
         update(e.clientX);
       }}
-      onPointerMove={(e) => { if (dragging.current) update(e.clientX); }}
-      onPointerUp={() => { dragging.current = false; }}
+      onPointerMove={(e) => {
+        if (dragging.current) update(e.clientX);
+      }}
+      onPointerUp={() => {
+        dragging.current = false;
+      }}
     >
       <div
         className="cpk-alpha__gradient"
@@ -49,10 +53,7 @@ export const AlphaStrip = memo(function AlphaStrip({ alpha, color, onChange }: A
           background: `linear-gradient(90deg, transparent, ${color})`,
         }}
       />
-      <div
-        className="cpk-alpha__thumb"
-        style={{ left: `${alpha * 100}%` }}
-      />
+      <div className="cpk-alpha__thumb" style={{ left: `${alpha * 100}%` }} />
     </div>
   );
 });

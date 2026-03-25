@@ -18,9 +18,7 @@ export function SplitLayout({
       style={maxWidth ? { maxWidth } : undefined}
     >
       <div className="prisma-split-layout__left">{leftContent}</div>
-      {rightContent && (
-        <div className="prisma-split-layout__right">{rightContent}</div>
-      )}
+      {rightContent && <div className="prisma-split-layout__right">{rightContent}</div>}
     </div>
   );
 }

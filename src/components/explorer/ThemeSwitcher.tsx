@@ -12,16 +12,16 @@ interface PaletteTheme {
 }
 
 const THEMES: PaletteTheme[] = [
-  { id: 'prisma',     label: 'Prisma',     colors: ['#6366f1', '#06b6d4'] },
-  { id: 'sunset',     label: 'Sunset',     colors: ['#f97316', '#ef4444'] },
-  { id: 'ocean',      label: 'Ocean',      colors: ['#0891b2', '#0ea5e9'] },
-  { id: 'forest',     label: 'Forest',     colors: ['#059669', '#65a30d'] },
-  { id: 'neon',       label: 'Neon',       colors: ['#22d3ee', '#a78bfa'] },
-  { id: 'earth',      label: 'Earth',      colors: ['#d97706', '#92400e'] },
-  { id: 'pastel',     label: 'Pastel',     colors: ['#a78bfa', '#f9a8d4'] },
-  { id: 'monochrome', label: 'Mono',       colors: ['#94a3b8', '#64748b'] },
-  { id: 'corporate',  label: 'Corporate',  colors: ['#1e3a5f', '#0d9488'] },
-  { id: 'contrast',   label: 'Contrast',   colors: ['#2563eb', '#dc2626'] },
+  { id: 'prisma', label: 'Prisma', colors: ['#6366f1', '#06b6d4'] },
+  { id: 'sunset', label: 'Sunset', colors: ['#f97316', '#ef4444'] },
+  { id: 'ocean', label: 'Ocean', colors: ['#0891b2', '#0ea5e9'] },
+  { id: 'forest', label: 'Forest', colors: ['#059669', '#65a30d'] },
+  { id: 'neon', label: 'Neon', colors: ['#22d3ee', '#a78bfa'] },
+  { id: 'earth', label: 'Earth', colors: ['#d97706', '#92400e'] },
+  { id: 'pastel', label: 'Pastel', colors: ['#a78bfa', '#f9a8d4'] },
+  { id: 'monochrome', label: 'Mono', colors: ['#94a3b8', '#64748b'] },
+  { id: 'corporate', label: 'Corporate', colors: ['#1e3a5f', '#0d9488'] },
+  { id: 'contrast', label: 'Contrast', colors: ['#2563eb', '#dc2626'] },
 ];
 
 interface ThemeSwitcherProps {

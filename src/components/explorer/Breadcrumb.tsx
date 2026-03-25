@@ -15,11 +15,7 @@ export function ExplorerBreadcrumb({ segments }: BreadcrumbProps) {
         return (
           <span key={i} className="shell-breadcrumb__item">
             {seg.onClick && !isLast ? (
-              <button
-                type="button"
-                className="shell-breadcrumb__link"
-                onClick={seg.onClick}
-              >
+              <button type="button" className="shell-breadcrumb__link" onClick={seg.onClick}>
                 {seg.label}
               </button>
             ) : (

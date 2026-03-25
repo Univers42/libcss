@@ -28,7 +28,7 @@ export function GridLines({
 
   const stroke = color ?? 'currentColor';
   // Guard: band scales (horizontal-bar yScale) don't have .ticks()
-  const yTicks = ('ticks' in yScale && typeof yScale.ticks === 'function') ? yScale.ticks(6) : [];
+  const yTicks = 'ticks' in yScale && typeof yScale.ticks === 'function' ? yScale.ticks(6) : [];
   const showH = mode === 'horizontal' || mode === 'both';
   const showV = mode === 'vertical' || mode === 'both';
 

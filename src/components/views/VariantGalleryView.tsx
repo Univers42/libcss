@@ -63,9 +63,7 @@ function generatePresetsFromDimensions(entry: ComponentEntry): VariantPreset[] {
 }
 
 /** Group presets by their group field. */
-function groupPresets(
-  presets: readonly VariantPreset[],
-): Map<string, VariantPreset[]> {
+function groupPresets(presets: readonly VariantPreset[]): Map<string, VariantPreset[]> {
   const groups = new Map<string, VariantPreset[]>();
   for (const p of presets) {
     const key = p.group ?? 'All Variants';
@@ -91,9 +89,7 @@ export function VariantGalleryView({
   const allPresets = useMemo<VariantPreset[]>(() => {
     if (!entry) return [];
     const manual = entry.presets ?? [];
-    const auto = entry.variantDimensions
-      ? generatePresetsFromDimensions(entry)
-      : [];
+    const auto = entry.variantDimensions ? generatePresetsFromDimensions(entry) : [];
     return manual.length > 0
       ? [...manual, ...auto.filter((a) => !manual.some((m) => m.id === a.id))]
       : auto;
@@ -183,18 +179,12 @@ export function VariantGalleryView({
                   <div
                     className={`shell-variants__card-canvas shell-variants__card-canvas--${canvasBg}`}
                   >
-                    <div className="shell-variants__card-render">
-                      {entry.render(mergedProps)}
-                    </div>
+                    <div className="shell-variants__card-render">{entry.render(mergedProps)}</div>
                   </div>
                   <div className="shell-variants__card-label">
-                    <span className="shell-variants__card-name">
-                      {preset.label}
-                    </span>
+                    <span className="shell-variants__card-name">{preset.label}</span>
                     {preset.description && (
-                      <span className="shell-variants__card-desc">
-                        {preset.description}
-                      </span>
+                      <span className="shell-variants__card-desc">{preset.description}</span>
                     )}
                   </div>
                 </button>

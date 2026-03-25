@@ -20,9 +20,7 @@ export function Callout({
 
   return (
     <div className={classes} role="note">
-      <span className="prisma-callout__icon">
-        {icon ?? CALLOUT_ICONS[variant]}
-      </span>
+      <span className="prisma-callout__icon">{icon ?? CALLOUT_ICONS[variant]}</span>
       <div className="prisma-callout__content">
         {title && <div className="prisma-callout__title">{title}</div>}
         {children}

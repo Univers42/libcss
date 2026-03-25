@@ -39,10 +39,7 @@ export function StackedShell({
     .join(' ');
 
   return (
-    <div
-      className={rootClass}
-      style={{ '--shell-max-w': maxWidth } as React.CSSProperties}
-    >
+    <div className={rootClass} style={{ '--shell-max-w': maxWidth } as React.CSSProperties}>
       {/* Header */}
       <header className="shell-stacked__header">
         <div className={contained ? 'shell-stacked__container' : ''}>
@@ -53,17 +50,13 @@ export function StackedShell({
 
       {/* Main */}
       <main className="shell-stacked__main">
-        <div className={contained ? 'shell-stacked__container' : ''}>
-          {children}
-        </div>
+        <div className={contained ? 'shell-stacked__container' : ''}>{children}</div>
       </main>
 
       {/* Footer */}
       {footer && (
         <footer className="shell-stacked__footer">
-          <div className={contained ? 'shell-stacked__container' : ''}>
-            {footer}
-          </div>
+          <div className={contained ? 'shell-stacked__container' : ''}>{footer}</div>
         </footer>
       )}
     </div>

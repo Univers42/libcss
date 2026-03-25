@@ -9,8 +9,12 @@ interface ButtonContentProps {
 
 export const ButtonContent = ({ label, children, leftIcon, rightIcon }: ButtonContentProps) => (
   <>
-    {leftIcon && <span className={cn('prisma-btn__icon', 'prisma-btn__icon--left')}>{leftIcon}</span>}
+    {leftIcon && (
+      <span className={cn('prisma-btn__icon', 'prisma-btn__icon--left')}>{leftIcon}</span>
+    )}
     {label ? <span>{label}</span> : children}
-    {rightIcon && <span className={cn('prisma-btn__icon', 'prisma-btn__icon--right')}>{rightIcon}</span>}
+    {rightIcon && (
+      <span className={cn('prisma-btn__icon', 'prisma-btn__icon--right')}>{rightIcon}</span>
+    )}
   </>
 );

@@ -4,7 +4,7 @@
 // .prisma-theme-toggle button with dark variant
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-theme-toggle {
   @include flex-center;

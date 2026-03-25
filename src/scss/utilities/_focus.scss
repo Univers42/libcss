@@ -20,7 +20,8 @@
 }
 
 .no-focus-ring {
-  &:focus, &:focus-visible {
+  &:focus,
+  &:focus-visible {
     outline: none;
     box-shadow: none;
   }

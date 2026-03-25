@@ -8,20 +8,14 @@ import type { ThemeToggleProps } from './ThemeToggle.types';
  * Requires lucide-react's Sun/Moon icons to be passed as children
  * or uses a default text fallback.
  */
-export function ThemeToggle({
-  isDark,
-  onToggle,
-  className = '',
-}: ThemeToggleProps): JSX.Element {
+export function ThemeToggle({ isDark, onToggle, className = '' }: ThemeToggleProps): JSX.Element {
   const combinedClasses = cn(
     'prisma-theme-toggle',
     isDark && 'prisma-theme-toggle--dark',
     className,
   );
 
-  const ariaLabel = isDark
-    ? THEME_LABELS.ACTIVATE_LIGHT
-    : THEME_LABELS.ACTIVATE_DARK;
+  const ariaLabel = isDark ? THEME_LABELS.ACTIVATE_LIGHT : THEME_LABELS.ACTIVATE_DARK;
 
   return (
     <button
@@ -31,9 +25,7 @@ export function ThemeToggle({
       aria-label={ariaLabel}
       aria-pressed={isDark}
     >
-      <span className="prisma-theme-toggle__icon">
-        {isDark ? '☀️' : '🌙'}
-      </span>
+      <span className="prisma-theme-toggle__icon">{isDark ? '☀️' : '🌙'}</span>
     </button>
   );
 }

@@ -4,7 +4,7 @@
 // .prisma-file  downloadable file row/card
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-file {
   // ── Configurator ──
@@ -28,8 +28,9 @@
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  transition: background $duration-fast $ease-default,
-              border-color $duration-fast $ease-default;
+  transition:
+    background $duration-fast $ease-default,
+    border-color $duration-fast $ease-default;
 
   &:hover {
     background: var(--prisma-file-bg-hover);

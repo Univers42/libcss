@@ -13,11 +13,9 @@ export interface BreadcrumbNavProps {
 
 export function BreadcrumbNav({ items, separator = '/', maxItems, className }: BreadcrumbNavProps) {
   let visibleItems = [...items];
-  let collapsed = false;
 
   if (maxItems && items.length > maxItems) {
     visibleItems = [items[0]!, { label: '…' }, ...items.slice(-(maxItems - 1))];
-    collapsed = true;
   }
 
   return (
@@ -28,9 +26,16 @@ export function BreadcrumbNav({ items, separator = '/', maxItems, className }: B
             {i > 0 && <span className="breadcrumb-nav__sep">{separator}</span>}
             {item.icon && <span className="breadcrumb-nav__icon">{item.icon}</span>}
             {item.href ? (
-              <a className="breadcrumb-nav__link" href={item.href}>{item.label}</a>
+              <a className="breadcrumb-nav__link" href={item.href}>
+                {item.label}
+              </a>
             ) : (
-              <span className="breadcrumb-nav__current" aria-current={i === visibleItems.length - 1 ? 'page' : undefined}>{item.label}</span>
+              <span
+                className="breadcrumb-nav__current"
+                aria-current={i === visibleItems.length - 1 ? 'page' : undefined}
+              >
+                {item.label}
+              </span>
             )}
           </li>
         ))}

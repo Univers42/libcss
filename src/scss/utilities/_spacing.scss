@@ -4,50 +4,88 @@
 // Generated margin and padding utility classes.
 // ============================================
 
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 $spacing-map: (
-  '0': $spacing-0,
-  '1': $spacing-1,
-  '2': $spacing-2,
-  '3': $spacing-3,
-  '4': $spacing-4,
-  '5': $spacing-5,
-  '6': $spacing-6,
-  '8': $spacing-8,
-  '10': $spacing-10,
-  '12': $spacing-12,
-  '16': $spacing-16,
+  "0": $spacing-0,
+  "1": $spacing-1,
+  "2": $spacing-2,
+  "3": $spacing-3,
+  "4": $spacing-4,
+  "5": $spacing-5,
+  "6": $spacing-6,
+  "8": $spacing-8,
+  "10": $spacing-10,
+  "12": $spacing-12,
+  "16": $spacing-16,
 );
 
 // Generate margin utilities: .prisma-m-{size}, .prisma-mt-{size}, etc.
 @each $key, $value in $spacing-map {
-  .prisma-m-#{$key}  { margin: $value; }
-  .prisma-mt-#{$key} { margin-top: $value; }
-  .prisma-mr-#{$key} { margin-right: $value; }
-  .prisma-mb-#{$key} { margin-bottom: $value; }
-  .prisma-ml-#{$key} { margin-left: $value; }
-  .prisma-mx-#{$key} { margin-inline: $value; }
-  .prisma-my-#{$key} { margin-block: $value; }
+  .prisma-m-#{$key} {
+    margin: $value;
+  }
+  .prisma-mt-#{$key} {
+    margin-top: $value;
+  }
+  .prisma-mr-#{$key} {
+    margin-right: $value;
+  }
+  .prisma-mb-#{$key} {
+    margin-bottom: $value;
+  }
+  .prisma-ml-#{$key} {
+    margin-left: $value;
+  }
+  .prisma-mx-#{$key} {
+    margin-inline: $value;
+  }
+  .prisma-my-#{$key} {
+    margin-block: $value;
+  }
 }
 
 // Generate padding utilities: .prisma-p-{size}, .prisma-pt-{size}, etc.
 @each $key, $value in $spacing-map {
-  .prisma-p-#{$key}  { padding: $value; }
-  .prisma-pt-#{$key} { padding-top: $value; }
-  .prisma-pr-#{$key} { padding-right: $value; }
-  .prisma-pb-#{$key} { padding-bottom: $value; }
-  .prisma-pl-#{$key} { padding-left: $value; }
-  .prisma-px-#{$key} { padding-inline: $value; }
-  .prisma-py-#{$key} { padding-block: $value; }
+  .prisma-p-#{$key} {
+    padding: $value;
+  }
+  .prisma-pt-#{$key} {
+    padding-top: $value;
+  }
+  .prisma-pr-#{$key} {
+    padding-right: $value;
+  }
+  .prisma-pb-#{$key} {
+    padding-bottom: $value;
+  }
+  .prisma-pl-#{$key} {
+    padding-left: $value;
+  }
+  .prisma-px-#{$key} {
+    padding-inline: $value;
+  }
+  .prisma-py-#{$key} {
+    padding-block: $value;
+  }
 }
 
 // Gap utilities
 @each $key, $value in $spacing-map {
-  .prisma-gap-#{$key} { gap: $value; }
+  .prisma-gap-#{$key} {
+    gap: $value;
+  }
 }
 
 // Auto margin
-.prisma-mx-auto { margin-inline: auto; }
-.prisma-ml-auto { margin-left: auto; }
-.prisma-mr-auto { margin-right: auto; }
+.prisma-mx-auto {
+  margin-inline: auto;
+}
+
+.prisma-ml-auto {
+  margin-left: auto;
+}
+
+.prisma-mr-auto {
+  margin-right: auto;
+}

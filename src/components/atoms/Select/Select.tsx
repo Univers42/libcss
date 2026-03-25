@@ -17,7 +17,9 @@ export function Select({
     fullWidth && 'select-field--full',
     disabled && 'select-field--disabled',
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={cls}>
@@ -29,7 +31,11 @@ export function Select({
           onChange={(e) => onChange?.(e.target.value)}
           disabled={disabled}
         >
-          {placeholder && <option value="" disabled>{placeholder}</option>}
+          {placeholder && (
+            <option value="" disabled>
+              {placeholder}
+            </option>
+          )}
           {options.map((opt) => (
             <option key={opt.value} value={opt.value} disabled={opt.disabled}>
               {opt.label}

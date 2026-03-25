@@ -37,16 +37,11 @@ export function CenteredShell({
     .join(' ');
 
   return (
-    <div
-      className={rootClass}
-      style={{ '--shell-card-w': cardWidth } as React.CSSProperties}
-    >
+    <div className={rootClass} style={{ '--shell-card-w': cardWidth } as React.CSSProperties}>
       <div className="shell-centered__wrapper">
         {brand && <div className="shell-centered__brand">{brand}</div>}
 
-        <div className="shell-centered__card">
-          {children}
-        </div>
+        <div className="shell-centered__card">{children}</div>
 
         {footer && <div className="shell-centered__footer">{footer}</div>}
       </div>

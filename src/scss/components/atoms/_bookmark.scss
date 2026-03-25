@@ -4,7 +4,7 @@
 // .prisma-bookmark  web bookmark card
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-bookmark {
   // ── Configurator ──
@@ -26,8 +26,9 @@
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  transition: background $duration-fast $ease-default,
-              border-color $duration-fast $ease-default;
+  transition:
+    background $duration-fast $ease-default,
+    border-color $duration-fast $ease-default;
 
   &:hover {
     background: var(--prisma-bookmark-bg-hover);

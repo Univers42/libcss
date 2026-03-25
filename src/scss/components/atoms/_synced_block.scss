@@ -4,7 +4,7 @@
 // .prisma-synced-block  shared/synced content indicator
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-synced-block {
   // ── Configurator ──
@@ -21,8 +21,9 @@
   border: $border-width-thin dashed var(--prisma-synced-border-color);
   border-radius: var(--prisma-synced-radius);
   margin-bottom: $spacing-4;
-  transition: border-color $duration-base $ease-default,
-              background $duration-base $ease-default;
+  transition:
+    border-color $duration-base $ease-default,
+    background $duration-base $ease-default;
 
   // ── Sync indicator badge ──
   &__indicator {

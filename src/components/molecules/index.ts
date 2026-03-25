@@ -20,8 +20,31 @@ export { WindowPanel } from './WindowPanel';
 export type { WindowPanelProps, WindowTab } from './WindowPanel';
 
 export { ColorPicker } from './ColorPicker';
-export type { ColorPickerProps, ColorPickerMode, ColorState, RGBA, HSVA, HSLA, CMYK, GradientStop } from './ColorPicker';
-export { ALL_MODES, MODE_LABELS, DEFAULT_SWATCHES, colorFromHex, colorFromHsva, colorFromRgba, colorFromHsla, formatRgb, formatHsl, formatCmyk, buildGradientCSS, luminance, contrastRatio } from './ColorPicker';
+export type {
+  ColorPickerProps,
+  ColorPickerMode,
+  ColorState,
+  RGBA,
+  HSVA,
+  HSLA,
+  CMYK,
+  GradientStop,
+} from './ColorPicker';
+export {
+  ALL_MODES,
+  MODE_LABELS,
+  DEFAULT_SWATCHES,
+  colorFromHex,
+  colorFromHsva,
+  colorFromRgba,
+  colorFromHsla,
+  formatRgb,
+  formatHsl,
+  formatCmyk,
+  buildGradientCSS,
+  luminance,
+  contrastRatio,
+} from './ColorPicker';
 
 export { Toolbar } from './Toolbar';
 export type { ToolbarProps, ToolbarItem } from './Toolbar';

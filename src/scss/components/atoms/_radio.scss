@@ -8,11 +8,13 @@
   &__input {
     position: absolute;
     opacity: 0;
-    width: 0; height: 0;
+    width: 0;
+    height: 0;
   }
 
   &__circle {
-    width: 18px; height: 18px;
+    width: 18px;
+    height: 18px;
     border: 2px solid var(--border-color, #cbd5e1);
     border-radius: 50%;
     transition: border-color 0.15s;
@@ -21,8 +23,9 @@
     justify-content: center;
 
     &::after {
-      content: '';
-      width: 8px; height: 8px;
+      content: "";
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--accent-color, #3b82f6);
       transform: scale(0);
@@ -32,7 +35,10 @@
 
   &__input:checked + .radio__circle {
     border-color: var(--accent-color, #3b82f6);
-    &::after { transform: scale(1); }
+
+    &::after {
+      transform: scale(1);
+    }
   }
 
   &__input:focus-visible + .radio__circle {

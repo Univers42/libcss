@@ -29,7 +29,10 @@ interface ControlFactoryProps {
  * `{ param, value, onChange }`.  The discriminated union in `param`
  * narrows the type inside each component automatically.
  */
-const CONTROL_MAP: Record<ControlType, React.FC<{ param: any; value: unknown; onChange: (key: string, value: unknown) => void }>> = {
+const CONTROL_MAP: Record<
+  ControlType,
+  React.FC<{ param: any; value: unknown; onChange: (key: string, value: unknown) => void }>
+> = {
   text: TextControl,
   number: NumberControl,
   boolean: BooleanControl,

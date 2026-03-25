@@ -18,7 +18,9 @@ export function Skeleton({
     `skeleton--${variant}`,
     animation !== 'none' && `skeleton--${animation}`,
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return <div className={cls} style={{ width, height }} aria-hidden="true" />;
 }

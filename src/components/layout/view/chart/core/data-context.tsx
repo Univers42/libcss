@@ -14,9 +14,7 @@ const DataProviderCtx = createContext<DataProvider | null>(null);
 export function useDataProvider(): DataProvider {
   const ctx = useContext(DataProviderCtx);
   if (!ctx) {
-    throw new Error(
-      '[prisma-chart] useDataProvider must be used within a <DataProviderScope>',
-    );
+    throw new Error('[prisma-chart] useDataProvider must be used within a <DataProviderScope>');
   }
   return ctx;
 }
@@ -33,9 +31,5 @@ interface DataProviderScopeProps {
  */
 export function DataProviderScope({ data, children }: DataProviderScopeProps) {
   const provider = useMemo(() => new DataProvider(data), [data]);
-  return (
-    <DataProviderCtx.Provider value={provider}>
-      {children}
-    </DataProviderCtx.Provider>
-  );
+  return <DataProviderCtx.Provider value={provider}>{children}</DataProviderCtx.Provider>;
 }

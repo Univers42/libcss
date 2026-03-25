@@ -1,5 +1,5 @@
 export interface ProgressProps {
-  value: number;        // 0–100
+  value: number; // 0–100
   max?: number;
   label?: string;
   showValue?: boolean;
@@ -29,10 +29,18 @@ export function Progress({
     striped && 'progress--striped',
     animated && 'progress--animated',
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <div className={cls} role="progressbar" aria-valuenow={value} aria-valuemin={0} aria-valuemax={max}>
+    <div
+      className={cls}
+      role="progressbar"
+      aria-valuenow={value}
+      aria-valuemin={0}
+      aria-valuemax={max}
+    >
       {label && <span className="progress__label">{label}</span>}
       <div className="progress__track">
         <div className="progress__bar" style={{ width: `${pct}%` }} />

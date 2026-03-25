@@ -5,9 +5,18 @@
     height: 1em;
     border-radius: 4px;
   }
-  &--circular { border-radius: 50%; }
-  &--rectangular { border-radius: 0; }
-  &--rounded { border-radius: 8px; }
+
+  &--circular {
+    border-radius: 50%;
+  }
+
+  &--rectangular {
+    border-radius: 0;
+  }
+
+  &--rounded {
+    border-radius: 8px;
+  }
 
   &--pulse {
     animation: skeleton-pulse 1.5s ease-in-out infinite;
@@ -18,7 +27,7 @@
     overflow: hidden;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(90deg, transparent, rgb(255 255 255 / 40%), transparent);
@@ -28,11 +37,22 @@
 }
 
 @keyframes skeleton-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
 }
 
 @keyframes skeleton-wave {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100%); }
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
 }

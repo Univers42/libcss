@@ -9,11 +9,7 @@ export function SyncedBlock({
   children,
   className = '',
 }: SyncedBlockProps): JSX.Element {
-  const classes = cn(
-    'prisma-synced-block',
-    editing && 'prisma-synced-block--editing',
-    className,
-  );
+  const classes = cn('prisma-synced-block', editing && 'prisma-synced-block--editing', className);
 
   return (
     <div className={classes} data-source-id={sourceId}>

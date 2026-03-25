@@ -4,7 +4,7 @@
 // .prisma-audio  compact audio player bar
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-audio {
   // ── Configurator ──
@@ -24,8 +24,9 @@
   border: $border-width-thin solid var(--prisma-audio-border-color);
   border-radius: var(--prisma-audio-radius);
   margin-bottom: $spacing-4;
-  transition: background $duration-base $ease-default,
-              border-color $duration-base $ease-default;
+  transition:
+    background $duration-base $ease-default,
+    border-color $duration-base $ease-default;
 
   // ── Play button ──
   &__play {

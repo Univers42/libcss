@@ -3,13 +3,7 @@ import { DEFAULT_SOCIAL_LABELS } from './SocialButton.constants';
 import type { SocialButtonProps } from './SocialButton.types';
 import { cn } from '../../lib';
 
-export function SocialButton({
-  provider,
-  icon,
-  label,
-  className,
-  ...props
-}: SocialButtonProps) {
+export function SocialButton({ provider, icon, label, className, ...props }: SocialButtonProps) {
   const displayLabel = label ?? DEFAULT_SOCIAL_LABELS[provider];
 
   return (

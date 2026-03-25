@@ -29,7 +29,9 @@ export function PlaygroundView({
   const entry = registry.get(componentId) as ComponentEntry | undefined;
   const meta = CATEGORY_META[category];
   const { props, setProp, resetProps } = useComponentState(
-    initialProps ? { ...(entry?.defaultProps ?? {}), ...initialProps } : (entry?.defaultProps ?? {}),
+    initialProps
+      ? { ...(entry?.defaultProps ?? {}), ...initialProps }
+      : (entry?.defaultProps ?? {}),
   );
   const [bgMode, setBgMode] = useState<'light' | 'dark' | 'checker'>('light');
 
@@ -70,12 +72,7 @@ export function PlaygroundView({
         </div>
 
         <aside>
-          <InspectorPanel
-            entry={entry}
-            props={props}
-            onChange={setProp}
-            onReset={resetProps}
-          />
+          <InspectorPanel entry={entry} props={props} onChange={setProp} onReset={resetProps} />
         </aside>
       </div>
     </section>

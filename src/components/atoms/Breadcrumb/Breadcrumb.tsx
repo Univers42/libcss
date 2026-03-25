@@ -9,11 +9,7 @@ export function Breadcrumb({
   compact = false,
   className = '',
 }: BreadcrumbProps): JSX.Element {
-  const classes = cn(
-    'prisma-breadcrumb',
-    compact && 'prisma-breadcrumb--compact',
-    className,
-  );
+  const classes = cn('prisma-breadcrumb', compact && 'prisma-breadcrumb--compact', className);
 
   return (
     <nav className={classes} aria-label="Breadcrumb">
@@ -21,7 +17,9 @@ export function Breadcrumb({
         <span key={i} className="prisma-breadcrumb__item">
           {item.icon && <span className="prisma-breadcrumb__icon">{item.icon}</span>}
           {item.href ? (
-            <a className="prisma-breadcrumb__link" href={item.href}>{item.label}</a>
+            <a className="prisma-breadcrumb__link" href={item.href}>
+              {item.label}
+            </a>
           ) : (
             <span>{item.label}</span>
           )}

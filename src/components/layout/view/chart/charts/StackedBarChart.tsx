@@ -4,7 +4,12 @@
  */
 
 import type { ScaleBand, ScaleLinear } from 'd3-scale';
-import type { ProcessedGroupedData, ChartDimensions, ChartPalette, ChartStyle } from '../Chart.types';
+import type {
+  ProcessedGroupedData,
+  ChartDimensions,
+  ChartPalette,
+  ChartStyle,
+} from '../Chart.types';
 import { CLS, ENTER_DELAY_PER_ITEM } from '../Chart.constants';
 
 interface StackedBarChartProps {
@@ -49,7 +54,9 @@ export function StackedBarChart({
               const segH = Math.max(0, innerHeight - yScale(val));
               cumY -= segH;
               const segY = cumY;
-              const isTop = gi === groupKeys.length - 1 || groupKeys.slice(gi + 1).every((k) => (d.groups.get(k) ?? 0) === 0);
+              const isTop =
+                gi === groupKeys.length - 1 ||
+                groupKeys.slice(gi + 1).every((k) => (d.groups.get(k) ?? 0) === 0);
 
               return (
                 <rect

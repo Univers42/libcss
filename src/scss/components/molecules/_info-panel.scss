@@ -4,7 +4,7 @@
 // .prisma-info-panel with header, features, stats
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-info-panel {
   display: flex;

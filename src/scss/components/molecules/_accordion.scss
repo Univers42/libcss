@@ -4,7 +4,9 @@
   overflow: hidden;
 
   &__item {
-    &:not(:last-child) { border-bottom: 1px solid var(--border-color, #e2e8f0); }
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+    }
   }
 
   &__trigger {
@@ -21,7 +23,9 @@
     cursor: pointer;
     transition: background 0.12s;
 
-    &:hover { background: var(--hover-color, #f8fafc); }
+    &:hover {
+      background: var(--hover-color, #f8fafc);
+    }
 
     &:disabled {
       opacity: 0.5;
@@ -29,7 +33,9 @@
     }
   }
 
-  &__title { flex: 1; }
+  &__title {
+    flex: 1;
+  }
 
   &__chevron {
     color: var(--text-tertiary, #94a3b8);

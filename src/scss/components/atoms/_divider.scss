@@ -12,31 +12,43 @@
     border-left: 1px solid var(--border-color, #e2e8f0);
     align-self: stretch;
   }
-  &--dashed { border-style: dashed; }
-  &--dotted { border-style: dotted; }
+
+  &--dashed {
+    border-style: dashed;
+  }
+
+  &--dotted {
+    border-style: dotted;
+  }
 
   &--sm {
-    &.divider--horizontal { margin: 4px 0;
+    &.divider--horizontal {
+      margin: 4px 0;
     }
 
- &.divider--vertical { margin: 0 4px;
-    };
+    &.divider--vertical {
+      margin: 0 4px;
+    }
   }
 
   &--md {
-    &.divider--horizontal { margin: 12px 0;
+    &.divider--horizontal {
+      margin: 12px 0;
     }
 
- &.divider--vertical { margin: 0 12px;
-    };
+    &.divider--vertical {
+      margin: 0 12px;
+    }
   }
 
   &--lg {
-    &.divider--horizontal { margin: 24px 0;
+    &.divider--horizontal {
+      margin: 24px 0;
     }
 
- &.divider--vertical { margin: 0 24px;
-    };
+    &.divider--vertical {
+      margin: 0 24px;
+    }
   }
 
   &--labelled {

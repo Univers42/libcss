@@ -16,7 +16,11 @@ interface ColorWheelProps {
   size?: number;
 }
 
-export const ColorWheel = memo(function ColorWheel({ color, onChange, size = 220 }: ColorWheelProps) {
+export const ColorWheel = memo(function ColorWheel({
+  color,
+  onChange,
+  size = 220,
+}: ColorWheelProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const rafId = useRef(0);
@@ -65,10 +69,7 @@ export const ColorWheel = memo(function ColorWheel({ color, onChange, size = 220
   }, [color.hsv.h, color.hsv.s, radius]);
 
   return (
-    <div
-      className="cpk-wheel"
-      style={{ width: size, height: size }}
-    >
+    <div className="cpk-wheel" style={{ width: size, height: size }}>
       <div
         ref={ref}
         className="cpk-wheel__ring"
@@ -77,8 +78,12 @@ export const ColorWheel = memo(function ColorWheel({ color, onChange, size = 220
           e.currentTarget.setPointerCapture(e.pointerId);
           update(e.clientX, e.clientY);
         }}
-        onPointerMove={(e) => { if (dragging.current) update(e.clientX, e.clientY); }}
-        onPointerUp={() => { dragging.current = false; }}
+        onPointerMove={(e) => {
+          if (dragging.current) update(e.clientX, e.clientY);
+        }}
+        onPointerUp={() => {
+          dragging.current = false;
+        }}
       >
         {/* White centre overlay for saturation fade */}
         <div className="cpk-wheel__white" />

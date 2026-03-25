@@ -77,7 +77,9 @@ export function ComboChart({
               onMouseLeave={onLeave}
               style={
                 animate
-                  ? { animation: `prisma-chart-bar-grow ${animationDuration}ms ease-out ${(si * data.length + di) * ENTER_DELAY_PER_ITEM}ms both` }
+                  ? {
+                      animation: `prisma-chart-bar-grow ${animationDuration}ms ease-out ${(si * data.length + di) * ENTER_DELAY_PER_ITEM}ms both`,
+                    }
                   : undefined
               }
             />
@@ -111,7 +113,11 @@ export function ComboChart({
               strokeWidth={2.5}
               style={
                 animate
-                  ? { strokeDasharray: innerWidth, strokeDashoffset: innerWidth, animation: `prisma-chart-draw ${animationDuration}ms ease-out ${li * 200}ms forwards` }
+                  ? {
+                      strokeDasharray: innerWidth,
+                      strokeDashoffset: innerWidth,
+                      animation: `prisma-chart-draw ${animationDuration}ms ease-out ${li * 200}ms forwards`,
+                    }
                   : undefined
               }
             />
@@ -127,7 +133,10 @@ export function ComboChart({
                 onMouseLeave={onLeave}
                 style={
                   animate
-                    ? { opacity: 0, animation: `prisma-chart-fade-in 200ms ease-out ${(li * pts.length + pi) * ENTER_DELAY_PER_ITEM}ms forwards` }
+                    ? {
+                        opacity: 0,
+                        animation: `prisma-chart-fade-in 200ms ease-out ${(li * pts.length + pi) * ENTER_DELAY_PER_ITEM}ms forwards`,
+                      }
                     : undefined
                 }
               />

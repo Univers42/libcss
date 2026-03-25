@@ -63,9 +63,7 @@ export function MultiSelectControl({ param, value, onChange }: MultiSelectContro
                 className={`shell-control__multiselect-option${isSelected ? ' shell-control__multiselect-option--selected' : ''}`}
                 onClick={() => toggle(opt.value)}
               >
-                <span className="shell-control__multiselect-check">
-                  {isSelected ? '✓' : ''}
-                </span>
+                <span className="shell-control__multiselect-check">{isSelected ? '✓' : ''}</span>
                 {opt.label}
               </button>
             );

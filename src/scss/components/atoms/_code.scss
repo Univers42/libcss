@@ -4,7 +4,7 @@
 // .prisma-code  block/inline code, mermaid
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-code {
   // ── Configurator ──
@@ -26,8 +26,9 @@
   border-radius: var(--prisma-code-radius);
   overflow: hidden;
   background: var(--prisma-code-bg);
-  transition: background $duration-base $ease-default,
-              border-color $duration-base $ease-default;
+  transition:
+    background $duration-base $ease-default,
+    border-color $duration-base $ease-default;
 
   // ── Header (language badge + copy) ──
   &__header {
@@ -56,8 +57,9 @@
     cursor: pointer;
     padding: $spacing-1 $spacing-2;
     border-radius: $radius-sm;
-    transition: color $duration-fast $ease-default,
-                background $duration-fast $ease-default;
+    transition:
+      color $duration-fast $ease-default,
+      background $duration-fast $ease-default;
 
     &:hover {
       color: var(--prisma-text-primary);

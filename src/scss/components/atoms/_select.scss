@@ -3,7 +3,9 @@
   flex-direction: column;
   gap: 4px;
 
-  &--full { width: 100%; }
+  &--full {
+    width: 100%;
+  }
 
   &--disabled {
     opacity: 0.5;
@@ -49,7 +51,9 @@
     pointer-events: none;
   }
 
-  &--error .select-field__select { border-color: var(--danger-color, #ef4444); }
+  &--error .select-field__select {
+    border-color: var(--danger-color, #ef4444);
+  }
 
   &__error {
     font-size: 12px;

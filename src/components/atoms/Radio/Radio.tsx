@@ -4,7 +4,10 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   label?: string;
 }
 
-export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({ label, className, id, ...rest }, ref) {
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
+  { label, className, id, ...rest },
+  ref,
+) {
   const inputId = id || (label ? `radio-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
   return (

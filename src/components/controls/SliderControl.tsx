@@ -25,19 +25,14 @@ export function SliderControl({ param, value, onChange }: SliderControlProps) {
       <label className="shell-control__label">
         {param.label}
         <span className="shell-control__value">
-          {num}{param.unit ? ` ${param.unit}` : ''}
+          {num}
+          {param.unit ? ` ${param.unit}` : ''}
         </span>
       </label>
       <div className="shell-control__slider-track-container">
         <div className="shell-control__slider-track">
-          <div
-            className="shell-control__slider-fill"
-            style={{ width: `${pct}%` }}
-          />
-          <div
-            className="shell-control__slider-thumb"
-            style={{ left: `${pct}%` }}
-          />
+          <div className="shell-control__slider-fill" style={{ width: `${pct}%` }} />
+          <div className="shell-control__slider-thumb" style={{ left: `${pct}%` }} />
         </div>
         <input
           type="range"

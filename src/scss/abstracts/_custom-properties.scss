@@ -3,24 +3,24 @@
 // ─────────────────────────────────────────────────
 // These are the design tokens exposed as CSS custom properties.
 // Components reference them so theming is automatic.
-//
+// ──
 // Surfaces:
 //   --surface-color       Main background
 //   --surface-muted       Muted/secondary surface
 //   --hover-color         Hover state background
-//
+// ──
 // Text:
 //   --text-primary        Primary text
 //   --text-secondary      Secondary text
 //   --text-tertiary       Placeholder / hint text
-//
+// ──
 // Borders:
 //   --border-color        Default border
-//
+// ──
 // Accent:
 //   --accent-color        Brand / focus colour
 //   --danger-color        Error / destructive
-//
+// ──
 // Component-specific:
 //   --badge-*-bg/fg       Badge backgrounds & foregrounds
 //   --chip-*-bg/fg        Chip backgrounds & foregrounds

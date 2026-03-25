@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import type { ComponentCategory, StudioView, StudioState } from '../core/types';
+import type { ComponentCategory, StudioState } from '../core/types';
 
 const INITIAL_STATE: StudioState = {
   view: 'catalog',
@@ -34,17 +34,14 @@ export function useStudioNavigation() {
     }));
   }, []);
 
-  const goToPlayground = useCallback(
-    (componentId: string, category: ComponentCategory) => {
-      setState((prev) => ({
-        ...prev,
-        view: 'playground',
-        category,
-        componentId,
-      }));
-    },
-    [],
-  );
+  const goToPlayground = useCallback((componentId: string, category: ComponentCategory) => {
+    setState((prev) => ({
+      ...prev,
+      view: 'playground',
+      category,
+      componentId,
+    }));
+  }, []);
 
   const goBack = useCallback(() => {
     setState((prev) => {

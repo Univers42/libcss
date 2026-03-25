@@ -22,7 +22,11 @@
 
 import { useMemo, useCallback, useRef } from 'react';
 import type { ComponentEntry } from '../../core/types';
-import type { ParameterSchema, ParameterChangeEvent, ParameterChangeHandler } from '../controls/types';
+import type {
+  ParameterSchema,
+  ParameterChangeEvent,
+  ParameterChangeHandler,
+} from '../controls/types';
 import { legacyControlsToSchema } from '../controls/schema';
 import { ParameterGroup } from '../controls/ParameterGroup';
 
@@ -85,11 +89,7 @@ export function InspectorPanel({
           <span className="shell-inspector__badge">{entry.category}</span>
         </div>
         <p className="shell-inspector__desc">{entry.description}</p>
-        <button
-          type="button"
-          className="shell-inspector__reset"
-          onClick={onReset}
-        >
+        <button type="button" className="shell-inspector__reset" onClick={onReset}>
           Reset to defaults
         </button>
       </div>
@@ -97,12 +97,7 @@ export function InspectorPanel({
       {/* ── Dynamic parameter groups ── */}
       <div className="shell-inspector__controls">
         {schema.groups.map((group) => (
-          <ParameterGroup
-            key={group.id}
-            group={group}
-            values={props}
-            onChange={handleChange}
-          />
+          <ParameterGroup key={group.id} group={group} values={props} onChange={handleChange} />
         ))}
       </div>
 

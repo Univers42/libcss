@@ -5,49 +5,48 @@
 
 /* ─── Shared tokens ─────────────────────────────────── */
 :root {
-  --shell-bg:          #0f172a;
-  --shell-surface:     #1e293b;
-  --shell-surface-2:   #334155;
-  --shell-border:      rgb(148 163 184 / 12%);
-  --shell-text:        #e2e8f0;
-  --shell-text-muted:  #94a3b8;
+  --shell-bg: #0f172a;
+  --shell-surface: #1e293b;
+  --shell-surface-2: #334155;
+  --shell-border: rgb(148 163 184 / 12%);
+  --shell-text: #e2e8f0;
+  --shell-text-muted: #94a3b8;
 
   /* HSL-decomposed accent — override h/s/l to re-theme everything */
-  --shell-accent-h:    239;
-  --shell-accent-s:    84%;
-  --shell-accent-l:    67%;
-  --shell-accent:      hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l));
+  --shell-accent-h: 239;
+  --shell-accent-s: 84%;
+  --shell-accent-l: 67%;
+  --shell-accent: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l));
   --shell-accent-soft: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l) / 15%);
   --shell-accent-glow: hsl(var(--shell-accent-h) var(--shell-accent-s) var(--shell-accent-l) / 25%);
   --shell-accent-text: hsl(var(--shell-accent-h) 70% 78%);
-  --shell-accent-2:    #06b6d4;
-  --shell-accent-3:    hsl(330deg 81% 60%);
-  --shell-gradient:    linear-gradient(135deg, var(--shell-accent), var(--shell-accent-2));
+  --shell-accent-2: #06b6d4;
+  --shell-accent-3: hsl(330deg 81% 60%);
+  --shell-gradient: linear-gradient(135deg, var(--shell-accent), var(--shell-accent-2));
 
   /* Typography */
-  --shell-font:        system-ui, -apple-system, blinkmacsystemfont, sans-serif;
-  --shell-mono:        ui-monospace, 'Cascadia Code', monospace;
-  --shell-radius:      12px;
-  --shell-radius-sm:   8px;
-  --shell-transition:  0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --shell-header-h:    56px;
-  --shell-shadow:      0 1px 3px rgb(0 0 0 / 30%), 0 1px 2px rgb(0 0 0 / 24%);
-  --shell-shadow-lg:   0 10px 25px rgb(0 0 0 / 40%), 0 6px 10px rgb(0 0 0 / 30%);
+  --shell-font: system-ui, -apple-system, blinkmacsystemfont, sans-serif;
+  --shell-mono: ui-monospace, "Cascadia Code", monospace;
+  --shell-radius: 12px;
+  --shell-radius-sm: 8px;
+  --shell-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --shell-header-h: 56px;
+  --shell-shadow: 0 1px 3px rgb(0 0 0 / 30%), 0 1px 2px rgb(0 0 0 / 24%);
+  --shell-shadow-lg: 0 10px 25px rgb(0 0 0 / 40%), 0 6px 10px rgb(0 0 0 / 30%);
 }
 
 /* Light scheme overrides */
 [class*="shell-"][class*="--light"] {
-  --shell-bg:          #f8fafc;
-  --shell-surface:     #fff;
-  --shell-surface-2:   #f1f5f9;
-  --shell-border:      rgb(15 23 42 / 8%);
-  --shell-text:        #0f172a;
-  --shell-text-muted:  #64748b;
+  --shell-bg: #f8fafc;
+  --shell-surface: #fff;
+  --shell-surface-2: #f1f5f9;
+  --shell-border: rgb(15 23 42 / 8%);
+  --shell-text: #0f172a;
+  --shell-text-muted: #64748b;
   --shell-accent-text: hsl(var(--shell-accent-h) 60% 40%);
-  --shell-shadow:      0 1px 3px rgb(0 0 0 / 8%), 0 1px 2px rgb(0 0 0 / 4%);
-  --shell-shadow-lg:   0 10px 25px rgb(0 0 0 / 10%), 0 6px 10px rgb(0 0 0 / 6%);
+  --shell-shadow: 0 1px 3px rgb(0 0 0 / 8%), 0 1px 2px rgb(0 0 0 / 4%);
+  --shell-shadow-lg: 0 10px 25px rgb(0 0 0 / 10%), 0 6px 10px rgb(0 0 0 / 6%);
 }
-
 
 /* ═══════════════════════════════════════════════════════
    1. DASHBOARD SHELL — Sidebar + Header + Main
@@ -55,7 +54,9 @@
 
 .shell-dashboard {
   display: grid;
-  grid-template: "sidebar header" var(--shell-header-h) "sidebar main" 1fr / var(--shell-sidebar-w, 260px) 1fr;
+  grid-template:
+    "sidebar header" var(--shell-header-h) "sidebar main" 1fr / var(--shell-sidebar-w, 260px)
+    1fr;
   height: 100vh;
   background: var(--shell-bg);
   color: var(--shell-text);
@@ -140,7 +141,7 @@
 
 .shell-dashboard__toggle-icon::before,
 .shell-dashboard__toggle-icon::after {
-  content: '';
+  content: "";
   display: block;
   width: 20px;
   height: 2px;
@@ -149,8 +150,14 @@
   position: absolute;
   left: 0;
 }
-.shell-dashboard__toggle-icon::before { top: -6px; }
-.shell-dashboard__toggle-icon::after  { top:  6px; }
+
+.shell-dashboard__toggle-icon::before {
+  top: -6px;
+}
+
+.shell-dashboard__toggle-icon::after {
+  top: 6px;
+}
 
 /* Main */
 .shell-dashboard__main {
@@ -192,7 +199,9 @@
 
   .shell-dashboard__sidebar {
     position: fixed;
-    top: 0; bottom: 0; left: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
     width: var(--shell-sidebar-w, 260px);
     transform: translateX(-100%);
     box-shadow: var(--shell-shadow-lg);
@@ -205,10 +214,15 @@
   .shell-dashboard--sidebar-open .shell-dashboard__overlay {
     display: block;
   }
-  .shell-dashboard__toggle { display: block; }
-  .shell-dashboard__aside { width: 100%; }
-}
 
+  .shell-dashboard__toggle {
+    display: block;
+  }
+
+  .shell-dashboard__aside {
+    width: 100%;
+  }
+}
 
 /* ═══════════════════════════════════════════════════════
    2. STACKED SHELL — Top header + Main + Footer
@@ -269,9 +283,11 @@
     padding-left: 16px;
     padding-right: 16px;
   }
-  .shell-stacked__nav { gap: 12px; }
-}
 
+  .shell-stacked__nav {
+    gap: 12px;
+  }
+}
 
 /* ═══════════════════════════════════════════════════════
    3. CENTERED SHELL — Auth / onboarding card
@@ -290,10 +306,11 @@
 
 /* Background variants */
 .shell-centered--bg-gradient::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     var(--shell-accent) 0%,
     transparent 50%,
     rgb(99 102 241 / 10%) 100%
@@ -303,7 +320,7 @@
 
 .shell-centered--bg-mesh::before,
 .shell-centered--bg-mesh::after {
-  content: '';
+  content: "";
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
@@ -311,19 +328,23 @@
 }
 
 .shell-centered--bg-mesh::before {
-  width: 500px; height: 500px;
-  top: -20%; left: -10%;
+  width: 500px;
+  height: 500px;
+  top: -20%;
+  left: -10%;
   background: var(--shell-accent);
 }
 
 .shell-centered--bg-mesh::after {
-  width: 400px; height: 400px;
-  bottom: -15%; right: -5%;
+  width: 400px;
+  height: 400px;
+  bottom: -15%;
+  right: -5%;
   background: #06b6d4;
 }
 
 .shell-centered--bg-dots::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-image: radial-gradient(circle, var(--shell-border) 1px, transparent 1px);
@@ -371,9 +392,11 @@
     padding: 24px 20px;
     border-radius: var(--shell-radius-sm);
   }
-  .shell-centered__wrapper { padding: 16px; }
-}
 
+  .shell-centered__wrapper {
+    padding: 16px;
+  }
+}
 
 /* ═══════════════════════════════════════════════════════
    4. PANEL SHELL — IDE / editor 3-panel layout
@@ -406,7 +429,9 @@
   min-width: 120px;
 }
 
-.shell-panel__header-right { justify-content: flex-end; }
+.shell-panel__header-right {
+  justify-content: flex-end;
+}
 
 .shell-panel__header-center {
   flex: 1;
@@ -451,7 +476,9 @@
 .shell-panel__right {
   background: var(--shell-surface);
   overflow-y: auto;
-  transition: width var(--shell-transition), opacity var(--shell-transition);
+  transition:
+    width var(--shell-transition),
+    opacity var(--shell-transition);
 }
 
 .shell-panel__left {
@@ -519,6 +546,12 @@
     z-index: 20;
     box-shadow: var(--shell-shadow-lg);
   }
-  .shell-panel__left { left: 0; }
-  .shell-panel__right { right: 0; }
+
+  .shell-panel__left {
+    left: 0;
+  }
+
+  .shell-panel__right {
+    right: 0;
+  }
 }

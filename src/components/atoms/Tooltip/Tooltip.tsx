@@ -1,7 +1,13 @@
 import { useState, useRef, useCallback } from 'react';
 import type { TooltipProps } from './Tooltip.types';
 
-export function Tooltip({ content, placement = 'top', delay = 200, children, className }: TooltipProps) {
+export function Tooltip({
+  content,
+  placement = 'top',
+  delay = 200,
+  children,
+  className,
+}: TooltipProps) {
   const [visible, setVisible] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>();
 

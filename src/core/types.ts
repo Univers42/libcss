@@ -43,13 +43,7 @@ export const CATEGORY_META: Record<
 };
 
 // ─── Prop Controls ─────────────────────────────────────
-export type PropControlType =
-  | 'select'
-  | 'text'
-  | 'boolean'
-  | 'number'
-  | 'color'
-  | 'range';
+export type PropControlType = 'select' | 'text' | 'boolean' | 'number' | 'color' | 'range';
 
 export interface PropControl {
   /** The prop key on the component. */

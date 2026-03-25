@@ -10,8 +10,6 @@ import type {
   ChartConfig,
   ChartProps,
   ChartStyle,
-  ChartDimensions,
-  ChartPalette,
   ProcessedDataPoint,
   ProcessedGroupedData,
   ProcessedPieSlice,
@@ -19,13 +17,7 @@ import type {
   YAxisConfig,
 } from './Chart.types';
 
-import {
-  CLS,
-  CHART_HEIGHTS,
-  DEFAULT_MARGINS,
-  PIE_MARGINS,
-  DEFAULT_STYLE,
-} from './Chart.constants';
+import { CLS, CHART_HEIGHTS, DEFAULT_MARGINS, PIE_MARGINS, DEFAULT_STYLE } from './Chart.constants';
 
 import {
   processCartesianData,
@@ -107,7 +99,7 @@ export function Chart({
   className,
   width: widthProp,
   height: heightProp,
-  onDataClick,
+  onDataClick: _onDataClick,
   renderTooltip,
 }: ChartProps) {
   const style = resolveStyle(config.style);
@@ -123,7 +115,14 @@ export function Chart({
   const multiSeries = isMultiSeries(config);
 
   const cartesian = useMemo<ProcessedDataPoint[]>(
-    () => (!isPie && !isGroupedType(config.type) && !multiSeries && !isScatterType(config.type) && !isComboType(config.type) ? processCartesianData(config) : []),
+    () =>
+      !isPie &&
+      !isGroupedType(config.type) &&
+      !multiSeries &&
+      !isScatterType(config.type) &&
+      !isComboType(config.type)
+        ? processCartesianData(config)
+        : [],
     [config, isPie, multiSeries],
   );
 
@@ -145,8 +144,11 @@ export function Chart({
   const groupKeys = useMemo(() => (grouped.length > 0 ? getGroupKeys(grouped) : []), [grouped]);
 
   // ── Scales ──────────────────────────────────────────
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const scales = useMemo<{ xScale: any; yScale: any; colorScale: ReturnType<typeof createColorScale> } | null>(() => {
+  const scales = useMemo<{
+    xScale: any;
+    yScale: any;
+    colorScale: ReturnType<typeof createColorScale>;
+  } | null>(() => {
     if (isPie) return null;
     const { innerWidth, innerHeight } = dimensions;
 
@@ -165,10 +167,13 @@ export function Chart({
 
     if (isGroupedType(config.type) || multiSeries) {
       const labels = grouped.map((d) => d.label);
-      const maxVal = Math.max(...grouped.map((d) => {
-        if (config.type === 'stacked-bar') return d.total;
-        return Math.max(...[...d.groups.values()]);
-      }), 0);
+      const maxVal = Math.max(
+        ...grouped.map((d) => {
+          if (config.type === 'stacked-bar') return d.total;
+          return Math.max(...[...d.groups.values()]);
+        }),
+        0,
+      );
 
       const yRange = config.yAxis?.range;
       const yDomain: [number, number] =
@@ -184,7 +189,9 @@ export function Chart({
     if (isComboType(config.type)) {
       // For combo, process all series fields manually
       const seriesFields = config.series?.map((s) => s.field) ?? [];
-      const labels = [...new Set(config.data.map((d) => String(d[config.xAxis?.field ?? 'x'] ?? '')))];
+      const labels = [
+        ...new Set(config.data.map((d) => String(d[config.xAxis?.field ?? 'x'] ?? ''))),
+      ];
       const allValues = config.data.flatMap((d) => seriesFields.map((f) => Number(d[f]) || 0));
       const maxVal = Math.max(...allValues, 0);
 
@@ -199,7 +206,7 @@ export function Chart({
       const labels = cartesian.map((d) => d.label);
       const values = cartesian.map((d) => d.value);
       const yRange = config.yAxis?.range;
-      const xDomain: [number, number] =
+      const _xDomain: [number, number] =
         yRange && yRange !== 'auto' ? [yRange.min, yRange.max] : computeDomain(values);
 
       return {
@@ -221,7 +228,18 @@ export function Chart({
       yScale: createLinearScale(yDomain, [innerHeight, 0]),
       colorScale: createColorScale(labels, palette),
     };
-  }, [dimensions, config, cartesian, grouped, scatter, groupKeys, palette, style, isPie, multiSeries]);
+  }, [
+    dimensions,
+    config,
+    cartesian,
+    grouped,
+    scatter,
+    groupKeys,
+    palette,
+    style,
+    isPie,
+    multiSeries,
+  ]);
 
   // ── Color accessor (wraps scale + palette fallback) ─
   const colorFor = useMemo(() => {
@@ -243,7 +261,13 @@ export function Chart({
   }, [scales, palette, pie]);
 
   // ── Tooltip handler helpers ─────────────────────────
-  const handleHover = (label: string, group: string | null, value: number, cx: number, cy: number) => {
+  const handleHover = (
+    label: string,
+    group: string | null,
+    value: number,
+    cx: number,
+    cy: number,
+  ) => {
     const content = renderTooltip
       ? renderTooltip({ label, value, group: group ?? undefined } as any)
       : defaultTooltipContent(label, group, value);
@@ -251,26 +275,36 @@ export function Chart({
   };
 
   const handlePieHover = (label: string, value: number, pct: number, cx: number, cy: number) => {
-    const content = renderTooltip
-      ? renderTooltip({ label, value, percentage: pct } as any)
-      : (
+    const content = renderTooltip ? (
+      renderTooltip({ label, value, percentage: pct } as any)
+    ) : (
+      <div>
+        <strong>{label}</strong>
         <div>
-          <strong>{label}</strong>
-          <div>{value.toLocaleString()} ({pct.toFixed(1)}%)</div>
+          {value.toLocaleString()} ({pct.toFixed(1)}%)
         </div>
-      );
+      </div>
+    );
     showTip(cx, cy, content);
   };
 
-  const handleScatterHover = (x: number, y: number, group: string | undefined, cx: number, cy: number) => {
-    const content = renderTooltip
-      ? renderTooltip({ x, y, group } as any)
-      : (
+  const handleScatterHover = (
+    x: number,
+    y: number,
+    group: string | undefined,
+    cx: number,
+    cy: number,
+  ) => {
+    const content = renderTooltip ? (
+      renderTooltip({ x, y, group } as any)
+    ) : (
+      <div>
+        {group && <strong>{group}</strong>}
         <div>
-          {group && <strong>{group}</strong>}
-          <div>x: {x.toLocaleString()}, y: {y.toLocaleString()}</div>
+          x: {x.toLocaleString()}, y: {y.toLocaleString()}
         </div>
-      );
+      </div>
+    );
     showTip(cx, cy, content);
   };
 
@@ -297,11 +331,12 @@ export function Chart({
       }));
     }
     return [];
-  }, [style, isPie, config, pie, groupKeys, scatter, palette]);
+  }, [style, isPie, config, pie, groupKeys, scatter, palette, multiSeries]);
 
   // ── Data labels ─────────────────────────────────────
   const dataLabelItems = useMemo(() => {
-    if (!style.dataLabels || isPie || isScatterType(config.type) || isComboType(config.type)) return [];
+    if (!style.dataLabels || isPie || isScatterType(config.type) || isComboType(config.type))
+      return [];
     if (!scales) return [];
 
     if (isGroupedType(config.type)) return []; // too cluttered
@@ -326,14 +361,16 @@ export function Chart({
     if (!isComboType(config.type) || !config.series) return [];
     const fields = config.series.map((s) => s.field);
     const xField = config.xAxis?.field ?? 'x';
-    return [...new Map(
-      config.data.map((d) => {
-        const label = String(d[xField] ?? '');
-        const values: Record<string, number> = {};
-        for (const f of fields) values[f] = Number(d[f]) || 0;
-        return [label, { label, values }] as const;
-      }),
-    ).values()];
+    return [
+      ...new Map(
+        config.data.map((d) => {
+          const label = String(d[xField] ?? '');
+          const values: Record<string, number> = {};
+          for (const f of fields) values[f] = Number(d[f]) || 0;
+          return [label, { label, values }] as const;
+        }),
+      ).values(),
+    ];
   }, [config]);
 
   // ── Render variant ─────────────────────────────────
@@ -368,7 +405,9 @@ export function Chart({
             palette={palette}
             style={common.style}
             colorScale={colorFor}
-            onBarHover={(pt: ProcessedDataPoint, x: number, y: number) => handleHover(pt.label, null, pt.value, x, y)}
+            onBarHover={(pt: ProcessedDataPoint, x: number, y: number) =>
+              handleHover(pt.label, null, pt.value, x, y)
+            }
             onBarLeave={hideTip}
           />
         );
@@ -383,7 +422,9 @@ export function Chart({
             palette={palette}
             style={common.style}
             colorScale={colorFor}
-            onBarHover={(pt: ProcessedDataPoint, x: number, y: number) => handleHover(pt.label, null, pt.value, x, y)}
+            onBarHover={(pt: ProcessedDataPoint, x: number, y: number) =>
+              handleHover(pt.label, null, pt.value, x, y)
+            }
             onBarLeave={hideTip}
           />
         );
@@ -578,14 +619,26 @@ export function Chart({
               <XAxis
                 scale={scales.xScale}
                 height={dimensions.innerHeight}
-                label={showXLabel ? (isHorizontal ? (config.yAxis?.label ?? config.yAxis?.field) : (config.xAxis?.label ?? config.xAxis?.field)) : undefined}
+                label={
+                  showXLabel
+                    ? isHorizontal
+                      ? (config.yAxis?.label ?? config.yAxis?.field)
+                      : (config.xAxis?.label ?? config.xAxis?.field)
+                    : undefined
+                }
                 showLabel={showXLabel}
                 color={palette.axisColor}
                 innerWidth={dimensions.innerWidth}
               />
               <YAxis
                 scale={scales.yScale}
-                label={showYLabel ? (isHorizontal ? (config.xAxis?.label ?? config.xAxis?.field) : (config.yAxis?.label ?? config.yAxis?.field)) : undefined}
+                label={
+                  showYLabel
+                    ? isHorizontal
+                      ? (config.xAxis?.label ?? config.xAxis?.field)
+                      : (config.yAxis?.label ?? config.yAxis?.field)
+                    : undefined
+                }
                 showLabel={showYLabel}
                 color={palette.axisColor}
                 innerHeight={dimensions.innerHeight}
@@ -601,9 +654,7 @@ export function Chart({
       )}
 
       {/* Caption */}
-      {style.caption && (
-        <p className={`${CLS}__caption`}>{style.caption}</p>
-      )}
+      {style.caption && <p className={`${CLS}__caption`}>{style.caption}</p>}
 
       {/* Tooltip overlay */}
       {style.showTooltip && (

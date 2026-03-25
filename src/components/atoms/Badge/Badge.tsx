@@ -17,7 +17,9 @@ export function Badge({
     outline && 'badge--outline',
     dot && 'badge--dot',
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <span className={cls}>

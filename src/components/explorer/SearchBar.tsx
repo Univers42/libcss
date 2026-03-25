@@ -20,11 +20,7 @@ export function SearchBar({
         placeholder={placeholder}
       />
       {value && (
-        <button
-          type="button"
-          className="shell-search__clear"
-          onClick={() => onChange('')}
-        >
+        <button type="button" className="shell-search__clear" onClick={() => onChange('')}>
           ✕
         </button>
       )}

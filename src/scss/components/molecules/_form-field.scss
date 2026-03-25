@@ -4,7 +4,7 @@
 // .prisma-field with label + error states
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-field {
   display: flex;
@@ -23,7 +23,7 @@
     margin-bottom: $spacing-1;
 
     &--required::after {
-      content: '*';
+      content: "*";
       color: var(--prisma-text-error);
       margin-left: 0.125rem;
     }

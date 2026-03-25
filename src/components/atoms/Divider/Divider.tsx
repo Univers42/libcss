@@ -6,7 +6,13 @@ export interface DividerProps {
   className?: string;
 }
 
-export function Divider({ orientation = 'horizontal', label, variant = 'solid', spacing = 'md', className }: DividerProps) {
+export function Divider({
+  orientation = 'horizontal',
+  label,
+  variant = 'solid',
+  spacing = 'md',
+  className,
+}: DividerProps) {
   const cls = [
     'divider',
     `divider--${orientation}`,
@@ -14,7 +20,9 @@ export function Divider({ orientation = 'horizontal', label, variant = 'solid', 
     `divider--${spacing}`,
     label && 'divider--labelled',
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   if (label) {
     return (

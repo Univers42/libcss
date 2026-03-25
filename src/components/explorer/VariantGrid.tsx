@@ -50,9 +50,7 @@ function capitalize(s: string): string {
  * For 2 dimensions, returns a 2D grid. For 1, a single row.
  * For 3+, flattens to a list.
  */
-function cartesian(
-  dimensions: readonly VariantDimension[],
-): Record<string, string>[] {
+function cartesian(dimensions: readonly VariantDimension[]): Record<string, string>[] {
   if (dimensions.length === 0) return [{}];
   const [first, ...rest] = dimensions;
   const restCombinations = cartesian(rest);
@@ -83,10 +81,15 @@ export function VariantGrid({
           {/* Header */}
           <div className="variant-grid__row variant-grid__row--header" role="row">
             <div className="variant-grid__cell variant-grid__cell--label" role="columnheader">
-              {capitalize(rowDim.label ?? rowDim.prop)} ↓ / {capitalize(colDim.label ?? colDim.prop)} →
+              {capitalize(rowDim.label ?? rowDim.prop)} ↓ /{' '}
+              {capitalize(colDim.label ?? colDim.prop)} →
             </div>
             {colDim.values.map((col) => (
-              <div key={col} className="variant-grid__cell variant-grid__cell--header" role="columnheader">
+              <div
+                key={col}
+                className="variant-grid__cell variant-grid__cell--header"
+                role="columnheader"
+              >
                 {col}
               </div>
             ))}
@@ -98,15 +101,8 @@ export function VariantGrid({
                 {row}
               </div>
               {colDim.values.map((col) => (
-                <div
-                  key={`${row}-${col}`}
-                  className="variant-grid__cell"
-                  role="cell"
-                >
-                  <Component
-                    {...baseProps}
-                    {...{ [rowDim.prop]: row, [colDim.prop]: col }}
-                  />
+                <div key={`${row}-${col}`} className="variant-grid__cell" role="cell">
+                  <Component {...baseProps} {...{ [rowDim.prop]: row, [colDim.prop]: col }} />
                 </div>
               ))}
             </div>

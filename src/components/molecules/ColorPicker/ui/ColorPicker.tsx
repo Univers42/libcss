@@ -44,10 +44,14 @@ export function ColorPicker({
     useColorState(value);
 
   // Wire external onChange
-  useEffect(() => { onChangeRef.current = onChange; }, [onChange, onChangeRef]);
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange, onChangeRef]);
 
   // Sync external controlled value
-  useEffect(() => { if (value !== color.hex) setHex(value); }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (value !== color.hex) setHex(value);
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* ── Active mode ── */
   const [activeMode, setActiveMode] = useState<ColorPickerMode>(defaultMode ?? modes[0] ?? 'map');
@@ -144,15 +148,21 @@ export function ColorPicker({
               }}
               currentHex={color.hex}
             />
-            <SaturationMap color={color} onChange={(hsv) => {
-              setHsva(hsv);
-              handleGradientColorFromPicker(rgbaToHex({ ...colorFromHsva(hsv).rgb, a: 1 }));
-            }} />
-            <HueStrip hue={color.hsv.h} onChange={(h) => {
-              setHue(h);
-              const next = colorFromHsva({ ...color.hsv, h });
-              handleGradientColorFromPicker(rgbaToHex({ ...next.rgb, a: 1 }));
-            }} />
+            <SaturationMap
+              color={color}
+              onChange={(hsv) => {
+                setHsva(hsv);
+                handleGradientColorFromPicker(rgbaToHex({ ...colorFromHsva(hsv).rgb, a: 1 }));
+              }}
+            />
+            <HueStrip
+              hue={color.hsv.h}
+              onChange={(h) => {
+                setHue(h);
+                const next = colorFromHsva({ ...color.hsv, h });
+                handleGradientColorFromPicker(rgbaToHex({ ...next.rgb, a: 1 }));
+              }}
+            />
           </div>
         );
     }

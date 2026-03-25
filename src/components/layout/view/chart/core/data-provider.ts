@@ -19,7 +19,6 @@
 import type {
   DataRecord,
   ChartFilter,
-  FilterOperator,
   AggregateFunction,
   SortDirection,
   ProcessedDataPoint,
@@ -47,7 +46,9 @@ function matchFilter(record: DataRecord, f: ChartFilter): boolean {
     case 'lte':
       return Number(val) <= Number(cmp);
     case 'contains':
-      return String(val ?? '').toLowerCase().includes(String(cmp).toLowerCase());
+      return String(val ?? '')
+        .toLowerCase()
+        .includes(String(cmp).toLowerCase());
     case 'in':
       return Array.isArray(cmp) && cmp.includes(val);
     case 'not-in':
@@ -74,9 +75,7 @@ function aggregateValues(values: number[], fn: AggregateFunction): number {
     case 'median': {
       const sorted = [...values].sort((a, b) => a - b);
       const mid = Math.floor(sorted.length / 2);
-      return sorted.length % 2 !== 0
-        ? sorted[mid]
-        : (sorted[mid - 1] + sorted[mid]) / 2;
+      return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
     }
     default:
       return values.reduce((a, b) => a + b, 0);
@@ -119,9 +118,7 @@ export class DataProvider {
   /** Return a new DataProvider with filters applied. */
   filter(filters: readonly ChartFilter[]): DataProvider {
     if (!filters.length) return this;
-    const filtered = this.records.filter((r) =>
-      filters.every((f) => matchFilter(r, f)),
-    );
+    const filtered = this.records.filter((r) => filters.every((f) => matchFilter(r, f)));
     return new DataProvider(filtered);
   }
 
@@ -139,26 +136,18 @@ export class DataProvider {
       }
       const sa = String(va);
       const sb = String(vb);
-      return direction === 'ascending'
-        ? sa.localeCompare(sb)
-        : sb.localeCompare(sa);
+      return direction === 'ascending' ? sa.localeCompare(sb) : sb.localeCompare(sa);
     });
     return new DataProvider(sorted);
   }
 
   /** Return a new DataProvider with zero-value rows removed for a field. */
   omitZeros(field: string): DataProvider {
-    return new DataProvider(
-      this.records.filter((r) => Number(r[field]) !== 0),
-    );
+    return new DataProvider(this.records.filter((r) => Number(r[field]) !== 0));
   }
 
   /** Aggregate a value field, returning one ProcessedDataPoint per unique xField value. */
-  aggregate(
-    xField: string,
-    yField: string,
-    fn: AggregateFunction = 'sum',
-  ): ProcessedDataPoint[] {
+  aggregate(xField: string, yField: string, fn: AggregateFunction = 'sum'): ProcessedDataPoint[] {
     const groups = new Map<string, { values: number[]; raw: DataRecord }>();
     for (const r of this.records) {
       const key = String(r[xField] ?? '');
@@ -219,11 +208,7 @@ export class DataProvider {
   }
 
   /** Prepare data for scatter: each record becomes an (x, y) point. */
-  toScatterPoints(
-    xField: string,
-    yField: string,
-    groupField?: string,
-  ): ProcessedScatterPoint[] {
+  toScatterPoints(xField: string, yField: string, groupField?: string): ProcessedScatterPoint[] {
     return this.records.map((r) => ({
       x: Number(r[xField] ?? 0),
       y: Number(r[yField] ?? 0),

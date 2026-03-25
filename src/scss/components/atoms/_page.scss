@@ -4,7 +4,7 @@
 // .prisma-page  sub-page link block
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-page {
   // ── Configurator ──
@@ -28,9 +28,10 @@
   text-decoration: none;
   color: var(--prisma-page-color);
   cursor: pointer;
-  transition: background $duration-fast $ease-default,
-              border-color $duration-fast $ease-default,
-              transform $duration-fast $ease-default;
+  transition:
+    background $duration-fast $ease-default,
+    border-color $duration-fast $ease-default,
+    transform $duration-fast $ease-default;
 
   &:hover {
     background: var(--prisma-page-bg-hover);

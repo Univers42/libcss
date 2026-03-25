@@ -4,7 +4,7 @@
 // .prisma-btn with variants, sizes, states
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-btn {
   display: inline-flex;
@@ -45,8 +45,13 @@
     height: $spacing-5;
     flex-shrink: 0;
 
-    &--left  { margin-left: -$spacing-1; }
-    &--right { margin-right: -$spacing-1; }
+    &--left {
+      margin-left: -$spacing-1;
+    }
+
+    &--right {
+      margin-right: -$spacing-1;
+    }
   }
 
   // ── Loading state ──
@@ -56,7 +61,7 @@
     pointer-events: none;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       width: $spacing-5;
       height: $spacing-5;

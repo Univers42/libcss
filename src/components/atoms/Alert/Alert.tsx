@@ -35,9 +35,14 @@ export function Alert({
         <button
           type="button"
           className="alert__dismiss"
-          onClick={() => { setVisible(false); onDismiss?.(); }}
+          onClick={() => {
+            setVisible(false);
+            onDismiss?.();
+          }}
           aria-label="Dismiss"
-        >×</button>
+        >
+          ×
+        </button>
       )}
     </div>
   );

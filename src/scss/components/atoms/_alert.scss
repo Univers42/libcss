@@ -36,7 +36,10 @@
     font-size: 18px;
     line-height: 1.5;
   }
-  &__content { flex: 1; }
+
+  &__content {
+    flex: 1;
+  }
 
   &__title {
     display: block;
@@ -46,10 +49,16 @@
 
   &__dismiss {
     flex-shrink: 0;
-    background: none; border: none;
-    font-size: 18px; line-height: 1;
-    color: inherit; opacity: 0.6;
+    background: none;
+    border: none;
+    font-size: 18px;
+    line-height: 1;
+    color: inherit;
+    opacity: 0.6;
     cursor: pointer;
-    &:hover { opacity: 1; }
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }

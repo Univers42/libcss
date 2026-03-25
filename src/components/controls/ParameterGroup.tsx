@@ -21,9 +21,8 @@ export function ParameterGroup({ group, values, onChange }: ParameterGroupProps)
   const visibleParams = group.parameters.filter((p) => !p.hidden);
   if (visibleParams.length === 0) return null;
 
-  const styleClass = group.style && group.style !== 'default'
-    ? ` shell-inspector__group--${group.style}`
-    : '';
+  const styleClass =
+    group.style && group.style !== 'default' ? ` shell-inspector__group--${group.style}` : '';
 
   return (
     <div className={`shell-inspector__group${styleClass}`}>
@@ -33,12 +32,12 @@ export function ParameterGroup({ group, values, onChange }: ParameterGroupProps)
         onClick={() => setCollapsed(!collapsed)}
         aria-expanded={!collapsed}
       >
-        {group.icon && (
-          <span className="shell-inspector__group-icon">{group.icon}</span>
-        )}
+        {group.icon && <span className="shell-inspector__group-icon">{group.icon}</span>}
         <h4 className="shell-inspector__group-title">{group.label}</h4>
         <span className="shell-inspector__group-count">{visibleParams.length}</span>
-        <span className={`shell-inspector__group-chevron${collapsed ? ' shell-inspector__group-chevron--collapsed' : ''}`}>
+        <span
+          className={`shell-inspector__group-chevron${collapsed ? ' shell-inspector__group-chevron--collapsed' : ''}`}
+        >
           ▾
         </span>
       </button>

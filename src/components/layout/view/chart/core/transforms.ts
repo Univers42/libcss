@@ -87,11 +87,7 @@ export function processScatterData(config: ChartConfig): ProcessedScatterPoint[]
     dp = dp.sort(xAxis.field, xAxis.sort);
   }
 
-  return dp.toScatterPoints(
-    xAxis?.field ?? 'x',
-    yAxis?.field ?? 'y',
-    categoryField,
-  );
+  return dp.toScatterPoints(xAxis?.field ?? 'x', yAxis?.field ?? 'y', categoryField);
 }
 
 /** Get all unique group keys from grouped data. */

@@ -19,10 +19,14 @@ interface ColorInputProps {
 
 function displayValue(color: ColorState, fmt: Format): string {
   switch (fmt) {
-    case 'hex': return color.hex;
-    case 'rgb': return formatRgb(color.rgb);
-    case 'hsl': return formatHsl(color.hsl);
-    case 'cmyk': return formatCmyk(color.cmyk);
+    case 'hex':
+      return color.hex;
+    case 'rgb':
+      return formatRgb(color.rgb);
+    case 'hsl':
+      return formatHsl(color.hsl);
+    case 'cmyk':
+      return formatCmyk(color.cmyk);
   }
 }
 
@@ -64,10 +68,17 @@ export const ColorInput = memo(function ColorInput({ color, onHexChange }: Color
         type="text"
         value={editing ? draft : displayValue(color, format)}
         readOnly={format !== 'hex'}
-        onFocus={() => { if (format === 'hex') { setEditing(true); setDraft(color.hex); } }}
+        onFocus={() => {
+          if (format === 'hex') {
+            setEditing(true);
+            setDraft(color.hex);
+          }
+        }}
         onBlur={commit}
         onChange={(e) => setDraft(e.target.value)}
-        onKeyDown={(e) => { if (e.key === 'Enter') commit(); }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') commit();
+        }}
         spellCheck={false}
       />
 

@@ -13,10 +13,13 @@ export function useThrottle<T>(value: T, interval = 200): T {
       lastUpdated.current = now;
       setThrottled(value);
     } else {
-      const timer = setTimeout(() => {
-        lastUpdated.current = Date.now();
-        setThrottled(value);
-      }, interval - (now - lastUpdated.current));
+      const timer = setTimeout(
+        () => {
+          lastUpdated.current = Date.now();
+          setThrottled(value);
+        },
+        interval - (now - lastUpdated.current),
+      );
       return () => clearTimeout(timer);
     }
   }, [value, interval]);

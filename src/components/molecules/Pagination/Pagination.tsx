@@ -12,7 +12,13 @@ function range(start: number, end: number): number[] {
   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
 
-export function Pagination({ page, totalPages, onChange, siblings = 1, className }: PaginationProps) {
+export function Pagination({
+  page,
+  totalPages,
+  onChange,
+  siblings = 1,
+  className,
+}: PaginationProps) {
   const pages = useMemo(() => {
     const totalPageNumbers = siblings * 2 + 5;
     if (totalPages <= totalPageNumbers) return range(1, totalPages);
@@ -35,17 +41,31 @@ export function Pagination({ page, totalPages, onChange, siblings = 1, className
 
   return (
     <nav className={`pagination${className ? ` ${className}` : ''}`} aria-label="Pagination">
-      <button className="pagination__btn" disabled={page <= 1} onClick={() => onChange(page - 1)}>‹</button>
+      <button className="pagination__btn" disabled={page <= 1} onClick={() => onChange(page - 1)}>
+        ‹
+      </button>
       {pages.map((p, i) =>
         p < 0 ? (
-          <span key={`dots-${i}`} className="pagination__dots">…</span>
+          <span key={`dots-${i}`} className="pagination__dots">
+            …
+          </span>
         ) : (
-          <button key={p} className={`pagination__btn${p === page ? ' pagination__btn--active' : ''}`} onClick={() => onChange(p)}>
+          <button
+            key={p}
+            className={`pagination__btn${p === page ? ' pagination__btn--active' : ''}`}
+            onClick={() => onChange(p)}
+          >
             {p}
           </button>
         ),
       )}
-      <button className="pagination__btn" disabled={page >= totalPages} onClick={() => onChange(page + 1)}>›</button>
+      <button
+        className="pagination__btn"
+        disabled={page >= totalPages}
+        onClick={() => onChange(page + 1)}
+      >
+        ›
+      </button>
     </nav>
   );
 }

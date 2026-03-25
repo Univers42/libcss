@@ -5,13 +5,10 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
   indeterminate?: boolean;
 }
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox({
-  label,
-  indeterminate = false,
-  className,
-  id,
-  ...rest
-}, ref) {
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
+  { label, indeterminate = false, className, id, ...rest },
+  ref,
+) {
   const inputId = id || (label ? `cb-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
   return (

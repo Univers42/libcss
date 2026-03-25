@@ -4,7 +4,7 @@
 // .prisma-tabs  tab list + panels, line & pills
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-tabs {
   // ── Configurator ──
@@ -49,8 +49,9 @@
     color: var(--prisma-tabs-text-color);
     white-space: nowrap;
     cursor: pointer;
-    transition: color $duration-fast $ease-default,
-                background $duration-fast $ease-default;
+    transition:
+      color $duration-fast $ease-default,
+      background $duration-fast $ease-default;
 
     &:hover {
       color: var(--prisma-tabs-hover-color);
@@ -66,7 +67,7 @@
       background: var(--prisma-tabs-active-bg);
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -$border-width-thin;
         left: 0;

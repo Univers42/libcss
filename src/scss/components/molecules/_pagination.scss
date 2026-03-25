@@ -7,7 +7,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 32px; height: 32px;
+    min-width: 32px;
+    height: 32px;
     padding: 0 6px;
     border: 1px solid var(--border-color, #e2e8f0);
     border-radius: 6px;
@@ -15,9 +16,13 @@
     color: var(--text-primary, #334155);
     font-size: 13px;
     cursor: pointer;
-    transition: background 0.12s, border-color 0.12s;
+    transition:
+      background 0.12s,
+      border-color 0.12s;
 
-    &:hover:not(:disabled) { background: var(--hover-color, #f1f5f9); }
+    &:hover:not(:disabled) {
+      background: var(--hover-color, #f1f5f9);
+    }
 
     &:disabled {
       opacity: 0.4;

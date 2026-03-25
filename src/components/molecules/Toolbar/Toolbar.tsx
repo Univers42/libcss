@@ -1,12 +1,15 @@
 import type { ToolbarProps } from './Toolbar.types';
 
-export function Toolbar({ items, onAction, size = 'md', vertical = false, className }: ToolbarProps) {
-  const cls = [
-    'toolbar',
-    `toolbar--${size}`,
-    vertical && 'toolbar--vertical',
-    className,
-  ].filter(Boolean).join(' ');
+export function Toolbar({
+  items,
+  onAction,
+  size = 'md',
+  vertical = false,
+  className,
+}: ToolbarProps) {
+  const cls = ['toolbar', `toolbar--${size}`, vertical && 'toolbar--vertical', className]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={cls} role="toolbar">

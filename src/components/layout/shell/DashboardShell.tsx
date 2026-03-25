@@ -41,10 +41,7 @@ export function DashboardShell({
     .join(' ');
 
   return (
-    <div
-      className={rootClass}
-      style={{ '--shell-sidebar-w': sidebarWidth } as React.CSSProperties}
-    >
+    <div className={rootClass} style={{ '--shell-sidebar-w': sidebarWidth } as React.CSSProperties}>
       {/* Sidebar */}
       <aside className="shell-dashboard__sidebar">
         {brand && <div className="shell-dashboard__brand">{brand}</div>}
@@ -54,10 +51,7 @@ export function DashboardShell({
 
       {/* Mobile overlay */}
       {sidebarOpen && (
-        <div
-          className="shell-dashboard__overlay"
-          onClick={() => setSidebarOpen(false)}
-        />
+        <div className="shell-dashboard__overlay" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* Header */}
@@ -76,14 +70,10 @@ export function DashboardShell({
       </header>
 
       {/* Main */}
-      <main className="shell-dashboard__main">
-        {children}
-      </main>
+      <main className="shell-dashboard__main">{children}</main>
 
       {/* Optional aside panel */}
-      {aside && (
-        <aside className="shell-dashboard__aside">{aside}</aside>
-      )}
+      {aside && <aside className="shell-dashboard__aside">{aside}</aside>}
     </div>
   );
 }

@@ -68,12 +68,7 @@ export function DefaultTooltipContent({
 }) {
   return (
     <div className={`${CLS}__tooltip-content`}>
-      {color && (
-        <span
-          className={`${CLS}__tooltip-swatch`}
-          style={{ backgroundColor: color }}
-        />
-      )}
+      {color && <span className={`${CLS}__tooltip-swatch`} style={{ backgroundColor: color }} />}
       <div className={`${CLS}__tooltip-body`}>
         {group && <span className={`${CLS}__tooltip-group`}>{group}</span>}
         <span className={`${CLS}__tooltip-label`}>{label}</span>

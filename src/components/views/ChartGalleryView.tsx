@@ -62,9 +62,7 @@ export function ChartGalleryView({
       <div className="shell-gallery__grid">
         {items.map((item) => (
           <div key={item.id} className="shell-gallery__card">
-            <div className="shell-shell-gallery__card-chart">
-              {renderChart(item.config)}
-            </div>
+            <div className="shell-shell-gallery__card-chart">{renderChart(item.config)}</div>
             <div className="shell-shell-gallery__card-info">
               <h3 className="shell-shell-gallery__card-title">{item.title}</h3>
               <p className="shell-shell-gallery__card-desc">{item.description}</p>

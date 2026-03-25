@@ -37,13 +37,7 @@ export function ReferenceLine({
         opacity={0.7}
       />
       {label && (
-        <text
-          x={innerWidth + 4}
-          y={y + 4}
-          fill={color}
-          fontSize="11px"
-          fontWeight={500}
-        >
+        <text x={innerWidth + 4} y={y + 4} fill={color} fontSize="11px" fontWeight={500}>
           {label}
         </text>
       )}

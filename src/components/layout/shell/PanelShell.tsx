@@ -50,10 +50,12 @@ export function PanelShell({
   return (
     <div
       className={rootClass}
-      style={{
-        '--shell-left-w': leftWidth,
-        '--shell-right-w': rightWidth,
-      } as React.CSSProperties}
+      style={
+        {
+          '--shell-left-w': leftWidth,
+          '--shell-right-w': rightWidth,
+        } as React.CSSProperties
+      }
     >
       {/* Header / toolbar bar */}
       <header className="shell-panel__header">
@@ -70,9 +72,7 @@ export function PanelShell({
             </button>
           )}
         </div>
-        <div className="shell-panel__header-center">
-          {toolbar ?? header}
-        </div>
+        <div className="shell-panel__header-center">{toolbar ?? header}</div>
         <div className="shell-panel__header-right">
           {rightPanel && (
             <button
@@ -89,20 +89,14 @@ export function PanelShell({
 
       {/* Body: left + main + right */}
       <div className="shell-panel__body">
-        {leftPanel && (
-          <aside className="shell-panel__left">{leftPanel}</aside>
-        )}
+        {leftPanel && <aside className="shell-panel__left">{leftPanel}</aside>}
 
         <div className="shell-panel__center">
           <main className="shell-panel__main">{children}</main>
-          {showBottom && bottomPanel && (
-            <div className="shell-panel__bottom">{bottomPanel}</div>
-          )}
+          {showBottom && bottomPanel && <div className="shell-panel__bottom">{bottomPanel}</div>}
         </div>
 
-        {rightPanel && (
-          <aside className="shell-panel__right">{rightPanel}</aside>
-        )}
+        {rightPanel && <aside className="shell-panel__right">{rightPanel}</aside>}
       </div>
     </div>
   );

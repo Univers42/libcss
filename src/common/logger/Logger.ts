@@ -26,6 +26,7 @@ const LEVEL_ICONS: Record<LogLevel, string> = {
   error: '✖',
 };
 
+/* eslint-disable no-console */
 const defaultSink: LogSink = (entry) => {
   const prefix = `[${entry.namespace}] ${LEVEL_ICONS[entry.level]}`;
   const method = entry.level === 'debug' ? 'log' : entry.level;
@@ -36,6 +37,7 @@ const defaultSink: LogSink = (entry) => {
     console[method](prefix, entry.message);
   }
 };
+/* eslint-enable no-console */
 
 /**
  * Create a namespaced logger instance.

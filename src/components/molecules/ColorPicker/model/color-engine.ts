@@ -8,10 +8,30 @@
 
 // ─── Data structures ───────────────────────────────────
 
-export interface RGBA { r: number; g: number; b: number; a: number }
-export interface HSVA { h: number; s: number; v: number; a: number }
-export interface HSLA { h: number; s: number; l: number; a: number }
-export interface CMYK { c: number; m: number; y: number; k: number }
+export interface RGBA {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+}
+export interface HSVA {
+  h: number;
+  s: number;
+  v: number;
+  a: number;
+}
+export interface HSLA {
+  h: number;
+  s: number;
+  l: number;
+  a: number;
+}
+export interface CMYK {
+  c: number;
+  m: number;
+  y: number;
+  k: number;
+}
 
 export interface ColorState {
   hex: string;
@@ -24,7 +44,10 @@ export interface ColorState {
 // ─── Clamp helpers ─────────────────────────────────────
 
 const clamp = (v: number, min: number, max: number) => Math.min(Math.max(v, min), max);
-const round = (v: number, d = 0) => { const m = 10 ** d; return Math.round(v * m) / m; };
+const round = (v: number, d = 0) => {
+  const m = 10 ** d;
+  return Math.round(v * m) / m;
+};
 
 // ─── HEX ↔ RGB ────────────────────────────────────────
 
@@ -49,8 +72,11 @@ export function rgbaToHex(c: RGBA, includeAlpha = false): string {
 // ─── RGB ↔ HSV ─────────────────────────────────────────
 
 export function rgbaToHsva(c: RGBA): HSVA {
-  const r = c.r / 255, g = c.g / 255, b = c.b / 255;
-  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const r = c.r / 255,
+    g = c.g / 255,
+    b = c.b / 255;
+  const max = Math.max(r, g, b),
+    min = Math.min(r, g, b);
   const d = max - min;
   let h = 0;
   if (d !== 0) {
@@ -64,7 +90,8 @@ export function rgbaToHsva(c: RGBA): HSVA {
 
 export function hsvaToRgba(c: HSVA): RGBA {
   const h = c.h / 60;
-  const s = c.s, v = c.v;
+  const s = c.s,
+    v = c.v;
   const i = Math.floor(h) % 6;
   const f = h - Math.floor(h);
   const p = v * (1 - s);
@@ -72,12 +99,36 @@ export function hsvaToRgba(c: HSVA): RGBA {
   const t = v * (1 - s * (1 - f));
   let r: number, g: number, b2: number;
   switch (i) {
-    case 0: r = v; g = t; b2 = p; break;
-    case 1: r = q; g = v; b2 = p; break;
-    case 2: r = p; g = v; b2 = t; break;
-    case 3: r = p; g = q; b2 = v; break;
-    case 4: r = t; g = p; b2 = v; break;
-    default: r = v; g = p; b2 = q; break;
+    case 0:
+      r = v;
+      g = t;
+      b2 = p;
+      break;
+    case 1:
+      r = q;
+      g = v;
+      b2 = p;
+      break;
+    case 2:
+      r = p;
+      g = v;
+      b2 = t;
+      break;
+    case 3:
+      r = p;
+      g = q;
+      b2 = v;
+      break;
+    case 4:
+      r = t;
+      g = p;
+      b2 = v;
+      break;
+    default:
+      r = v;
+      g = p;
+      b2 = q;
+      break;
   }
   return {
     r: clamp(Math.round(r * 255), 0, 255),
@@ -91,7 +142,7 @@ export function hsvaToRgba(c: HSVA): RGBA {
 
 export function hsvaToHsla(c: HSVA): HSLA {
   const l = c.v * (1 - c.s / 2);
-  const s = (l === 0 || l === 1) ? 0 : (c.v - l) / Math.min(l, 1 - l);
+  const s = l === 0 || l === 1 ? 0 : (c.v - l) / Math.min(l, 1 - l);
   return { h: c.h, s: round(s, 4), l: round(l, 4), a: c.a };
 }
 
@@ -104,7 +155,9 @@ export function hslaToHsva(c: HSLA): HSVA {
 // ─── RGB ↔ CMYK ────────────────────────────────────────
 
 export function rgbaToCmyk(c: RGBA): CMYK {
-  const r = c.r / 255, g = c.g / 255, b = c.b / 255;
+  const r = c.r / 255,
+    g = c.g / 255,
+    b = c.b / 255;
   const k = 1 - Math.max(r, g, b);
   if (k === 1) return { c: 0, m: 0, y: 0, k: 1 };
   return {
@@ -158,9 +211,7 @@ export function colorFromHsla(hsl: HSLA): ColorState {
 // ─── Formatting helpers ────────────────────────────────
 
 export function formatRgb(c: RGBA): string {
-  return c.a < 1
-    ? `rgba(${c.r}, ${c.g}, ${c.b}, ${round(c.a, 2)})`
-    : `rgb(${c.r}, ${c.g}, ${c.b})`;
+  return c.a < 1 ? `rgba(${c.r}, ${c.g}, ${c.b}, ${round(c.a, 2)})` : `rgb(${c.r}, ${c.g}, ${c.b})`;
 }
 
 export function formatHsl(c: HSLA): string {

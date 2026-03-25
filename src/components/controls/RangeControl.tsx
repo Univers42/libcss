@@ -13,7 +13,8 @@ export function RangeControl({ param, value, onChange }: RangeControlProps) {
       <label className="shell-control__label">
         {param.label}
         <span className="shell-control__value">
-          {num}{param.unit ? ` ${param.unit}` : ''}
+          {num}
+          {param.unit ? ` ${param.unit}` : ''}
         </span>
       </label>
       <input

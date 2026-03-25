@@ -1,0 +1,6 @@
+dist/
+node_modules/
+studio/
+tmp/
+*.css
+*.map

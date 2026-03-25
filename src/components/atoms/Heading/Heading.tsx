@@ -1,10 +1,14 @@
-import type { JSX, ReactNode } from 'react';
+import type { JSX } from 'react';
 import { cn } from '../../lib/cn';
 import { DEFAULT_HEADING_LEVEL } from './Heading.constants';
 import type { HeadingProps, HeadingLevel } from './Heading.types';
 
 const TAG_MAP: Record<HeadingLevel, keyof JSX.IntrinsicElements> = {
-  1: 'h1', 2: 'h2', 3: 'h3', 4: 'h4', 5: 'h5',
+  1: 'h1',
+  2: 'h2',
+  3: 'h3',
+  4: 'h4',
+  5: 'h5',
 };
 
 export function Heading({

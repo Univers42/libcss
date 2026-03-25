@@ -8,17 +8,30 @@ function initialsColor(text: string): string {
   return `hsl(${hue}, 55%, 55%)`;
 }
 
-export function Avatar({ src, alt = '', initials, size = 'md', shape = 'circle', status, className }: AvatarProps) {
+export function Avatar({
+  src,
+  alt = '',
+  initials,
+  size = 'md',
+  shape = 'circle',
+  status,
+  className,
+}: AvatarProps) {
   const [imgError, setImgError] = useState(false);
   const showImage = src && !imgError;
-  const cls = ['avatar', `avatar--${size}`, `avatar--${shape}`, className].filter(Boolean).join(' ');
+  const cls = ['avatar', `avatar--${size}`, `avatar--${shape}`, className]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={cls}>
       {showImage ? (
         <img className="avatar__img" src={src} alt={alt} onError={() => setImgError(true)} />
       ) : (
-        <span className="avatar__initials" style={{ background: initialsColor(initials || alt || '?') }}>
+        <span
+          className="avatar__initials"
+          style={{ background: initialsColor(initials || alt || '?') }}
+        >
           {(initials || alt || '?').slice(0, 2).toUpperCase()}
         </span>
       )}

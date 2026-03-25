@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useMemo } from 'react';
 import type { TagsParameter } from './types';
 
 interface TagsControlProps {
@@ -8,11 +8,11 @@ interface TagsControlProps {
 }
 
 export function TagsControl({ param, value, onChange }: TagsControlProps) {
-  const tags: string[] = Array.isArray(value)
-    ? value
-    : Array.isArray(param.defaultValue)
-      ? param.defaultValue
-      : [];
+  const tags: string[] = useMemo(
+    () =>
+      Array.isArray(value) ? value : Array.isArray(param.defaultValue) ? param.defaultValue : [],
+    [value, param.defaultValue],
+  );
 
   const [input, setInput] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -35,7 +35,10 @@ export function TagsControl({ param, value, onChange }: TagsControlProps) {
 
   const removeTag = useCallback(
     (tag: string) => {
-      onChange(param.key, tags.filter((t) => t !== tag));
+      onChange(
+        param.key,
+        tags.filter((t) => t !== tag),
+      );
     },
     [tags, param.key, onChange],
   );
@@ -58,7 +61,9 @@ export function TagsControl({ param, value, onChange }: TagsControlProps) {
       <label className="shell-control__label">
         {param.label}
         {param.maxTags && (
-          <span className="shell-control__value">{tags.length}/{param.maxTags}</span>
+          <span className="shell-control__value">
+            {tags.length}/{param.maxTags}
+          </span>
         )}
       </label>
       <div className="shell-control__tags-box">

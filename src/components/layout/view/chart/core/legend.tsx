@@ -26,14 +26,8 @@ export function ChartLegend({ items, textColor }: ChartLegendProps) {
           className={`${CLS}__legend-item`}
           style={{ marginRight: LEGEND_ITEM_GAP }}
         >
-          <span
-            className={`${CLS}__legend-swatch`}
-            style={{ backgroundColor: item.color }}
-          />
-          <span
-            className={`${CLS}__legend-label`}
-            style={{ color: textColor }}
-          >
+          <span className={`${CLS}__legend-swatch`} style={{ backgroundColor: item.color }} />
+          <span className={`${CLS}__legend-label`} style={{ color: textColor }}>
             {item.label}
           </span>
         </span>

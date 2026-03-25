@@ -4,7 +4,12 @@
  */
 
 import type { ScaleLinear } from 'd3-scale';
-import type { ProcessedScatterPoint, ChartDimensions, ChartPalette, ChartStyle } from '../Chart.types';
+import type {
+  ProcessedScatterPoint,
+  ChartDimensions,
+  ChartPalette,
+  ChartStyle,
+} from '../Chart.types';
 import { CLS, ENTER_DELAY_PER_ITEM } from '../Chart.constants';
 
 interface ScatterChartProps {
@@ -21,7 +26,7 @@ interface ScatterChartProps {
 
 export function ScatterChart({
   data,
-  dimensions,
+  dimensions: _dimensions,
   xScale,
   yScale,
   style,
@@ -51,7 +56,12 @@ export function ScatterChart({
             onMouseLeave={onPointLeave}
             style={
               animate
-                ? { opacity: 0, transform: 'scale(0)', transformOrigin: `${cx}px ${cy}px`, animation: `prisma-chart-pop ${animationDuration}ms ease-out ${i * ENTER_DELAY_PER_ITEM}ms forwards` }
+                ? {
+                    opacity: 0,
+                    transform: 'scale(0)',
+                    transformOrigin: `${cx}px ${cy}px`,
+                    animation: `prisma-chart-pop ${animationDuration}ms ease-out ${i * ENTER_DELAY_PER_ITEM}ms forwards`,
+                  }
                 : undefined
             }
           />

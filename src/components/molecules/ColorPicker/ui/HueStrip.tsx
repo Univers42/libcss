@@ -13,7 +13,11 @@ interface HueStripProps {
   direction?: 'horizontal' | 'vertical';
 }
 
-export const HueStrip = memo(function HueStrip({ hue, onChange, direction = 'horizontal' }: HueStripProps) {
+export const HueStrip = memo(function HueStrip({
+  hue,
+  onChange,
+  direction = 'horizontal',
+}: HueStripProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const rafId = useRef(0);
@@ -29,9 +33,10 @@ export const HueStrip = memo(function HueStrip({ hue, onChange, direction = 'hor
         const el = ref.current;
         if (!el) return;
         const rect = el.getBoundingClientRect();
-        const pct = dirRef.current === 'horizontal'
-          ? (clientX - rect.left) / rect.width
-          : (clientY - rect.top) / rect.height;
+        const pct =
+          dirRef.current === 'horizontal'
+            ? (clientX - rect.left) / rect.width
+            : (clientY - rect.top) / rect.height;
         onChangeRef.current(Math.max(0, Math.min(360, pct * 360)));
       });
     },
@@ -64,12 +69,11 @@ export const HueStrip = memo(function HueStrip({ hue, onChange, direction = 'hor
       className={`cpk-hue cpk-hue--${direction}`}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
-      onPointerUp={() => { dragging.current = false; }}
+      onPointerUp={() => {
+        dragging.current = false;
+      }}
     >
-      <div
-        className="cpk-hue__thumb"
-        style={isH ? { left: `${pct}%` } : { top: `${pct}%` }}
-      />
+      <div className="cpk-hue__thumb" style={isH ? { left: `${pct}%` } : { top: `${pct}%` }} />
     </div>
   );
 });

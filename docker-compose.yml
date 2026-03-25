@@ -25,6 +25,7 @@ services:
       target: lint
     volumes:
       - ./src:/libcss/src:ro
+      - ./.stylelintrc.json:/libcss/.stylelintrc.json:ro
     profiles: ["lint"]
 
   # ── Generate docs ─────────────────────────────────────

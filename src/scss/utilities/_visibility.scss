@@ -4,7 +4,7 @@
 // Accessibility and display utilities.
 // ============================================
 
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 .prisma-sr-only {
   @include sr-only;
@@ -42,11 +42,21 @@
 }
 
 // Text utilities
-.prisma-truncate { @include truncate; }
+.prisma-truncate {
+  @include truncate;
+}
 
-.prisma-text-center { text-align: center; }
-.prisma-text-left   { text-align: left; }
-.prisma-text-right  { text-align: right; }
+.prisma-text-center {
+  text-align: center;
+}
+
+.prisma-text-left {
+  text-align: left;
+}
+
+.prisma-text-right {
+  text-align: right;
+}
 
 // Focus
 .prisma-focus-ring {

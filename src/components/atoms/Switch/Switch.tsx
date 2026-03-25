@@ -5,11 +5,17 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   size?: 'sm' | 'md' | 'lg';
 }
 
-export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch({ label, size = 'md', className, id, ...rest }, ref) {
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
+  { label, size = 'md', className, id, ...rest },
+  ref,
+) {
   const inputId = id || (label ? `sw-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
   return (
-    <label className={`switch switch--${size}${className ? ` ${className}` : ''}`} htmlFor={inputId}>
+    <label
+      className={`switch switch--${size}${className ? ` ${className}` : ''}`}
+      htmlFor={inputId}
+    >
       <input ref={ref} type="checkbox" className="switch__input" id={inputId} {...rest} />
       <span className="switch__track">
         <span className="switch__thumb" />

@@ -4,7 +4,7 @@
 // .prisma-strength-bar with level indicators
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-strength-bar {
   display: flex;
@@ -27,9 +27,17 @@
     transition: background-color $duration-normal $ease-default;
 
     &--active {
-      &-1 { background: var(--prisma-data-error); }
-      &-2 { background: var(--prisma-data-warning); }
-      &-3 { background: var(--prisma-data-success); }
+      &-1 {
+        background: var(--prisma-data-error);
+      }
+
+      &-2 {
+        background: var(--prisma-data-warning);
+      }
+
+      &-3 {
+        background: var(--prisma-data-success);
+      }
     }
   }
 
@@ -39,8 +47,16 @@
     text-align: right;
     transition: color $duration-normal $ease-default;
 
-    &--1 { color: var(--prisma-data-error); }
-    &--2 { color: var(--prisma-data-warning); }
-    &--3 { color: var(--prisma-data-success); }
+    &--1 {
+      color: var(--prisma-data-error);
+    }
+
+    &--2 {
+      color: var(--prisma-data-warning);
+    }
+
+    &--3 {
+      color: var(--prisma-data-success);
+    }
   }
 }

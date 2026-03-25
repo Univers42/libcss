@@ -4,7 +4,7 @@
 // .prisma-list  ordered, unordered, to-do
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-list {
   // ── Configurator ──
@@ -45,7 +45,7 @@
       counter-increment: prisma-list-counter;
 
       &::before {
-        content: counter(prisma-list-counter) '.';
+        content: counter(prisma-list-counter) ".";
         position: absolute;
         left: -$spacing-5;
         color: var(--prisma-list-marker-color);
@@ -60,7 +60,7 @@
   // ── Unordered ──
   &--unordered {
     .prisma-list__item::before {
-      content: '';
+      content: "";
       position: absolute;
       left: -$spacing-4;
       top: 0.65em;
@@ -102,7 +102,7 @@
       border-color: var(--prisma-accent);
 
       &::after {
-        content: '✓';
+        content: "✓";
         font-size: $font-size-xs;
         color: var(--prisma-bg-primary);
         font-weight: $weight-bold;

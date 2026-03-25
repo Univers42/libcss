@@ -11,7 +11,11 @@ interface SwatchBarProps {
   onSelect: (hex: string) => void;
 }
 
-export const SwatchBar = memo(function SwatchBar({ swatches, currentHex, onSelect }: SwatchBarProps) {
+export const SwatchBar = memo(function SwatchBar({
+  swatches,
+  currentHex,
+  onSelect,
+}: SwatchBarProps) {
   return (
     <div className="cpk-swatches">
       {swatches.map((hex) => (

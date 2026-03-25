@@ -4,7 +4,7 @@
 // .prisma-equation  block & inline math
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-equation {
   // ── Configurator ──
@@ -29,8 +29,9 @@
   line-height: $leading-relaxed;
   text-align: center;
   overflow-x: auto;
-  transition: background $duration-base $ease-default,
-              border-color $duration-base $ease-default;
+  transition:
+    background $duration-base $ease-default,
+    border-color $duration-base $ease-default;
 
   // ── KaTeX / MathJax container ──
   &__content {

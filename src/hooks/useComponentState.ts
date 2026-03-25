@@ -7,9 +7,7 @@ import { deepClone } from '../common';
  */
 export function useComponentState(defaultProps: Record<string, unknown>) {
   const defaultRef = useRef(defaultProps);
-  const [props, setProps] = useState<Record<string, unknown>>(() =>
-    deepClone(defaultProps),
-  );
+  const [props, setProps] = useState<Record<string, unknown>>(() => deepClone(defaultProps));
 
   const setProp = useCallback((key: string, value: unknown) => {
     setProps((prev) => ({ ...prev, [key]: value }));

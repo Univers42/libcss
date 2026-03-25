@@ -3,7 +3,14 @@
  * @description Single / multi-series line chart with optional curve interpolation.
  */
 
-import { line, curveMonotoneX, curveLinear, curveStep, curveNatural, curveCatmullRom } from 'd3-shape';
+import {
+  line,
+  curveMonotoneX,
+  curveLinear,
+  curveStep,
+  curveNatural,
+  curveCatmullRom,
+} from 'd3-shape';
 import type { ScaleBand, ScaleLinear } from 'd3-scale';
 import type {
   ProcessedDataPoint,
@@ -78,7 +85,15 @@ export function LineChart({
           fill="none"
           stroke={colorScale('default')}
           strokeWidth={2}
-          style={animate ? { strokeDasharray: innerWidth, strokeDashoffset: innerWidth, animation: `prisma-chart-draw ${animationDuration}ms ease-out forwards` } : undefined}
+          style={
+            animate
+              ? {
+                  strokeDasharray: innerWidth,
+                  strokeDashoffset: innerWidth,
+                  animation: `prisma-chart-draw ${animationDuration}ms ease-out forwards`,
+                }
+              : undefined
+          }
         />
         {data.map((pt, i) => (
           <circle
@@ -90,7 +105,14 @@ export function LineChart({
             fill={colorScale('default')}
             onMouseEnter={(e) => onPointHover?.(pt.label, null, pt.value, e.clientX, e.clientY)}
             onMouseLeave={onPointLeave}
-            style={animate ? { opacity: 0, animation: `prisma-chart-fade-in 200ms ease-out ${i * ENTER_DELAY_PER_ITEM}ms forwards` } : undefined}
+            style={
+              animate
+                ? {
+                    opacity: 0,
+                    animation: `prisma-chart-fade-in 200ms ease-out ${i * ENTER_DELAY_PER_ITEM}ms forwards`,
+                  }
+                : undefined
+            }
           />
         ))}
       </g>
@@ -123,7 +145,15 @@ export function LineChart({
               fill="none"
               stroke={colorScale(gk)}
               strokeWidth={2}
-              style={animate ? { strokeDasharray: innerWidth, strokeDashoffset: innerWidth, animation: `prisma-chart-draw ${animationDuration}ms ease-out ${ki * 100}ms forwards` } : undefined}
+              style={
+                animate
+                  ? {
+                      strokeDasharray: innerWidth,
+                      strokeDashoffset: innerWidth,
+                      animation: `prisma-chart-draw ${animationDuration}ms ease-out ${ki * 100}ms forwards`,
+                    }
+                  : undefined
+              }
             />
             {points.map((pt, pi) => (
               <circle
@@ -135,7 +165,14 @@ export function LineChart({
                 fill={colorScale(gk)}
                 onMouseEnter={(e) => onPointHover?.(pt.label, gk, pt.value, e.clientX, e.clientY)}
                 onMouseLeave={onPointLeave}
-                style={animate ? { opacity: 0, animation: `prisma-chart-fade-in 200ms ease-out ${(ki * points.length + pi) * ENTER_DELAY_PER_ITEM}ms forwards` } : undefined}
+                style={
+                  animate
+                    ? {
+                        opacity: 0,
+                        animation: `prisma-chart-fade-in 200ms ease-out ${(ki * points.length + pi) * ENTER_DELAY_PER_ITEM}ms forwards`,
+                      }
+                    : undefined
+                }
               />
             ))}
           </g>

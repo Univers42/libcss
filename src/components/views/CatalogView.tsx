@@ -16,7 +16,11 @@ export interface OverviewViewProps {
 
 const CATEGORIES: ComponentCategory[] = ['atoms', 'molecules', 'media', 'layouts'];
 
-export function OverviewView({ onSelectCategory, onSelectComponent, onOpenGallery }: OverviewViewProps) {
+export function OverviewView({
+  onSelectCategory,
+  onSelectComponent,
+  onOpenGallery,
+}: OverviewViewProps) {
   const grouped = useMemo(() => registry.getGroupedByCategory(), []);
 
   return (
@@ -24,8 +28,8 @@ export function OverviewView({ onSelectCategory, onSelectComponent, onOpenGaller
       <div className="shell-overview__hero">
         <h1 className="shell-overview__title">Prismatica Design System</h1>
         <p className="shell-overview__subtitle">
-          Browse, customize, and preview every component. Pick a category from the
-          sidebar or click any card below.
+          Browse, customize, and preview every component. Pick a category from the sidebar or click
+          any card below.
         </p>
         <div className="shell-shell-overview__stats">
           <div className="shell-overview__stat">
@@ -45,15 +49,14 @@ export function OverviewView({ onSelectCategory, onSelectComponent, onOpenGaller
         </div>
       </div>
 
-      <button
-        type="button"
-        className="shell-overview__cta"
-        onClick={onOpenGallery}
-      >
+      <button type="button" className="shell-overview__cta" onClick={onOpenGallery}>
         <span className="shell-overview__cta-icon">📊</span>
         <div className="shell-overview__cta-text">
           <h3>Chart Gallery</h3>
-          <p>Explore all 10 chart types with realistic data — bar, line, area, pie, scatter, combo and more.</p>
+          <p>
+            Explore all 10 chart types with realistic data — bar, line, area, pie, scatter, combo
+            and more.
+          </p>
         </div>
         <span className="shell-overview__cta-arrow">→</span>
       </button>
@@ -86,9 +89,7 @@ export function OverviewView({ onSelectCategory, onSelectComponent, onOpenGaller
                   className="shell-card"
                   onClick={() => onSelectComponent(entry.id, cat)}
                 >
-                  <div className="shell-card__preview">
-                    {entry.render(entry.defaultProps)}
-                  </div>
+                  <div className="shell-card__preview">{entry.render(entry.defaultProps)}</div>
                   <div className="shell-card__info">
                     <h3 className="shell-card__name">{entry.name}</h3>
                     <p className="shell-card__desc">{entry.description}</p>

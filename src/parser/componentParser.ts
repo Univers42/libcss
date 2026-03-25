@@ -15,13 +15,9 @@
  * 4. Cross-references with the component registry for registration status
  */
 
-import type { ComponentCategory } from '../core/types';
+import type { ComponentCategory, VariantDimensionDef } from '../core/types';
 import { registry } from '../core/registry';
-import type {
-  ComponentManifestEntry,
-  ComponentManifest,
-  GlobModule,
-} from './types';
+import type { ComponentManifestEntry, ComponentManifest, GlobModule } from './types';
 
 // ─── Helpers ───────────────────────────────────────────
 
@@ -56,11 +52,7 @@ function deriveTags(name: string, category: ComponentCategory): string[] {
 
 /** Check if a value looks like a variant array constant (readonly string[]). */
 function isVariantArray(value: unknown): value is readonly string[] {
-  return (
-    Array.isArray(value) &&
-    value.length > 0 &&
-    value.every((v) => typeof v === 'string')
-  );
+  return Array.isArray(value) && value.length > 0 && value.every((v) => typeof v === 'string');
 }
 
 // ─── Glob Patterns ─────────────────────────────────────
@@ -139,8 +131,8 @@ function extractVariants(mod: GlobModule): Record<string, readonly string[]> {
  */
 function inferVariantDimensions(
   variants: Record<string, readonly string[]>,
-): import('../core/types').VariantDimensionDef[] {
-  const dims: import('../core/types').VariantDimensionDef[] = [];
+): VariantDimensionDef[] {
+  const dims: VariantDimensionDef[] = [];
   for (const [constName, values] of Object.entries(variants)) {
     // Extract prop name from constant: BUTTON_VARIANTS → variant, BUTTON_SIZES → size
     const parts = constName.toLowerCase().split('_');

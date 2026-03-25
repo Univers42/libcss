@@ -18,17 +18,27 @@ export function Chip({
     onClick && 'chip--clickable',
     disabled && 'chip--disabled',
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <span className={cls} onClick={!disabled ? onClick : undefined} role={onClick ? 'button' : undefined} tabIndex={onClick ? 0 : undefined}>
+    <span
+      className={cls}
+      onClick={!disabled ? onClick : undefined}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+    >
       {icon && <span className="chip__icon">{icon}</span>}
       <span className="chip__label">{label}</span>
       {removable && (
         <button
           type="button"
           className="chip__remove"
-          onClick={(e) => { e.stopPropagation(); onRemove?.(); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onRemove?.();
+          }}
           disabled={disabled}
           aria-label={`Remove ${label}`}
         >

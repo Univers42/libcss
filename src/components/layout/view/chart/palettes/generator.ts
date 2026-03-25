@@ -13,10 +13,7 @@ import type { ChartPalette } from '../Chart.types';
  * Expand a base set of colors to `count` colors by interpolating
  * between adjacent base colors. Keeps the original colors and fills gaps.
  */
-export function generatePaletteColors(
-  baseColors: readonly string[],
-  count: number,
-): string[] {
+export function generatePaletteColors(baseColors: readonly string[], count: number): string[] {
   if (count <= baseColors.length) {
     return baseColors.slice(0, count) as string[];
   }
@@ -52,9 +49,7 @@ export function colorsAreSimilar(a: string, b: string, threshold = 30): boolean 
  * Given a palette, return a color accessor function that auto-expands
  * the palette if more colors are needed than defined.
  */
-export function createColorAccessor(
-  palette: ChartPalette,
-): (index: number) => string {
+export function createColorAccessor(palette: ChartPalette): (index: number) => string {
   const cache = new Map<number, string>();
 
   return (index: number): string => {

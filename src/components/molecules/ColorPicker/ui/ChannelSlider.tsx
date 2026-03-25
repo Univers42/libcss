@@ -71,8 +71,12 @@ export function ChannelSlider({
           e.currentTarget.setPointerCapture(e.pointerId);
           update(e.clientX);
         }}
-        onPointerMove={(e) => { if (dragging.current) update(e.clientX); }}
-        onPointerUp={() => { dragging.current = false; }}
+        onPointerMove={(e) => {
+          if (dragging.current) update(e.clientX);
+        }}
+        onPointerUp={() => {
+          dragging.current = false;
+        }}
       >
         <div className="cpk-channel__thumb" style={{ left: `${pct}%` }} />
       </div>

@@ -88,7 +88,14 @@ export function AreaChart({
           d={areaGen(data as ProcessedDataPoint[]) ?? ''}
           fill={fillColor}
           fillOpacity={0.25}
-          style={animate ? { opacity: 0, animation: `prisma-chart-fade-in ${animationDuration}ms ease-out forwards` } : undefined}
+          style={
+            animate
+              ? {
+                  opacity: 0,
+                  animation: `prisma-chart-fade-in ${animationDuration}ms ease-out forwards`,
+                }
+              : undefined
+          }
         />
         <path
           className={`${CLS}__area-stroke`}
@@ -96,7 +103,15 @@ export function AreaChart({
           fill="none"
           stroke={fillColor}
           strokeWidth={2}
-          style={animate ? { strokeDasharray: innerWidth, strokeDashoffset: innerWidth, animation: `prisma-chart-draw ${animationDuration}ms ease-out forwards` } : undefined}
+          style={
+            animate
+              ? {
+                  strokeDasharray: innerWidth,
+                  strokeDashoffset: innerWidth,
+                  animation: `prisma-chart-draw ${animationDuration}ms ease-out forwards`,
+                }
+              : undefined
+          }
         />
         {data.map((pt, i) => (
           <circle
@@ -108,7 +123,14 @@ export function AreaChart({
             fill={fillColor}
             onMouseEnter={(e) => onPointHover?.(pt.label, null, pt.value, e.clientX, e.clientY)}
             onMouseLeave={onPointLeave}
-            style={animate ? { opacity: 0, animation: `prisma-chart-fade-in 200ms ease-out ${i * ENTER_DELAY_PER_ITEM}ms forwards` } : undefined}
+            style={
+              animate
+                ? {
+                    opacity: 0,
+                    animation: `prisma-chart-fade-in 200ms ease-out ${i * ENTER_DELAY_PER_ITEM}ms forwards`,
+                  }
+                : undefined
+            }
           />
         ))}
       </g>
@@ -148,7 +170,14 @@ export function AreaChart({
               d={areaGen(pts) ?? ''}
               fill={c}
               fillOpacity={0.18}
-              style={animate ? { opacity: 0, animation: `prisma-chart-fade-in ${animationDuration}ms ease-out ${ki * 120}ms forwards` } : undefined}
+              style={
+                animate
+                  ? {
+                      opacity: 0,
+                      animation: `prisma-chart-fade-in ${animationDuration}ms ease-out ${ki * 120}ms forwards`,
+                    }
+                  : undefined
+              }
             />
             <path
               className={`${CLS}__area-stroke`}
@@ -156,7 +185,15 @@ export function AreaChart({
               fill="none"
               stroke={c}
               strokeWidth={2}
-              style={animate ? { strokeDasharray: innerWidth, strokeDashoffset: innerWidth, animation: `prisma-chart-draw ${animationDuration}ms ease-out ${ki * 120}ms forwards` } : undefined}
+              style={
+                animate
+                  ? {
+                      strokeDasharray: innerWidth,
+                      strokeDashoffset: innerWidth,
+                      animation: `prisma-chart-draw ${animationDuration}ms ease-out ${ki * 120}ms forwards`,
+                    }
+                  : undefined
+              }
             />
             {pts.map((pt, pi) => (
               <circle
@@ -168,7 +205,14 @@ export function AreaChart({
                 fill={c}
                 onMouseEnter={(e) => onPointHover?.(pt.label, gk, pt.value, e.clientX, e.clientY)}
                 onMouseLeave={onPointLeave}
-                style={animate ? { opacity: 0, animation: `prisma-chart-fade-in 200ms ease-out ${(ki * pts.length + pi) * ENTER_DELAY_PER_ITEM}ms forwards` } : undefined}
+                style={
+                  animate
+                    ? {
+                        opacity: 0,
+                        animation: `prisma-chart-fade-in 200ms ease-out ${(ki * pts.length + pi) * ENTER_DELAY_PER_ITEM}ms forwards`,
+                      }
+                    : undefined
+                }
               />
             ))}
           </g>

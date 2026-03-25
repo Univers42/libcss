@@ -79,9 +79,7 @@ export function WindowPanel({
       )}
 
       {/* ── Canvas / body ── */}
-      <div className="window-panel__body">
-        {tabs ? activeContent : children}
-      </div>
+      <div className="window-panel__body">{tabs ? activeContent : children}</div>
 
       {/* ── Footer ── */}
       {footer && <div className="window-panel__footer">{footer}</div>}

@@ -36,9 +36,7 @@ export function PieChart({
     .value((d) => d.value)
     .sort(null);
 
-  const arcGen = arc<PieArcDatum<ProcessedPieSlice>>()
-    .innerRadius(0)
-    .outerRadius(radius);
+  const arcGen = arc<PieArcDatum<ProcessedPieSlice>>().innerRadius(0).outerRadius(radius);
 
   const labelArc = arc<PieArcDatum<ProcessedPieSlice>>()
     .innerRadius(radius * 0.6)
@@ -64,7 +62,10 @@ export function PieChart({
               onMouseLeave={onSliceLeave}
               style={
                 animate
-                  ? { opacity: 0, animation: `prisma-chart-fade-in ${animationDuration}ms ease-out ${i * ENTER_DELAY_PER_ITEM * 2}ms forwards` }
+                  ? {
+                      opacity: 0,
+                      animation: `prisma-chart-fade-in ${animationDuration}ms ease-out ${i * ENTER_DELAY_PER_ITEM * 2}ms forwards`,
+                    }
                   : undefined
               }
             />

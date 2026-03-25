@@ -4,7 +4,7 @@
 // .prisma-separator  horizontal divider
 // ============================================
 
-@use '../../abstracts' as *;
+@use "../../abstracts" as *;
 
 .prisma-separator {
   // ── Configurator ──
@@ -19,7 +19,8 @@
   height: 0;
   margin: var(--prisma-separator-spacing) 0;
   border: none;
-  border-top: var(--prisma-separator-width) var(--prisma-separator-style) var(--prisma-separator-color);
+  border-top: var(--prisma-separator-width) var(--prisma-separator-style)
+    var(--prisma-separator-color);
   transition: border-color $duration-base $ease-default;
 
   // ── Dashed ──

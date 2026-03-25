@@ -35,7 +35,4 @@ export type RouterLinkButtonProps = BaseButtonProps &
     readonly href?: never;
   };
 
-export type ButtonProps =
-  | StandardButtonProps
-  | AnchorButtonProps
-  | RouterLinkButtonProps;
+export type ButtonProps = StandardButtonProps | AnchorButtonProps | RouterLinkButtonProps;
