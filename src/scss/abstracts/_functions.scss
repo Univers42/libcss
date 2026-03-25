@@ -76,3 +76,15 @@
   @warn 'Unknown z-index layer: #{$layer}';
   @return null;
 }
+
+// ── Fluid clamp shorthand ──────────────────────────────
+@function fluid-clamp($min, $max, $min-vw: 320px, $max-vw: 1440px) {
+  $factor: math.div(1, ($max-vw - $min-vw)) * ($max - $min);
+  $calc-value: unquote("#{$min} + #{strip-unit($factor)} * (100vw - #{$min-vw})");
+  @return clamp(#{$min}, #{$calc-value}, #{$max});
+}
+
+// ── Color opacity helper ───────────────────────────────
+@function alpha-channel($color, $opacity) {
+  @return rgba($color, $opacity);
+}
