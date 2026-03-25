@@ -44,3 +44,7 @@ import './image.entry';
 
 // Molecules
 import './color-picker.entry';
+
+// New atoms
+import './badge.entry';
+import './avatar.entry';
