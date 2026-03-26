@@ -97,10 +97,69 @@ function jsonConfPlugin(confDir) {
   };
 }
 
+// ── Vite plugin: Database mockup persistence ──
+//
+// Reads / writes the actual JSON mockup files so edits survive reloads.
+//   GET  /api/database/:key  → read  mockup file
+//   PUT  /api/database/:key  → write mockup file
+
+function databasePersistPlugin(mockupsDir) {
+  return {
+    name: 'vite-plugin-database-persist',
+    configureServer(server) {
+      const root = resolve(mockupsDir);
+
+      server.middlewares.use('/api/database', (req, res, next) => {
+        const key = decodeURIComponent(
+          (req.url || '').replace(/^\//, '').split('?')[0],
+        );
+
+        if (!key) return next();
+
+        const file = resolve(root, `${key}.json`);
+        res.setHeader('Content-Type', 'application/json');
+
+        // READ
+        if (req.method === 'GET') {
+          if (!existsSync(file)) {
+            res.statusCode = 404;
+            return res.end(JSON.stringify({ error: 'Not found' }));
+          }
+          return res.end(readFileSync(file, 'utf-8'));
+        }
+
+        // WRITE (full source: { schema, records, views })
+        if (req.method === 'PUT') {
+          let body = '';
+          req.on('data', (c) => (body += c));
+          req.on('end', () => {
+            try {
+              // Validate JSON before writing
+              JSON.parse(body);
+              writeFileSync(file, body, 'utf-8');
+              res.end(JSON.stringify({ ok: true }));
+            } catch (err) {
+              res.statusCode = 400;
+              res.end(JSON.stringify({ error: 'Invalid JSON' }));
+            }
+          });
+          return;
+        }
+
+        next();
+      });
+    },
+  };
+}
+
 // ── Vite config ──────────────────────────────────────
 
 export default defineConfig({
-  plugins: [react(), jsonConfPlugin('./conf')],
+  plugins: [
+    react(),
+    jsonConfPlugin('./conf'),
+    databasePersistPlugin(resolve(__dirname, '../libcss/common/mockups')),
+  ],
   resolve: {
     alias: {
       '@libcss/components': resolve(__dirname, '../libcss/components'),

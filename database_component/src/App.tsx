@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef } from 'react';
 import { useDatabaseEngine, useViewManager } from '@libcss/hooks';
 import { ViewSwitcher } from '@libcss/components/molecules/ViewSwitcher';
 import { DatabaseToolbar } from '@libcss/components/molecules/DatabaseToolbar';
@@ -9,7 +9,7 @@ import {
   CalendarDateIcon,
   DatabaseIcon,
 } from '@libcss/components/atoms/Icon';
-import type { DatabaseSource, ViewType } from '@libcss/common';
+import type { DatabaseSource, DatabaseRecord, ViewType } from '@libcss/common';
 
 import {
   TableView,
@@ -60,10 +60,38 @@ const VIEW_COMPONENTS: Record<ViewType, React.ComponentType<any>> = {
   dashboard: DashboardView,
 };
 
+// ── Persist helper: debounced PUT to /api/database/:key ──
+
+function usePersist(datasetKey: string, source: DatabaseSource) {
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const sourceRef = useRef(source);
+  sourceRef.current = source;
+
+  return useCallback(
+    (records: DatabaseRecord[]) => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        const body = JSON.stringify(
+          { ...sourceRef.current, records },
+          null,
+          2,
+        );
+        fetch(`/api/database/${encodeURIComponent(datasetKey)}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body,
+        }).catch((err) => console.warn('[persist] failed:', err));
+      }, 300);
+    },
+    [datasetKey],
+  );
+}
+
 // ── Database page (inner) ──
 
-function DatabasePage({ source }: { source: DatabaseSource }) {
-  const engine = useDatabaseEngine({ source });
+function DatabasePage({ source, datasetKey }: { source: DatabaseSource; datasetKey: string }) {
+  const onMutate = usePersist(datasetKey, source);
+  const engine = useDatabaseEngine({ source, onMutate });
   const viewMgr = useViewManager({ source });
 
   // Sync view-level filters/sorts/groupBy when switching views
@@ -190,7 +218,7 @@ export default function App() {
 
       {/* Main content — keyed so it remounts on dataset change */}
       <main className="app-main">
-        <DatabasePage key={dataset.key} source={dataset.source} />
+        <DatabasePage key={dataset.key} source={dataset.source} datasetKey={dataset.key} />
       </main>
     </div>
   );
