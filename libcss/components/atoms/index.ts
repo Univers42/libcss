@@ -37,3 +37,5 @@ export * from './Toast';
 export * from './Spinner';
 export * from './Divider';
 export * from './Kbd';
+export * from './InlineEditor';
+export * from './IconButton';
