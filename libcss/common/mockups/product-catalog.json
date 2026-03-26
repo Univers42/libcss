@@ -1,0 +1,80 @@
+{
+  "schema": {
+    "id": "db-product-catalog",
+    "name": "Product Catalog",
+    "description": "E-commerce items with pricing, inventory, and categories",
+    "icon": "🛍️",
+    "primaryProperty": "product",
+    "properties": [
+      { "id": "product",    "name": "Product",     "type": "text",    "required": true },
+      { "id": "sku",        "name": "SKU",         "type": "text" },
+      { "id": "category",   "name": "Category",    "type": "select",  "config": {
+        "options": [
+          { "id": "cat1", "label": "Electronics",  "color": "#3b82f6" },
+          { "id": "cat2", "label": "Clothing",     "color": "#a855f7" },
+          { "id": "cat3", "label": "Home & Garden","color": "#22c55e" },
+          { "id": "cat4", "label": "Sports",       "color": "#f59e0b" },
+          { "id": "cat5", "label": "Books",        "color": "#6366f1" },
+          { "id": "cat6", "label": "Toys",         "color": "#ec4899" }
+        ]
+      }},
+      { "id": "price",      "name": "Price",       "type": "number",  "config": { "format": "currency", "currencySymbol": "$" } },
+      { "id": "stock",      "name": "Stock",       "type": "number",  "config": { "format": "number" } },
+      { "id": "rating",     "name": "Rating",      "type": "number",  "config": { "format": "number" } },
+      { "id": "status",     "name": "Status",      "type": "status",  "config": {
+        "statusOptions": [
+          { "id": "ps1", "label": "Active",        "color": "#22c55e" },
+          { "id": "ps2", "label": "Draft",         "color": "#94a3b8" },
+          { "id": "ps3", "label": "Discontinued",  "color": "#ef4444" },
+          { "id": "ps4", "label": "Low Stock",     "color": "#f59e0b" }
+        ]
+      }},
+      { "id": "tags",       "name": "Tags",        "type": "multi_select", "config": {
+        "options": [
+          { "id": "pt1", "label": "New Arrival",   "color": "#3b82f6" },
+          { "id": "pt2", "label": "Best Seller",   "color": "#22c55e" },
+          { "id": "pt3", "label": "Sale",          "color": "#ef4444" },
+          { "id": "pt4", "label": "Eco-Friendly",  "color": "#10b981" },
+          { "id": "pt5", "label": "Premium",       "color": "#f59e0b" }
+        ]
+      }},
+      { "id": "vendor",     "name": "Vendor",      "type": "text" },
+      { "id": "weight",     "name": "Weight (kg)", "type": "number",  "config": { "format": "number" } },
+      { "id": "url",        "name": "Product URL",  "type": "url" },
+      { "id": "added",      "name": "Date Added",  "type": "date" },
+      { "id": "featured",   "name": "Featured",    "type": "checkbox" },
+      { "id": "desc",       "name": "Description", "type": "text" },
+      { "id": "pid",        "name": "ID",          "type": "number_id" }
+    ]
+  },
+  "records": [
+    { "id": "p01", "values": { "product": "Wireless Noise-Canceling Headphones", "sku": "WNC-001",  "category": "Electronics",  "price": 249.99, "stock": 156, "rating": 4.7, "status": "Active",      "tags": ["Best Seller","Premium"],  "vendor": "SoundMax",     "weight": 0.31, "url": "https://shop.example.com/wnc-001",  "added": "2024-06-15", "featured": true,  "desc": "40h battery, ANC, Bluetooth 5.3",             "pid": 1 }, "_created_time": "2024-06-15T08:00:00Z", "_last_edited_time": "2025-01-10T12:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p02", "values": { "product": "Organic Cotton T-Shirt",              "sku": "OCT-010",  "category": "Clothing",     "price": 34.99,  "stock": 420, "rating": 4.3, "status": "Active",      "tags": ["Eco-Friendly","New Arrival"],"vendor": "GreenWear","weight": 0.18, "url": "https://shop.example.com/oct-010",  "added": "2025-01-02", "featured": false, "desc": "100% organic cotton, unisex, 5 colors",       "pid": 2 }, "_created_time": "2025-01-02T09:00:00Z", "_last_edited_time": "2025-01-12T14:30:00Z", "_last_edited_by": "Admin" },
+    { "id": "p03", "values": { "product": "Smart LED Desk Lamp",                 "sku": "SLD-055",  "category": "Home & Garden","price": 79.99,  "stock": 88,  "rating": 4.5, "status": "Active",      "tags": ["New Arrival"],             "vendor": "BrightLife",   "weight": 1.2,  "url": "https://shop.example.com/sld-055",  "added": "2024-12-20", "featured": true,  "desc": "Adjustable color temp 2700K-6500K, USB-C",    "pid": 3 }, "_created_time": "2024-12-20T10:00:00Z", "_last_edited_time": "2025-01-08T09:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p04", "values": { "product": "Running Shoes Pro X",                 "sku": "RSP-200",  "category": "Sports",       "price": 159.00, "stock": 63,  "rating": 4.8, "status": "Active",      "tags": ["Premium","Best Seller"],   "vendor": "StrideTech",   "weight": 0.29, "url": "https://shop.example.com/rsp-200",  "added": "2024-08-01", "featured": true,  "desc": "Carbon fiber plate, responsive foam, 210g",   "pid": 4 }, "_created_time": "2024-08-01T07:00:00Z", "_last_edited_time": "2025-01-05T11:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p05", "values": { "product": "The Art of Clean Code",               "sku": "BK-7721",  "category": "Books",        "price": 29.99,  "stock": 310, "rating": 4.6, "status": "Active",      "tags": [],                          "vendor": "TechPress",    "weight": 0.45, "url": "https://shop.example.com/bk-7721",  "added": "2024-03-10", "featured": false, "desc": "Best practices for modern software engineering","pid": 5 }, "_created_time": "2024-03-10T08:00:00Z", "_last_edited_time": "2024-11-20T16:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p06", "values": { "product": "Wooden Building Blocks Set",          "sku": "TOY-400",  "category": "Toys",         "price": 44.99,  "stock": 12,  "rating": 4.9, "status": "Low Stock",   "tags": ["Eco-Friendly","Best Seller"],"vendor": "PlayNatural","weight": 2.1,  "url": "https://shop.example.com/toy-400",  "added": "2024-09-05", "featured": false, "desc": "50-piece FSC-certified wood, ages 3+",        "pid": 6 }, "_created_time": "2024-09-05T09:00:00Z", "_last_edited_time": "2025-01-14T08:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p07", "values": { "product": "4K Webcam with Mic",                  "sku": "WEB-120",  "category": "Electronics",  "price": 129.99, "stock": 204, "rating": 4.4, "status": "Active",      "tags": ["New Arrival"],             "vendor": "CamPro",       "weight": 0.15, "url": "https://shop.example.com/web-120",  "added": "2024-11-15", "featured": false, "desc": "4K 30fps, auto-focus, dual noise-cancel mic",  "pid": 7 }, "_created_time": "2024-11-15T10:00:00Z", "_last_edited_time": "2025-01-06T13:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p08", "values": { "product": "Yoga Mat Premium",                    "sku": "YMP-330",  "category": "Sports",       "price": 54.99,  "stock": 175, "rating": 4.6, "status": "Active",      "tags": ["Eco-Friendly"],            "vendor": "ZenFit",       "weight": 1.8,  "url": "https://shop.example.com/ymp-330",  "added": "2024-05-22", "featured": false, "desc": "6mm natural rubber, non-slip, 183×68cm",       "pid": 8 }, "_created_time": "2024-05-22T08:00:00Z", "_last_edited_time": "2024-12-18T10:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p09", "values": { "product": "Ceramic Pour-Over Coffee Set",        "sku": "COF-890",  "category": "Home & Garden","price": 62.00,  "stock": 0,   "rating": 4.7, "status": "Discontinued","tags": ["Premium"],                 "vendor": "BrewCraft",    "weight": 0.95, "url": "https://shop.example.com/cof-890",  "added": "2023-11-01", "featured": false, "desc": "Hand-made ceramic dripper + carafe",           "pid": 9 }, "_created_time": "2023-11-01T09:00:00Z", "_last_edited_time": "2024-10-15T14:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p10", "values": { "product": "Merino Wool Sweater",                 "sku": "MWS-077",  "category": "Clothing",     "price": 89.99,  "stock": 53,  "rating": 4.5, "status": "Active",      "tags": ["Premium","Eco-Friendly"],  "vendor": "WoolCo",       "weight": 0.38, "url": "https://shop.example.com/mws-077",  "added": "2024-10-10", "featured": true,  "desc": "Super-fine merino, machine washable, 4 colors","pid": 10 }, "_created_time": "2024-10-10T07:00:00Z", "_last_edited_time": "2025-01-03T09:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p11", "values": { "product": "Mechanical Keyboard RGB",             "sku": "MKR-600",  "category": "Electronics",  "price": 139.99, "stock": 92,  "rating": 4.6, "status": "Active",      "tags": ["Best Seller"],             "vendor": "KeyForge",     "weight": 0.85, "url": "https://shop.example.com/mkr-600",  "added": "2024-07-20", "featured": false, "desc": "Hot-swap switches, PBT keycaps, wireless/BT", "pid": 11 }, "_created_time": "2024-07-20T08:00:00Z", "_last_edited_time": "2025-01-11T12:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p12", "values": { "product": "Indoor Herb Garden Kit",              "sku": "HGK-210",  "category": "Home & Garden","price": 39.99,  "stock": 8,   "rating": 4.2, "status": "Low Stock",   "tags": ["Eco-Friendly","Sale"],     "vendor": "GreenThumb",   "weight": 1.5,  "url": "https://shop.example.com/hgk-210",  "added": "2024-04-18", "featured": false, "desc": "LED grow light, 6 pods, self-watering system", "pid": 12 }, "_created_time": "2024-04-18T10:00:00Z", "_last_edited_time": "2025-01-14T07:30:00Z", "_last_edited_by": "Admin" },
+    { "id": "p13", "values": { "product": "Sci-Fi Anthology: Stars & Code",      "sku": "BK-8842",  "category": "Books",        "price": 19.99,  "stock": 540, "rating": 4.1, "status": "Active",      "tags": ["Sale"],                    "vendor": "NovaBooks",    "weight": 0.32, "url": "https://shop.example.com/bk-8842",  "added": "2024-01-25", "featured": false, "desc": "15 short stories, AI & space exploration",     "pid": 13 }, "_created_time": "2024-01-25T09:00:00Z", "_last_edited_time": "2024-09-10T11:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p14", "values": { "product": "Stainless Steel Water Bottle",        "sku": "SSW-150",  "category": "Sports",       "price": 24.99,  "stock": 380, "rating": 4.8, "status": "Active",      "tags": ["Eco-Friendly","Best Seller"],"vendor": "HydroFlow","weight": 0.35, "url": "https://shop.example.com/ssw-150",  "added": "2024-02-14", "featured": false, "desc": "750ml, double-wall vacuum, keeps cold 24h",    "pid": 14 }, "_created_time": "2024-02-14T08:00:00Z", "_last_edited_time": "2025-01-09T10:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p15", "values": { "product": "Robot Building Kit STEM",             "sku": "TOY-510",  "category": "Toys",         "price": 74.99,  "stock": 45,  "rating": 4.7, "status": "Active",      "tags": ["New Arrival","Premium"],    "vendor": "RoboLearn",    "weight": 0.8,  "url": "https://shop.example.com/toy-510",  "added": "2025-01-05", "featured": true,  "desc": "Programmable via app, 120 pieces, ages 8+",    "pid": 15 }, "_created_time": "2025-01-05T08:00:00Z", "_last_edited_time": "2025-01-13T15:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p16", "values": { "product": "Bluetooth Portable Speaker",          "sku": "BPS-990",  "category": "Electronics",  "price": 59.99,  "stock": 220, "rating": 4.3, "status": "Active",      "tags": ["Sale"],                    "vendor": "SoundMax",     "weight": 0.52, "url": "https://shop.example.com/bps-990",  "added": "2024-04-30", "featured": false, "desc": "IPX7 waterproof, 12h battery, USB-C",          "pid": 16 }, "_created_time": "2024-04-30T09:00:00Z", "_last_edited_time": "2025-01-02T14:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p17", "values": { "product": "Linen Duvet Cover Set",               "sku": "LDC-420",  "category": "Home & Garden","price": 119.99, "stock": 38,  "rating": 4.4, "status": "Active",      "tags": ["Premium","Eco-Friendly"],  "vendor": "SleepWell",    "weight": 1.6,  "url": "https://shop.example.com/ldc-420",  "added": "2024-08-22", "featured": false, "desc": "100% Belgian linen, Queen, 4 colorways",       "pid": 17 }, "_created_time": "2024-08-22T07:00:00Z", "_last_edited_time": "2024-12-28T10:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p18", "values": { "product": "Trail Running Backpack 12L",          "sku": "TRB-085",  "category": "Sports",       "price": 89.99,  "stock": 67,  "rating": 4.5, "status": "Active",      "tags": [],                          "vendor": "TrailPeak",    "weight": 0.28, "url": "https://shop.example.com/trb-085",  "added": "2024-06-10", "featured": false, "desc": "Hydration compatible, reflective, breathable", "pid": 18 }, "_created_time": "2024-06-10T08:00:00Z", "_last_edited_time": "2024-11-25T12:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p19", "values": { "product": "Kids Watercolor Paint Set",           "sku": "TOY-620",  "category": "Toys",         "price": 18.99,  "stock": 0,   "rating": 4.0, "status": "Draft",       "tags": [],                          "vendor": "ArtKids",      "weight": 0.25, "url": "",                                  "added": "2025-01-14", "featured": false, "desc": "36 colors, brushes, mixing palette — UNRELEASED","pid": 19 }, "_created_time": "2025-01-14T11:00:00Z", "_last_edited_time": "2025-01-14T11:00:00Z", "_last_edited_by": "Admin" },
+    { "id": "p20", "values": { "product": "Cashmere Beanie",                     "sku": "CB-065",   "category": "Clothing",     "price": 49.99,  "stock": 110, "rating": 4.6, "status": "Active",      "tags": ["Premium"],                 "vendor": "WoolCo",       "weight": 0.08, "url": "https://shop.example.com/cb-065",   "added": "2024-11-01", "featured": false, "desc": "100% cashmere, ribbed knit, one-size",         "pid": 20 }, "_created_time": "2024-11-01T09:00:00Z", "_last_edited_time": "2025-01-07T08:00:00Z", "_last_edited_by": "Admin" }
+  ],
+  "views": [
+    { "id": "v1", "name": "All Products",   "type": "table",   "propertyVisibility": { "product": true, "sku": true, "category": true, "price": true, "stock": true, "rating": true, "status": true, "tags": true, "vendor": true, "added": true, "featured": true, "pid": true }, "filters": [], "sorts": [{ "property": "pid", "direction": "asc" }] },
+    { "id": "v2", "name": "By Category",    "type": "board",   "propertyVisibility": { "product": true, "price": true, "stock": true, "status": true }, "filters": [], "sorts": [{ "property": "price", "direction": "desc" }], "groupBy": { "property": "category" }, "boardOptions": { "groupProperty": "category", "showCardCover": false, "cardSize": "medium" } },
+    { "id": "v3", "name": "Product Gallery", "type": "gallery", "propertyVisibility": { "product": true, "price": true, "category": true, "rating": true, "status": true, "desc": true }, "filters": [{ "property": "status", "operator": "eq", "value": "Active" }], "sorts": [{ "property": "rating", "direction": "desc" }], "galleryOptions": { "cardSize": "large", "showDescription": true } },
+    { "id": "v4", "name": "Low Stock Alert","type": "list",    "propertyVisibility": { "product": true, "sku": true, "stock": true, "status": true, "vendor": true }, "filters": [{ "property": "stock", "operator": "lte", "value": 20 }], "sorts": [{ "property": "stock", "direction": "asc" }] },
+    { "id": "v5", "name": "Price Chart",    "type": "chart",   "propertyVisibility": { "category": true, "price": true }, "filters": [{ "property": "status", "operator": "eq", "value": "Active" }], "sorts": [], "chartOptions": { "chartType": "bar", "xAxis": "category", "yAxis": "price", "colorBy": "category" } },
+    { "id": "v6", "name": "New This Month", "type": "list",    "propertyVisibility": { "product": true, "category": true, "price": true, "status": true, "tags": true }, "filters": [{ "property": "added", "operator": "gte", "value": "2025-01-01" }], "sorts": [{ "property": "added", "direction": "desc" }] }
+  ]
+}
