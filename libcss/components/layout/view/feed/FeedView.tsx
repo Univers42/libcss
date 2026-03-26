@@ -1,9 +1,13 @@
+import { useState, useCallback } from 'react';
 import { UserIcon } from '@libcss/components/atoms/Icon';
+import { InlineEditor } from '@libcss/components/atoms/InlineEditor';
+import type { CellValue } from '@libcss/common';
 import type { DatabaseViewProps } from '../types';
 import { displayValue } from '../types';
 
 /**
  * Feed view — social-feed style: avatar + content + timestamp.
+ * Click a title or body to edit inline.
  * BEM root: `.db-feed`
  *
  * SCSS classes used:
@@ -12,8 +16,27 @@ import { displayValue } from '../types';
 export function FeedView({
   schema,
   records,
-  visibleProperties: _visibleProperties,
+  onCellChange,
 }: DatabaseViewProps) {
+  const [editingCell, setEditingCell] = useState<{
+    recordId: string;
+    property: string;
+  } | null>(null);
+
+  const handleClick = useCallback(
+    (recordId: string, property: string) => setEditingCell({ recordId, property }),
+    [],
+  );
+
+  const handleCommit = useCallback(
+    (recordId: string, property: string, value: CellValue) => {
+      onCellChange(recordId, property, value);
+      setEditingCell(null);
+    },
+    [onCellChange],
+  );
+
+  const handleCancel = useCallback(() => setEditingCell(null), []);
   const primaryProp = schema.primaryProperty;
   const personProp = schema.properties.find((p) => p.type === 'person')?.id;
   const dateProp = schema.properties.find((p) => p.type === 'date')?.id;
@@ -71,8 +94,21 @@ export function FeedView({
             {/* Content — SCSS: __content */}
             <div className="db-feed__content">
               {/* Title — SCSS: __title */}
-              <div className="db-feed__title">
-                {displayValue(record.values[primaryProp])}
+              <div
+                className="db-feed__title"
+                onClick={() => handleClick(record.id, primaryProp)}
+              >
+                {editingCell?.recordId === record.id &&
+                editingCell?.property === primaryProp ? (
+                  <InlineEditor
+                    value={record.values[primaryProp]}
+                    property={schema.properties.find((p) => p.id === primaryProp)!}
+                    onCommit={(v) => handleCommit(record.id, primaryProp, v)}
+                    onCancel={handleCancel}
+                  />
+                ) : (
+                  displayValue(record.values[primaryProp])
+                )}
               </div>
 
               {/* Meta line (person + date) — SCSS: __meta */}
@@ -89,8 +125,23 @@ export function FeedView({
               </div>
 
               {/* Body text — SCSS: __body */}
-              {desc && (
-                <div className="db-feed__body">{displayValue(desc)}</div>
+              {descProp && (
+                <div
+                  className="db-feed__body"
+                  onClick={() => handleClick(record.id, descProp)}
+                >
+                  {editingCell?.recordId === record.id &&
+                  editingCell?.property === descProp ? (
+                    <InlineEditor
+                      value={desc}
+                      property={schema.properties.find((p) => p.id === descProp)!}
+                      onCommit={(v) => handleCommit(record.id, descProp, v)}
+                      onCancel={handleCancel}
+                    />
+                  ) : (
+                    displayValue(desc)
+                  )}
+                </div>
               )}
 
               {statusLabel && (

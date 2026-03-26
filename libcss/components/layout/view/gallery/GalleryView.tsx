@@ -1,9 +1,13 @@
+import { useState, useCallback } from 'react';
 import { PlusIcon, ImageIcon } from '@libcss/components/atoms/Icon';
+import { InlineEditor } from '@libcss/components/atoms/InlineEditor';
+import type { CellValue } from '@libcss/common';
 import type { DatabaseViewProps } from '../types';
 import { displayValue } from '../types';
 
 /**
  * Gallery view — card grid with optional cover image.
+ * Click a card title or meta prop to edit inline.
  * BEM root: `.db-gallery`
  */
 export function GalleryView({
@@ -11,8 +15,28 @@ export function GalleryView({
   records,
   visibleProperties,
   viewConfig,
+  onCellChange,
   onAddRecord,
 }: DatabaseViewProps) {
+  const [editingCell, setEditingCell] = useState<{
+    recordId: string;
+    property: string;
+  } | null>(null);
+
+  const handleClick = useCallback(
+    (recordId: string, property: string) => setEditingCell({ recordId, property }),
+    [],
+  );
+
+  const handleCommit = useCallback(
+    (recordId: string, property: string, value: CellValue) => {
+      onCellChange(recordId, property, value);
+      setEditingCell(null);
+    },
+    [onCellChange],
+  );
+
+  const handleCancel = useCallback(() => setEditingCell(null), []);
   const primaryProp = schema.primaryProperty;
   const coverProp = viewConfig?.galleryOptions?.coverProperty;
   const cardSize = viewConfig?.galleryOptions?.cardSize ?? 'md';
@@ -69,8 +93,21 @@ export function GalleryView({
 
             {/* Card body — matches SCSS __card-body */}
             <div className="db-gallery__card-body">
-              <div className="db-gallery__card-title">
-                {displayValue(record.values[primaryProp])}
+              <div
+                className="db-gallery__card-title"
+                onClick={() => handleClick(record.id, primaryProp)}
+              >
+                {editingCell?.recordId === record.id &&
+                editingCell?.property === primaryProp ? (
+                  <InlineEditor
+                    value={record.values[primaryProp]}
+                    property={schema.properties.find((p) => p.id === primaryProp)!}
+                    onCommit={(v) => handleCommit(record.id, primaryProp, v)}
+                    onCancel={handleCancel}
+                  />
+                ) : (
+                  displayValue(record.values[primaryProp])
+                )}
               </div>
 
               {/* Card meta props — matches SCSS __card-meta */}
@@ -78,9 +115,24 @@ export function GalleryView({
                 {cardProps.map((prop) => {
                   const val = record.values[prop.id];
                   if (val == null || val === '') return null;
+                  const isEditing =
+                    editingCell?.recordId === record.id &&
+                    editingCell?.property === prop.id;
                   return (
-                    <span key={prop.id}>
-                      {displayValue(val, prop)}
+                    <span
+                      key={prop.id}
+                      onClick={() => handleClick(record.id, prop.id)}
+                    >
+                      {isEditing ? (
+                        <InlineEditor
+                          value={val}
+                          property={prop}
+                          onCommit={(v) => handleCommit(record.id, prop.id, v)}
+                          onCancel={handleCancel}
+                        />
+                      ) : (
+                        displayValue(val, prop)
+                      )}
                     </span>
                   );
                 })}

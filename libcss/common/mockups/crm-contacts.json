@@ -6,84 +6,999 @@
     "icon": "👥",
     "primaryProperty": "name",
     "properties": [
-      { "id": "name",       "name": "Name",        "type": "text",         "required": true },
-      { "id": "email",      "name": "Email",       "type": "email" },
-      { "id": "phone",      "name": "Phone",       "type": "phone" },
-      { "id": "company",    "name": "Company",     "type": "text" },
-      { "id": "role",       "name": "Role",        "type": "text" },
-      { "id": "stage",      "name": "Stage",       "type": "status", "config": {
-        "statusOptions": [
-          { "id": "st1", "label": "Lead",         "color": "#94a3b8" },
-          { "id": "st2", "label": "Contacted",    "color": "#3b82f6" },
-          { "id": "st3", "label": "Qualified",    "color": "#a855f7" },
-          { "id": "st4", "label": "Proposal",     "color": "#f59e0b" },
-          { "id": "st5", "label": "Negotiation",  "color": "#f97316" },
-          { "id": "st6", "label": "Closed Won",   "color": "#22c55e" },
-          { "id": "st7", "label": "Closed Lost",  "color": "#ef4444" }
-        ]
-      }},
-      { "id": "deal_value", "name": "Deal Value",  "type": "number",  "config": { "format": "currency", "currencySymbol": "$" } },
-      { "id": "source",     "name": "Source",      "type": "select",  "config": {
-        "options": [
-          { "id": "src1", "label": "Website",     "color": "#3b82f6" },
-          { "id": "src2", "label": "Referral",    "color": "#22c55e" },
-          { "id": "src3", "label": "LinkedIn",    "color": "#0077b5" },
-          { "id": "src4", "label": "Cold Call",   "color": "#f59e0b" },
-          { "id": "src5", "label": "Conference",  "color": "#a855f7" },
-          { "id": "src6", "label": "Ads",         "color": "#ef4444" }
-        ]
-      }},
-      { "id": "tags",       "name": "Tags",        "type": "multi_select", "config": {
-        "options": [
-          { "id": "tg1", "label": "Enterprise",   "color": "#6366f1" },
-          { "id": "tg2", "label": "Startup",      "color": "#22c55e" },
-          { "id": "tg3", "label": "SMB",          "color": "#f59e0b" },
-          { "id": "tg4", "label": "VIP",          "color": "#ef4444" },
-          { "id": "tg5", "label": "Renewal",      "color": "#3b82f6" }
-        ]
-      }},
-      { "id": "last_contact","name": "Last Contact","type": "date" },
-      { "id": "next_follow", "name": "Next Follow-up","type": "date" },
-      { "id": "owner",      "name": "Owner",       "type": "person" },
-      { "id": "website",    "name": "Website",     "type": "url" },
-      { "id": "notes",      "name": "Notes",       "type": "text" },
-      { "id": "score",      "name": "Lead Score",  "type": "number", "config": { "format": "number" } },
-      { "id": "cid",        "name": "ID",          "type": "number_id" }
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "email",
+        "name": "Email",
+        "type": "email"
+      },
+      {
+        "id": "phone",
+        "name": "Phone",
+        "type": "phone"
+      },
+      {
+        "id": "company",
+        "name": "Company",
+        "type": "text"
+      },
+      {
+        "id": "role",
+        "name": "Role",
+        "type": "text"
+      },
+      {
+        "id": "stage",
+        "name": "Stage",
+        "type": "status",
+        "config": {
+          "statusOptions": [
+            {
+              "id": "st1",
+              "label": "Lead",
+              "color": "#94a3b8"
+            },
+            {
+              "id": "st2",
+              "label": "Contacted",
+              "color": "#3b82f6"
+            },
+            {
+              "id": "st3",
+              "label": "Qualified",
+              "color": "#a855f7"
+            },
+            {
+              "id": "st4",
+              "label": "Proposal",
+              "color": "#f59e0b"
+            },
+            {
+              "id": "st5",
+              "label": "Negotiation",
+              "color": "#f97316"
+            },
+            {
+              "id": "st6",
+              "label": "Closed Won",
+              "color": "#22c55e"
+            },
+            {
+              "id": "st7",
+              "label": "Closed Lost",
+              "color": "#ef4444"
+            }
+          ]
+        }
+      },
+      {
+        "id": "deal_value",
+        "name": "Deal Value",
+        "type": "number",
+        "config": {
+          "format": "currency",
+          "currencySymbol": "$"
+        }
+      },
+      {
+        "id": "source",
+        "name": "Source",
+        "type": "select",
+        "config": {
+          "options": [
+            {
+              "id": "src1",
+              "label": "Website",
+              "color": "#3b82f6"
+            },
+            {
+              "id": "src2",
+              "label": "Referral",
+              "color": "#22c55e"
+            },
+            {
+              "id": "src3",
+              "label": "LinkedIn",
+              "color": "#0077b5"
+            },
+            {
+              "id": "src4",
+              "label": "Cold Call",
+              "color": "#f59e0b"
+            },
+            {
+              "id": "src5",
+              "label": "Conference",
+              "color": "#a855f7"
+            },
+            {
+              "id": "src6",
+              "label": "Ads",
+              "color": "#ef4444"
+            }
+          ]
+        }
+      },
+      {
+        "id": "tags",
+        "name": "Tags",
+        "type": "multi_select",
+        "config": {
+          "options": [
+            {
+              "id": "tg1",
+              "label": "Enterprise",
+              "color": "#6366f1"
+            },
+            {
+              "id": "tg2",
+              "label": "Startup",
+              "color": "#22c55e"
+            },
+            {
+              "id": "tg3",
+              "label": "SMB",
+              "color": "#f59e0b"
+            },
+            {
+              "id": "tg4",
+              "label": "VIP",
+              "color": "#ef4444"
+            },
+            {
+              "id": "tg5",
+              "label": "Renewal",
+              "color": "#3b82f6"
+            }
+          ]
+        }
+      },
+      {
+        "id": "last_contact",
+        "name": "Last Contact",
+        "type": "date"
+      },
+      {
+        "id": "next_follow",
+        "name": "Next Follow-up",
+        "type": "date"
+      },
+      {
+        "id": "owner",
+        "name": "Owner",
+        "type": "person"
+      },
+      {
+        "id": "website",
+        "name": "Website",
+        "type": "url"
+      },
+      {
+        "id": "notes",
+        "name": "Notes",
+        "type": "text"
+      },
+      {
+        "id": "score",
+        "name": "Lead Score",
+        "type": "number",
+        "config": {
+          "format": "number"
+        }
+      },
+      {
+        "id": "cid",
+        "name": "ID",
+        "type": "number_id"
+      }
     ]
   },
   "records": [
-    { "id": "c01", "values": { "name": "Sarah Johnson",     "email": "sarah@techcorp.io",     "phone": "+1-555-0101", "company": "TechCorp",       "role": "CTO",              "stage": "Closed Won",   "deal_value": 48000,  "source": "Referral",    "tags": ["Enterprise","VIP"],  "last_contact": "2025-01-12", "next_follow": "2025-02-12", "owner": "Mark Wilson",   "website": "https://techcorp.io",      "notes": "Signed 2-year contract", "score": 95, "cid": 1 }, "_created_time": "2024-10-15T09:00:00Z", "_last_edited_time": "2025-01-12T14:00:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c02", "values": { "name": "James Rodriguez",   "email": "jrod@startupx.com",     "phone": "+1-555-0102", "company": "StartupX",       "role": "CEO",              "stage": "Proposal",     "deal_value": 12000,  "source": "LinkedIn",    "tags": ["Startup"],           "last_contact": "2025-01-14", "next_follow": "2025-01-18", "owner": "Lisa Chen",     "website": "https://startupx.com",     "notes": "Needs custom onboarding", "score": 72, "cid": 2 }, "_created_time": "2024-11-20T10:00:00Z", "_last_edited_time": "2025-01-14T11:00:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c03", "values": { "name": "Emily Watson",      "email": "ewatson@bigretail.com", "phone": "+1-555-0103", "company": "BigRetail",      "role": "VP Engineering",   "stage": "Negotiation",  "deal_value": 85000,  "source": "Conference",  "tags": ["Enterprise"],        "last_contact": "2025-01-13", "next_follow": "2025-01-17", "owner": "Mark Wilson",   "website": "https://bigretail.com",    "notes": "Comparing us with competitor Y", "score": 83, "cid": 3 }, "_created_time": "2024-12-01T08:00:00Z", "_last_edited_time": "2025-01-13T16:30:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c04", "values": { "name": "Michael Brown",     "email": "mbrown@finserv.co",     "phone": "+1-555-0104", "company": "FinServ",        "role": "Director of IT",   "stage": "Qualified",    "deal_value": 35000,  "source": "Website",     "tags": ["Enterprise"],        "last_contact": "2025-01-10", "next_follow": "2025-01-20", "owner": "Lisa Chen",     "website": "https://finserv.co",       "notes": "Security audit required before purchase", "score": 68, "cid": 4 }, "_created_time": "2024-12-10T11:00:00Z", "_last_edited_time": "2025-01-10T09:15:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c05", "values": { "name": "Priya Patel",       "email": "priya@cloudsync.ai",    "phone": "+1-555-0105", "company": "CloudSync",      "role": "Head of Product",  "stage": "Contacted",    "deal_value": 22000,  "source": "Ads",         "tags": ["Startup"],           "last_contact": "2025-01-14", "next_follow": "2025-01-21", "owner": "Mark Wilson",   "website": "https://cloudsync.ai",     "notes": "Interested in API tier", "score": 55, "cid": 5 }, "_created_time": "2025-01-02T07:00:00Z", "_last_edited_time": "2025-01-14T08:20:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c06", "values": { "name": "David Kim",         "email": "dkim@mediahouse.com",   "phone": "+1-555-0106", "company": "MediaHouse",     "role": "Tech Lead",        "stage": "Lead",         "deal_value": 8000,   "source": "Website",     "tags": ["SMB"],               "last_contact": "",           "next_follow": "2025-01-22", "owner": "Lisa Chen",     "website": "https://mediahouse.com",   "notes": "Downloaded whitepaper", "score": 30, "cid": 6 }, "_created_time": "2025-01-08T14:00:00Z", "_last_edited_time": "2025-01-08T14:00:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c07", "values": { "name": "Rachel Green",      "email": "rgreen@healthio.org",   "phone": "+1-555-0107", "company": "HealthIO",       "role": "COO",              "stage": "Closed Won",   "deal_value": 62000,  "source": "Referral",    "tags": ["Enterprise","VIP"],  "last_contact": "2025-01-11", "next_follow": "2025-03-01", "owner": "Mark Wilson",   "website": "https://healthio.org",     "notes": "Expansion deal for 3 new teams", "score": 98, "cid": 7 }, "_created_time": "2024-09-05T09:00:00Z", "_last_edited_time": "2025-01-11T13:00:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c08", "values": { "name": "Tom Anderson",      "email": "tanderson@buildco.com", "phone": "+1-555-0108", "company": "BuildCo",        "role": "Engineering Manager","stage": "Closed Lost","deal_value": 15000,  "source": "Cold Call",   "tags": ["SMB"],               "last_contact": "2025-01-05", "next_follow": "",           "owner": "Lisa Chen",     "website": "https://buildco.com",      "notes": "Went with competitor Z — price sensitive", "score": 20, "cid": 8 }, "_created_time": "2024-11-10T10:00:00Z", "_last_edited_time": "2025-01-05T15:45:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c09", "values": { "name": "Amy Liu",           "email": "aliu@edufirst.edu",     "phone": "+1-555-0109", "company": "EduFirst",       "role": "CIO",              "stage": "Proposal",     "deal_value": 55000,  "source": "Conference",  "tags": ["Enterprise"],        "last_contact": "2025-01-13", "next_follow": "2025-01-19", "owner": "Mark Wilson",   "website": "https://edufirst.edu",     "notes": "Needs SSO + SCIM integration", "score": 78, "cid": 9 }, "_created_time": "2024-12-18T08:00:00Z", "_last_edited_time": "2025-01-13T10:00:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c10", "values": { "name": "Carlos Mendez",     "email": "cmendez@logiflow.com",  "phone": "+1-555-0110", "company": "LogiFlow",       "role": "Founder",          "stage": "Qualified",    "deal_value": 18000,  "source": "LinkedIn",    "tags": ["Startup"],           "last_contact": "2025-01-09", "next_follow": "2025-01-23", "owner": "Lisa Chen",     "website": "https://logiflow.com",     "notes": "Pilot period requested — 30 days", "score": 62, "cid": 10 }, "_created_time": "2025-01-03T11:00:00Z", "_last_edited_time": "2025-01-09T14:00:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c11", "values": { "name": "Nina Petrova",      "email": "nina@globex.net",       "phone": "+44-20-7946-0111", "company": "Globex Corp",   "role": "SVP Technology",   "stage": "Negotiation",  "deal_value": 120000, "source": "Referral",    "tags": ["Enterprise","VIP"],  "last_contact": "2025-01-14", "next_follow": "2025-01-16", "owner": "Mark Wilson",   "website": "https://globex.net",       "notes": "Multi-region deployment requirement", "score": 90, "cid": 11 }, "_created_time": "2024-11-25T09:00:00Z", "_last_edited_time": "2025-01-14T17:00:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c12", "values": { "name": "Oliver Hughes",     "email": "ohughes@creatify.co",   "phone": "+1-555-0112", "company": "Creatify",       "role": "Product Manager",  "stage": "Contacted",    "deal_value": 9500,   "source": "Ads",         "tags": ["Startup"],           "last_contact": "2025-01-12", "next_follow": "2025-01-24", "owner": "Lisa Chen",     "website": "https://creatify.co",      "notes": "Asked about Figma plugin", "score": 42, "cid": 12 }, "_created_time": "2025-01-06T10:00:00Z", "_last_edited_time": "2025-01-12T09:30:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c13", "values": { "name": "Hannah Taylor",     "email": "htaylor@ventura.io",    "phone": "+1-555-0113", "company": "Ventura.io",     "role": "Head of Engineering","stage": "Lead",       "deal_value": 28000,  "source": "Website",     "tags": ["SMB"],               "last_contact": "",           "next_follow": "2025-01-25", "owner": "Mark Wilson",   "website": "https://ventura.io",       "notes": "Signed up for newsletter", "score": 25, "cid": 13 }, "_created_time": "2025-01-10T13:00:00Z", "_last_edited_time": "2025-01-10T13:00:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c14", "values": { "name": "Liam O'Connor",     "email": "liam@greenleaf.eco",    "phone": "+353-1-555-0114", "company": "GreenLeaf",    "role": "CEO",              "stage": "Closed Won",   "deal_value": 31000,  "source": "Conference",  "tags": ["SMB","Renewal"],     "last_contact": "2025-01-08", "next_follow": "2025-04-08", "owner": "Lisa Chen",     "website": "https://greenleaf.eco",    "notes": "Annual renewal coming April", "score": 88, "cid": 14 }, "_created_time": "2024-08-15T07:00:00Z", "_last_edited_time": "2025-01-08T11:00:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c15", "values": { "name": "Yuki Tanaka",       "email": "yuki@nexgen.jp",        "phone": "+81-3-5555-0115", "company": "NexGen",       "role": "VP Sales",         "stage": "Qualified",    "deal_value": 42000,  "source": "LinkedIn",    "tags": ["Enterprise"],        "last_contact": "2025-01-11", "next_follow": "2025-01-20", "owner": "Mark Wilson",   "website": "https://nexgen.jp",        "notes": "Needs Japanese localization", "score": 65, "cid": 15 }, "_created_time": "2024-12-22T10:00:00Z", "_last_edited_time": "2025-01-11T15:00:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c16", "values": { "name": "Alex Rivera",       "email": "arivera@quickship.com", "phone": "+1-555-0116", "company": "QuickShip",      "role": "DevOps Lead",      "stage": "Lead",         "deal_value": 6500,   "source": "Website",     "tags": ["Startup"],           "last_contact": "",           "next_follow": "2025-01-26", "owner": "Lisa Chen",     "website": "https://quickship.com",    "notes": "Browsed pricing page 5 times", "score": 35, "cid": 16 }, "_created_time": "2025-01-13T08:00:00Z", "_last_edited_time": "2025-01-13T08:00:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c17", "values": { "name": "Sophie Martin",     "email": "smartin@luxebrands.fr", "phone": "+33-1-5555-0117", "company": "LuxeBrands",   "role": "Digital Director", "stage": "Proposal",     "deal_value": 72000,  "source": "Referral",    "tags": ["Enterprise"],        "last_contact": "2025-01-14", "next_follow": "2025-01-21", "owner": "Mark Wilson",   "website": "https://luxebrands.fr",    "notes": "Custom branding package needed", "score": 76, "cid": 17 }, "_created_time": "2024-12-05T09:00:00Z", "_last_edited_time": "2025-01-14T12:00:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c18", "values": { "name": "Ben Okafor",        "email": "ben@paystack.ng",       "phone": "+234-1-555-0118", "company": "PayStack",     "role": "CTO",              "stage": "Contacted",    "deal_value": 20000,  "source": "Cold Call",   "tags": ["Startup"],           "last_contact": "2025-01-07", "next_follow": "2025-01-21", "owner": "Lisa Chen",     "website": "https://paystack.ng",      "notes": "Demo scheduled for next week", "score": 50, "cid": 18 }, "_created_time": "2025-01-04T14:00:00Z", "_last_edited_time": "2025-01-07T16:00:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c19", "values": { "name": "Maria Santos",      "email": "msantos@ecomart.br",    "phone": "+55-11-5555-0119", "company": "EcoMart",     "role": "Head of IT",       "stage": "Closed Lost",  "deal_value": 14000,  "source": "Ads",         "tags": ["SMB"],               "last_contact": "2024-12-20", "next_follow": "",           "owner": "Mark Wilson",   "website": "https://ecomart.br",       "notes": "Budget frozen until Q3", "score": 15, "cid": 19 }, "_created_time": "2024-11-01T10:00:00Z", "_last_edited_time": "2024-12-20T11:00:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c20", "values": { "name": "Jake Peterson",     "email": "jake@datavault.io",     "phone": "+1-555-0120", "company": "DataVault",      "role": "Architect",        "stage": "Negotiation",  "deal_value": 95000,  "source": "Conference",  "tags": ["Enterprise","VIP"],  "last_contact": "2025-01-14", "next_follow": "2025-01-16", "owner": "Lisa Chen",     "website": "https://datavault.io",     "notes": "Legal review in progress", "score": 85, "cid": 20 }, "_created_time": "2024-11-28T08:00:00Z", "_last_edited_time": "2025-01-14T13:45:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c21", "values": { "name": "Fatima Al-Rashid",  "email": "fatima@logicgate.ae",   "phone": "+971-4-555-0121", "company": "LogicGate",    "role": "Managing Director","stage": "Qualified",    "deal_value": 58000,  "source": "Referral",    "tags": ["Enterprise"],        "last_contact": "2025-01-12", "next_follow": "2025-01-22", "owner": "Mark Wilson",   "website": "https://logicgate.ae",     "notes": "Wants on-premise option", "score": 70, "cid": 21 }, "_created_time": "2024-12-15T11:00:00Z", "_last_edited_time": "2025-01-12T10:30:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c22", "values": { "name": "Chris Novak",       "email": "cnovak@swiftapp.dev",   "phone": "+1-555-0122", "company": "SwiftApp",       "role": "Solo Founder",     "stage": "Lead",         "deal_value": 3500,   "source": "Website",     "tags": ["Startup"],           "last_contact": "",           "next_follow": "2025-01-27", "owner": "Lisa Chen",     "website": "https://swiftapp.dev",     "notes": "Free trial sign-up", "score": 22, "cid": 22 }, "_created_time": "2025-01-14T07:00:00Z", "_last_edited_time": "2025-01-14T07:00:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c23", "values": { "name": "Diana Chang",       "email": "dchang@orbitsys.com",   "phone": "+1-555-0123", "company": "OrbitSystems",   "role": "VP Engineering",   "stage": "Closed Won",   "deal_value": 110000, "source": "LinkedIn",    "tags": ["Enterprise","VIP","Renewal"], "last_contact": "2025-01-09", "next_follow": "2025-06-01", "owner": "Mark Wilson", "website": "https://orbitsys.com", "notes": "3-year multi-seat deal signed", "score": 99, "cid": 23 }, "_created_time": "2024-06-10T08:00:00Z", "_last_edited_time": "2025-01-09T17:00:00Z", "_last_edited_by": "Mark Wilson" },
-    { "id": "c24", "values": { "name": "Ivan Petrov",       "email": "ivan@coldchain.ru",     "phone": "+7-495-555-0124", "company": "ColdChain",    "role": "CTO",              "stage": "Contacted",    "deal_value": 25000,  "source": "Cold Call",   "tags": ["SMB"],               "last_contact": "2025-01-06", "next_follow": "2025-01-20", "owner": "Lisa Chen",     "website": "https://coldchain.ru",     "notes": "Language barrier — needs Russian support docs", "score": 40, "cid": 24 }, "_created_time": "2025-01-02T12:00:00Z", "_last_edited_time": "2025-01-06T14:00:00Z", "_last_edited_by": "Lisa Chen" },
-    { "id": "c25", "values": { "name": "Laura Fischer",     "email": "lfischer@autobahn.de",  "phone": "+49-30-5555-0125", "company": "Autobahn AG", "role": "Head of Digital",  "stage": "Proposal",     "deal_value": 67000,  "source": "Conference",  "tags": ["Enterprise"],        "last_contact": "2025-01-14", "next_follow": "2025-01-18", "owner": "Mark Wilson",   "website": "https://autobahn.de",      "notes": "GDPR compliance deep-dive required", "score": 74, "cid": 25 }, "_created_time": "2024-12-08T09:00:00Z", "_last_edited_time": "2025-01-14T15:30:00Z", "_last_edited_by": "Mark Wilson" }
+    {
+      "id": "c01",
+      "values": {
+        "name": "Sarah Joh",
+        "email": "sarah@techcorp.io",
+        "phone": "+1-555-0101",
+        "company": "TechCorp",
+        "role": "CTO",
+        "stage": "Closed Won",
+        "deal_value": 48000,
+        "source": "Referral",
+        "tags": [
+          "Enterprise",
+          "VIP"
+        ],
+        "last_contact": "2025-01-12",
+        "next_follow": "2025-02-12",
+        "owner": "Mark Wilson",
+        "website": "https://techcorp.io",
+        "notes": "Signed 2-year contract",
+        "score": 95,
+        "cid": 1
+      },
+      "_created_time": "2024-10-15T09:00:00Z",
+      "_last_edited_time": "2026-03-26T02:00:49.621Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c02",
+      "values": {
+        "name": "James Rodriguez",
+        "email": "jrod@startupx.com",
+        "phone": "+1-555-0102",
+        "company": "StartupX",
+        "role": "CEO",
+        "stage": "Proposal",
+        "deal_value": 12000,
+        "source": "LinkedIn",
+        "tags": [
+          "Startup"
+        ],
+        "last_contact": "2025-01-14",
+        "next_follow": "2025-01-18",
+        "owner": "Lisa Chen",
+        "website": "https://startupx.com",
+        "notes": "Needs custom onboarding",
+        "score": 72,
+        "cid": 2
+      },
+      "_created_time": "2024-11-20T10:00:00Z",
+      "_last_edited_time": "2025-01-14T11:00:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c03",
+      "values": {
+        "name": "Emily Watson",
+        "email": "ewatson@bigretail.com",
+        "phone": "+1-555-0103",
+        "company": "BigRetail",
+        "role": "VP Engineering",
+        "stage": "Negotiation",
+        "deal_value": 85000,
+        "source": "Conference",
+        "tags": [
+          "Enterprise"
+        ],
+        "last_contact": "2025-01-13",
+        "next_follow": "2025-01-17",
+        "owner": "Mark Wilson",
+        "website": "https://bigretail.com",
+        "notes": "Comparing us with competitor Y",
+        "score": 83,
+        "cid": 3
+      },
+      "_created_time": "2024-12-01T08:00:00Z",
+      "_last_edited_time": "2025-01-13T16:30:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c04",
+      "values": {
+        "name": "Michael Brown",
+        "email": "mbrown@finserv.co",
+        "phone": "+1-555-0104",
+        "company": "FinServ",
+        "role": "Director of IT",
+        "stage": "Qualified",
+        "deal_value": 35000,
+        "source": "Website",
+        "tags": [
+          "Enterprise"
+        ],
+        "last_contact": "2025-01-10",
+        "next_follow": "2025-01-20",
+        "owner": "Lisa Chen",
+        "website": "https://finserv.co",
+        "notes": "Security audit required before purchase",
+        "score": 68,
+        "cid": 4
+      },
+      "_created_time": "2024-12-10T11:00:00Z",
+      "_last_edited_time": "2025-01-10T09:15:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c05",
+      "values": {
+        "name": "Priya Patel",
+        "email": "priya@cloudsync.ai",
+        "phone": "+1-555-0105",
+        "company": "CloudSync",
+        "role": "Head of Product",
+        "stage": "Contacted",
+        "deal_value": 22000,
+        "source": "Ads",
+        "tags": [
+          "Startup"
+        ],
+        "last_contact": "2025-01-14",
+        "next_follow": "2025-01-21",
+        "owner": "Mark Wilson",
+        "website": "https://cloudsync.ai",
+        "notes": "Interested in API tier",
+        "score": 55,
+        "cid": 5
+      },
+      "_created_time": "2025-01-02T07:00:00Z",
+      "_last_edited_time": "2025-01-14T08:20:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c06",
+      "values": {
+        "name": "David Kim",
+        "email": "dkim@mediahouse.com",
+        "phone": "+1-555-0106",
+        "company": "MediaHouse",
+        "role": "Tech Lead",
+        "stage": "Lead",
+        "deal_value": 8000,
+        "source": "Website",
+        "tags": [
+          "SMB"
+        ],
+        "last_contact": "",
+        "next_follow": "2025-01-22",
+        "owner": "Lisa Chen",
+        "website": "https://mediahouse.com",
+        "notes": "Downloaded whitepaper",
+        "score": 30,
+        "cid": 6
+      },
+      "_created_time": "2025-01-08T14:00:00Z",
+      "_last_edited_time": "2025-01-08T14:00:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c07",
+      "values": {
+        "name": "Rachel Green",
+        "email": "rgreen@healthio.org",
+        "phone": "+1-555-0107",
+        "company": "HealthIO",
+        "role": "COO",
+        "stage": "Closed Won",
+        "deal_value": 62000,
+        "source": "Referral",
+        "tags": [
+          "Enterprise",
+          "VIP"
+        ],
+        "last_contact": "2025-01-11",
+        "next_follow": "2025-03-01",
+        "owner": "Mark Wilson",
+        "website": "https://healthio.org",
+        "notes": "Expansion deal for 3 new teams",
+        "score": 98,
+        "cid": 7
+      },
+      "_created_time": "2024-09-05T09:00:00Z",
+      "_last_edited_time": "2025-01-11T13:00:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c08",
+      "values": {
+        "name": "Tom Anderson",
+        "email": "tanderson@buildco.com",
+        "phone": "+1-555-0108",
+        "company": "BuildCo",
+        "role": "Engineering Manager",
+        "stage": "Closed Lost",
+        "deal_value": 15000,
+        "source": "Cold Call",
+        "tags": [
+          "SMB"
+        ],
+        "last_contact": "2025-01-05",
+        "next_follow": "",
+        "owner": "Lisa Chen",
+        "website": "https://buildco.com",
+        "notes": "Went with competitor Z — price sensitive",
+        "score": 20,
+        "cid": 8
+      },
+      "_created_time": "2024-11-10T10:00:00Z",
+      "_last_edited_time": "2025-01-05T15:45:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c09",
+      "values": {
+        "name": "Amy Liu",
+        "email": "aliu@edufirst.edu",
+        "phone": "+1-555-0109",
+        "company": "EduFirst",
+        "role": "CIO",
+        "stage": "Proposal",
+        "deal_value": 55000,
+        "source": "Conference",
+        "tags": [
+          "Enterprise"
+        ],
+        "last_contact": "2025-01-13",
+        "next_follow": "2025-01-19",
+        "owner": "Mark Wilson",
+        "website": "https://edufirst.edu",
+        "notes": "Needs SSO + SCIM integration",
+        "score": 78,
+        "cid": 9
+      },
+      "_created_time": "2024-12-18T08:00:00Z",
+      "_last_edited_time": "2025-01-13T10:00:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c10",
+      "values": {
+        "name": "Carlos Mendez",
+        "email": "cmendez@logiflow.com",
+        "phone": "+1-555-0110",
+        "company": "LogiFlow",
+        "role": "Founder",
+        "stage": "Qualified",
+        "deal_value": 18000,
+        "source": "LinkedIn",
+        "tags": [
+          "Startup"
+        ],
+        "last_contact": "2025-01-09",
+        "next_follow": "2025-01-23",
+        "owner": "Lisa Chen",
+        "website": "https://logiflow.com",
+        "notes": "Pilot period requested — 30 days",
+        "score": 62,
+        "cid": 10
+      },
+      "_created_time": "2025-01-03T11:00:00Z",
+      "_last_edited_time": "2025-01-09T14:00:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c11",
+      "values": {
+        "name": "Nina Petrova",
+        "email": "nina@globex.net",
+        "phone": "+44-20-7946-0111",
+        "company": "Globex Corp",
+        "role": "SVP Technology",
+        "stage": "Negotiation",
+        "deal_value": 120000,
+        "source": "Referral",
+        "tags": [
+          "Enterprise",
+          "VIP"
+        ],
+        "last_contact": "2025-01-14",
+        "next_follow": "2025-01-16",
+        "owner": "Mark Wilson",
+        "website": "https://globex.net",
+        "notes": "Multi-region deployment requirement",
+        "score": 90,
+        "cid": 11
+      },
+      "_created_time": "2024-11-25T09:00:00Z",
+      "_last_edited_time": "2025-01-14T17:00:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c12",
+      "values": {
+        "name": "Oliver Hughes",
+        "email": "ohughes@creatify.co",
+        "phone": "+1-555-0112",
+        "company": "Creatify",
+        "role": "Product Manager",
+        "stage": "Contacted",
+        "deal_value": 9500,
+        "source": "Ads",
+        "tags": [
+          "Startup"
+        ],
+        "last_contact": "2025-01-12",
+        "next_follow": "2025-01-24",
+        "owner": "Lisa Chen",
+        "website": "https://creatify.co",
+        "notes": "Asked about Figma plugin",
+        "score": 42,
+        "cid": 12
+      },
+      "_created_time": "2025-01-06T10:00:00Z",
+      "_last_edited_time": "2025-01-12T09:30:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c13",
+      "values": {
+        "name": "Hannah Taylor",
+        "email": "htaylor@ventura.io",
+        "phone": "+1-555-0113",
+        "company": "Ventura.io",
+        "role": "Head of Engineering",
+        "stage": "Lead",
+        "deal_value": 28000,
+        "source": "Website",
+        "tags": [
+          "SMB"
+        ],
+        "last_contact": "",
+        "next_follow": "2025-01-25",
+        "owner": "Mark Wilson",
+        "website": "https://ventura.io",
+        "notes": "Signed up for newsletter",
+        "score": 25,
+        "cid": 13
+      },
+      "_created_time": "2025-01-10T13:00:00Z",
+      "_last_edited_time": "2025-01-10T13:00:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c14",
+      "values": {
+        "name": "Liam O'Connor",
+        "email": "liam@greenleaf.eco",
+        "phone": "+353-1-555-0114",
+        "company": "GreenLeaf",
+        "role": "CEO",
+        "stage": "Closed Won",
+        "deal_value": 31000,
+        "source": "Conference",
+        "tags": [
+          "SMB",
+          "Renewal"
+        ],
+        "last_contact": "2025-01-08",
+        "next_follow": "2025-04-08",
+        "owner": "Lisa Chen",
+        "website": "https://greenleaf.eco",
+        "notes": "Annual renewal coming April",
+        "score": 88,
+        "cid": 14
+      },
+      "_created_time": "2024-08-15T07:00:00Z",
+      "_last_edited_time": "2025-01-08T11:00:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c15",
+      "values": {
+        "name": "Yuki Tanaka",
+        "email": "yuki@nexgen.jp",
+        "phone": "+81-3-5555-0115",
+        "company": "NexGen",
+        "role": "VP Sales",
+        "stage": "Qualified",
+        "deal_value": 42000,
+        "source": "LinkedIn",
+        "tags": [
+          "Enterprise"
+        ],
+        "last_contact": "2025-01-11",
+        "next_follow": "2025-01-20",
+        "owner": "Mark Wilson",
+        "website": "https://nexgen.jp",
+        "notes": "Needs Japanese localization",
+        "score": 65,
+        "cid": 15
+      },
+      "_created_time": "2024-12-22T10:00:00Z",
+      "_last_edited_time": "2025-01-11T15:00:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c16",
+      "values": {
+        "name": "Alex Rivera",
+        "email": "arivera@quickship.com",
+        "phone": "+1-555-0116",
+        "company": "QuickShip",
+        "role": "DevOps Lead",
+        "stage": "Lead",
+        "deal_value": 6500,
+        "source": "Website",
+        "tags": [
+          "Startup"
+        ],
+        "last_contact": "",
+        "next_follow": "2025-01-26",
+        "owner": "Lisa Chen",
+        "website": "https://quickship.com",
+        "notes": "Browsed pricing page 5 times",
+        "score": 35,
+        "cid": 16
+      },
+      "_created_time": "2025-01-13T08:00:00Z",
+      "_last_edited_time": "2025-01-13T08:00:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c17",
+      "values": {
+        "name": "Sophie Martin",
+        "email": "smartin@luxebrands.fr",
+        "phone": "+33-1-5555-0117",
+        "company": "LuxeBrands",
+        "role": "Digital Director",
+        "stage": "Proposal",
+        "deal_value": 72000,
+        "source": "Referral",
+        "tags": [
+          "Enterprise"
+        ],
+        "last_contact": "2025-01-14",
+        "next_follow": "2025-01-21",
+        "owner": "Mark Wilson",
+        "website": "https://luxebrands.fr",
+        "notes": "Custom branding package needed",
+        "score": 76,
+        "cid": 17
+      },
+      "_created_time": "2024-12-05T09:00:00Z",
+      "_last_edited_time": "2025-01-14T12:00:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c18",
+      "values": {
+        "name": "Ben Okafor",
+        "email": "ben@paystack.ng",
+        "phone": "+234-1-555-0118",
+        "company": "PayStack",
+        "role": "CTO",
+        "stage": "Contacted",
+        "deal_value": 20000,
+        "source": "Cold Call",
+        "tags": [
+          "Startup"
+        ],
+        "last_contact": "2025-01-07",
+        "next_follow": "2025-01-21",
+        "owner": "Lisa Chen",
+        "website": "https://paystack.ng",
+        "notes": "Demo scheduled for next week",
+        "score": 50,
+        "cid": 18
+      },
+      "_created_time": "2025-01-04T14:00:00Z",
+      "_last_edited_time": "2025-01-07T16:00:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c19",
+      "values": {
+        "name": "Maria Santos",
+        "email": "msantos@ecomart.br",
+        "phone": "+55-11-5555-0119",
+        "company": "EcoMart",
+        "role": "Head of IT",
+        "stage": "Closed Lost",
+        "deal_value": 14000,
+        "source": "Ads",
+        "tags": [
+          "SMB"
+        ],
+        "last_contact": "2024-12-20",
+        "next_follow": "",
+        "owner": "Mark Wilson",
+        "website": "https://ecomart.br",
+        "notes": "Budget frozen until Q3",
+        "score": 15,
+        "cid": 19
+      },
+      "_created_time": "2024-11-01T10:00:00Z",
+      "_last_edited_time": "2024-12-20T11:00:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c20",
+      "values": {
+        "name": "Jake Peterson",
+        "email": "jake@datavault.io",
+        "phone": "+1-555-0120",
+        "company": "DataVault",
+        "role": "Architect",
+        "stage": "Negotiation",
+        "deal_value": 95000,
+        "source": "Conference",
+        "tags": [
+          "Enterprise",
+          "VIP"
+        ],
+        "last_contact": "2025-01-14",
+        "next_follow": "2025-01-16",
+        "owner": "Lisa Chen",
+        "website": "https://datavault.io",
+        "notes": "Legal review in progress",
+        "score": 85,
+        "cid": 20
+      },
+      "_created_time": "2024-11-28T08:00:00Z",
+      "_last_edited_time": "2025-01-14T13:45:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c21",
+      "values": {
+        "name": "Fatima Al-Rashid",
+        "email": "fatima@logicgate.ae",
+        "phone": "+971-4-555-0121",
+        "company": "LogicGate",
+        "role": "Managing Director",
+        "stage": "Qualified",
+        "deal_value": 58000,
+        "source": "Referral",
+        "tags": [
+          "Enterprise"
+        ],
+        "last_contact": "2025-01-12",
+        "next_follow": "2025-01-22",
+        "owner": "Mark Wilson",
+        "website": "https://logicgate.ae",
+        "notes": "Wants on-premise option",
+        "score": 70,
+        "cid": 21
+      },
+      "_created_time": "2024-12-15T11:00:00Z",
+      "_last_edited_time": "2025-01-12T10:30:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c22",
+      "values": {
+        "name": "Chris Novak",
+        "email": "cnovak@swiftapp.dev",
+        "phone": "+1-555-0122",
+        "company": "SwiftApp",
+        "role": "Solo Founder",
+        "stage": "Lead",
+        "deal_value": 3500,
+        "source": "Website",
+        "tags": [
+          "Startup"
+        ],
+        "last_contact": "",
+        "next_follow": "2025-01-27",
+        "owner": "Lisa Chen",
+        "website": "https://swiftapp.dev",
+        "notes": "Free trial sign-up",
+        "score": 22,
+        "cid": 22
+      },
+      "_created_time": "2025-01-14T07:00:00Z",
+      "_last_edited_time": "2025-01-14T07:00:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c23",
+      "values": {
+        "name": "Diana Chang",
+        "email": "dchang@orbitsys.com",
+        "phone": "+1-555-0123",
+        "company": "OrbitSystems",
+        "role": "VP Engineering",
+        "stage": "Closed Won",
+        "deal_value": 110000,
+        "source": "LinkedIn",
+        "tags": [
+          "Enterprise",
+          "VIP",
+          "Renewal"
+        ],
+        "last_contact": "2025-01-09",
+        "next_follow": "2025-06-01",
+        "owner": "Mark Wilson",
+        "website": "https://orbitsys.com",
+        "notes": "3-year multi-seat deal signed",
+        "score": 99,
+        "cid": 23
+      },
+      "_created_time": "2024-06-10T08:00:00Z",
+      "_last_edited_time": "2025-01-09T17:00:00Z",
+      "_last_edited_by": "Mark Wilson"
+    },
+    {
+      "id": "c24",
+      "values": {
+        "name": "Ivan Petrov",
+        "email": "ivan@coldchain.ru",
+        "phone": "+7-495-555-0124",
+        "company": "ColdChain",
+        "role": "CTO",
+        "stage": "Contacted",
+        "deal_value": 25000,
+        "source": "Cold Call",
+        "tags": [
+          "SMB"
+        ],
+        "last_contact": "2025-01-06",
+        "next_follow": "2025-01-20",
+        "owner": "Lisa Chen",
+        "website": "https://coldchain.ru",
+        "notes": "Language barrier — needs Russian support docs",
+        "score": 40,
+        "cid": 24
+      },
+      "_created_time": "2025-01-02T12:00:00Z",
+      "_last_edited_time": "2025-01-06T14:00:00Z",
+      "_last_edited_by": "Lisa Chen"
+    },
+    {
+      "id": "c25",
+      "values": {
+        "name": "Laura Fischer",
+        "email": "lfischer@autobahn.de",
+        "phone": "+49-30-5555-0125",
+        "company": "Autobahn AG",
+        "role": "Head of Digital",
+        "stage": "Proposal",
+        "deal_value": 67000,
+        "source": "Conference",
+        "tags": [
+          "Enterprise"
+        ],
+        "last_contact": "2025-01-14",
+        "next_follow": "2025-01-18",
+        "owner": "Mark Wilson",
+        "website": "https://autobahn.de",
+        "notes": "GDPR compliance deep-dive required",
+        "score": 74,
+        "cid": 25
+      },
+      "_created_time": "2024-12-08T09:00:00Z",
+      "_last_edited_time": "2025-01-14T15:30:00Z",
+      "_last_edited_by": "Mark Wilson"
+    }
   ],
   "views": [
-    { "id": "v1", "name": "All Contacts", "type": "table", "propertyVisibility": { "name": true, "email": true, "company": true, "role": true, "stage": true, "deal_value": true, "source": true, "tags": true, "score": true, "cid": true }, "filters": [], "sorts": [{ "property": "cid", "direction": "asc" }] },
-    { "id": "v2", "name": "Pipeline",     "type": "board", "propertyVisibility": { "name": true, "company": true, "deal_value": true, "owner": true }, "filters": [], "sorts": [{ "property": "deal_value", "direction": "desc" }], "groupBy": { "property": "stage" }, "boardOptions": { "groupProperty": "stage", "showCardCover": false, "cardSize": "medium" } },
-    { "id": "v3", "name": "Follow-ups",   "type": "calendar", "propertyVisibility": { "name": true, "company": true, "stage": true, "owner": true }, "filters": [{ "property": "next_follow", "operator": "is_not_empty", "value": null }], "sorts": [], "calendarOptions": { "dateProperty": "next_follow", "titleProperty": "name" } },
-    { "id": "v4", "name": "Leads Gallery", "type": "gallery", "propertyVisibility": { "name": true, "company": true, "stage": true, "deal_value": true, "notes": true }, "filters": [{ "property": "stage", "operator": "in", "value": ["Lead", "Contacted"] }], "sorts": [{ "property": "score", "direction": "desc" }], "galleryOptions": { "cardSize": "medium", "showDescription": true } },
-    { "id": "v5", "name": "Revenue Chart","type": "chart", "propertyVisibility": { "stage": true, "deal_value": true }, "filters": [], "sorts": [], "chartOptions": { "chartType": "bar", "xAxis": "stage", "yAxis": "deal_value", "colorBy": "stage" } },
-    { "id": "v6", "name": "Contact List", "type": "list", "propertyVisibility": { "name": true, "company": true, "email": true, "phone": true, "stage": true, "deal_value": true }, "filters": [], "sorts": [{ "property": "name", "direction": "asc" }] }
+    {
+      "id": "v1",
+      "name": "All Contacts",
+      "type": "table",
+      "propertyVisibility": {
+        "name": true,
+        "email": true,
+        "company": true,
+        "role": true,
+        "stage": true,
+        "deal_value": true,
+        "source": true,
+        "tags": true,
+        "score": true,
+        "cid": true
+      },
+      "filters": [],
+      "sorts": [
+        {
+          "property": "cid",
+          "direction": "asc"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "name": "Pipeline",
+      "type": "board",
+      "propertyVisibility": {
+        "name": true,
+        "company": true,
+        "deal_value": true,
+        "owner": true
+      },
+      "filters": [],
+      "sorts": [
+        {
+          "property": "deal_value",
+          "direction": "desc"
+        }
+      ],
+      "groupBy": {
+        "property": "stage"
+      },
+      "boardOptions": {
+        "groupProperty": "stage",
+        "showCardCover": false,
+        "cardSize": "medium"
+      }
+    },
+    {
+      "id": "v3",
+      "name": "Follow-ups",
+      "type": "calendar",
+      "propertyVisibility": {
+        "name": true,
+        "company": true,
+        "stage": true,
+        "owner": true
+      },
+      "filters": [
+        {
+          "property": "next_follow",
+          "operator": "is_not_empty",
+          "value": null
+        }
+      ],
+      "sorts": [],
+      "calendarOptions": {
+        "dateProperty": "next_follow",
+        "titleProperty": "name"
+      }
+    },
+    {
+      "id": "v4",
+      "name": "Leads Gallery",
+      "type": "gallery",
+      "propertyVisibility": {
+        "name": true,
+        "company": true,
+        "stage": true,
+        "deal_value": true,
+        "notes": true
+      },
+      "filters": [
+        {
+          "property": "stage",
+          "operator": "in",
+          "value": [
+            "Lead",
+            "Contacted"
+          ]
+        }
+      ],
+      "sorts": [
+        {
+          "property": "score",
+          "direction": "desc"
+        }
+      ],
+      "galleryOptions": {
+        "cardSize": "medium",
+        "showDescription": true
+      }
+    },
+    {
+      "id": "v5",
+      "name": "Revenue Chart",
+      "type": "chart",
+      "propertyVisibility": {
+        "stage": true,
+        "deal_value": true
+      },
+      "filters": [],
+      "sorts": [],
+      "chartOptions": {
+        "chartType": "bar",
+        "xAxis": "stage",
+        "yAxis": "deal_value",
+        "colorBy": "stage"
+      }
+    },
+    {
+      "id": "v6",
+      "name": "Contact List",
+      "type": "list",
+      "propertyVisibility": {
+        "name": true,
+        "company": true,
+        "email": true,
+        "phone": true,
+        "stage": true,
+        "deal_value": true
+      },
+      "filters": [],
+      "sorts": [
+        {
+          "property": "name",
+          "direction": "asc"
+        }
+      ]
+    }
   ]
 }

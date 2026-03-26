@@ -16,13 +16,16 @@ import type {
 
 export interface UseDatabaseEngineOptions {
   source: DatabaseSource;
+  /** Called after every mutation with the full updated records array.
+   *  Use this to persist data (e.g. write to a REST endpoint). */
+  onMutate?: (records: DatabaseRecord[]) => void;
 }
 
 /**
  * Core hook that owns the record set and exposes filter / sort / group /
  * search as derived state. Also provides CRUD mutations.
  */
-export function useDatabaseEngine({ source }: UseDatabaseEngineOptions) {
+export function useDatabaseEngine({ source, onMutate }: UseDatabaseEngineOptions) {
   const { schema } = source;
 
   // ── Mutable record list ──────────────────────────
@@ -53,8 +56,8 @@ export function useDatabaseEngine({ source }: UseDatabaseEngineOptions) {
   // ── Mutations ────────────────────────────────────
   const updateCell = useCallback(
     (recordId: string, property: string, value: CellValue) => {
-      setRecords((prev) =>
-        prev.map((r) =>
+      setRecords((prev) => {
+        const next = prev.map((r) =>
           r.id === recordId
             ? {
                 ...r,
@@ -62,10 +65,12 @@ export function useDatabaseEngine({ source }: UseDatabaseEngineOptions) {
                 _last_edited_time: new Date().toISOString(),
               }
             : r,
-        ),
-      );
+        );
+        onMutate?.(next);
+        return next;
+      });
     },
-    [],
+    [onMutate],
   );
 
   const addRecord = useCallback(
@@ -79,15 +84,26 @@ export function useDatabaseEngine({ source }: UseDatabaseEngineOptions) {
         _last_edited_time: now,
         _last_edited_by: 'User',
       };
-      setRecords((prev) => [...prev, record]);
+      setRecords((prev) => {
+        const next = [...prev, record];
+        onMutate?.(next);
+        return next;
+      });
       return record;
     },
-    [],
+    [onMutate],
   );
 
-  const deleteRecord = useCallback((recordId: string) => {
-    setRecords((prev) => prev.filter((r) => r.id !== recordId));
-  }, []);
+  const deleteRecord = useCallback(
+    (recordId: string) => {
+      setRecords((prev) => {
+        const next = prev.filter((r) => r.id !== recordId);
+        onMutate?.(next);
+        return next;
+      });
+    },
+    [onMutate],
+  );
 
   return {
     schema,
