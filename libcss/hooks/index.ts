@@ -10,3 +10,5 @@ export { useComponentState } from './useComponentState';
 export { useSearch } from './useSearch';
 export { useJsonConf } from './useJsonConf';
 export type { ConfEntry, UseJsonConfReturn } from './useJsonConf';
+export { useDatabaseEngine } from './useDatabaseEngine';
+export { useViewManager } from './useViewManager';
