@@ -54,6 +54,7 @@
 
 .lcss-anim-pulse {
   animation-name: lcss-pulse;
+
   --lcss-anim-duration: 1.5s;
   --lcss-anim-count: infinite;
   --lcss-anim-easing: ease-in-out;
@@ -63,12 +64,13 @@
    2. GLOW — Pulsating box-shadow
    ═══════════════════════════════════════════════════════ */
 @keyframes lcss-glow {
-  0%, 100% { box-shadow: 0 0 5px 0 var(--lcss-glow-color, rgba(99, 102, 241, 0.4)); }
-  50%      { box-shadow: 0 0 25px 8px var(--lcss-glow-color, rgba(99, 102, 241, 0.6)); }
+  0%, 100% { box-shadow: 0 0 5px 0 var(--lcss-glow-color, rgb(99 102 241 / 40%)); }
+  50%      { box-shadow: 0 0 25px 8px var(--lcss-glow-color, rgb(99 102 241 / 60%)); }
 }
 
 .lcss-anim-glow {
   animation-name: lcss-glow;
+
   --lcss-anim-duration: 2s;
   --lcss-anim-count: infinite;
   --lcss-anim-easing: ease-in-out;
@@ -85,6 +87,7 @@
 
 .lcss-anim-shake {
   animation-name: lcss-shake;
+
   --lcss-anim-duration: 0.6s;
 }
 
@@ -92,8 +95,15 @@
    4. RIPPLE — Expanding ring (overlay pseudo-element)
    ═══════════════════════════════════════════════════════ */
 @keyframes lcss-ripple-ring {
-  0%   { transform: scale(0); opacity: 0.6; }
-  100% { transform: scale(2.5); opacity: 0; }
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 .lcss-anim-ripple {
@@ -109,7 +119,7 @@
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  background: var(--lcss-ripple-color, rgba(255, 255, 255, 0.35));
+  background: var(--lcss-ripple-color, rgb(255 255 255 / 35%));
   animation: lcss-ripple-ring 0.7s ease-out;
   animation-iteration-count: var(--lcss-anim-count, 1);
   pointer-events: none;
@@ -126,6 +136,7 @@
 
 .lcss-anim-morph {
   animation-name: lcss-morph;
+
   --lcss-anim-duration: 3s;
   --lcss-anim-count: infinite;
   --lcss-anim-easing: ease-in-out;
@@ -135,12 +146,13 @@
    6. FLOAT — Gentle levitation
    ═══════════════════════════════════════════════════════ */
 @keyframes lcss-float {
-  0%, 100% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-8px); }
 }
 
 .lcss-anim-float {
   animation-name: lcss-float;
+
   --lcss-anim-duration: 3s;
   --lcss-anim-count: infinite;
   --lcss-anim-easing: ease-in-out;
@@ -159,6 +171,7 @@
 
 .lcss-anim-jelly {
   animation-name: lcss-jelly;
+
   --lcss-anim-duration: 0.5s;
   --lcss-anim-easing: cubic-bezier(0.37, 0, 0.63, 1);
 }
@@ -167,23 +180,51 @@
    8. SLIDE-IN — Enter from direction
    ═══════════════════════════════════════════════════════ */
 @keyframes lcss-slide-up {
-  from { transform: translateY(30px); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes lcss-slide-down {
-  from { transform: translateY(-30px); opacity: 0; }
-  to   { transform: translateY(0);     opacity: 1; }
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes lcss-slide-left {
-  from { transform: translateX(30px); opacity: 0; }
-  to   { transform: translateX(0);    opacity: 1; }
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes lcss-slide-right {
-  from { transform: translateX(-30px); opacity: 0; }
-  to   { transform: translateX(0);     opacity: 1; }
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .lcss-anim-slide-up    { animation-name: lcss-slide-up; }
@@ -208,8 +249,17 @@
   100% { transform: perspective(400px) rotateY(-360deg); }
 }
 
-.lcss-anim-flip-x { animation-name: lcss-flip-x; --lcss-anim-duration: 0.8s; }
-.lcss-anim-flip-y { animation-name: lcss-flip-y; --lcss-anim-duration: 0.8s; }
+.lcss-anim-flip-x {
+  animation-name: lcss-flip-x;
+
+  --lcss-anim-duration: 0.8s;
+}
+
+.lcss-anim-flip-y {
+  animation-name: lcss-flip-y;
+
+  --lcss-anim-duration: 0.8s;
+}
 
 /* ═══════════════════════════════════════════════════════
    10. NEON — Flickering neon sign effect
@@ -226,6 +276,7 @@
       0 0 4px var(--lcss-neon-accent, #6366f1),
       0 0 20px var(--lcss-neon-accent, #6366f1);
   }
+
   20%, 24%, 55% {
     text-shadow: none;
     box-shadow: none;
@@ -234,6 +285,7 @@
 
 .lcss-anim-neon {
   animation-name: lcss-neon;
+
   --lcss-anim-duration: 1.5s;
   --lcss-anim-count: infinite;
 }
@@ -242,16 +294,39 @@
    11. GLITCH — Digital distortion
    ═══════════════════════════════════════════════════════ */
 @keyframes lcss-glitch {
-  0%   { transform: translate(0); }
-  20%  { transform: translate(-3px, 3px); }
-  40%  { transform: translate(-3px, -3px); filter: hue-rotate(90deg); }
-  60%  { transform: translate(3px, 3px); clip-path: inset(20% 0 30% 0); }
-  80%  { transform: translate(3px, -3px); filter: hue-rotate(-90deg); }
-  100% { transform: translate(0); filter: none; clip-path: none; }
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-3px, 3px);
+  }
+
+  40% {
+    transform: translate(-3px, -3px);
+    filter: hue-rotate(90deg);
+  }
+
+  60% {
+    transform: translate(3px, 3px);
+    clip-path: inset(20% 0 30% 0);
+  }
+
+  80% {
+    transform: translate(3px, -3px);
+    filter: hue-rotate(-90deg);
+  }
+
+  100% {
+    transform: translate(0);
+    filter: none;
+    clip-path: none;
+  }
 }
 
 .lcss-anim-glitch {
   animation-name: lcss-glitch;
+
   --lcss-anim-duration: 0.4s;
   --lcss-anim-easing: steps(2, end);
 }
@@ -260,14 +335,28 @@
    12. BOUNCE-IN — Spring entrance
    ═══════════════════════════════════════════════════════ */
 @keyframes lcss-bounce-in {
-  0%   { transform: scale(0.3); opacity: 0; }
-  50%  { transform: scale(1.08); }
-  70%  { transform: scale(0.95); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+
+  70% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .lcss-anim-bounce-in {
   animation-name: lcss-bounce-in;
+
   --lcss-anim-duration: 0.6s;
   --lcss-anim-easing: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
@@ -284,6 +373,7 @@
 .lcss-anim-gradient {
   background-size: 200% 200%;
   animation-name: lcss-gradient-shift;
+
   --lcss-anim-duration: 4s;
   --lcss-anim-count: infinite;
   --lcss-anim-easing: ease;
@@ -309,9 +399,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.15) 45%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0.15) 55%,
+    rgb(255 255 255 / 15%) 45%,
+    rgb(255 255 255 / 30%) 50%,
+    rgb(255 255 255 / 15%) 55%,
     transparent 100%
   );
   background-size: 200% 100%;
@@ -330,6 +420,7 @@
 
 .lcss-anim-spin {
   animation-name: lcss-spin;
+
   --lcss-anim-duration: 1s;
   --lcss-anim-count: infinite;
   --lcss-anim-easing: linear;
@@ -350,6 +441,7 @@
 
 .lcss-anim-rubber-band {
   animation-name: lcss-rubber-band;
+
   --lcss-anim-duration: 0.7s;
 }
 
@@ -357,13 +449,28 @@
    17. EXPLODE — Burst outward and fade
    ═══════════════════════════════════════════════════════ */
 @keyframes lcss-explode {
-  0%   { transform: scale(1); opacity: 1; filter: blur(0); }
-  50%  { transform: scale(1.5); opacity: 0.6; filter: blur(2px); }
-  100% { transform: scale(0.95); opacity: 1; filter: blur(0); }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.6;
+    filter: blur(2px);
+  }
+
+  100% {
+    transform: scale(0.95);
+    opacity: 1;
+    filter: blur(0);
+  }
 }
 
 .lcss-anim-explode {
   animation-name: lcss-explode;
+
   --lcss-anim-duration: 0.5s;
   --lcss-anim-easing: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -402,8 +509,15 @@
    20. PARTICLE-BURST — Pseudo-element radial
    ═══════════════════════════════════════════════════════ */
 @keyframes lcss-particle-out {
-  0%   { transform: scale(0); opacity: 1; }
-  100% { transform: scale(3); opacity: 0; }
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
 }
 
 .lcss-anim-particle-burst {
