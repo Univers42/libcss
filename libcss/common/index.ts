@@ -18,3 +18,18 @@ export { Observable } from './patterns';
 export { uid } from './utils';
 export { deepClone } from './utils';
 export { getPath, setPath, flatten, unflatten, deepMerge } from './utils';
+
+// Types – Database
+export * from './types';
+
+// Engine – Filter / Sort / Group
+export {
+  applyFilters,
+  applySort,
+  applyGroupBy,
+  processRecords,
+  searchRecords,
+  cellToString,
+  cellToNumber,
+  isEmpty,
+} from './engine';
