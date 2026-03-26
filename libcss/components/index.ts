@@ -24,5 +24,10 @@ export * from './explorer';
 // Views (page-level composite views)
 export * from './views';
 
+// Resolve re-export ambiguities
+export type { BreadcrumbItem } from './atoms';
+export type { SelectOption } from './atoms';
+export { ColorPicker } from './controls';
+
 // Utilities
 export { cn } from './lib/cn';

@@ -1,5 +1,5 @@
 // Layout — public API barrel
-export * from './view/chart';
+export * from './view';
 
 // Studio layout (component explorer shell)
 export { StudioLayout } from './StudioLayout';
