@@ -1,0 +1,72 @@
+// ─── Sort Menu ────────────────────────────────────────
+// BEM: .sort-menu
+
+.sort-menu {
+  padding: 8px;
+  min-width: 280px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text, #1f2937);
+  }
+
+  &__add {
+    padding: 2px 8px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-primary, #3b82f6);
+    font-size: 0.8125rem;
+    cursor: pointer;
+    &:hover { background: var(--color-hover, rgb(59 130 246 / 8%)); }
+  }
+
+  &__empty {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary, #9ca3af);
+    padding: 8px 0;
+  }
+
+  &__rule {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+
+    select {
+      flex: 1;
+      padding: 4px 6px;
+      border: 1px solid var(--color-border, #d1d5db);
+      border-radius: 4px;
+      font-size: 0.8125rem;
+      background: var(--color-surface, #fff);
+      color: var(--color-text, #1f2937);
+    }
+  }
+
+  &__remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-text-secondary, #9ca3af);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-danger-bg, #fee2e2);
+      color: var(--color-danger, #ef4444);
+    }
+  }
+}
