@@ -11,7 +11,6 @@ import { SelectControl } from './SelectControl';
 import { TextControl } from './TextControl';
 import { BooleanControl } from './BooleanControl';
 import { NumberControl } from './NumberControl';
-import { ColorControl } from './ColorControl';
 import { ColorPicker } from './ColorPicker';
 import { RangeControl } from './RangeControl';
 import { ToggleControl } from './ToggleControl';
