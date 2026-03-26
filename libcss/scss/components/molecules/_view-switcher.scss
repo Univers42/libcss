@@ -1,0 +1,73 @@
+// ─── View Switcher ────────────────────────────────────
+// BEM: .view-switcher
+// Notion-style view tab bar.
+
+.view-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--color-border, #e5e7eb);
+  overflow-x: auto;
+
+  &__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-text-secondary, #6b7280);
+    font-size: 0.8125rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.12s, color 0.12s;
+
+    &:hover {
+      background: var(--color-hover, rgb(0 0 0 / 5%));
+      color: var(--color-text, #1f2937);
+    }
+
+    &--active {
+      color: var(--color-text, #1f2937);
+      font-weight: 600;
+      background: var(--color-surface-raised, #f3f4f6);
+    }
+  }
+
+  &__icon {
+    font-size: 0.875rem;
+    line-height: 1;
+  }
+
+  &__label {
+    line-height: 1.2;
+  }
+
+  &__add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-text-secondary, #9ca3af);
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s, background 0.12s;
+
+    .view-switcher:hover & {
+      opacity: 1;
+    }
+
+    &:hover {
+      background: var(--color-hover, rgb(0 0 0 / 6%));
+      color: var(--color-text, #1f2937);
+    }
+  }
+}
