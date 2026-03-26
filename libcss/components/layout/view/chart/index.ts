@@ -1,5 +1,6 @@
 // Chart layout — public API
 export { Chart } from './Chart';
+export { ChartView } from './ChartView';
 export { DataProvider } from './core/data-provider';
 export { DataProviderScope, useDataProvider } from './core/data-context';
 export { getPalette, getColor, PALETTE_NAMES, PALETTES } from './palettes';
