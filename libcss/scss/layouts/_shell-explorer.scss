@@ -1385,12 +1385,12 @@ button.shell-nav__section-title--active {
   outline: none;
   box-shadow: 0 0 0 2px var(--shell-accent-soft);
   text-align: center;
-  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .scrub-field::-webkit-inner-spin-button,
 .scrub-field::-webkit-outer-spin-button {
-  -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 
@@ -1441,7 +1441,7 @@ button.shell-nav__section-title--active {
   width: 24px;
   height: 24px;
   border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgb(0 0 0 / 12%);
   flex-shrink: 0;
 }
 
@@ -1482,7 +1482,7 @@ button.shell-nav__section-title--active {
   height: 12px;
   border-radius: 50%;
   border: 2px solid #fff;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 3px rgb(0 0 0 / 50%);
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
@@ -1493,13 +1493,13 @@ button.shell-nav__section-title--active {
   border-radius: 6px;
   background: linear-gradient(
     to right,
-    hsl(0 100% 50%),
-    hsl(60 100% 50%),
-    hsl(120 100% 50%),
-    hsl(180 100% 50%),
-    hsl(240 100% 50%),
-    hsl(300 100% 50%),
-    hsl(360 100% 50%)
+    hsl(0deg 100% 50%),
+    hsl(60deg 100% 50%),
+    hsl(120deg 100% 50%),
+    hsl(180deg 100% 50%),
+    hsl(240deg 100% 50%),
+    hsl(300deg 100% 50%),
+    hsl(360deg 100% 50%)
   );
   cursor: pointer;
 }
@@ -1511,8 +1511,8 @@ button.shell-nav__section-title--active {
   height: 14px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgb(0 0 0 / 30%);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -1539,8 +1539,8 @@ button.shell-nav__section-title--active {
   height: 14px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgb(0 0 0 / 30%);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -1584,7 +1584,7 @@ button.shell-nav__section-title--active {
   width: 16px;
   height: 16px;
   border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(0 0 0 / 10%);
   cursor: pointer;
   padding: 0;
   transition: transform 0.1s;
