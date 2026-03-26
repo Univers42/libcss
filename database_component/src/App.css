@@ -1,0 +1,114 @@
+/* ── Database Component — global app styles ── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --app-bg: #fff;
+  --app-text: #37352f;
+  --app-sidebar-bg: #fbfbfa;
+  --app-sidebar-width: 260px;
+  --app-header-height: 44px;
+  --app-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-family: var(--app-font);
+  color: var(--app-text);
+  background: var(--app-bg);
+}
+
+body {
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Dataset sidebar ── */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  width: var(--app-sidebar-width);
+  min-width: var(--app-sidebar-width);
+  background: var(--app-sidebar-bg);
+  border-right: 1px solid #e9e9e7;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.app-sidebar__title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(55, 53, 47, 0.5);
+  padding: 6px 8px 8px;
+}
+
+.app-sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: background 80ms ease-in;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  color: var(--app-text);
+}
+.app-sidebar__item:hover {
+  background: rgba(55, 53, 47, 0.04);
+}
+.app-sidebar__item--active {
+  background: rgba(55, 53, 47, 0.08);
+  font-weight: 500;
+}
+.app-sidebar__icon {
+  font-size: 18px;
+  width: 22px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ── Main area ── */
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  height: var(--app-header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #e9e9e7;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.app-content {
+  flex: 1;
+  overflow: auto;
+  padding: 0;
+}
