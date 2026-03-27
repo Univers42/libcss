@@ -50,3 +50,13 @@ export {
   unflatten,
   deepMerge,
 } from '../common/utils/pathAccess';
+
+// ─── Configurable Providers (merged from vite-gourmand) ─
+export { configureApi, apiRequest } from './api';
+export type { ApiRequestFn } from './api';
+
+export { LibcssAuthProvider, useAuth } from './auth';
+export type { LibcssUser, LibcssAuthValue } from './auth';
+
+export { LibcssNotificationsProvider, useNotifications } from './notifications';
+export type { LibcssNotification, LibcssNotificationsValue } from './notifications';
