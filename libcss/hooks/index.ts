@@ -10,3 +10,6 @@ export { useComponentState } from './useComponentState';
 export { useSearch } from './useSearch';
 export { useJsonConf } from './useJsonConf';
 export type { ConfEntry, UseJsonConfReturn } from './useJsonConf';
+
+// ── Merged from vite-gourmand ──
+export { useIsMobile } from './useIsMobile';
