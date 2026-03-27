@@ -30,5 +30,6 @@ Thumbs.db
 .env
 .env.local
 setup-history.sh
+fake_day_commits.sh
 maker/
 studio/

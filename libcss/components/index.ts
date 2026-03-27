@@ -24,5 +24,22 @@ export * from './explorer';
 // Views (page-level composite views)
 export * from './views';
 
+// ── New categories merged from vite-gourmand ──
+
+// Database (full PostgreSQL CRUD system)
+export * from './database';
+
+// Cloud Terminal (browser-based shell)
+export * from './cloud-terminal';
+
+// Helpers (ConfirmDialog, EmptyState, IconButton, InlineStatus)
+export * from './helpers';
+
+// Icons (FlyIcons, OrderStatusIcons)
+export * from './icons';
+
+// Features (admin, client, employee, devboard, AI, QA)
+export * from './features';
+
 // Utilities
 export { cn } from './lib/cn';
