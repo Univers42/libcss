@@ -60,3 +60,13 @@ export type { StepperProps, StepperStep } from './Stepper';
 
 export { BreadcrumbNav } from './BreadcrumbNav';
 export type { BreadcrumbNavProps, BreadcrumbItem } from './BreadcrumbNav';
+
+// ── New molecules merged from vite-gourmand ──
+export * from './MetricCard';
+export * from './TestCard';
+export * from './StatusBadge';
+export * from './TypeBadge';
+export * from './CountBadge';
+export * from './SearchBar';
+export * from './UserProfile';
+export * from './FoodCard';
