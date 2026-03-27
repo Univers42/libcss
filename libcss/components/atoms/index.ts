@@ -37,3 +37,8 @@ export * from './Toast';
 export * from './Spinner';
 export * from './Divider';
 export * from './Kbd';
+
+// ── New atoms merged from vite-gourmand ──
+export * from './Card';
+export * from './BurgerMenu';
+export * from './LazyImage';
