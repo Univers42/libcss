@@ -1,0 +1,89 @@
+/**
+ * AutoTestList (atl) - Clean table styles with 3D shadow
+ */
+
+/* === CONTAINER with 3D shadow === */
+.atl {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 10%),
+    0 2px 4px -2px rgb(0 0 0 / 10%),
+    0 0 0 1px rgb(0 0 0 / 2%);
+  overflow: hidden;
+}
+
+/* === WRAPPER === */
+.atl__wrapper {
+  overflow-x: auto;
+}
+
+/* === TABLE === */
+.atl__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* === HEADER === */
+.atl__head {
+  background: linear-gradient(to bottom, #f9fafb, #f3f4f6);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.atl__th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.atl__th--name {
+  width: 50%;
+}
+
+.atl__th--suite {
+  width: 18%;
+}
+
+.atl__th--status {
+  width: 17%;
+}
+
+.atl__th--duration {
+  width: 15%;
+  text-align: right;
+}
+
+/* === RESPONSIVE === */
+@media (width <= 900px) {
+  .atl__th--suite {
+    display: none;
+  }
+
+  .atl__th--name {
+    width: 60%;
+  }
+}
+
+@media (width <= 700px) {
+  .atl__th--duration {
+    display: none;
+  }
+
+  .atl__th--name {
+    width: 70%;
+  }
+}
+
+@media (width <= 500px) {
+  .atl__th {
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+}
