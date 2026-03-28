@@ -1,0 +1,44 @@
+// ============================================
+// PRISMATICA — Dark Theme
+// ============================================
+
+@use "../abstracts" as *;
+
+[data-theme="dark"] {
+  @include theme-variables("dark");
+
+  --prisma-slider-dot-bg: rgb(255 255 255 / 35%);
+  --prisma-slider-dot-active-bg: #fff;
+
+  // Extended dark theme tokens for new components
+  --badge-default-bg: #334155;
+  --badge-default-fg: #cbd5e1;
+  --chip-default-bg: #334155;
+  --chip-default-fg: #cbd5e1;
+  --chip-primary-bg: #1e3a5f;
+  --chip-primary-fg: #93c5fd;
+  --chip-success-bg: #14532d;
+  --chip-success-fg: #86efac;
+  --chip-warning-bg: #451a03;
+  --chip-warning-fg: #fde68a;
+  --chip-danger-bg: #450a0a;
+  --chip-danger-fg: #fca5a5;
+  --input-filled-bg: #1e293b;
+  --switch-bg: #475569;
+  --tooltip-bg: #f1f5f9;
+  --tooltip-fg: #1e293b;
+  --skeleton-bg: #334155;
+  --progress-track-bg: #334155;
+  --spinner-track: rgb(255 255 255 / 12%);
+  --kbd-bg: #1e293b;
+}
+
+// Auto-detect dark mode when no data-theme attribute is set
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include theme-variables("dark");
+
+    --prisma-slider-dot-bg: rgb(255 255 255 / 35%);
+    --prisma-slider-dot-active-bg: #fff;
+  }
+}

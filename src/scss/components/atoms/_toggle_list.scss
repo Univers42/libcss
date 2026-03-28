@@ -1,0 +1,91 @@
+// ============================================
+// PRISMATICA — Toggle List Atom
+// ============================================
+// .prisma-toggle-list  collapsible details/summary
+// ============================================
+
+@use "../../abstracts" as *;
+
+.prisma-toggle-list {
+  // ── Configurator ──
+  --prisma-toggle-bg: transparent;
+  --prisma-toggle-bg-hover: var(--prisma-bg-hover);
+  --prisma-toggle-border-color: var(--prisma-border-default);
+  --prisma-toggle-icon-size: #{$spacing-5};
+  --prisma-toggle-padding: #{$spacing-3};
+  --prisma-toggle-radius: #{$radius-md};
+
+  // ── Base ──
+  border: $border-width-thin solid var(--prisma-toggle-border-color);
+  border-radius: var(--prisma-toggle-radius);
+  margin-bottom: $spacing-2;
+  background: var(--prisma-toggle-bg);
+  transition:
+    background $duration-fast $ease-default,
+    border-color $duration-fast $ease-default;
+
+  &[open] > .prisma-toggle-list__summary {
+    border-bottom: $border-width-thin solid var(--prisma-toggle-border-color);
+  }
+
+  // ── Summary (trigger) ──
+  &__summary {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: var(--prisma-toggle-padding);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    font-family: $font-family-sans;
+    font-size: $font-size-base;
+    font-weight: $weight-medium;
+    color: var(--prisma-text-primary);
+    border-radius: var(--prisma-toggle-radius);
+    transition: background $duration-fast $ease-default;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      background: var(--prisma-toggle-bg-hover);
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  // ── Disclosure icon ──
+  &__icon {
+    width: var(--prisma-toggle-icon-size);
+    height: var(--prisma-toggle-icon-size);
+    flex-shrink: 0;
+    color: var(--prisma-text-tertiary);
+    transition: transform $duration-fast $ease-default;
+
+    .prisma-toggle-list[open] & {
+      transform: rotate(90deg);
+    }
+  }
+
+  // ── Content ──
+  &__content {
+    padding: var(--prisma-toggle-padding);
+    color: var(--prisma-text-primary);
+    font-size: $font-size-base;
+    line-height: $leading-relaxed;
+  }
+
+  // ── Borderless variant ──
+  &--borderless {
+    --prisma-toggle-border-color: transparent;
+    --prisma-toggle-radius: #{$radius-sm};
+  }
+
+  // ── Filled variant ──
+  &--filled {
+    --prisma-toggle-bg: var(--prisma-bg-secondary);
+  }
+}

@@ -1,0 +1,121 @@
+// ============================================
+// PRISMATICA — Bookmark Atom
+// ============================================
+// .prisma-bookmark  web bookmark card
+// ============================================
+
+@use "../../abstracts" as *;
+
+.prisma-bookmark {
+  // ── Configurator ──
+  --prisma-bookmark-bg: var(--prisma-bg-secondary);
+  --prisma-bookmark-bg-hover: var(--prisma-bg-hover);
+  --prisma-bookmark-border-color: var(--prisma-border-default);
+  --prisma-bookmark-radius: #{$radius-md};
+  --prisma-bookmark-title-color: var(--prisma-text-primary);
+  --prisma-bookmark-desc-color: var(--prisma-text-secondary);
+  --prisma-bookmark-url-color: var(--prisma-text-tertiary);
+
+  // ── Base ──
+  display: flex;
+  margin-bottom: $spacing-4;
+  background: var(--prisma-bookmark-bg);
+  border: $border-width-thin solid var(--prisma-bookmark-border-color);
+  border-radius: var(--prisma-bookmark-radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    background $duration-fast $ease-default,
+    border-color $duration-fast $ease-default;
+
+  &:hover {
+    background: var(--prisma-bookmark-bg-hover);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // ── Content ──
+  &__content {
+    flex: 1;
+    min-width: 0;
+    padding: $spacing-3 $spacing-4;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+  }
+
+  &__title {
+    font-family: $font-family-sans;
+    font-size: $font-size-sm;
+    font-weight: $weight-semibold;
+    color: var(--prisma-bookmark-title-color);
+
+    @include truncate;
+  }
+
+  &__description {
+    font-family: $font-family-sans;
+    font-size: $font-size-xs;
+    color: var(--prisma-bookmark-desc-color);
+    line-height: $leading-normal;
+
+    @include line-clamp(2);
+  }
+
+  &__url {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    margin-top: $spacing-1;
+    font-family: $font-family-sans;
+    font-size: $font-size-xs;
+    color: var(--prisma-bookmark-url-color);
+
+    @include truncate;
+  }
+
+  &__favicon {
+    width: $spacing-4;
+    height: $spacing-4;
+    flex-shrink: 0;
+    border-radius: $radius-sm;
+  }
+
+  // ── Thumbnail ──
+  &__thumbnail {
+    flex-shrink: 0;
+    width: 200px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // ── Without thumbnail ──
+  &--no-thumbnail {
+    .prisma-bookmark__thumbnail {
+      display: none;
+    }
+  }
+
+  // ── Responsive: stack on small screens ──
+  @include xs-up {
+    // keep horizontal on larger screens
+  }
+
+  @media (max-width: #{$breakpoint-xs - 1px}) {
+    flex-direction: column;
+
+    .prisma-bookmark__thumbnail {
+      width: 100%;
+      height: 140px;
+    }
+  }
+}

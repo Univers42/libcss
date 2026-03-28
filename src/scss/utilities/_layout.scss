@@ -1,0 +1,124 @@
+// ============================================
+// PRISMATICA — Layout Utilities
+// ============================================
+// Utility classes for common layout patterns.
+// ============================================
+
+@use "../abstracts" as *;
+
+// ── Flexbox ──
+.prisma-flex-center {
+  @include flex-center;
+}
+
+.prisma-flex-between {
+  @include flex-between;
+}
+
+.prisma-flex-column {
+  @include flex-column;
+}
+
+.prisma-flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.prisma-flex-1 {
+  flex: 1;
+}
+
+.prisma-flex-auto {
+  flex: auto;
+}
+
+.prisma-flex-none {
+  flex: none;
+}
+
+// ── Grid ──
+.prisma-grid {
+  display: grid;
+  gap: $spacing-4;
+}
+
+.prisma-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.prisma-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.prisma-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+// ── Container ──
+.prisma-container {
+  @include container;
+}
+
+.prisma-container-sm {
+  @include container($container-sm);
+}
+
+.prisma-container-lg {
+  @include container($container-lg);
+}
+
+// ── Positioning ──
+.prisma-relative {
+  position: relative;
+}
+
+.prisma-absolute {
+  position: absolute;
+}
+
+.prisma-fixed {
+  position: fixed;
+}
+
+.prisma-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.prisma-absolute-center {
+  @include absolute-center;
+}
+
+.prisma-absolute-fill {
+  @include absolute-fill;
+}
+
+.prisma-fixed-fill {
+  @include fixed-fill;
+}
+
+// ── Overflow ──
+.prisma-overflow-hidden {
+  overflow: hidden;
+}
+
+.prisma-overflow-auto {
+  overflow: auto;
+}
+
+.prisma-overflow-scroll {
+  overflow: scroll;
+}
+
+// ── Width/Height ──
+.prisma-w-full {
+  width: 100%;
+}
+
+.prisma-h-full {
+  height: 100%;
+}
+
+.prisma-min-h-screen {
+  min-height: 100vh;
+}

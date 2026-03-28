@@ -1,0 +1,198 @@
+// ──────────────────────────────────────────────────────
+// Chart Palettes — CSS Custom Properties
+// ──────────────────────────────────────────────────────
+// Each palette can be activated via data-chart-palette="name"
+// on the .prisma-chart container. The Chart orchestrator sets
+// this automatically from config.style.palette.
+// ──────────────────────────────────────────────────────
+
+// ── Prisma (default) ───────────────────────────────────
+.prisma-chart,
+[data-chart-palette="prisma"] {
+  --prisma-chart-1: #6366f1;
+  --prisma-chart-2: #8b5cf6;
+  --prisma-chart-3: #a855f7;
+  --prisma-chart-4: #d946ef;
+  --prisma-chart-5: #ec4899;
+  --prisma-chart-6: #f43f5e;
+  --prisma-chart-7: #ef4444;
+  --prisma-chart-8: #f97316;
+  --prisma-chart-9: #eab308;
+  --prisma-chart-10: #22c55e;
+  --prisma-chart-11: #14b8a6;
+  --prisma-chart-12: #06b6d4;
+  --prisma-chart-grid: #e5e7eb;
+  --prisma-chart-axis: #6b7280;
+  --prisma-chart-text: #374151;
+}
+
+// ── Ocean ──────────────────────────────────────────────
+[data-chart-palette="ocean"] {
+  --prisma-chart-1: #0ea5e9;
+  --prisma-chart-2: #06b6d4;
+  --prisma-chart-3: #14b8a6;
+  --prisma-chart-4: #0d9488;
+  --prisma-chart-5: #0891b2;
+  --prisma-chart-6: #2563eb;
+  --prisma-chart-7: #3b82f6;
+  --prisma-chart-8: #60a5fa;
+  --prisma-chart-9: #38bdf8;
+  --prisma-chart-10: #7dd3fc;
+  --prisma-chart-11: #67e8f9;
+  --prisma-chart-12: #a5f3fc;
+  --prisma-chart-grid: #e0f2fe;
+  --prisma-chart-axis: #0369a1;
+  --prisma-chart-text: #0c4a6e;
+}
+
+// ── Forest ─────────────────────────────────────────────
+[data-chart-palette="forest"] {
+  --prisma-chart-1: #16a34a;
+  --prisma-chart-2: #15803d;
+  --prisma-chart-3: #22c55e;
+  --prisma-chart-4: #4ade80;
+  --prisma-chart-5: #166534;
+  --prisma-chart-6: #84cc16;
+  --prisma-chart-7: #65a30d;
+  --prisma-chart-8: #a3e635;
+  --prisma-chart-9: #d9f99d;
+  --prisma-chart-10: #059669;
+  --prisma-chart-11: #10b981;
+  --prisma-chart-12: #34d399;
+  --prisma-chart-grid: #dcfce7;
+  --prisma-chart-axis: #166534;
+  --prisma-chart-text: #14532d;
+}
+
+// ── Sunset ─────────────────────────────────────────────
+[data-chart-palette="sunset"] {
+  --prisma-chart-1: #ef4444;
+  --prisma-chart-2: #f97316;
+  --prisma-chart-3: #f59e0b;
+  --prisma-chart-4: #eab308;
+  --prisma-chart-5: #fbbf24;
+  --prisma-chart-6: #dc2626;
+  --prisma-chart-7: #b91c1c;
+  --prisma-chart-8: #ea580c;
+  --prisma-chart-9: #d97706;
+  --prisma-chart-10: #ca8a04;
+  --prisma-chart-11: #fb923c;
+  --prisma-chart-12: #fcd34d;
+  --prisma-chart-grid: #fef3c7;
+  --prisma-chart-axis: #92400e;
+  --prisma-chart-text: #78350f;
+}
+
+// ── Neon ───────────────────────────────────────────────
+[data-chart-palette="neon"] {
+  --prisma-chart-1: #22d3ee;
+  --prisma-chart-2: #a78bfa;
+  --prisma-chart-3: #f472b6;
+  --prisma-chart-4: #34d399;
+  --prisma-chart-5: #fbbf24;
+  --prisma-chart-6: #fb923c;
+  --prisma-chart-7: #818cf8;
+  --prisma-chart-8: #2dd4bf;
+  --prisma-chart-9: #e879f9;
+  --prisma-chart-10: #c084fc;
+  --prisma-chart-11: #67e8f9;
+  --prisma-chart-12: #86efac;
+  --prisma-chart-grid: #1e1b4b;
+  --prisma-chart-axis: #c4b5fd;
+  --prisma-chart-text: #e0e7ff;
+}
+
+// ── Pastel ─────────────────────────────────────────────
+[data-chart-palette="pastel"] {
+  --prisma-chart-1: #93c5fd;
+  --prisma-chart-2: #c4b5fd;
+  --prisma-chart-3: #f9a8d4;
+  --prisma-chart-4: #fca5a5;
+  --prisma-chart-5: #fdba74;
+  --prisma-chart-6: #fde68a;
+  --prisma-chart-7: #86efac;
+  --prisma-chart-8: #67e8f9;
+  --prisma-chart-9: #d8b4fe;
+  --prisma-chart-10: #fda4af;
+  --prisma-chart-11: #a5b4fc;
+  --prisma-chart-12: #99f6e4;
+  --prisma-chart-grid: #f1f5f9;
+  --prisma-chart-axis: #94a3b8;
+  --prisma-chart-text: #475569;
+}
+
+// ── Earth ──────────────────────────────────────────────
+[data-chart-palette="earth"] {
+  --prisma-chart-1: #92400e;
+  --prisma-chart-2: #78350f;
+  --prisma-chart-3: #a16207;
+  --prisma-chart-4: #b45309;
+  --prisma-chart-5: #d97706;
+  --prisma-chart-6: #ca8a04;
+  --prisma-chart-7: #854d0e;
+  --prisma-chart-8: #713f12;
+  --prisma-chart-9: #9a3412;
+  --prisma-chart-10: #c2410c;
+  --prisma-chart-11: #ea580c;
+  --prisma-chart-12: #f59e0b;
+  --prisma-chart-grid: #fef3c7;
+  --prisma-chart-axis: #78350f;
+  --prisma-chart-text: #451a03;
+}
+
+// ── Monochrome ─────────────────────────────────────────
+[data-chart-palette="monochrome"] {
+  --prisma-chart-1: #111827;
+  --prisma-chart-2: #1f2937;
+  --prisma-chart-3: #374151;
+  --prisma-chart-4: #4b5563;
+  --prisma-chart-5: #6b7280;
+  --prisma-chart-6: #9ca3af;
+  --prisma-chart-7: #d1d5db;
+  --prisma-chart-8: #e5e7eb;
+  --prisma-chart-9: #f3f4f6;
+  --prisma-chart-10: #f9fafb;
+  --prisma-chart-11: #030712;
+  --prisma-chart-12: #1f2937;
+  --prisma-chart-grid: #e5e7eb;
+  --prisma-chart-axis: #6b7280;
+  --prisma-chart-text: #111827;
+}
+
+// ── Corporate ──────────────────────────────────────────
+[data-chart-palette="corporate"] {
+  --prisma-chart-1: #1e40af;
+  --prisma-chart-2: #1d4ed8;
+  --prisma-chart-3: #2563eb;
+  --prisma-chart-4: #3b82f6;
+  --prisma-chart-5: #0f766e;
+  --prisma-chart-6: #0d9488;
+  --prisma-chart-7: #14b8a6;
+  --prisma-chart-8: #64748b;
+  --prisma-chart-9: #94a3b8;
+  --prisma-chart-10: #475569;
+  --prisma-chart-11: #334155;
+  --prisma-chart-12: #1e293b;
+  --prisma-chart-grid: #f1f5f9;
+  --prisma-chart-axis: #475569;
+  --prisma-chart-text: #1e293b;
+}
+
+// ── Contrast (high-visibility / accessibility) ─────────
+[data-chart-palette="contrast"] {
+  --prisma-chart-1: #dc2626;
+  --prisma-chart-2: #2563eb;
+  --prisma-chart-3: #16a34a;
+  --prisma-chart-4: #f59e0b;
+  --prisma-chart-5: #7c3aed;
+  --prisma-chart-6: #0891b2;
+  --prisma-chart-7: #be185d;
+  --prisma-chart-8: #0d9488;
+  --prisma-chart-9: #ea580c;
+  --prisma-chart-10: #4f46e5;
+  --prisma-chart-11: #15803d;
+  --prisma-chart-12: #b91c1c;
+  --prisma-chart-grid: #d1d5db;
+  --prisma-chart-axis: #374151;
+  --prisma-chart-text: #111827;
+}

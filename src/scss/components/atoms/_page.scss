@@ -1,0 +1,86 @@
+// ============================================
+// PRISMATICA — Page Link Atom
+// ============================================
+// .prisma-page  sub-page link block
+// ============================================
+
+@use "../../abstracts" as *;
+
+.prisma-page {
+  // ── Configurator ──
+  --prisma-page-bg: var(--prisma-bg-secondary);
+  --prisma-page-bg-hover: var(--prisma-bg-hover);
+  --prisma-page-border-color: var(--prisma-border-default);
+  --prisma-page-color: var(--prisma-text-primary);
+  --prisma-page-icon-color: var(--prisma-text-tertiary);
+  --prisma-page-padding: #{$spacing-3};
+  --prisma-page-radius: #{$radius-md};
+
+  // ── Base ──
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  padding: var(--prisma-page-padding);
+  background: var(--prisma-page-bg);
+  border: $border-width-thin solid var(--prisma-page-border-color);
+  border-radius: var(--prisma-page-radius);
+  margin-bottom: $spacing-2;
+  text-decoration: none;
+  color: var(--prisma-page-color);
+  cursor: pointer;
+  transition:
+    background $duration-fast $ease-default,
+    border-color $duration-fast $ease-default,
+    transform $duration-fast $ease-default;
+
+  &:hover {
+    background: var(--prisma-page-bg-hover);
+    transform: translateY(-1px);
+    box-shadow: $shadow-sm;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // ── Icon / emoji ──
+  &__icon {
+    flex-shrink: 0;
+    width: $spacing-6;
+    height: $spacing-6;
+    display: grid;
+    place-content: center;
+    font-size: $font-size-lg;
+    color: var(--prisma-page-icon-color);
+  }
+
+  // ── Title ──
+  &__title {
+    flex: 1;
+    font-family: $font-family-sans;
+    font-size: $font-size-sm;
+    font-weight: $weight-medium;
+
+    @include truncate;
+  }
+
+  // ── Arrow ──
+  &__arrow {
+    flex-shrink: 0;
+    width: $spacing-4;
+    height: $spacing-4;
+    color: var(--prisma-text-tertiary);
+    opacity: 0;
+    transition: opacity $duration-fast $ease-default;
+
+    .prisma-page:hover & {
+      opacity: 1;
+    }
+  }
+
+  // ── Compact ──
+  &--compact {
+    --prisma-page-padding: #{$spacing-2};
+    gap: $spacing-2;
+  }
+}
