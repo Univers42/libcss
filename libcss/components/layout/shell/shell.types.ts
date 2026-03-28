@@ -85,3 +85,37 @@ export interface PanelShellProps extends ShellSlots, ShellConfig {
   /** Whether the bottom panel is visible. Default: false. */
   showBottom?: boolean;
 }
+
+/** Streaming shell — full-bleed media streaming layout (Netflix, Disney+, etc.). */
+export interface StreamingShellProps extends ShellConfig {
+  /** Brand element (logo) rendered in the navigation bar. */
+  brand?: ReactNode;
+  /** Navigation links rendered in the desktop nav bar. */
+  nav?: ReactNode;
+  /** Right-side actions in the nav bar (search, notifications, profile). */
+  navActions?: ReactNode;
+  /** Full-bleed hero/banner content (title, description, CTA buttons). */
+  hero?: ReactNode;
+  /** Hero background — a URL string (renders as img) or a ReactNode (custom element). */
+  heroBackground?: string | ReactNode;
+  /** Main scrollable content area (category rows, grids, etc.). */
+  children: ReactNode;
+  /** Optional footer content. */
+  footer?: ReactNode;
+  /** Modal overlay content (video player, detail view). Rendered when present. */
+  modal?: ReactNode;
+  /** Hero section height (CSS value). Default: '80vh'. */
+  heroHeight?: string;
+  /** Hero section height on mobile (CSS value). Default: '56vh'. */
+  heroHeightMobile?: string;
+  /** Whether the nav transitions from transparent → solid on scroll. Default: true. */
+  navTransparent?: boolean;
+  /** Navigation bar height (CSS value). Default: '64px'. */
+  navHeight?: string;
+  /** How much content overlaps the hero bottom (CSS value). Default: '80px'. */
+  contentOverlap?: string;
+  /** Brand accent color. Default: '#e50914'. */
+  accentColor?: string;
+  /** Page background color. Default: '#141414'. */
+  bgColor?: string;
+}

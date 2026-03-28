@@ -10,6 +10,7 @@ the 4 shell layout variants — the outermost containers that structure an entir
 | `StackedShell` | header on top + full-width body | simple apps, documentation pages |
 | `CenteredShell` | centered card on a background | login, signup, error pages |
 | `PanelShell` | floating resizable panel(s) | tool windows, inspectors |
+| `StreamingShell` | floating nav + hero + rows + modal | streaming platforms (Netflix, Disney+, HBO) |
 
 ## DashboardShell (the main one)
 

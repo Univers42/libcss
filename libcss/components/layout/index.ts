@@ -5,7 +5,7 @@ export * from './view/chart';
 export { StudioLayout } from './StudioLayout';
 
 // Shell layouts
-export { DashboardShell, StackedShell, CenteredShell, PanelShell } from './shell';
+export { DashboardShell, StackedShell, CenteredShell, PanelShell, StreamingShell } from './shell';
 export type {
   ShellSlots,
   ShellColorScheme,
@@ -14,4 +14,5 @@ export type {
   StackedShellProps,
   CenteredShellProps,
   PanelShellProps,
+  StreamingShellProps,
 } from './shell';

@@ -11,10 +11,11 @@ type IconButtonSize = 'sm' | 'md' | 'lg';
 interface IconButtonProps {
   icon: React.ReactNode;
   ariaLabel: string;
-  onClick: () => void;
+  onClick: (e?: React.MouseEvent) => void;
   variant?: IconButtonVariant;
   size?: IconButtonSize;
   disabled?: boolean;
+  className?: string;
 }
 
 export function IconButton({
@@ -24,8 +25,9 @@ export function IconButton({
   variant = 'ghost',
   size = 'md',
   disabled = false,
+  className,
 }: IconButtonProps) {
-  const classes = buildClasses(variant, size);
+  const classes = buildClasses(variant, size, className);
 
   return (
     <button
@@ -40,6 +42,8 @@ export function IconButton({
   );
 }
 
-function buildClasses(variant: IconButtonVariant, size: IconButtonSize): string {
-  return ['icon-btn', `icon-btn-${variant}`, `icon-btn-${size}`].join(' ');
+function buildClasses(variant: IconButtonVariant, size: IconButtonSize, className?: string): string {
+  const base = ['icon-btn', `icon-btn-${variant}`, `icon-btn-${size}`];
+  if (className) base.push(className);
+  return base.join(' ');
 }
