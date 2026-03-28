@@ -1,0 +1,2174 @@
+/* ═══════════════════════════════════════════════════════
+   5. STREAMING SHELL — Full-bleed media streaming layout
+   Perfect for: Netflix, Disney+, HBO Max, Prime Video,
+   any media gallery or video-on-demand platform.
+
+   Custom properties (set via style on root):
+     --streaming-hero-h          Hero height (desktop)
+     --streaming-hero-h-mobile   Hero height (mobile)
+     --streaming-nav-h           Navbar height
+     --streaming-accent          Brand accent color
+     --streaming-bg              Page background color
+     --streaming-overlap         Content overlap on hero
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── Root ─────────────────────────────────────────── */
+.shell-streaming {
+  min-height: 100vh;
+  background: var(--streaming-bg, #141414);
+  color: #e2e8f0;
+  font-family: var(--shell-font, system-ui, -apple-system, 'Helvetica Neue', sans-serif);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ─── Floating Navigation ──────────────────────────── */
+.shell-streaming__nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4%;
+  height: var(--streaming-nav-h, 64px);
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* Transparent nav → gradient top */
+.shell-streaming--nav-transparent:not(.shell-streaming--scrolled) .shell-streaming__nav {
+  background: linear-gradient(180deg, rgb(0 0 0 / 70%) 10%, transparent 100%);
+}
+
+/* Scrolled → solid background */
+.shell-streaming--scrolled .shell-streaming__nav {
+  background: var(--streaming-bg, #141414);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 50%);
+}
+
+/* Non-transparent mode → always solid */
+.shell-streaming:not(.shell-streaming--nav-transparent) .shell-streaming__nav {
+  background: var(--streaming-bg, #141414);
+  box-shadow: 0 1px 8px rgb(0 0 0 / 30%);
+}
+
+.shell-streaming__nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.shell-streaming__nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.shell-streaming__brand {
+  flex-shrink: 0;
+}
+
+.shell-streaming__links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.875rem;
+}
+
+/* ─── Nav Link helpers ─────────────────────────────── */
+.shell-streaming__link {
+  color: #b3b3b3;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+  font-weight: 400;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.shell-streaming__link:hover,
+.shell-streaming__link--active {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ─── Burger Button (Mobile Only) ──────────────────── */
+.shell-streaming__burger {
+  display: none;
+}
+
+/* Override BurgerIcon styles inside streaming shell */
+.shell-streaming .burger-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 51;
+  color: #e2e8f0;
+}
+
+.shell-streaming .burger-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.shell-streaming .burger-line {
+  stroke: #e2e8f0;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* ─── Mobile Nav Overlay ───────────────────────────── */
+.shell-streaming__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 44;
+  background: rgb(0 0 0 / 50%);
+  backdrop-filter: blur(4px);
+}
+
+.shell-streaming__mobile-nav {
+  position: fixed;
+  top: var(--streaming-nav-h, 64px);
+  left: 0;
+  right: 0;
+  z-index: 45;
+  background: rgb(20 20 20 / 98%);
+  padding: 1.5rem 4%;
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: streamingSlideDown 0.25s ease-out;
+}
+
+@keyframes streamingSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Hero Section ─────────────────────────────────── */
+.shell-streaming__hero {
+  position: relative;
+  width: 100%;
+  height: var(--streaming-hero-h, 80vh);
+  overflow: hidden;
+}
+
+.shell-streaming__hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.shell-streaming__hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Left-to-right overlay for text readability */
+.shell-streaming__hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(77deg, rgb(0 0 0 / 80%) 0%, rgb(0 0 0 / 40%) 40%, transparent 70%);
+}
+
+/* Bottom fade into page background */
+.shell-streaming__hero-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  z-index: 2;
+  background: linear-gradient(
+    0deg,
+    var(--streaming-bg, #141414) 0%,
+    rgb(20 20 20 / 60%) 40%,
+    transparent 100%
+  );
+}
+
+/* Hero content positioning */
+.shell-streaming__hero-content {
+  position: absolute;
+  bottom: 20%;
+  left: 4%;
+  z-index: 3;
+  max-width: 600px;
+}
+
+/* ─── Content Area ─────────────────────────────────── */
+.shell-streaming__content {
+  position: relative;
+  z-index: 20;
+  margin-top: calc(-1 * var(--streaming-overlap, 80px));
+  padding-bottom: 3rem;
+  min-height: 50vh;
+}
+
+/* ─── Row Layout ───────────────────────────────────── */
+.shell-streaming__row {
+  padding: 0 4%;
+  margin-bottom: 1.75rem;
+  position: relative;
+}
+
+.shell-streaming__row-inner {
+  position: relative;
+}
+
+.shell-streaming__row-scroll {
+  display: flex;
+  overflow: auto hidden;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.shell-streaming__row-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scroll arrow buttons */
+.shell-streaming__row-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgb(0 0 0 / 60%);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    background 0.2s ease;
+}
+
+.shell-streaming__row:hover .shell-streaming__row-arrow {
+  opacity: 1;
+}
+
+.shell-streaming__row-arrow:hover {
+  background: rgb(0 0 0 / 90%);
+}
+
+.shell-streaming__row-arrow--left {
+  left: 0;
+}
+
+.shell-streaming__row-arrow--right {
+  right: 0;
+}
+
+/* ─── Card ─────────────────────────────────────────── */
+.shell-streaming__card {
+  flex: 0 0 auto;
+  width: 160px;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.shell-streaming__card:hover {
+  transform: scale(1.08);
+  z-index: 10;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 50%);
+}
+
+.shell-streaming__card:focus-visible {
+  outline: 2px solid var(--streaming-accent, #e50914);
+  outline-offset: 2px;
+}
+
+.shell-streaming__card-image {
+  aspect-ratio: 16 / 9;
+}
+
+.shell-streaming__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(0 0 0 / 85%) 0%, rgb(0 0 0 / 30%) 40%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0.75rem;
+}
+
+.shell-streaming__card:hover .shell-streaming__card-overlay {
+  opacity: 1;
+}
+
+.shell-streaming__card-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0.25rem 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shell-streaming__card-match {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #46d369;
+}
+
+/* Responsive card sizes */
+@media (width >= 480px) {
+  .shell-streaming__card {
+    width: 200px;
+  }
+}
+
+@media (width >= 768px) {
+  .shell-streaming__card {
+    width: 240px;
+  }
+}
+
+@media (width >= 1024px) {
+  .shell-streaming__card {
+    width: 280px;
+  }
+}
+
+/* ─── Footer ───────────────────────────────────────── */
+.shell-streaming__footer {
+  padding: 3rem 4%;
+  color: #737373;
+  font-size: 0.8rem;
+  border-top: 1px solid rgb(255 255 255 / 6%);
+}
+
+/* ─── Modal Overlay ────────────────────────────────── */
+.shell-streaming__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 88%);
+  backdrop-filter: blur(8px);
+  padding: 1rem;
+  animation: streamingFadeIn 0.3s ease-out;
+}
+
+@keyframes streamingFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.shell-streaming__modal-inner {
+  position: relative;
+  width: 100%;
+  max-width: 72rem;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 70%);
+}
+
+.shell-streaming__modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 30;
+  background: rgb(0 0 0 / 50%);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.shell-streaming__modal-close:hover {
+  background: rgb(0 0 0 / 80%);
+}
+
+.shell-streaming__modal-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.shell-streaming__modal-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(0deg, rgb(0 0 0 / 90%) 0%, rgb(0 0 0 / 40%) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.shell-streaming__modal-title {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  color: #fff;
+}
+
+.shell-streaming__modal-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.shell-streaming__modal-match {
+  color: #46d369;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.shell-streaming__modal-badge {
+  font-size: 0.7rem;
+  color: rgb(255 255 255 / 60%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.shell-streaming__modal-description {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  max-width: 48rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual Overrides for libcss Atoms
+   These ensure atoms render correctly inside the
+   streaming shell even without the full SCSS pipeline.
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── BrandLogo ────────────────────────────────────── */
+.shell-streaming .prisma-brand-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shell-streaming .prisma-brand-logo__icon {
+  display: none;
+}
+
+.shell-streaming .prisma-brand-logo__title {
+  color: var(--streaming-accent, #e50914);
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+/* ─── Button ───────────────────────────────────────── */
+.shell-streaming .prisma-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+.shell-streaming .prisma-btn:active {
+  transform: scale(0.96);
+}
+
+.shell-streaming .prisma-btn--primary {
+  background: #fff;
+  color: #141414;
+}
+
+.shell-streaming .prisma-btn--primary:hover {
+  background: rgb(255 255 255 / 75%);
+}
+
+.shell-streaming .prisma-btn--secondary,
+.shell-streaming .prisma-btn--ghost {
+  background: rgb(109 109 110 / 70%);
+  color: #fff;
+}
+
+.shell-streaming .prisma-btn--secondary:hover,
+.shell-streaming .prisma-btn--ghost:hover {
+  background: rgb(109 109 110 / 40%);
+}
+
+/* Button loading spinner in streaming context */
+.shell-streaming .prisma-btn--loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* ─── Heading ──────────────────────────────────────── */
+.shell-streaming .prisma-heading {
+  margin: 0;
+  color: #e5e7eb;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.shell-streaming .prisma-heading--1 {
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgb(0 0 0 / 70%);
+  margin-bottom: 0.75rem;
+}
+
+.shell-streaming .prisma-heading--2 {
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  margin-bottom: 0.75rem;
+}
+
+.shell-streaming .prisma-heading--3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ─── Paragraph ────────────────────────────────────── */
+.shell-streaming .prisma-paragraph {
+  margin: 0;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+.shell-streaming .prisma-paragraph--muted {
+  color: #b3b3b3;
+}
+
+.shell-streaming .prisma-paragraph--sm {
+  font-size: 0.875rem;
+}
+
+/* ─── Avatar ───────────────────────────────────────── */
+.shell-streaming .avatar {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  outline: 2px solid transparent;
+  transition: outline-color 0.2s ease;
+}
+
+.shell-streaming .avatar:hover {
+  outline-color: rgb(255 255 255 / 40%);
+}
+
+.shell-streaming .avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Badge ────────────────────────────────────────── */
+.shell-streaming .badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.shell-streaming .badge--success {
+  color: #46d369;
+  background: transparent;
+}
+
+.shell-streaming .badge--pill {
+  border-radius: 999px;
+}
+
+/* ─── IconButton ───────────────────────────────────── */
+.shell-streaming__nav .icon-btn,
+.shell-streaming__nav .icon-btn-ghost {
+  color: #e2e8f0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.shell-streaming__nav .icon-btn:hover,
+.shell-streaming__nav .icon-btn-ghost:hover {
+  color: #fff;
+  background: rgb(255 255 255 / 10%);
+}
+
+/* Extra Badge variants */
+.shell-streaming .badge--danger {
+  color: var(--streaming-accent, #e50914);
+  background: rgb(229 9 20 / 15%);
+}
+
+.shell-streaming .badge--warning {
+  color: #f59e0b;
+  background: rgb(245 158 11 / 15%);
+}
+
+.shell-streaming .badge--info {
+  color: #3b82f6;
+  background: rgb(59 130 246 / 15%);
+}
+
+.shell-streaming .badge--default {
+  color: #d1d5db;
+  background: rgb(255 255 255 / 8%);
+}
+
+.shell-streaming .badge--primary {
+  color: #fff;
+  background: var(--streaming-accent, #e50914);
+}
+
+.shell-streaming .badge--outline {
+  background: transparent;
+  border: 1px solid rgb(255 255 255 / 30%);
+  color: #d1d5db;
+}
+
+.shell-streaming .badge--sm {
+  font-size: 0.65rem;
+  padding: 1px 6px;
+}
+
+.shell-streaming .badge--dot .badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentcolor;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Enhanced Card — Actions, Meta & Chips on hover
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming__card:hover {
+  transform: scale(1.12);
+  z-index: 10;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 60%);
+}
+
+.shell-streaming__card-overlay {
+  gap: 0.3rem;
+}
+
+.shell-streaming__card-actions {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+
+.shell-streaming__card-mini-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid rgb(255 255 255 / 50%);
+  background: rgb(42 42 42 / 70%);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.shell-streaming__card-mini-btn:hover {
+  border-color: #fff;
+  background: rgb(255 255 255 / 15%);
+}
+
+.shell-streaming__card-mini-btn--play {
+  background: #fff;
+  color: #141414;
+  border-color: #fff;
+}
+
+.shell-streaming__card-mini-btn--play:hover {
+  background: rgb(255 255 255 / 80%);
+}
+
+.shell-streaming__card-mini-btn--active {
+  color: #46d369;
+  border-color: #46d369;
+}
+
+.shell-streaming__card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  font-size: 0.65rem;
+  color: #b3b3b3;
+}
+
+.shell-streaming__card-meta-match {
+  color: #46d369;
+  font-weight: 700;
+}
+
+.shell-streaming__card-meta-rating {
+  border: 1px solid rgb(255 255 255 / 25%);
+  padding: 0 3px;
+  border-radius: 2px;
+  font-size: 0.6rem;
+  color: #b3b3b3;
+}
+
+.shell-streaming__card-chips {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.shell-streaming__card-new-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 5;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Card Progress Bar (Continue Watching) — uses libcss Progress
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming__card-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  height: auto;
+}
+
+.shell-streaming__card-progress .progress {
+  gap: 0;
+}
+
+.shell-streaming__card-progress .progress__track {
+  height: 3px;
+  background: rgb(255 255 255 / 15%);
+  border-radius: 0;
+}
+
+.shell-streaming__card-progress .progress__bar {
+  border-radius: 0 2px 2px 0;
+}
+
+.shell-streaming__card-progress .progress__label,
+.shell-streaming__card-progress .progress__value {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Top 10 Row
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming__row--top10 .shell-streaming__row-scroll {
+  gap: 0;
+  padding: 1rem 0;
+}
+
+.shell-streaming__top10-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  cursor: pointer;
+  margin-right: -1rem;
+  transition: transform 0.3s ease;
+}
+
+.shell-streaming__top10-item:hover {
+  transform: scale(1.05);
+  z-index: 5;
+}
+
+.shell-streaming__top10-num {
+  font-size: clamp(6rem, 12vw, 10rem);
+  font-weight: 900;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 3px #808080;
+  paint-order: stroke fill;
+  font-family: 'Arial Black', Impact, sans-serif;
+  user-select: none;
+  position: relative;
+  z-index: 1;
+  margin-right: -1.5rem;
+}
+
+.shell-streaming__top10-poster {
+  width: 130px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.shell-streaming__top10-poster img,
+.shell-streaming__top10-poster .lazy-image {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Search Overlay
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming__search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgb(0 0 0 / 94%);
+  padding: calc(var(--streaming-nav-h, 64px) + 1rem) 4% 2rem;
+  overflow-y: auto;
+  animation: streamingFadeIn 0.2s ease-out;
+}
+
+.shell-streaming__search-header {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.shell-streaming__search-close {
+  position: fixed;
+  top: 1rem;
+  right: 4%;
+  z-index: 61;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.shell-streaming__search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.shell-streaming__search-result {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.shell-streaming__search-result:hover {
+  background: rgb(255 255 255 / 8%);
+}
+
+.shell-streaming__search-result-img {
+  width: 100px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.shell-streaming__search-result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.shell-streaming__search-result-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shell-streaming__search-result-cat {
+  font-size: 0.7rem;
+  color: #888;
+}
+
+.shell-streaming__search-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Toast Container
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming__toast-container {
+  position: fixed;
+  top: calc(var(--streaming-nav-h, 64px) + 1rem);
+  right: 1.5rem;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.shell-streaming__toast-container > * {
+  pointer-events: auto;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Alert Banner
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming__alert-banner {
+  padding: 0 4%;
+  margin-bottom: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Enhanced Modal — Body, Tabs, Accordion, Chips, Progress
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming__modal-inner--enhanced {
+  aspect-ratio: auto;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.shell-streaming__modal-inner--enhanced .prisma-video {
+  flex-shrink: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+.shell-streaming__modal-inner--enhanced .prisma-video__player {
+  border-radius: 0;
+}
+
+.shell-streaming__modal-inner--enhanced .prisma-video__element {
+  border-radius: 0;
+  width: 100%;
+  max-height: 45vh;
+  object-fit: cover;
+}
+
+.shell-streaming__modal-body {
+  padding: 1.5rem 2rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+  background: #181818;
+}
+
+.shell-streaming__modal-header {
+  margin-bottom: 0.75rem;
+}
+
+.shell-streaming__modal-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.shell-streaming__modal-badges .badge {
+  white-space: nowrap;
+}
+
+.shell-streaming__modal-chips {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.shell-streaming__modal-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.shell-streaming__modal-actions-row .icon-btn,
+.shell-streaming__modal-actions-row .icon-btn-ghost {
+  color: #e2e8f0;
+  background: rgb(42 42 42 / 60%);
+  border: 1.5px solid rgb(255 255 255 / 40%);
+  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.shell-streaming__modal-actions-row .icon-btn:hover,
+.shell-streaming__modal-actions-row .icon-btn-ghost:hover {
+  border-color: #fff;
+  color: #fff;
+  background: rgb(255 255 255 / 10%);
+}
+
+.shell-streaming__modal-progress {
+  margin: 0.75rem 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Tooltip
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.shell-streaming .tooltip {
+  position: absolute;
+  padding: 0.35rem 0.65rem;
+  background: #e5e7eb;
+  color: #141414;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 50%);
+}
+
+.shell-streaming .tooltip--top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.shell-streaming .tooltip--bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.shell-streaming .tooltip--left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.shell-streaming .tooltip--right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.shell-streaming .tooltip__arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #e5e7eb;
+  transform: rotate(45deg);
+}
+
+.shell-streaming .tooltip--top .tooltip__arrow {
+  bottom: -4px;
+  left: 50%;
+  margin-left: -4px;
+}
+
+.shell-streaming .tooltip--bottom .tooltip__arrow {
+  top: -4px;
+  left: 50%;
+  margin-left: -4px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Chip
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 3px;
+  line-height: 1.4;
+  transition: all 0.15s ease;
+}
+
+.shell-streaming .chip--filled {
+  background: rgb(255 255 255 / 12%);
+  color: #d1d5db;
+}
+
+.shell-streaming .chip--outlined {
+  background: transparent;
+  border: 1px solid rgb(255 255 255 / 20%);
+  color: #d1d5db;
+}
+
+.shell-streaming .chip--ghost {
+  background: transparent;
+  color: #9ca3af;
+}
+
+.shell-streaming .chip--clickable {
+  cursor: pointer;
+}
+
+.shell-streaming .chip--clickable:hover {
+  background: rgb(255 255 255 / 18%);
+  color: #fff;
+}
+
+.shell-streaming .chip--danger {
+  color: var(--streaming-accent);
+  border-color: var(--streaming-accent);
+}
+
+.shell-streaming .chip--success {
+  color: #46d369;
+  border-color: rgb(70 211 105 / 40%);
+}
+
+.shell-streaming .chip--primary {
+  color: var(--streaming-accent);
+}
+
+.shell-streaming .chip__icon {
+  display: flex;
+  font-size: 0.8em;
+}
+
+.shell-streaming .chip__remove {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 0 0 2px;
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Tabs
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .prisma-tabs {
+  margin-bottom: 1.25rem;
+}
+
+.shell-streaming .prisma-tabs__list {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0;
+}
+
+.shell-streaming .prisma-tabs__list::-webkit-scrollbar {
+  display: none;
+}
+
+.shell-streaming .prisma-tabs__tab {
+  padding: 0.4rem 1rem;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 999px;
+  background: transparent;
+  color: #b3b3b3;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.shell-streaming .prisma-tabs__tab:hover {
+  border-color: rgb(255 255 255 / 45%);
+  color: #fff;
+}
+
+.shell-streaming .prisma-tabs__tab--active {
+  background: #fff;
+  color: #141414;
+  border-color: #fff;
+  font-weight: 600;
+}
+
+/* Line variant (modal tabs) */
+.shell-streaming .prisma-tabs:not(.prisma-tabs--pills) .prisma-tabs__list {
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+  gap: 0;
+  padding-bottom: 0;
+}
+
+.shell-streaming .prisma-tabs:not(.prisma-tabs--pills) .prisma-tabs__tab {
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  padding: 0.6rem 1.25rem;
+  color: #888;
+}
+
+.shell-streaming .prisma-tabs:not(.prisma-tabs--pills) .prisma-tabs__tab:hover {
+  color: #d1d5db;
+}
+
+.shell-streaming .prisma-tabs:not(.prisma-tabs--pills) .prisma-tabs__tab--active {
+  background: transparent;
+  color: #fff;
+  border-bottom-color: var(--streaming-accent, #e50914);
+}
+
+.shell-streaming .prisma-tabs__panel {
+  padding: 0;
+}
+
+.shell-streaming .prisma-tabs--compact .prisma-tabs__tab {
+  padding: 0.3rem 0.85rem;
+  font-size: 0.75rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Progress
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .progress {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.shell-streaming .progress__track {
+  flex: 1;
+  height: 4px;
+  background: rgb(255 255 255 / 15%);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.shell-streaming .progress--sm .progress__track {
+  height: 3px;
+}
+
+.shell-streaming .progress--lg .progress__track {
+  height: 8px;
+}
+
+.shell-streaming .progress__bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.shell-streaming .progress--primary .progress__bar {
+  background: var(--streaming-accent);
+}
+
+.shell-streaming .progress--success .progress__bar {
+  background: #46d369;
+}
+
+.shell-streaming .progress--warning .progress__bar {
+  background: #f59e0b;
+}
+
+.shell-streaming .progress--danger .progress__bar {
+  background: var(--streaming-accent);
+}
+
+.shell-streaming .progress__label {
+  font-size: 0.72rem;
+  color: #b3b3b3;
+  white-space: nowrap;
+}
+
+.shell-streaming .progress__value {
+  font-size: 0.72rem;
+  color: #d1d5db;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Divider
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .divider {
+  border: none;
+  border-top: 1px solid rgb(255 255 255 / 8%);
+  margin: 0.75rem 0;
+}
+
+.shell-streaming .divider--dashed {
+  border-top-style: dashed;
+}
+
+.shell-streaming .divider--sm {
+  margin: 0.4rem 0;
+}
+
+.shell-streaming .divider--lg {
+  margin: 1.25rem 0;
+}
+
+.shell-streaming .divider--labelled {
+  display: flex;
+  align-items: center;
+  border: none;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.shell-streaming .divider__line {
+  flex: 1;
+  height: 1px;
+  background: rgb(255 255 255 / 8%);
+}
+
+.shell-streaming .divider__label {
+  font-size: 0.72rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Separator
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .prisma-separator {
+  border: none;
+  border-top: 1px solid rgb(255 255 255 / 6%);
+  margin: 1.25rem 0;
+}
+
+.shell-streaming .prisma-separator--compact {
+  margin: 0.75rem 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Accordion
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .accordion {
+  width: 100%;
+}
+
+.shell-streaming .accordion__item {
+  border-bottom: 1px solid rgb(255 255 255 / 6%);
+}
+
+.shell-streaming .accordion__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  background: none;
+  border: none;
+  color: #e5e7eb;
+  font-size: 0.88rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+
+.shell-streaming .accordion__trigger:hover {
+  color: #fff;
+}
+
+.shell-streaming .accordion__trigger:disabled {
+  color: #555;
+  cursor: not-allowed;
+}
+
+.shell-streaming .accordion__title {
+  text-align: left;
+}
+
+.shell-streaming .accordion__chevron {
+  font-size: 1rem;
+  color: #888;
+}
+
+.shell-streaming .accordion__panel {
+  padding: 0 0 1rem;
+  color: #b3b3b3;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Toast
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  min-width: 280px;
+  max-width: 400px;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 50%);
+  animation: toastSlideIn 0.3s ease-out;
+  backdrop-filter: blur(12px);
+}
+
+.shell-streaming .toast--info {
+  background: rgb(30 30 30 / 95%);
+  color: #e5e7eb;
+  border-left: 3px solid #3b82f6;
+}
+
+.shell-streaming .toast--success {
+  background: rgb(30 30 30 / 95%);
+  color: #e5e7eb;
+  border-left: 3px solid #46d369;
+}
+
+.shell-streaming .toast--warning {
+  background: rgb(30 30 30 / 95%);
+  color: #e5e7eb;
+  border-left: 3px solid #f59e0b;
+}
+
+.shell-streaming .toast--error {
+  background: rgb(30 30 30 / 95%);
+  color: #e5e7eb;
+  border-left: 3px solid var(--streaming-accent);
+}
+
+.shell-streaming .toast__message {
+  flex: 1;
+}
+
+.shell-streaming .toast__close {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.shell-streaming .toast__close:hover {
+  color: #fff;
+}
+
+.shell-streaming .toast--exit {
+  animation: toastSlideOut 0.3s ease-in forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Alert
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  background: rgb(30 30 30 / 70%);
+  border: 1px solid rgb(255 255 255 / 4%);
+}
+
+.shell-streaming .alert--info {
+  border-left: 3px solid #3b82f6;
+}
+
+.shell-streaming .alert--success {
+  border-left: 3px solid #46d369;
+}
+
+.shell-streaming .alert--warning {
+  border-left: 3px solid #f59e0b;
+}
+
+.shell-streaming .alert--danger {
+  border-left: 3px solid #ef4444;
+}
+
+.shell-streaming .alert__icon {
+  color: #888;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.shell-streaming .alert__content {
+  flex: 1;
+}
+
+.shell-streaming .alert__title {
+  color: #e5e7eb;
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.82rem;
+}
+
+.shell-streaming .alert__body {
+  color: #b3b3b3;
+}
+
+.shell-streaming .alert__dismiss {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.shell-streaming .alert__dismiss:hover {
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Input
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .input-field {
+  position: relative;
+}
+
+.shell-streaming .input-field--full {
+  width: 100%;
+}
+
+.shell-streaming .input-field__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.shell-streaming .input-field__icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: #888;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.shell-streaming .input-field__icon--left {
+  left: 0.75rem;
+}
+
+.shell-streaming .input-field__icon--right {
+  right: 0.75rem;
+}
+
+.shell-streaming .input-field__input {
+  width: 100%;
+  background: rgb(0 0 0 / 70%);
+  color: #fff;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 4px;
+  padding: 0.65rem 0.75rem 0.65rem 2.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.shell-streaming .input-field__input:focus {
+  outline: none;
+  border-color: #fff;
+  background: rgb(0 0 0 / 90%);
+}
+
+.shell-streaming .input-field__input::placeholder {
+  color: #666;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Skeleton
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .skeleton {
+  background: rgb(255 255 255 / 6%);
+  border-radius: 4px;
+}
+
+.shell-streaming .skeleton--pulse {
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+.shell-streaming .skeleton--wave {
+  background: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 4%) 25%,
+    rgb(255 255 255 / 10%) 50%,
+    rgb(255 255 255 / 4%) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonWave 1.5s ease-in-out infinite;
+}
+
+.shell-streaming .skeleton--rounded {
+  border-radius: 8px;
+}
+
+.shell-streaming .skeleton--circular {
+  border-radius: 50%;
+}
+
+@keyframes skeletonPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes skeletonWave {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Switch
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.shell-streaming .switch__input {
+  display: none;
+}
+
+.shell-streaming .switch__track {
+  width: 34px;
+  height: 18px;
+  border-radius: 9px;
+  background: rgb(255 255 255 / 20%);
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.shell-streaming .switch__input:checked + .switch__track {
+  background: var(--streaming-accent);
+}
+
+.shell-streaming .switch__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+
+.shell-streaming .switch__input:checked + .switch__track .shell-streaming .switch__thumb,
+.switch__input:checked + .switch__track .switch__thumb {
+  transform: translateX(16px);
+}
+
+.shell-streaming .switch__label {
+  font-size: 0.78rem;
+  color: #b3b3b3;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Contextual: Video (libcss media)
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .prisma-video {
+  width: 100%;
+  margin: 0;
+}
+
+.shell-streaming .prisma-video__player {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.shell-streaming .prisma-video__element {
+  width: 100%;
+  display: block;
+}
+
+.shell-streaming .prisma-video__caption {
+  font-size: 0.78rem;
+  color: #b3b3b3;
+  padding: 0.5rem 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Footer Enhancements
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming__footer-socials {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.shell-streaming__footer-socials > * {
+  color: #737373;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.shell-streaming__footer-socials > *:hover {
+  color: #fff;
+}
+
+.shell-streaming__footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.shell-streaming__footer-link {
+  font-size: 0.72rem;
+  color: #737373;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font-family: inherit;
+}
+
+.shell-streaming__footer-link:hover {
+  color: #b3b3b3;
+}
+
+.shell-streaming__footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* LanguageSelector overrides for streaming footer */
+.shell-streaming__lang-selector .prisma-language-selector__trigger {
+  background: rgb(0 0 0 / 60%);
+  color: #e5e7eb;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 4px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: border-color 0.2s ease;
+}
+
+.shell-streaming__lang-selector .prisma-language-selector__trigger:hover {
+  border-color: rgb(255 255 255 / 40%);
+}
+
+.shell-streaming__lang-selector .prisma-language-selector__dropdown {
+  background: rgb(20 20 20 / 98%);
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 4px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+}
+
+.shell-streaming__lang-selector .prisma-language-selector__option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  color: #b3b3b3;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s ease;
+}
+
+.shell-streaming__lang-selector .prisma-language-selector__option:hover {
+  background: rgb(255 255 255 / 8%);
+  color: #fff;
+}
+
+.shell-streaming__lang-selector .prisma-language-selector__option--active {
+  color: #fff;
+  background: rgb(255 255 255 / 5%);
+}
+
+/* ═══════════════════════════════════════════════════════
+   EmptyState overrides
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem 1rem;
+  grid-column: 1 / -1;
+}
+
+.shell-streaming .empty-state-icon {
+  color: #555;
+}
+
+.shell-streaming .empty-state-title {
+  color: #e5e7eb;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.shell-streaming .empty-state-description {
+  color: #888;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   New Helper Classes (refactored from inline styles)
+   ═══════════════════════════════════════════════════════ */
+.shell-streaming__hero-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.shell-streaming__hero-chips {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.shell-streaming__hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.shell-streaming__row-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shell-streaming__row-icon {
+  color: #b3b3b3;
+}
+
+.shell-streaming__row-icon--accent {
+  color: var(--streaming-accent, #e50914);
+}
+
+.shell-streaming__row-icon--success {
+  color: #46d369;
+}
+
+.shell-streaming__skeleton-row {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  overflow: hidden;
+}
+
+.shell-streaming__category-filter {
+  padding: 0.5rem 4% 0;
+}
+
+.shell-streaming__modal-tab-panel {
+  padding: 0.5rem 0;
+}
+
+.shell-streaming__modal-meta-list {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.shell-streaming__meta-label {
+  color: #999;
+}
+
+.shell-streaming__similar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+}
+
+.shell-streaming__similar-grid .shell-streaming__card {
+  width: 100%;
+}
+
+.shell-streaming__card-overlay--visible {
+  opacity: 1;
+  background: linear-gradient(0deg, rgb(0 0 0 / 90%) 0%, transparent 70%);
+}
+
+.shell-streaming__modal-autoplay {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.shell-streaming__search-result-chips {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.15rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════ */
+@media (width <= 768px) {
+  .shell-streaming__hero {
+    height: var(--streaming-hero-h-mobile, 56vh);
+  }
+
+  .shell-streaming__links {
+    display: none;
+  }
+
+  .shell-streaming__burger,
+  .shell-streaming .burger-icon {
+    display: flex;
+  }
+
+  .shell-streaming__hero-content {
+    bottom: 15%;
+    max-width: 85%;
+  }
+
+  .shell-streaming__row {
+    padding: 0 3%;
+  }
+
+  .shell-streaming__row-arrow {
+    display: none;
+  }
+
+  .shell-streaming__modal-inner {
+    border-radius: 8px;
+  }
+
+  .shell-streaming__modal-info {
+    padding: 1rem 1.25rem;
+  }
+
+  .shell-streaming .prisma-btn {
+    padding: 0.45rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  /* Enhanced mobile */
+  .shell-streaming__card:hover {
+    transform: scale(1.04);
+  }
+
+  .shell-streaming__card-actions {
+    display: none;
+  }
+
+  .shell-streaming__card-meta {
+    display: none;
+  }
+
+  .shell-streaming__card-chips {
+    display: none;
+  }
+
+  .shell-streaming__top10-num {
+    font-size: 5rem;
+  }
+
+  .shell-streaming__top10-poster {
+    width: 100px;
+  }
+
+  .shell-streaming__search-results {
+    grid-template-columns: 1fr;
+  }
+
+  .shell-streaming__footer-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shell-streaming__toast-container {
+    right: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .shell-streaming .toast {
+    min-width: auto;
+  }
+
+  .shell-streaming__modal-body {
+    padding: 1rem 1.25rem 1.5rem;
+  }
+
+  .shell-streaming .prisma-tabs__list {
+    padding: 0;
+  }
+}
+
+@media (width <= 480px) {
+  .shell-streaming__nav {
+    padding: 0 3%;
+  }
+
+  .shell-streaming__hero-content {
+    bottom: 12%;
+    max-width: 92%;
+  }
+
+  .shell-streaming__footer {
+    padding: 2rem 3%;
+  }
+
+  .shell-streaming .prisma-brand-logo__title {
+    font-size: 1.2rem;
+  }
+
+  .shell-streaming__top10-num {
+    font-size: 4rem;
+  }
+
+  .shell-streaming__top10-poster {
+    width: 80px;
+  }
+
+  .shell-streaming__footer-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 768px) {
+  .shell-streaming__top10-poster {
+    width: 175px;
+  }
+}
+
+@media (width >= 1400px) {
+  .shell-streaming__hero-content {
+    max-width: 40%;
+  }
+}
