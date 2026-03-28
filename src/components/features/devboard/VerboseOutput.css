@@ -1,0 +1,97 @@
+/**
+ * Verbose Output Styles
+ * Terminal-like panel with glassmorphism
+ */
+.verbose-output {
+  margin-top: var(--space-4);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: var(--radius-lg);
+  background: rgb(30 30 30 / 95%);
+  overflow: hidden;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 10%),
+    0 2px 4px -1px rgb(0 0 0 / 6%),
+    inset 0 1px 0 rgb(255 255 255 / 5%);
+  backdrop-filter: blur(8px);
+}
+
+.verbose-output__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgb(45 45 45 / 100%) 0%, rgb(35 35 35 / 100%) 100%);
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+.verbose-output__title {
+  color: #e5e7eb;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.verbose-output__badge {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgb(16 185 129 / 30%);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.verbose-output__content {
+  margin: 0;
+  padding: 16px;
+  color: #d4d4d4;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 400px;
+  background: linear-gradient(180deg, rgb(30 30 30 / 100%) 0%, rgb(25 25 25 / 100%) 100%);
+}
+
+/* Custom scrollbar */
+.verbose-output__content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.verbose-output__content::-webkit-scrollbar-track {
+  background: rgb(255 255 255 / 5%);
+}
+
+.verbose-output__content::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 15%);
+  border-radius: 4px;
+}
+
+.verbose-output__content::-webkit-scrollbar-thumb:hover {
+  background: rgb(255 255 255 / 25%);
+}
+
+/* Highlight test results in output */
+.verbose-output__content::selection {
+  background: #8b5cf6;
+  color: #fff;
+}
