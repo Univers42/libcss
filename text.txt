@@ -1,0 +1,9 @@
+npx prettier --write 'src/**/*.{ts,tsx}' 2>&1 | tail -5
+npx eslint 'src/**/*.{ts,tsx}' --fix 2>&1 | tail -30
+npx eslint 'src/**/*.{ts,tsx}' 2>&1 | grep -E "^\s+\d+:\d+\s+error"
+npx eslint 'src/**/*.{ts,tsx}' 2>&1 | grep "error\|warning" | head -30
+npx eslint 'src/**/*.{ts,tsx}' 2>&1 | grep -B1 "error " | grep "^/"
+ npx eslint 'src/**/*.{ts,tsx}' 2>&1 | grep -v "warning"
+
+
+npm run typecheck 2>&1 | grep -oP 'error TS\d+' | sort | uniq -c | sort -rn
