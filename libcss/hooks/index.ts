@@ -10,6 +10,8 @@ export { useComponentState } from './useComponentState';
 export { useSearch } from './useSearch';
 export { useJsonConf } from './useJsonConf';
 export type { ConfEntry, UseJsonConfReturn } from './useJsonConf';
+export { useDesktopWindow } from './useDesktopWindow';
+export type { DesktopWindowAPI } from './useDesktopWindow';
 
 // ── Merged from vite-gourmand ──
 export { useIsMobile } from './useIsMobile';
