@@ -1,0 +1,8 @@
+export const DEFAULT_MAX_LEVEL = 3;
+export const MIN_LEVEL = 0;
+
+export const STRENGTH_MAP = {
+  1: 'error',
+  2: 'warning',
+  3: 'success',
+} as const;
