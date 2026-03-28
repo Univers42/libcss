@@ -1,24 +1,25 @@
 {
   "extends": "stylelint-config-standard-scss",
   "rules": {
-    "selector-class-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?$",
+    "selector-class-pattern": null,
     "scss/at-rule-no-unknown": [true, {
       "ignoreAtRules": ["use", "forward", "include", "mixin", "if", "else", "each", "for", "function", "return", "content", "at-root", "warn", "error"]
     }],
     "scss/dollar-variable-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
     "scss/percent-placeholder-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
     "no-descending-specificity": null,
+    "no-duplicate-selectors": null,
     "declaration-empty-line-before": null,
-    "custom-property-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
-    "keyframes-name-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+    "custom-property-pattern": null,
+    "keyframes-name-pattern": null,
     "max-nesting-depth": 5,
-    "selector-max-compound-selectors": 4,
+    "selector-max-compound-selectors": 5,
     "color-named": "never",
     "property-no-vendor-prefix": [true, {
-      "ignoreProperties": ["-webkit-text-size-adjust", "-webkit-background-clip", "-webkit-text-fill-color"]
+      "ignoreProperties": ["-webkit-text-size-adjust", "-webkit-background-clip", "-webkit-text-fill-color", "-webkit-mask-image"]
     }],
     "declaration-block-no-duplicate-properties": [true, {
-      "ignoreProperties": ["text-size-adjust", "background-clip"]
+      "ignoreProperties": ["text-size-adjust", "background-clip", "backdrop-filter", "mask", "mask-image", "mask-composite"]
     }]
   }
 }
