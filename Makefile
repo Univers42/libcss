@@ -9,8 +9,10 @@ export GID := $(shell id -g)
 all: build
 
 build:
-	$(COMPOSE) --profile build run --rm --build build
-
+	docker build --target builder -t libcss-internal .
+	docker create --name temp-extractor libcss-internal
+	docker cp temp-extractor:/libcss/dist ./dist
+	docker rm temp-extractor
 lint:
 	$(COMPOSE) --profile lint run --rm lint
 
