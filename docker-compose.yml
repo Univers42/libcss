@@ -3,6 +3,7 @@ services:
     build:
       context: .
       target: build
+    user: "${UID}:${GID}"
     volumes:
       - ./dist:/libcss/dist
     profiles: ["build"]
@@ -11,6 +12,7 @@ services:
     build:
       context: .
       target: dev
+    user: "${UID}:${GID}"
     volumes:
       - ./src:/libcss/src:ro
       - ./dist:/libcss/dist
