@@ -3,9 +3,6 @@ COMPOSE		= docker compose
 IMAGE		= ghcr.io/univers42/libcss
 VERSION		?= latest
 
-export UID := $(shell id -u)
-export GID := $(shell id -g)
-
 all: build
 
 build:
