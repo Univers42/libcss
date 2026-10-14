@@ -2,14 +2,19 @@ NAME		= libcss
 COMPOSE		= docker compose
 IMAGE		= ghcr.io/univers42/libcss
 VERSION		?= latest
+HOST_UID	?= $(shell id -u)
+HOST_GID	?= $(shell id -g)
+
+export HOST_UID HOST_GID
 
 all: build
 
 build:
 	docker build --target builder -t libcss-internal .
-	docker create --name temp-extractor libcss-internal
-	docker cp temp-extractor:/libcss/dist ./dist
-	docker rm temp-extractor
+	@container_id=$$(docker create libcss-internal) && \
+		trap 'docker rm -f "$$container_id" >/dev/null 2>&1 || true' EXIT; \
+		mkdir -p dist && \
+		docker cp "$$container_id:/libcss/dist/." ./dist/
 lint:
 	$(COMPOSE) --profile lint run --rm lint
 
